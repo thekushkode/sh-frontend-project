@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "google-map-react": "^1.1.7",
+    "google-maps-react": "^2.0.6",
+    "mdbreact": "git+https://oauth2:6syYtvFQnuxN4Wm3wMHp@git.mdbootstrap.com/mdb/react/re-pro.git",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"

@@ -1,0 +1,18 @@
+#profile-ex .profile-card .btn .fa:not(.fa-paper-plane) {
+  position: relative;
+  font-size: 1.25rem;
+}
+
+#profile-ex .card .card-footer.links-light a {
+  color: #757575;
+  -webkit-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s;
+}
+
+#profile-ex .card .card-footer.links-light a:hover { 
+  color: #d50000;
+  -webkit-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s;
+}

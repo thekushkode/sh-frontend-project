@@ -1,0 +1,8 @@
+#chat .avatar,
+#chat .avatar-sm {
+  width: 56px;
+  border-radius: 50%;
+}
+#chat .chat-message-type {
+  flex: 1 0 auto!important;
+}

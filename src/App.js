@@ -7,6 +7,8 @@ import PExtended from './components/extended';
 import About from './components/About';
 import GMap from './components/GoogleMap';
 import ContactPage from './components/Contact';
+import SocialPage from './components/Feed';
+import SocialPage2 from './components/feed2';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path='/about' component={About} />
           <Route path='/map' component={GMap} />
           <Route path='/contact' component={ContactPage} />
+          <Route path='/feed' component={SocialPage} />
+          <Route path='/feed2' component={SocialPage2} />
         </Switch>
       </div>
     </Router>

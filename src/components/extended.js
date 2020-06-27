@@ -26,6 +26,7 @@ import {
 import './extended.css';
 import NavbarPage from './Nav';
 import Ike from './ike.png';
+import SocialPage2 from './feed2';
 
 class PExtended extends React.Component {
   constructor(props) {
@@ -289,9 +290,9 @@ class PExtended extends React.Component {
                 </MDBCard>
               </MDBCol>
               <MDBCol lg='8' md='12' className='text-center'>
-                <div className='text-center mt-3 mb-5'>
+                <div className='text-center mt-3 mb-2'>
                   <h4>
-                    <strong>John's projects</strong>
+                    <strong>Ike's Feed</strong>
                   </h4>
                   <MDBBtn
                     color='info'
@@ -301,10 +302,11 @@ class PExtended extends React.Component {
                       this.toggle('submit');
                     }}
                   >
-                    Submit new project <MDBIcon icon='image' className='ml-1' />
+                    New Post <MDBIcon icon='image' className='ml-1' />
                   </MDBBtn>
                 </div>
-                <MDBCardGroup deck>
+                <SocialPage2 />
+                {/* <MDBCardGroup deck>
                   <MDBCard className='mb-5' narrow>
                     <MDBView cascade hover>
                       <img
@@ -446,7 +448,7 @@ class PExtended extends React.Component {
                       </span>
                     </MDBCardFooter>
                   </MDBCard>
-                </MDBCardGroup>
+                </MDBCardGroup> */}
 
                 <MDBPagination circle className='my-4 float-right'>
                   <li className='page-item disabled clearfix d-none d-md-block'>

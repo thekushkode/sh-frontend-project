@@ -24,15 +24,15 @@
     transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
 
-#classicformpage .top-nav-collapse {
+/* #classicformpage .top-nav-collapse {
     background: #424f95 !important;
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     #classicformpage .navbar:not(.top-nav-collapse) {
         background: #424f95 !important;
     }
-}
+} */
 
 #classicformpage label {
     color: #fff !important;

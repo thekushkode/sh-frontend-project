@@ -1,13 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import {
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarNav,
-    MDBNavItem,
-    MDBNavLink,
-    MDBNavbarToggler,
-    MDBCollapse,
     MDBMask,
     MDBRow,
     MDBCol,
@@ -18,120 +11,21 @@ import {
     MDBCard,
     MDBCardBody,
     MDBInput,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBAnimation,
-    MDBLink
+    MDBAnimation
 } from 'mdbreact';
 import './Home.css';
 import Background from './background.gif';
+import NavbarPage from './Nav';
 
 class Home extends React.Component {
-    state = {
-        collapseID: ''
-    };
 
-    toggleCollapse = collapseID => () =>
-        this.setState(prevState => ({
-            collapseID: prevState.collapseID !== collapseID ? collapseID : ''
-        }));
-
-    componentDidMount() {
-        document.querySelector('nav').style.height = '65px';
-    }
-
-    componentWillUnmount() {
-        document.querySelector('nav').style.height = 'auto';
-    }
 
     render() {
-        const { collapseID } = this.state;
-        const overlay = (
-            <div
-                id='sidenav-overlay'
-                style={{ backgroundColor: 'transparent' }}
-                onClick={this.toggleCollapse('navbarCollapse')}
-            />
-        );
         return (
             <div id='classicformpage'>
                 <div>
-                    <MDBNavbar
-                        color="aqua-gradient"
-                        expand='md'
-                        scrolling
-                        fixed='top'
-                    // style={{ marginTop: '65px' }}
-                    >
-                        <MDBContainer>
-                            <MDBNavbarBrand>
-                                <strong className='white-text'>SocialHound</strong>
-                            </MDBNavbarBrand>
-                            <MDBNavbarToggler
-                                onClick={this.toggleCollapse('navbarCollapse')}
-                            />
-                            <MDBCollapse id='navbarCollapse' isOpen={collapseID} navbar>
-                                <MDBNavbarNav left>
-                                    <MDBNavItem active>
-                                        <MDBNavLink to='/'>Home</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to='/feed'>My Feed</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to='/profile'>Profile</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to='/map'>Go Outside</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to='/map'>Find Fur-ends</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to='/messages'>Messages</MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBNavLink to='/contact'>Contact</MDBNavLink>
-                                    </MDBNavItem>
-                                </MDBNavbarNav>
-                                <MDBNavbarNav right>
-                                    <MDBNavItem>
-                                        <MDBNavLink className="waves-effect waves-light" to="#!">
-                                            <MDBIcon fab icon="twitter" />
-                                        </MDBNavLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBLink className="waves-effect waves-light" to="#!">
-                                            <MDBIcon fab icon="facebook" />
-                                        </MDBLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBLink className="waves-effect waves-light" to="#!">
-                                            <MDBIcon fab icon="instagram" />
-                                        </MDBLink>
-                                    </MDBNavItem>
-                                    <MDBNavItem>
-                                        <MDBDropdown>
-                                            <MDBDropdownToggle nav caret>
-                                                <MDBIcon icon="user" />
-                                            </MDBDropdownToggle>
-                                            <MDBDropdownMenu className="dropdown-default">
-                                                <MDBDropdownItem href="#!">Settings</MDBDropdownItem>
-                                                <MDBDropdownItem href="#!">Profile</MDBDropdownItem>
-                                                <MDBDropdownItem href="#!">Sign-In / Sign Out</MDBDropdownItem>
-                                                <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
-                                            </MDBDropdownMenu>
-                                        </MDBDropdown>
-                                    </MDBNavItem>
-                                </MDBNavbarNav>
-                            </MDBCollapse>
-                        </MDBContainer>
-                    </MDBNavbar>
-                    {collapseID && overlay}
+                    <NavbarPage />
                 </div>
-
 
                 <MDBView>
                     <MDBMask className='d-flex justify-content-center align-items-center gradient' />

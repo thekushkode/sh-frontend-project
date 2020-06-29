@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBLink
+    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer
 } from "mdbreact";
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 
 class NavbarPage extends Component {
     state = {
@@ -16,7 +16,8 @@ class NavbarPage extends Component {
 
     render() {
         return (
-                <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
+            <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
+                <MDBContainer>
                     <MDBNavbarBrand>
                         <strong className="white-text">SocialHound</strong>
                     </MDBNavbarBrand>
@@ -27,16 +28,22 @@ class NavbarPage extends Component {
                                 <MDBNavLink to="/">Home</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/feed">My Feed</MDBNavLink>
+                                <MDBNavLink to="/feed2">My Feed</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to="/profile">Profile</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/map">Go Outside</MDBNavLink>
-                            </MDBNavItem>
-                            <MDBNavItem>
-                                <MDBNavLink to='/map'>Find Fur-ends</MDBNavLink>
+                                <MDBDropdown>
+                                    <MDBDropdownToggle nav caret>
+                                        Discover
+                                    </MDBDropdownToggle>
+                                    <MDBDropdownMenu className="dropdown-default">
+                                        <MDBDropdownItem href="/furends">Find Furiends</MDBDropdownItem>
+                                        <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
+                                        <MDBDropdownItem href="/petcare">Find Daycare & Boarding</MDBDropdownItem>
+                                    </MDBDropdownMenu>
+                                </MDBDropdown>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to='/messages'>Messages</MDBNavLink>
@@ -76,7 +83,8 @@ class NavbarPage extends Component {
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>
-                </MDBNavbar>
+                </MDBContainer>
+            </MDBNavbar>
         );
     }
 }

@@ -1,3 +1,22 @@
+SocialHound: The Social Network For Your Dog!
+
+API's
+Firebase for db
+Google Maps
+Google Places
+Google Geocoding
+
+ReactJS
+Hooks
+Redux
+MDB
+Web Packs
+HTML
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Geocode from 'react-geocode';
+import FooterPage from './Footer';
+import Hotel from './hotel.png';
 
 export class DayCare extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export class DayCare extends Component {
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['dog boarding', 'dog daycare'],
+            query: ['dog boarding'],
             fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
@@ -89,7 +90,7 @@ export class DayCare extends Component {
 
                                 <Marker key={index} id={index} position={
                                     store.geometry.location
-                                } name={store.name}
+                                } name={store.name} options={{ icon: Hotel }}
                                     onClick={this.onMarkerClick} />
 
                             )
@@ -107,6 +108,9 @@ export class DayCare extends Component {
                         })}
                     </Map>
                 </main>
+                <footer>
+                    <FooterPage />
+                </footer>
             </div>
         );
     };

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
+import Dog from './smalldog.png';
 import Geocode from 'react-geocode';
 import FooterPage from './Footer';
-import Dog from './smalldog.png';
+import { connect } from 'react-redux';
 
-export class GMap extends Component {
+export class TestMap extends Component {
     constructor(props) {
         super(props);
 
@@ -19,9 +20,10 @@ export class GMap extends Component {
     }
 
     fetchPlaces = (mapProps, map) => {
-        Geocode.setLanguage('en');
-        Geocode.setApiKey("AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts");
-        Geocode.fromAddress("30305").then(
+        //get lat & lng from zip using geocode
+        // const userAddress = this.props.profile.street + "+" + 
+        // console.log(this.props.profile);
+        const userLocation = Geocode.fromAddress(this.state.user.zipcode).then(
             response => {
                 const { lat, lng } = response.results[0].geometry.location;
                 console.log(lat, lng);
@@ -30,6 +32,7 @@ export class GMap extends Component {
                 console.error(error);
             }
         );
+
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
         const startPoint = new google.maps.LatLng(33.753746, -84.386330);
@@ -37,7 +40,7 @@ export class GMap extends Component {
             location: startPoint,
             radius: '50000',
             query: ['dog park', 'pet store'],
-            fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
+            fields: ['name', 'geometry'],
         };
 
         service.textSearch(request, (results, status) => {
@@ -81,10 +84,8 @@ export class GMap extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '60%',
-            marginTop: '90px',
+            height: '100%',
         };
-
         return (
             <div>
                 <header>
@@ -99,9 +100,8 @@ export class GMap extends Component {
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                     >
-                        {this.state.stores.map((store, index) => {
+                        {this.state.stores.map((store, index, mapProps) => {
                             return (
-
                                 <Marker key={index} id={index} position={
                                     store.geometry.location
                                 } name={store.name} options={{ icon: Dog }}
@@ -112,12 +112,9 @@ export class GMap extends Component {
                         {this.state.stores.map((store, index) => {
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.showingInfoWindow} name={store.name} address={store.formatted_address}>
+                                    visible={this.state.showingInfoWindow} name={store.name} >
                                     <div>
                                         <h4>{this.state.selectedPlace.name}</h4>
-                                        <h6>{this.state.selectedPlace.address}</h6>
-                                        <p>{this.state.selectedPlace.formatted_phone_number}</p>
-                                        <p>{this.state.selectedPlace.website}</p>
                                     </div>
                                 </InfoWindow >
 
@@ -125,14 +122,18 @@ export class GMap extends Component {
                         })}
                     </Map>
                 </main>
-                <footer className='fixed-bottom'>
-                    <FooterPage/>
+                <footer>
+                    <FooterPage />
                 </footer>
             </div>
         );
     };
 };
+const mapStateToProps = (state) => {
+    return {profile: state.profile};
+}
+// connect(mapStateToProps, null)(TestMap)
 
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
-})(GMap);
+})(TestMap);

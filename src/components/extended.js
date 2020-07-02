@@ -27,6 +27,8 @@ import './extended.css';
 import NavbarPage from './Nav';
 import Ike from './ike.png';
 import SocialPage2 from './feed2';
+import FooterPage from './Footer';
+import firebase from '../firebase';
 
 class PExtended extends React.Component {
   constructor(props) {
@@ -171,19 +173,16 @@ class PExtended extends React.Component {
                       color='info'
                       size='sm'
                       rounded
-                      onClick={() => {
-                        this.toggle('send');
-                      }}
+                      href='/editprofile'
                     >
-                      Contact
-                    <MDBIcon icon='paper-plane' className='ml-2' />
+                      Edit Profile
                     </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
                 <MDBCard className='mb-4'>
                   <MDBCardBody className='text-center'>
                     <h5>
-                      <strong>John's Achievements</strong>
+                      <strong>Ike's Badges</strong>
                     </h5>
 
                     <hr className='my-3' />
@@ -195,7 +194,7 @@ class PExtended extends React.Component {
                       className='px-3'
                       onClick={() => this.toggle('bootstrap')}
                     >
-                      Bootstrap Master
+                      Neutered | Spayed: True
                   </MDBBtn>
                     <MDBBtn
                       color='blue-grey'
@@ -204,7 +203,7 @@ class PExtended extends React.Component {
                       className='px-3'
                       onClick={() => this.toggle('wordpress')}
                     >
-                      WordPress Master
+                      Friendly
                   </MDBBtn>
                     <MDBBtn
                       size='sm'
@@ -212,7 +211,7 @@ class PExtended extends React.Component {
                       className='px-3'
                       onClick={() => this.toggle('angular')}
                     >
-                      Angular Master
+                      Has Vaccines: True
                   </MDBBtn>
                     <MDBBtn
                       color='secondary'
@@ -221,7 +220,7 @@ class PExtended extends React.Component {
                       className='px-3'
                       onClick={() => this.toggle('mdb')}
                     >
-                      MDB Master
+                      X-Large
                   </MDBBtn>
                     <MDBBtn
                       color='deep-purple'
@@ -230,7 +229,7 @@ class PExtended extends React.Component {
                       className='px-3'
                       onClick={() => this.toggle('community')}
                     >
-                      Community contributor
+                      Rottweiler
                   </MDBBtn>
                     <MDBBtn
                       color='indigo'
@@ -239,7 +238,7 @@ class PExtended extends React.Component {
                       className='px-3'
                       onClick={() => this.toggle('pro')}
                     >
-                      MDB Pro User
+                      Atlanta
                   </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
@@ -247,7 +246,7 @@ class PExtended extends React.Component {
                 <MDBCard className='mb-4'>
                   <MDBCardBody>
                     <h5 className='text-center mb-4'>
-                      <strong>John's Contributions </strong>
+                      <strong>Ike's Friends </strong>
                     </h5>
                     <ul className='list-unstyled pt-4'>
                       <li>
@@ -306,150 +305,6 @@ class PExtended extends React.Component {
                   </MDBBtn>
                 </div>
                 <SocialPage2 />
-                {/* <MDBCardGroup deck>
-                  <MDBCard className='mb-5' narrow>
-                    <MDBView cascade hover>
-                      <img
-                        src='https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-profile-page.jpg'
-                        className='img-fluid'
-                        alt='project one'
-                      />
-                      <a href='#!'>
-                        <MDBMask overlay='white-slight' />
-                      </a>
-                    </MDBView>
-                    <MDBCardBody>
-                      <h4 className='card-title'>Project name</h4>
-                      <p className='card-text'>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                    </p>
-                    </MDBCardBody>
-                    <MDBCardFooter className='links-light'>
-                      <span className='pull-left pt-2'>
-                        <a href='#!'>
-                          <MDBIcon icon='share-alt' className='mr-2' />
-                        </a>
-                        <a href='#!'>
-                          <MDBIcon icon='heart' className='mr-2' />10
-                      </a>
-                      </span>
-                      <span className='float-right'>
-                        <a href='#!' className='waves-effect p-2'>
-                          Live Preview <MDBIcon icon='image' className='ml-1' />
-                        </a>
-                      </span>
-                    </MDBCardFooter>
-                  </MDBCard>
-
-                  <MDBCard className='mb-5' narrow>
-                    <MDBView cascade hover>
-                      <img
-                        src='https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-signup.jpg'
-                        className='img-fluid'
-                        alt='project one'
-                      />
-                      <a href='#!'>
-                        <MDBMask overlay='white-slight' />
-                      </a>
-                    </MDBView>
-                    <MDBCardBody>
-                      <h4 className='card-title'>Project name</h4>
-                      <p className='card-text'>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                    </p>
-                    </MDBCardBody>
-                    <MDBCardFooter className='links-light'>
-                      <span className='pull-left pt-2'>
-                        <a href='#!'>
-                          <MDBIcon icon='share-alt' className='mr-2' />
-                        </a>
-                        <a href='#!'>
-                          <MDBIcon icon='heart' className='mr-2' />15
-                      </a>
-                      </span>
-                      <span className='float-right'>
-                        <a href='#!' className='waves-effect p-2'>
-                          Live Preview <MDBIcon icon='image' className='ml-1' />
-                        </a>
-                      </span>
-                    </MDBCardFooter>
-                  </MDBCard>
-                </MDBCardGroup>
-
-                <MDBCardGroup deck>
-                  <MDBCard className='mb-5' narrow>
-                    <MDBView cascade hover>
-                      <img
-                        src='https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-pricing.jpg'
-                        className='img-fluid'
-                        alt='project one'
-                      />
-                      <a href='#!'>
-                        <MDBMask overlay='white-slight' />
-                      </a>
-                    </MDBView>
-                    <MDBCardBody>
-                      <h4 className='card-title'>Project name</h4>
-                      <p className='card-text'>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                    </p>
-                    </MDBCardBody>
-                    <MDBCardFooter className='links-light'>
-                      <span className='pull-left pt-2'>
-                        <a href='#!'>
-                          <MDBIcon icon='share-alt' className='mr-2' />
-                        </a>
-                        <a href='#!'>
-                          <MDBIcon icon='heart' className='mr-2' />21
-                      </a>
-                      </span>
-                      <span className='float-right'>
-                        <a href='#!' className='waves-effect p-2'>
-                          Live Preview <MDBIcon icon='image' className='ml-1' />
-                        </a>
-                      </span>
-                    </MDBCardFooter>
-                  </MDBCard>
-
-                  <MDBCard className='mb-5' narrow>
-                    <MDBView cascade hover>
-                      <img
-                        src='https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-landing.jpg'
-                        className='img-fluid'
-                        alt='project one'
-                      />
-                      <a href='#!'>
-                        <MDBMask overlay='white-slight' />
-                      </a>
-                    </MDBView>
-                    <MDBCardBody>
-                      <h4 className='card-title'>Project name</h4>
-                      <p className='card-text'>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                    </p>
-                    </MDBCardBody>
-                    <MDBCardFooter className='links-light'>
-                      <span className='pull-left pt-2'>
-                        <a href='#!'>
-                          <MDBIcon icon='share-alt' className='mr-2' />
-                        </a>
-                        <a href='#!'>
-                          <MDBIcon icon='heart' className='mr-2' />36
-                      </a>
-                      </span>
-                      <span className='float-right'>
-                        <a href='#!' className='waves-effect p-2'>
-                          Live Preview <MDBIcon icon='image' className='ml-1' />
-                        </a>
-                      </span>
-                    </MDBCardFooter>
-                  </MDBCard>
-                </MDBCardGroup> */}
-
                 <MDBPagination circle className='my-4 float-right'>
                   <li className='page-item disabled clearfix d-none d-md-block'>
                     <a className='page-link' href='#!'>
@@ -490,6 +345,9 @@ class PExtended extends React.Component {
             </MDBRow>
           </MDBContainer>
         </div>
+        <footer>
+          <FooterPage />
+        </footer>
       </div>
     );
   }

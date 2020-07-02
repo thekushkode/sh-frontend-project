@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Geocode from 'react-geocode';
 import FooterPage from './Footer';
-import Dog from './smalldog.png';
+import Vet from './vet.png';
 
-export class GMap extends Component {
+export class VetMap extends Component {
     constructor(props) {
         super(props);
 
@@ -19,24 +18,13 @@ export class GMap extends Component {
     }
 
     fetchPlaces = (mapProps, map) => {
-        Geocode.setLanguage('en');
-        Geocode.setApiKey("AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts");
-        Geocode.fromAddress("30305").then(
-            response => {
-                const { lat, lng } = response.results[0].geometry.location;
-                console.log(lat, lng);
-            },
-            error => {
-                console.error(error);
-            }
-        );
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
         const startPoint = new google.maps.LatLng(33.753746, -84.386330);
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['dog park', 'pet store'],
+            query: ['veterinarian'],
             fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
@@ -104,7 +92,7 @@ export class GMap extends Component {
 
                                 <Marker key={index} id={index} position={
                                     store.geometry.location
-                                } name={store.name} options={{ icon: Dog }}
+                                } name={store.name} options={{ icon: Vet }}
                                     onClick={this.onMarkerClick} />
 
                             )
@@ -135,4 +123,4 @@ export class GMap extends Component {
 
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
-})(GMap);
+})(VetMap);

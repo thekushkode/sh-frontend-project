@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
+import Dog from './smalldog.png';
+import Geocode from 'react-geocode';
+import FooterPage from './Footer';
+import { useSelector, connect } from 'react-redux';
 
+
+//need help with {connect}
 export class Furends extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             stores: [],
             infoWindow: false,
@@ -16,13 +21,26 @@ export class Furends extends Component {
     }
 
     fetchPlaces = (mapProps, map) => {
+        //get lat & lng from zip using geocode
+        // const user = useSelector(state => state.user);
+        // const userAddress = user.address + ', ' + user.city + ', ' + user.state;
+        // const userLocation = Geocode.fromAddress(userAddress).then(
+        //     response => {
+        //         const { lat, lng } = response.results[0].geometry.location;
+        //         console.log(lat, lng);
+        //     },
+        //     error => {
+        //         console.error(error);
+        //     }
+        // );
+
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
         const startPoint = new google.maps.LatLng(33.753746, -84.386330);
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['dog park', 'pet store'],
+            query: ['30305'],
             fields: ['name', 'geometry'],
         };
 
@@ -67,7 +85,8 @@ export class Furends extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '100%',
+            height: '60%',
+            marginTop: '90px',
         };
         return (
             <div>
@@ -83,12 +102,11 @@ export class Furends extends Component {
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                     >
-                        {this.state.stores.map((store, index) => {
+                        {this.state.stores.map((store, index, mapProps) => {
                             return (
-
                                 <Marker key={index} id={index} position={
                                     store.geometry.location
-                                } name={store.name}
+                                } name={store.name} options={{ icon: Dog }}
                                     onClick={this.onMarkerClick} />
 
                             )
@@ -106,6 +124,9 @@ export class Furends extends Component {
                         })}
                     </Map>
                 </main>
+                <footer className='fixed-bottom'>
+                    <FooterPage />
+                </footer>
             </div>
         );
     };

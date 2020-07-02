@@ -12,6 +12,7 @@ import {
 
 import './Chat.css';
 import NavbarPage from './Nav';
+import FooterPage from './Footer';
 
 const Chat = () => {
   return (
@@ -260,6 +261,9 @@ const Chat = () => {
           </MDBRow>
         </MDBContainer>
       </div>
+      <footer>
+        <FooterPage />
+      </footer>
     </div>
   );
 };

@@ -1,0 +1,10 @@
+#profile-v1 .cascading-admin-card .admin-up .fa {
+  margin-right: 1rem;
+}
+
+#profile-v1 .user-card .admin-up .data span {
+  font-size: 15px;
+}
+#profile-v1 .profile-card p, .user-card .about-text h4 {
+  font-weight: 300;
+}

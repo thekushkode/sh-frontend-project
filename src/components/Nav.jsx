@@ -3,30 +3,47 @@ import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
     MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer
 } from "mdbreact";
+import firebase from '../firebase';
+import { Redirect } from 'react-router-dom';
 
 
 class NavbarPage extends Component {
     state = {
-        isOpen: false
+        isOpen: false,
+        redirect: false
     };
 
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
+    signOut = (e) => {
+        firebase.auth().signOut().then(() => {
+            this.setState({
+                redirect: true
+            })
+            alert('You have been logged out!')
+        }).catch(function (error) {
+            console.log(error);
+            alert('No User Logged In.')
+        });
+    }
+
     render() {
+
+        if (this.state.redirect) {
+            return <Redirect to='/'/>
+        }
+
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
                     <MDBNavbarBrand>
-                        <strong className="white-text">SocialHound</strong>
+                        <MDBNavLink to="/"><strong className="white-text">SocialHound</strong></MDBNavLink>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav left>
-                            <MDBNavItem active>
-                                <MDBNavLink to="/">Home</MDBNavLink>
-                            </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to="/feed2">My Feed</MDBNavLink>
                             </MDBNavItem>
@@ -38,10 +55,11 @@ class NavbarPage extends Component {
                                     <MDBDropdownToggle nav caret>
                                         Discover
                                     </MDBDropdownToggle>
-                                    <MDBDropdownMenu className="dropdown-default">
+                                    <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
                                         <MDBDropdownItem href="/furends">Find Furiends</MDBDropdownItem>
                                         <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
-                                        <MDBDropdownItem href="/petcare">Find Daycare & Boarding</MDBDropdownItem>
+                                        <MDBDropdownItem href="/petcare">Boarding & Daycare</MDBDropdownItem>
+                                        <MDBDropdownItem href="/vets">PetCare</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>
@@ -54,17 +72,17 @@ class NavbarPage extends Component {
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>
-                                <MDBNavLink className="waves-effect waves-light" to="#!">
+                                <MDBNavLink className="waves-effect waves-light" to="https://twitter.com/socialhoundco">
                                     <MDBIcon fab icon="twitter" />
                                 </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink className="waves-effect waves-light" to="#!">
+                                <MDBNavLink className="waves-effect waves-light" to="https://www.instagram.com/socialhound.co/">
                                     <MDBIcon fab icon="instagram" />
                                 </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink className="waves-effect waves-light" to="#!">
+                                <MDBNavLink className="waves-effect waves-light" to="https://www.facebook.com/SocialHound-110112560760116">
                                     <MDBIcon fab icon="facebook" />
                                 </MDBNavLink>
                             </MDBNavItem>
@@ -74,9 +92,10 @@ class NavbarPage extends Component {
                                         <MDBIcon icon="user" />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        <MDBDropdownItem href="#!">Settings</MDBDropdownItem>
-                                        <MDBDropdownItem href="#!">Profile</MDBDropdownItem>
-                                        <MDBDropdownItem href="#!">Sign-in / Sign-out</MDBDropdownItem>
+                                        <MDBDropdownItem href="/editprofile">Settings</MDBDropdownItem>
+                                        <MDBDropdownItem href="/profile">Profile</MDBDropdownItem>
+                                        <MDBDropdownItem href="login">Sign-in</MDBDropdownItem>
+                                        <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>

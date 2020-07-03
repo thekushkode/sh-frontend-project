@@ -3,7 +3,6 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Dog from './smalldog.png';
 import Geocode from 'react-geocode';
-import FooterPage from './Footer';
 import { useSelector, connect } from 'react-redux';
 
 
@@ -85,9 +84,10 @@ export class Furends extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '60%',
-            marginTop: '90px',
+            height: '90%',
+            marginTop: '85px',
         };
+
         return (
             <div>
                 <header>
@@ -124,9 +124,6 @@ export class Furends extends Component {
                         })}
                     </Map>
                 </main>
-                <footer className='fixed-bottom'>
-                    <FooterPage />
-                </footer>
             </div>
         );
     };

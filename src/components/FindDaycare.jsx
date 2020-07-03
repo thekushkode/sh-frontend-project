@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import FooterPage from './Footer';
 import Hotel from './hotel.png';
 
 export class DayCare extends Component {
@@ -108,9 +107,6 @@ export class DayCare extends Component {
                         })}
                     </Map>
                 </main>
-                <footer>
-                    <FooterPage />
-                </footer>
             </div>
         );
     };

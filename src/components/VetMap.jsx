@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import FooterPage from './Footer';
 import Vet from './vet.png';
 
 export class VetMap extends Component {
@@ -113,9 +112,6 @@ export class VetMap extends Component {
                         })}
                     </Map>
                 </main>
-                <footer className='fixed-bottom'>
-                    <FooterPage/>
-                </footer>
             </div>
         );
     };

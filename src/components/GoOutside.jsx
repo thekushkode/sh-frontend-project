@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
-import FooterPage from './Footer';
 import Dog from './smalldog.png';
 
 export class GMap extends Component {
@@ -81,8 +80,8 @@ export class GMap extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '60%',
-            marginTop: '90px',
+            height: '90%',
+            marginTop: '85px',
         };
 
         return (
@@ -125,9 +124,6 @@ export class GMap extends Component {
                         })}
                     </Map>
                 </main>
-                <footer className='fixed-bottom'>
-                    <FooterPage/>
-                </footer>
             </div>
         );
     };

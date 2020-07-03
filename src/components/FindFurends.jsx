@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Dog from './smalldog.png';
-import Geocode from 'react-geocode';
-import { useSelector, connect } from 'react-redux';
+// import Geocode from 'react-geocode';
+// import { useSelector, connect } from 'react-redux';
 
 
 //need help with {connect}

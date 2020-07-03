@@ -69,6 +69,9 @@ class NavbarPage extends Component {
                             <MDBNavItem>
                                 <MDBNavLink to='/contact'>Contact</MDBNavLink>
                             </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to='/about'>About</MDBNavLink>
+                            </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>
@@ -92,11 +95,11 @@ class NavbarPage extends Component {
                                         <MDBIcon icon="user" />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        <MDBDropdownItem to="/editprofile">Settings</MDBDropdownItem>
-                                        <MDBDropdownItem to="/profile">Profile</MDBDropdownItem>
-                                        <MDBDropdownItem to=".login">Sign-in</MDBDropdownItem>
+                                        <MDBDropdownItem href="/editprofile">Settings</MDBDropdownItem>
+                                        <MDBDropdownItem href="/profile">Profile</MDBDropdownItem>
+                                        <MDBDropdownItem href=".login">Sign-in</MDBDropdownItem>
                                         <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
-                                        <MDBDropdownItem to="/contact">Get Help</MDBDropdownItem>
+                                        <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>

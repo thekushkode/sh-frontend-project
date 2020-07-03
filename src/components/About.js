@@ -1,14 +1,6 @@
 import React from 'react';
 import {
   MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBFormInline,
   MDBRow,
   MDBCol,
   MDBAvatar,
@@ -18,10 +10,13 @@ import {
   MDBBtn,
   MDBCardBody,
   MDBInput,
-  MDBFooter
 } from 'mdbreact';
 import Lightbox from 'react-image-lightbox';
 import './About.css';
+import NavbarPage from './Nav';
+import Kush from './kush.gif';
+import Dogs from './sh-dogplay.gif'
+import FooterPage from './Footer';
 
 const images = [
   'https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(132).jpg',
@@ -55,68 +50,19 @@ class About extends React.Component {
 
     return (
       <div id='about'>
-        <MDBNavbar
-          color='deep-purple darken-4'
-          dark
-          expand='md'
-          fixed='top'
-          scrolling
-          transparent
-        >
-          <MDBContainer>
-            <MDBNavbarBrand>
-              <strong className='white-text'>MDB</strong>
-            </MDBNavbarBrand>
-            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
-            <MDBCollapse
-              id='navbarCollapse'
-              isOpen={this.state.collapseID}
-              navbar
-            >
-              <MDBNavbarNav left>
-                <MDBNavItem active>
-                  <MDBNavLink to='#work'>Home</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to='#!'>Team</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to='#!'>Products</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to='#!'>Gallery</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to='#!'>Contact</MDBNavLink>
-                </MDBNavItem>
-              </MDBNavbarNav>
-              <MDBNavbarNav right>
-                <MDBNavItem>
-                  <MDBFormInline waves>
-                    <div className='md-form my-0'>
-                      <input
-                        className='form-control mr-sm-2'
-                        type='text'
-                        placeholder='Search'
-                        aria-label='Search'
-                      />
-                    </div>
-                  </MDBFormInline>
-                </MDBNavItem>
-              </MDBNavbarNav>
-            </MDBCollapse>
-          </MDBContainer>
-        </MDBNavbar>
+        <header style={{ marginBottom: '80px' }}>
+          <NavbarPage />
+        </header>
 
         <section id='home'>
           <MDBView
-            src={'https://mdbootstrap.com/img/Photos/Others/img%20%2853%29.jpg'}
+            src={Dogs}
             fixed
-            style={{ height: '60vh' }}
+            style={{ height: '70vh' }}
           >
             <MDBMask
               overlay='stylish-light'
-              className='rgba-white-light d-flex justify-content-centr align-items-center'
+              className='rgba-white-light d-flex justify-content-center align-items-center'
             >
               <MDBContainer className='h-100 d-flex justify-content-center align-items-center'>
                 <MDBRow>
@@ -127,16 +73,13 @@ class About extends React.Component {
                         US
                       </a>
                     </h1>
-                    <h5 className='text-uppercase white-text mb-5 font-weight-bold'>
-                      Lorem ipsum dolor sit amet consectetur.{' '}
-                    </h5>
-                    <MDBBtn color='light-blue' size='lg'>
-                      portfolio
+                    <MDBBtn color='light-blue' size='lg' href='/contact'>
+                      Contact
                     </MDBBtn>
-                    <MDBBtn color='indigo' size='lg'>
-                      About{' '}
+                    <MDBBtn color='indigo' size='lg' href='/'>
+                      Sign{' '}
                       <a href='!#' className='white-text font-weight-bold'>
-                        US
+                        UP
                       </a>
                     </MDBBtn>
                   </MDBCol>
@@ -160,20 +103,19 @@ class About extends React.Component {
                   <MDBAvatar
                     tag='img'
                     className='mx-auto z-depth-1'
-                    src='https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg'
+                    src={Kush}
                     alt='First sample avatar image'
                   />
                 </MDBCol>
                 <MDBCol md='6' className='float-right'>
                   <h4>
-                    <strong>John Doe</strong>
+                    <strong>Robert Kushner</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Web Designer
+                    Software Engineer, Design
                   </h6>
                   <p className='grey-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quod eos id officiis hic tenetur.
+                    Serial entreprenuer and dog enthusiast finds dream job!
                   </p>
                   <a href='!#'>
                     <MDBIcon
@@ -548,57 +490,17 @@ class About extends React.Component {
                       </a>
                     </li>
                   </ul>
-                  <MDBBtn rounded color='blue' className='float-left'>
-                    <MDBIcon icon='send-o' />
+                  <MDBBtn rounded color='blue'>
+                    Send
                   </MDBBtn>
                 </MDBCardBody>
               </MDBCol>
             </MDBRow>
           </section>
         </MDBContainer>
-        <MDBFooter className='pt-5 mt-4 text-center text-md-left grey'>
-          <MDBContainer>
-            <MDBRow>
-              <MDBCol md='6'>
-                <h6 className='text-uppercase font-weight-bold'>
-                  Footer Content
-                </h6>
-                <p>
-                  Here you can use rows and columns here to organize your footer
-                  content.
-                </p>
-              </MDBCol>
-              <MDBCol md='3'>
-                <h6 className='text-uppercase font-weight-bold'>Links</h6>
-                <ul className='list-unstyled'>
-                  <li>
-                    <a href='#!'>Link 1</a>
-                  </li>
-                  <li>
-                    <a href='#!'>Link 2</a>
-                  </li>
-                  <li>
-                    <a href='#!'>Link 3</a>
-                  </li>
-                </ul>
-              </MDBCol>
-              <MDBCol md='3'>
-                <h6 className='text-uppercase font-weight-bold'>Links</h6>
-                <ul className='list-unstyled'>
-                  <li>
-                    <a href='#!'>Link 1</a>
-                  </li>
-                  <li>
-                    <a href='#!'>Link 2</a>
-                  </li>
-                  <li>
-                    <a href='#!'>Link 3</a>
-                  </li>
-                </ul>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-        </MDBFooter>
+        <footer>
+          <FooterPage />
+        </footer>
       </div>
     );
   }

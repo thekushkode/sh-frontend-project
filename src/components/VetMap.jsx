@@ -23,7 +23,7 @@ export class VetMap extends Component {
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['veterinarian'],
+            query: ['dog vet', 'vets near me'],
             fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
@@ -68,8 +68,8 @@ export class VetMap extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '60%',
-            marginTop: '90px',
+            height: '90%',
+            marginTop: '85px',
         };
 
         return (

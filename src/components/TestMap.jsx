@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Dog from './smalldog.png';
-import Geocode from 'react-geocode';
+//import Geocode from 'react-geocode';
 import FooterPage from './Footer';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 export class TestMap extends Component {
     constructor(props) {
@@ -23,15 +23,15 @@ export class TestMap extends Component {
         //get lat & lng from zip using geocode
         // const userAddress = this.props.profile.street + "+" + 
         // console.log(this.props.profile);
-        const userLocation = Geocode.fromAddress(this.state.user.zipcode).then(
-            response => {
-                const { lat, lng } = response.results[0].geometry.location;
-                console.log(lat, lng);
-            },
-            error => {
-                console.error(error);
-            }
-        );
+        // const userLocation = Geocode.fromAddress(this.state.user.zipcode).then(
+        //     response => {
+        //         const { lat, lng } = response.results[0].geometry.location;
+        //         console.log(lat, lng);
+        //     },
+        //     error => {
+        //         console.error(error);
+        //     }
+        // );
 
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
@@ -129,9 +129,9 @@ export class TestMap extends Component {
         );
     };
 };
-const mapStateToProps = (state) => {
-    return {profile: state.profile};
-}
+// const mapStateToProps = (state) => {
+//     return {profile: state.profile};
+// }
 // connect(mapStateToProps, null)(TestMap)
 
 export default GoogleApiWrapper({

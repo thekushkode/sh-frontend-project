@@ -4,14 +4,10 @@ import {
   MDBRow,
   MDBCol,
   MDBCard,
-  MDBView,
   MDBCardTitle,
   MDBCardBody,
-  MDBCardGroup,
-  MDBCardFooter,
   MDBIcon,
   MDBBadge,
-  MDBMask,
   MDBPagination,
   MDBPageItem,
   MDBPageNav,
@@ -28,7 +24,6 @@ import NavbarPage from './Nav';
 import Ike from './ike.png';
 import SocialPage2 from './feed2';
 import FooterPage from './Footer';
-import firebase from '../firebase';
 
 class PExtended extends React.Component {
   constructor(props) {
@@ -131,220 +126,223 @@ class PExtended extends React.Component {
         <header style={{ marginBottom: '100px' }}>
           <NavbarPage />
         </header>
-        <div id='profile-ex' className='mb-5 mt-4 mx-4'>
-          {this.renderModal('wordpress')}
-          {this.renderModal('bootstrap')}
-          {this.renderModal('angular')}
-          {this.renderModal('mdb')}
-          {this.renderModal('community')}
-          {this.renderModal('pro')}
-          {this.renderModal('send')}
-          {this.renderModal('submit')}
+        <main>
 
-          <MDBContainer fluid>
-            <MDBRow>
-              <MDBCol lg='4' md='12'>
-                <MDBCard className='profile-card text-center mb-4'>
-                  <MDBAvatar
-                    tag='img'
-                    alt='Rottweiler dog photo'
-                    src={Ike}
-                    className='z-depth-1-half mb-4'
-                  />
-                  <MDBCardBody>
-                    <MDBCardTitle>
-                      <strong>Ike Kushner</strong>
-                    </MDBCardTitle>
-                    <h5>
-                      Chief Executive Log Lifter
+          <div id='profile-ex' className='mb-5 mt-4 mx-4'>
+            {this.renderModal('wordpress')}
+            {this.renderModal('bootstrap')}
+            {this.renderModal('angular')}
+            {this.renderModal('mdb')}
+            {this.renderModal('community')}
+            {this.renderModal('pro')}
+            {this.renderModal('send')}
+            {this.renderModal('submit')}
+
+            <MDBContainer fluid>
+              <MDBRow>
+                <MDBCol lg='4' md='12'>
+                  <MDBCard className='profile-card text-center mb-4'>
+                    <MDBAvatar
+                      tag='img'
+                      alt='Rottweiler dog photo'
+                      src={Ike}
+                      className='rounded-circle z-depth-1-half mb-4'
+                    />
+                    <MDBCardBody>
+                      <MDBCardTitle>
+                        <strong>Ike Kushner</strong>
+                      </MDBCardTitle>
+                      <h5>
+                        Chief Executive Log Lifter
                     </h5>
-                    <p className='dark-grey-text'>Brookhaven, Ga</p>
-                    <MDBBtn floating tag='a' color=''>
-                      <MDBIcon fab icon='facebook' className='dark-grey-text' />
-                    </MDBBtn>
-                    <MDBBtn floating tag='a' color=''>
-                      <MDBIcon fab icon='instagram' className='dark-grey-text' />
-                    </MDBBtn>
-                    <p className='card-text mt-3'>
-                      Some quick example text to build on the card title and make
-                      up the bulk of the card's content.
+                      <p className='dark-grey-text'>Brookhaven, Ga</p>
+                      <MDBBtn floating tag='a' color=''>
+                        <MDBIcon fab icon='facebook' className='dark-grey-text' />
+                      </MDBBtn>
+                      <MDBBtn floating tag='a' color=''>
+                        <MDBIcon fab icon='instagram' className='dark-grey-text' />
+                      </MDBBtn>
+                      <p className='card-text mt-3'>
+                        Some quick example text to build on the card title and make
+                        up the bulk of the card's content.
                   </p>
+                      <MDBBtn
+                        color='info'
+                        size='sm'
+                        rounded
+                        href='/editprofile'
+                      >
+                        Edit Profile
+                    </MDBBtn>
+                    </MDBCardBody>
+                  </MDBCard>
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody className='text-center'>
+                      <h5>
+                        <strong>Ike's Badges</strong>
+                      </h5>
+
+                      <hr className='my-3' />
+
+                      <MDBBtn
+                        color='light-blue'
+                        size='sm'
+                        rounded
+                        className='px-3'
+                        onClick={() => this.toggle('bootstrap')}
+                      >
+                        Neutered | Spayed: True
+                  </MDBBtn>
+                      <MDBBtn
+                        color='blue-grey'
+                        size='sm'
+                        rounded
+                        className='px-3'
+                        onClick={() => this.toggle('wordpress')}
+                      >
+                        Friendly
+                  </MDBBtn>
+                      <MDBBtn
+                        size='sm'
+                        rounded
+                        className='px-3'
+                        onClick={() => this.toggle('angular')}
+                      >
+                        Has Vaccines: True
+                  </MDBBtn>
+                      <MDBBtn
+                        color='secondary'
+                        size='sm'
+                        rounded
+                        className='px-3'
+                        onClick={() => this.toggle('mdb')}
+                      >
+                        X-Large
+                  </MDBBtn>
+                      <MDBBtn
+                        color='deep-purple'
+                        size='sm'
+                        rounded
+                        className='px-3'
+                        onClick={() => this.toggle('community')}
+                      >
+                        Rottweiler
+                  </MDBBtn>
+                      <MDBBtn
+                        color='indigo'
+                        size='sm'
+                        rounded
+                        className='px-3'
+                        onClick={() => this.toggle('pro')}
+                      >
+                        Atlanta
+                  </MDBBtn>
+                    </MDBCardBody>
+                  </MDBCard>
+
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody>
+                      <h5 className='text-center mb-4'>
+                        <strong>Ike's Friends </strong>
+                      </h5>
+                      <ul className='list-unstyled pt-4'>
+                        <li>
+                          <p>
+                            Questions{' '}
+                            <MDBBadge color='primary' className='float-right'>
+                              34
+                        </MDBBadge>
+                          </p>
+                        </li>
+                        <hr />
+                        <li>
+                          <p>
+                            Answers{' '}
+                            <MDBBadge color='primary' className='float-right'>
+                              17
+                        </MDBBadge>
+                          </p>
+                        </li>
+                        <hr />
+                        <li>
+                          <p>
+                            Submited projects{' '}
+                            <MDBBadge color='primary' className='float-right'>
+                              12
+                        </MDBBadge>
+                          </p>
+                        </li>
+                        <hr />
+                        <li>
+                          <p>
+                            Pull requests{' '}
+                            <MDBBadge color='primary' className='float-right'>
+                              3
+                        </MDBBadge>
+                          </p>
+                        </li>
+                      </ul>
+                    </MDBCardBody>
+                  </MDBCard>
+                </MDBCol>
+                <MDBCol lg='8' md='12' className='text-center'>
+                  <div className='text-center mt-3 mb-2'>
+                    <h4>
+                      <strong>Ike's Feed</strong>
+                    </h4>
                     <MDBBtn
                       color='info'
-                      size='sm'
                       rounded
-                      href='/editprofile'
+                      className='mt-4'
+                      onClick={() => {
+                        this.toggle('submit');
+                      }}
                     >
-                      Edit Profile
+                      New Post <MDBIcon icon='image' className='ml-1' />
                     </MDBBtn>
-                  </MDBCardBody>
-                </MDBCard>
-                <MDBCard className='mb-4'>
-                  <MDBCardBody className='text-center'>
-                    <h5>
-                      <strong>Ike's Badges</strong>
-                    </h5>
-
-                    <hr className='my-3' />
-
-                    <MDBBtn
-                      color='light-blue'
-                      size='sm'
-                      rounded
-                      className='px-3'
-                      onClick={() => this.toggle('bootstrap')}
-                    >
-                      Neutered | Spayed: True
-                  </MDBBtn>
-                    <MDBBtn
-                      color='blue-grey'
-                      size='sm'
-                      rounded
-                      className='px-3'
-                      onClick={() => this.toggle('wordpress')}
-                    >
-                      Friendly
-                  </MDBBtn>
-                    <MDBBtn
-                      size='sm'
-                      rounded
-                      className='px-3'
-                      onClick={() => this.toggle('angular')}
-                    >
-                      Has Vaccines: True
-                  </MDBBtn>
-                    <MDBBtn
-                      color='secondary'
-                      size='sm'
-                      rounded
-                      className='px-3'
-                      onClick={() => this.toggle('mdb')}
-                    >
-                      X-Large
-                  </MDBBtn>
-                    <MDBBtn
-                      color='deep-purple'
-                      size='sm'
-                      rounded
-                      className='px-3'
-                      onClick={() => this.toggle('community')}
-                    >
-                      Rottweiler
-                  </MDBBtn>
-                    <MDBBtn
-                      color='indigo'
-                      size='sm'
-                      rounded
-                      className='px-3'
-                      onClick={() => this.toggle('pro')}
-                    >
-                      Atlanta
-                  </MDBBtn>
-                  </MDBCardBody>
-                </MDBCard>
-
-                <MDBCard className='mb-4'>
-                  <MDBCardBody>
-                    <h5 className='text-center mb-4'>
-                      <strong>Ike's Friends </strong>
-                    </h5>
-                    <ul className='list-unstyled pt-4'>
-                      <li>
-                        <p>
-                          Questions{' '}
-                          <MDBBadge color='primary' className='float-right'>
-                            34
-                        </MDBBadge>
-                        </p>
-                      </li>
-                      <hr />
-                      <li>
-                        <p>
-                          Answers{' '}
-                          <MDBBadge color='primary' className='float-right'>
-                            17
-                        </MDBBadge>
-                        </p>
-                      </li>
-                      <hr />
-                      <li>
-                        <p>
-                          Submited projects{' '}
-                          <MDBBadge color='primary' className='float-right'>
-                            12
-                        </MDBBadge>
-                        </p>
-                      </li>
-                      <hr />
-                      <li>
-                        <p>
-                          Pull requests{' '}
-                          <MDBBadge color='primary' className='float-right'>
-                            3
-                        </MDBBadge>
-                        </p>
-                      </li>
-                    </ul>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-              <MDBCol lg='8' md='12' className='text-center'>
-                <div className='text-center mt-3 mb-2'>
-                  <h4>
-                    <strong>Ike's Feed</strong>
-                  </h4>
-                  <MDBBtn
-                    color='info'
-                    rounded
-                    className='mt-4'
-                    onClick={() => {
-                      this.toggle('submit');
-                    }}
-                  >
-                    New Post <MDBIcon icon='image' className='ml-1' />
-                  </MDBBtn>
-                </div>
-                <SocialPage2 />
-                <MDBPagination circle className='my-4 float-right'>
-                  <li className='page-item disabled clearfix d-none d-md-block'>
-                    <a className='page-link' href='#!'>
-                      First
+                  </div>
+                  <SocialPage2 />
+                  <MDBPagination circle className='my-4 float-right'>
+                    <li className='page-item disabled clearfix d-none d-md-block'>
+                      <a className='page-link' href='#!'>
+                        First
                   </a>
-                  </li>
-                  <MDBPageItem disabled>
-                    <MDBPageNav className='page-link' aria-label='Previous'>
-                      <span aria-hidden='true'>&laquo;</span>
-                      <span className='sr-only'>Previous</span>
-                    </MDBPageNav>
-                  </MDBPageItem>
-                  <MDBPageItem active>
-                    <MDBPageNav className='page-link'>
-                      1 <span className='sr-only'>(current)</span>
-                    </MDBPageNav>
-                  </MDBPageItem>
-                  <MDBPageItem>
-                    <MDBPageNav className='page-link'>2</MDBPageNav>
-                  </MDBPageItem>
-                  <MDBPageItem>
-                    <MDBPageNav className='page-link'>3</MDBPageNav>
-                  </MDBPageItem>
-                  <MDBPageItem>
-                    <MDBPageNav className='page-link'>4</MDBPageNav>
-                  </MDBPageItem>
-                  <MDBPageItem>
-                    <MDBPageNav className='page-link'>5</MDBPageNav>
-                  </MDBPageItem>
-                  <MDBPageItem>
-                    <MDBPageNav className='page-link' aria-label='Next'>
-                      <span aria-hidden='true'>&raquo;</span>
-                      <span className='sr-only'>Next</span>
-                    </MDBPageNav>
-                  </MDBPageItem>
-                </MDBPagination>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-        </div>
+                    </li>
+                    <MDBPageItem disabled>
+                      <MDBPageNav className='page-link' aria-label='Previous'>
+                        <span aria-hidden='true'>&laquo;</span>
+                        <span className='sr-only'>Previous</span>
+                      </MDBPageNav>
+                    </MDBPageItem>
+                    <MDBPageItem active>
+                      <MDBPageNav className='page-link'>
+                        1 <span className='sr-only'>(current)</span>
+                      </MDBPageNav>
+                    </MDBPageItem>
+                    <MDBPageItem>
+                      <MDBPageNav className='page-link'>2</MDBPageNav>
+                    </MDBPageItem>
+                    <MDBPageItem>
+                      <MDBPageNav className='page-link'>3</MDBPageNav>
+                    </MDBPageItem>
+                    <MDBPageItem>
+                      <MDBPageNav className='page-link'>4</MDBPageNav>
+                    </MDBPageItem>
+                    <MDBPageItem>
+                      <MDBPageNav className='page-link'>5</MDBPageNav>
+                    </MDBPageItem>
+                    <MDBPageItem>
+                      <MDBPageNav className='page-link' aria-label='Next'>
+                        <span aria-hidden='true'>&raquo;</span>
+                        <span className='sr-only'>Next</span>
+                      </MDBPageNav>
+                    </MDBPageItem>
+                  </MDBPagination>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </div>
+        </main>
         <footer>
           <FooterPage />
         </footer>

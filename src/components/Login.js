@@ -1,14 +1,6 @@
 import React from 'react';
 import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
-  MDBFormInline,
-  MDBCollapse,
   MDBContainer,
-  MDBNavbarToggler,
   MDBRow,
   MDBCol,
   MDBCard,

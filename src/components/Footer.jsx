@@ -1,7 +1,5 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBBtn, MDBIcon } from "mdbreact";
-import Terms from './Terms';
-import Privacy from './Privacy';
 
 const FooterPage = () => {
     return (
@@ -27,6 +25,9 @@ const FooterPage = () => {
                     </MDBCol>
                     <MDBCol md="6">
                         <ul>
+                            <li className="list-unstyled">
+                                <a href="/about">About</a>
+                            </li>
                             <li className="list-unstyled">
                                 <a href="/contact">Contact</a>
                             </li>

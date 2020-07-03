@@ -20,11 +20,13 @@ import FooterPage from "./Footer";
 import firebase from '../firebase';
 import { useSelector } from 'react-redux';
 import { setProfile } from '../redux/actions';
+import { useHistory } from "react-router-dom";
 //import Upload from './FileUpload';
 
 const db = firebase.firestore();
 function EditProfile(props) {
 
+  const history = useHistory();
   //grabs redux state
   const user = useSelector(state => state.user);
   // const profile = useSelector(state => state.profile);
@@ -71,6 +73,7 @@ function EditProfile(props) {
         })
     }
   })
+
   const updateProfile = (e) => {
     if (!dogId) {
       db.collection('Dogs').add({
@@ -102,6 +105,7 @@ function EditProfile(props) {
         bio
       }, { merge: true })
     }
+    history.push('/profile');
   }
 
 

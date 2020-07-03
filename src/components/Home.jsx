@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import {
     MDBMask,
     MDBRow,
@@ -16,49 +15,55 @@ import {
 import './Home.css';
 import NavbarPage from './Nav';
 import firebase from '../firebase';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import FooterPage from './Footer';
 import FeaturesPage from './Features';
+//import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+
 
 
 
 function Home(props) {
 
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [zipcode, setZipcode] = useState('');
+    //const [redirect, setRedirect] = useState('');
 
     const newUser = (e) => {
-        const db = firebase.firestore();
         // authentication
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(createdUser => {
-                console.log(createdUser);
                 createdUser.user.updateProfile({
                     displayName: name
 
                 })
                 const db = firebase.firestore();
-
                 //create user in Users db
                 db.collection('Users').doc(createdUser.user.uid).set({
                     email: email,
                     displayName: name,
                     zipcode: zipcode
 
-                    //creates user
-                    // db.collection('Users').add(this.state)
-                    // .then(user => console.log(user))
                 })
+
             })
+            history.push('/editprofile');
+
     }
+    // cant get data to save when redirect occurs...
+    // const redirectTo = () => {
+    //     let path = '/editprofile';
+    //     history.push(path);
+    // }
 
-
-    const user = useSelector(state => state.user);
-    // if (user) {
+    // if (redirect) {
     //     return <Redirect to='/editprofile'/>
     // }
+
 
     return (
         <div id='classicformpage'>
@@ -84,7 +89,7 @@ function Home(props) {
                             <h6 className='mb-4'>
                                 Social Hound is the 1st social media platform made just for your pup. Use the sign-up form to get started and once signed-in, you'll be able to create your pup's profile, find friend's location and posts, set-up play dates, and search for places you and your pup can enjoy together!<br /><br />Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other dogs and animals gives many more opportunities to explore with your pup outside of your yard. We hope you enjoy SocialHound and making new fur-ends!
                                 </h6>
-                            <MDBBtn outline color='white'>
+                            <MDBBtn outline color='white' href='/about'>
                                 Learn More
                                 </MDBBtn>
                         </MDBAnimation>

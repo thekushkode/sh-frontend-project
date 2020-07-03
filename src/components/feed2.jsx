@@ -1,6 +1,7 @@
 import React from "react";
 import { MDBRow, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
 import NavbarPage from "./Nav";
+import FooterPage from "./Footer";
 
 const SocialPage2 = () => {
     return (
@@ -11,7 +12,7 @@ const SocialPage2 = () => {
 
             <MDBCard
                 className="my-5 px-5 pt-4"
-                style={{ fontWeight: 300, maxWidth: 600 }}
+                style={{ fontWeight: 300, minWidth: 2000 }}
             >
                 <MDBCardBody className="py-0">
                     <MDBRow>
@@ -171,6 +172,10 @@ const SocialPage2 = () => {
                     </MDBRow>
                 </MDBCardBody>
             </MDBCard>
+            <footer>
+                <FooterPage />
+            </footer>
+
         </div>
     );
 }

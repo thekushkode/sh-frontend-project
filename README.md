@@ -1,33 +1,35 @@
 ![SocialHound Logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/sh-1.jpg)
-# SocialHound
+
+# SocialHound<br>The Social Network for Your Dog!
 
 Social Hound is the 1st social media platform made just for your pup. Use the sign-up form to get started and once signed-in, you'll be able to create your pup's profile, find friend's location and posts, set-up play dates, and search for places you and your pup can enjoy together!<br  /><br  />Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other dogs and animals gives many more opportunities to explore with your pup outside of your yard. We hope you enjoy SocialHound and making new fur-ends!
 
 # Contributors
+Robert Kushner IV
 
-Robert Kushner
-Jonathan Cox
-Gerrit Van Leeuwen
-Logan Blackstad
+# Video Walkthrough
 
-SocialHound: The Social Network For Your Dog!
+Watch our video to see how the app works!
 
-API's
-Firebase for db
-Google Maps
-Google Places
-Google Geocoding
+![GIF image of site demo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/demo.gif)
 
-ReactJS
-Hooks
-Redux
-MDB
-Web Packs
-HTML
+## Summary
 
+SocialHound is a true social media platform for your dog (and you!). Once signed in, you'll be able to create a profile, search for friends in your area, schedule play dates, and message your 'furends'.
 
+Use our custom map tools to find dog parks, view boarding & daycare locations and locate vets in your area! There is also a map for finding new friends. View SocialHound pups in you area and schedule a date in the click of a button. Search by breed, size, and temperament.
 
+Post your photos, videos and memories to your feed so your friends can view, like and comment on your dogs content! Post directly to your other pages on Twitter and Facebook! 
 
+## Built With
+
+![react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png) React & Redux
+![mdb react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png) Material Design Bootsrap- React, JQuery
+![google places api](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png) Google Maps, Google Places API 
+![google dev logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png) Google Dev Tools
+![firebase logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png) Google Firebase Api
+![npm logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png) NPM WebPacks 
+![html-css-js logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg) HTML + CSS + JavaScript
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,32 +69,6 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
 ### `npm run build` fails to minify
 

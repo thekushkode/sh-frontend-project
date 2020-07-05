@@ -8,12 +8,8 @@ import { setUser, unSetUser, setProfile } from '../redux/actions';
 import firebase from '../firebase';
 
 const db = firebase.firestore();
-const users = db.collection('users').get()
-.then(querySnapshot => {
-    console.log(querySnapshot)
-});
-console.log(users);
 
+//TRYING TO USE COMBO OF REDUX / FIREBASE (ONLY FB IF POSSIBLE) TO DISPLAY USERS ON MAP AND DISPLAY CURRENT USER ON SAME MAP.
 
 //need help with {connect}
 export class Furends extends Component {
@@ -25,15 +21,18 @@ export class Furends extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            user: ''
+            users: []
         }
     }
 
-    findDoc = () => {
-        const db = firebase.firestore();
-        const users = db.collection('users').get();
-        console.log(users);
-        //const docSnapshots = querySnapshot.docs;
+    componentDidMount() {
+        db.collection("Users")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                console.log(data);
+                this.setState({ users: data });
+            });
     }
 
     fetchPlaces = (mapProps, map) => {
@@ -98,6 +97,8 @@ export class Furends extends Component {
             height: '90%',
             marginTop: '85px',
         };
+        const { users } = this.state;
+        console.log({users});
 
         return (
             <div>

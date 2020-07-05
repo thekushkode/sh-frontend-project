@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Dog from './smalldog.png';
 // import Geocode from 'react-geocode';
-// import { useSelector, connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux'; //could import connect?
+import { setUser, unSetUser, setProfile } from '../redux/actions';
+import firebase from '../firebase';
+
+const db = firebase.firestore();
+const users = db.collection('users').get()
+.then(querySnapshot => {
+    console.log(querySnapshot)
+});
+console.log(users);
 
 
 //need help with {connect}
@@ -15,31 +24,33 @@ export class Furends extends Component {
             infoWindow: false,
             showingInfoWindow: false,
             activeMarker: {},
-            selectedPlace: {}
+            selectedPlace: {},
+            user: ''
         }
     }
 
-    fetchPlaces = (mapProps, map) => {
-        //get lat & lng from zip using geocode
-        // const user = useSelector(state => state.user);
-        // const userAddress = user.address + ', ' + user.city + ', ' + user.state;
-        // const userLocation = Geocode.fromAddress(userAddress).then(
-        //     response => {
-        //         const { lat, lng } = response.results[0].geometry.location;
-        //         console.log(lat, lng);
-        //     },
-        //     error => {
-        //         console.error(error);
-        //     }
-        // );
+    findDoc = () => {
+        const db = firebase.firestore();
+        const users = db.collection('users').get();
+        console.log(users);
+        //const docSnapshots = querySnapshot.docs;
+    }
 
+    fetchPlaces = (mapProps, map) => {
+
+        //how to use reduxe state in this?
+        const address = setUser.street + ' ' + setUser.city + ', ' + setUser.state + ' ' + setUser.zipcode;
+        console.log(address)
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
         const startPoint = new google.maps.LatLng(33.753746, -84.386330);
+        // this.setState({
+        //     user: address
+        // })
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['30305'],
+            query: [address],
             fields: ['name', 'geometry'],
         };
 
@@ -129,6 +140,14 @@ export class Furends extends Component {
     };
 };
 
-export default GoogleApiWrapper({
+const mapStateToProps = (state) => {
+    return {
+        user: state.setUser,
+        profile: state.setProfile
+    }
+}
+
+
+export default connect(mapStateToProps, { setUser, setProfile })(GoogleApiWrapper({
     apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
-})(Furends);
+})(Furends));

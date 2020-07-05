@@ -23,13 +23,13 @@ Post your photos, videos and memories to your feed so your friends can view, lik
 
 ## Built With
 
-![react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png) React & Redux
-![mdb react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png) Material Design Bootsrap- React, JQuery
-![google places api](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png) Google Maps, Google Places API 
-![google dev logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png) Google Dev Tools
-![firebase logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png) Google Firebase Api
+![react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png  | width=200) React & Redux
+![mdb react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png  | width=200) Material Design Bootsrap- React, JQuery
+![google places api](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png  | width=200) Google Maps, Google Places API 
+![google dev logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png  | width=200) Google Dev Tools
+![firebase logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png  | width=200) Google Firebase Api
 ![npm logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png) NPM WebPacks 
-![html-css-js logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg) HTML + CSS + JavaScript
+![html-css-js logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg | width=200) HTML + CSS + JavaScript
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

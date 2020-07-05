@@ -23,13 +23,21 @@ Post your photos, videos and memories to your feed so your friends can view, lik
 
 ## Built With
 
-![react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png =200x) React & Redux
+<!-- ![react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png =200x) React & Redux
 ![mdb react logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png =200x) Material Design Bootsrap- React, JQuery
 ![google places api](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png =200x) Google Maps, Google Places API 
 ![google dev logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png =200x) Google Dev Tools
 ![firebase logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png =200x) Google Firebase Api
 ![npm logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png =200x) NPM WebPacks 
-![html-css-js logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg =200x) HTML + CSS + JavaScript
+![html-css-js logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg =200x) HTML + CSS + JavaScript -->
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png' width='200' /> React & Redux
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png' width='200' /> Material Design Bootsrap- React, JQuery
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png' width='200' /> Google Maps, Google Places API 
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png' width='200' /> Google Dev Tools
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png' width='200' /> Google Firebase Api
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png' width='200' /> NPM WebPacks 
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg' width='200' /> HTML + CSS + JavaScript
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

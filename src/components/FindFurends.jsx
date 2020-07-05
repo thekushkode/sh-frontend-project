@@ -26,7 +26,8 @@ export class Furends extends Component {
     }
 
     componentDidMount() {
-        db.collection("Users")
+
+        db.collection("Dogs")
             .get()
             .then(querySnapshot => {
                 const data = querySnapshot.docs.map(doc => doc.data());
@@ -36,16 +37,11 @@ export class Furends extends Component {
     }
 
     fetchPlaces = (mapProps, map) => {
-
-        //how to use reduxe state in this?
-        const address = setUser.street + ' ' + setUser.city + ', ' + setUser.state + ' ' + setUser.zipcode;
-        console.log(address)
+        
         const { google } = mapProps;
         const service = new google.maps.places.PlacesService(map);
         const startPoint = new google.maps.LatLng(33.753746, -84.386330);
-        // this.setState({
-        //     user: address
-        // })
+
         var request = {
             location: startPoint,
             radius: '50000',
@@ -56,7 +52,7 @@ export class Furends extends Component {
         service.textSearch(request, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 this.setState({
-                    stores: results
+                    users: results
                 })
 
                 map.setCenter(results[0].geometry.location);
@@ -98,7 +94,8 @@ export class Furends extends Component {
             marginTop: '85px',
         };
         const { users } = this.state;
-        console.log({users});
+        console.log({ users });
+        
 
         return (
             <div>
@@ -114,21 +111,23 @@ export class Furends extends Component {
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                     >
-                        {this.state.stores.map((store, index, mapProps) => {
+                        {this.state.users.map((user, index, mapProps) => {
+                            let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
+                            console.log(address);
                             return (
-                                <Marker key={index} id={index} position={
-                                    store.geometry.location
-                                } name={store.name} options={{ icon: Dog }}
+                                <Marker key={index} id={index} position={address} name={user.name} options={{ icon: Dog }}
                                     onClick={this.onMarkerClick} />
 
                             )
                         })}
-                        {this.state.stores.map((store, index) => {
+                        {this.state.users.map((user, index) => {
                             return (
-                                < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.showingInfoWindow} name={store.name} >
+                                < InfoWindow marker={this.state.activeMarker} key={index}
+                                    visible={this.state.showingInfoWindow} name={user.name} >
                                     <div>
-                                        <h4>{this.state.selectedPlace.name}</h4>
+                                        <h3>{user.name}</h3>
+                                        <h4>{user.breed}</h4>
+                                        <h4>{user.temperament}</h4>
                                     </div>
                                 </InfoWindow >
 

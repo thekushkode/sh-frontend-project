@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer
+    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn
 } from "mdbreact";
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
@@ -32,7 +32,7 @@ class NavbarPage extends Component {
     render() {
 
         if (this.state.redirect) {
-            return <Redirect to='/'/>
+            return <Redirect to='/' />
         }
 
         return (
@@ -75,29 +75,29 @@ class NavbarPage extends Component {
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>
-                                <MDBNavLink className="waves-effect waves-light" to="https://twitter.com/socialhoundco">
+                                <MDBBtn href='https://twitter.com/socialhoundco' tag="a" color='white' size='sm' floating social="tw">
                                     <MDBIcon fab icon="twitter" />
-                                </MDBNavLink>
+                                </MDBBtn>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink className="waves-effect waves-light" to="https://www.instagram.com/socialhound.co/">
+                                <MDBBtn href='https://www.instagram.com/socialhound.co/' size="sm" tag="a" floating social="ins">
                                     <MDBIcon fab icon="instagram" />
-                                </MDBNavLink>
+                                </MDBBtn>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink className="waves-effect waves-light" to="https://www.facebook.com/SocialHound-110112560760116">
-                                    <MDBIcon fab icon="facebook" />
-                                </MDBNavLink>
+                                <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' size="sm" tag="a" floating social="fb">
+                                    <MDBIcon fab icon="facebook-f" />
+                                </MDBBtn>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
-                                    <MDBDropdownToggle nav caret>
-                                        <MDBIcon icon="user" />
+                                    <MDBDropdownToggle nav caret className='mt-2'>
+                                        <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
                                         <MDBDropdownItem href="/editprofile">Settings</MDBDropdownItem>
                                         <MDBDropdownItem href="/profile">Profile</MDBDropdownItem>
-                                        <MDBDropdownItem href=".login">Sign-in</MDBDropdownItem>
+                                        <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem>
                                         <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>

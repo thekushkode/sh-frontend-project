@@ -1,4 +1,4 @@
-![SocialHound Logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/sh-1.jpg)
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/sh-1.jpg' width=500 />
 
 # SocialHound<br>The Social Network for Your Dog!
 
@@ -14,6 +14,7 @@ Watch our video to see how the app works!
 ![GIF image of site demo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/demo.gif)
 
 ## Summary
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/4points-sh.PNG' width=200 />
 
 SocialHound is a true social media platform for your dog (and you!). Once signed in, you'll be able to create a profile, search for friends in your area, schedule play dates, and message your 'furends'.
 
@@ -31,13 +32,26 @@ Post your photos, videos and memories to your feed so your friends can view, lik
 ![npm logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png =200x) NPM WebPacks 
 ![html-css-js logo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg =200x) HTML + CSS + JavaScript -->
 
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png' width='200' /> React & Redux
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png' width='200' /> Material Design Bootsrap- React, JQuery
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png' width='200' /> Google Maps, Google Places API 
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png' width='200' /> Google Dev Tools
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png' width='200' /> Google Firebase Api
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png' width='200' /> NPM WebPacks 
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg' width='200' /> HTML + CSS + JavaScript
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/react.png' width='200' /> 
+React & Redux
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/mdbreact.png' width='200' /> 
+Material Design Bootsrap- React, JQuery
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googlemaps.png' width='200' /> 
+Google Maps, Google Places API 
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/googdev.png' width='200' /> 
+Google Dev Tools
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/firebase.png' width='200' /> 
+Google Firebase Api
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/npm.png' width='200' /> 
+NPM WebPacks 
+
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/html-css-js.jpg' width='200' /> 
+HTML + CSS + JavaScript
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

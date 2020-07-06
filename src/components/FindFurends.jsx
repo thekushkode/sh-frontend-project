@@ -68,14 +68,14 @@ export class Furends extends Component {
             activeMarker: marker,
             showingInfoWindow: true
         });
-        return (
-            < InfoWindow marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow} name={props.name} >
-                <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                </div>
-            </InfoWindow >
-        )
+        // return (
+        //     < InfoWindow marker={this.state.activeMarker}
+        //         visible={this.state.showingInfoWindow} name={props.name} >
+        //         <div>
+        //             <h1>{this.state.selectedPlace.name}</h1>
+        //         </div>
+        //     </InfoWindow >
+        // )
     }
 
 
@@ -124,7 +124,7 @@ export class Furends extends Component {
                         {this.state.users.map((user, index) => {
                             return (
                                 < InfoWindow marker={this.state.activeMarker} key={index}
-                                    visible={this.state.showingInfoWindow} name={user.name} >
+                                    visible={this.state.selectedPlace.id === index} name={user.name} >
                                     <div>
                                         <h4>{user.dogName}</h4>
                                         <p>{user.breed}</p>

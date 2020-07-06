@@ -6,6 +6,7 @@ import Dog from './smalldog.png';
 import { connect, useDispatch, useSelector } from 'react-redux'; //could import connect?
 import { setUser, unSetUser, setProfile } from '../redux/actions';
 import firebase from '../firebase';
+import AddressMarker from './AddressMarker';
 
 const db = firebase.firestore();
 
@@ -38,26 +39,26 @@ export class Furends extends Component {
 
     fetchPlaces = (mapProps, map) => {
         
-        const { google } = mapProps;
-        const service = new google.maps.places.PlacesService(map);
-        const startPoint = new google.maps.LatLng(33.753746, -84.386330);
+        // const { google } = mapProps;
+        // const service = new google.maps.places.PlacesService(map);
+        // const startPoint = new google.maps.LatLng(33.753746, -84.386330);
 
-        var request = {
-            location: startPoint,
-            radius: '50000',
-            query: ['3669 School STreet Atlanta, GA 30341'],
-            fields: ['name', 'geometry'],
-        };
+        // var request = {
+        //     location: startPoint,
+        //     radius: '50000',
+        //     query: ['3669 School Street Atlanta, GA 30341'],
+        //     fields: ['name', 'geometry'],
+        // };
 
-        service.textSearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                this.setState({
-                    users: results
-                })
+        // service.textSearch(request, (results, status) => {
+        //     if (status === google.maps.places.PlacesServiceStatus.OK) {
+        //         this.setState({
+        //             users: results
+        //         })
 
-                map.setCenter(results[0].geometry.location);
-            }
-        });
+        //         map.setCenter(results[0].geometry.location);
+        //     }
+        // });
     }
 
     onMarkerClick = (props, marker, e) => {
@@ -94,7 +95,7 @@ export class Furends extends Component {
             marginTop: '85px',
         };
         const { users } = this.state;
-        console.log({ users });
+        //console.log({ users });
         
 
         return (
@@ -113,9 +114,9 @@ export class Furends extends Component {
                     >
                         {this.state.users.map((user, index, mapProps) => {
                             let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
-                            console.log(address);
+                            // console.log(address);
                             return (
-                                <Marker key={index} id={index} position={user.geometry.location} name={user.name} options={{ icon: Dog }}
+                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name} 
                                     onClick={this.onMarkerClick} />
 
                             )
@@ -125,9 +126,9 @@ export class Furends extends Component {
                                 < InfoWindow marker={this.state.activeMarker} key={index}
                                     visible={this.state.showingInfoWindow} name={user.name} >
                                     <div>
-                                        <h3>{user.name}</h3>
-                                        <h4>{user.breed}</h4>
-                                        <h4>{user.temperament}</h4>
+                                        <h4>{user.dogName}</h4>
+                                        <p>{user.breed}</p>
+                                        <p>{user.temperament}</p>
                                     </div>
                                 </InfoWindow >
 

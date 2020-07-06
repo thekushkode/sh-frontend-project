@@ -6,7 +6,7 @@ const FormPage = () => {
         <MDBContainer>
             <MDBRow>
                 <MDBCol>
-                    <form data-netlify="true" name='social hound contact'>
+                    <form netlify name='social hound contact'>
                         <p className="h5 text-center mb-4">Write to us</p>
                         <div className="grey-text">
                             <MDBInput label="Your name" name='name' icon="user" group type="text" validate error="wrong"

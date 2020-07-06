@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 //import Upload from './FileUpload';
+import UploadFile from './Upload';
 
 const db = firebase.firestore();
 function EditProfile(props) {
@@ -216,6 +217,7 @@ function EditProfile(props) {
                     src={Dog}
                     className='z-depth-1-half mb-4'
                   />
+                  <UploadFile />
                   {/* <Upload /> */}
                   <MDBCardBody className='pt-0 mt-0'>
                     <h3 className='mb-3 font-bold'>

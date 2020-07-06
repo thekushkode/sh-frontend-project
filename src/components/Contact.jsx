@@ -2,6 +2,7 @@ import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer } from "mdbreact";
 import NavbarPage from "./Nav";
 import FooterPage from "./Footer";
+import FormPage from './Form';
 
 const ContactPage = () => {
     return (
@@ -19,57 +20,8 @@ const ContactPage = () => {
                     </p>
                     <MDBRow>
                         <MDBCol lg="5" className="lg-0 mb-4">
-                            <MDBCard>
-                                <MDBCardBody>
-                                    <div className="form-header blue accent-1">
-                                        <h3 className="mt-2">
-                                            <MDBIcon icon="envelope" /> Write to us:
-                                        </h3>
-                                    </div>
-                                    <p className="dark-grey-text">
-                                        We'll write rarely, but only the best content.
-                                    </p>
-                                    <div className="md-form">
-                                        <MDBInput
-                                            icon="user"
-                                            label="Name"
-                                            iconClass="grey-text"
-                                            type="text"
-                                            id="form-name"
-                                        />
-                                    </div>
-                                    <div className="md-form">
-                                        <MDBInput
-                                            icon="envelope"
-                                            label="Email"
-                                            iconClass="grey-text"
-                                            type="text"
-                                            id="form-email"
-                                        />
-                                    </div>
-                                    <div className="md-form">
-                                        <MDBInput
-                                            icon="tag"
-                                            label="Subject"
-                                            iconClass="grey-text"
-                                            type="text"
-                                            id="form-subject"
-                                        />
-                                    </div>
-                                    <div className="md-form">
-                                        <MDBInput
-                                            icon="pencil-alt"
-                                            label="Message"
-                                            iconClass="grey-text"
-                                            type="textarea"
-                                            id="form-text"
-                                        />
-                                    </div>
-                                    <div className="text-center">
-                                        <MDBBtn color="light-blue">Submit</MDBBtn>
-                                    </div>
-                                </MDBCardBody>
-                            </MDBCard>
+                            <FormPage />
+                            
                         </MDBCol>
 
                         <MDBCol lg="7">

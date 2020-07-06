@@ -145,6 +145,7 @@ class PExtended extends React.Component {
                     <MDBAvatar
                       tag='img'
                       alt='Rottweiler dog photo'
+                      width='400'
                       src={Ike}
                       className='rounded-circle z-depth-1-half mb-4'
                     />
@@ -286,7 +287,7 @@ class PExtended extends React.Component {
                   </MDBCard>
                 </MDBCol>
                 <MDBCol lg='8' md='12' className='text-center'>
-                  <div className='text-center mt-3 mb-2'>
+                  <div className='text-center mt-3'>
                     <h4>
                       <strong>Ike's Feed</strong>
                     </h4>
@@ -301,7 +302,9 @@ class PExtended extends React.Component {
                       New Post <MDBIcon icon='image' className='ml-1' />
                     </MDBBtn>
                   </div>
-                  <SocialPage2 />
+                  <div>
+                    <SocialPage2 />
+                  </div>
                   <MDBPagination circle className='my-4 float-right'>
                     <li className='page-item disabled clearfix d-none d-md-block'>
                       <a className='page-link' href='#!'>

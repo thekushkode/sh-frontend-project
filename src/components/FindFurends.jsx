@@ -45,7 +45,7 @@ export class Furends extends Component {
         var request = {
             location: startPoint,
             radius: '50000',
-            query: [address],
+            query: ['3669 School STreet Atlanta, GA 30341'],
             fields: ['name', 'geometry'],
         };
 
@@ -115,7 +115,7 @@ export class Furends extends Component {
                             let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
                             console.log(address);
                             return (
-                                <Marker key={index} id={index} position={address} name={user.name} options={{ icon: Dog }}
+                                <Marker key={index} id={index} position={user.geometry.location} name={user.name} options={{ icon: Dog }}
                                     onClick={this.onMarkerClick} />
 
                             )

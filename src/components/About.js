@@ -15,6 +15,9 @@ import Lightbox from 'react-image-lightbox';
 import './About.css';
 import NavbarPage from './Nav';
 import Kush from './kush.gif';
+import Jon from './jon.gif';
+import Logan from './logan.gif';
+import Gerrit from './gerrit.gif';
 import Dogs from './sh-dogplay.gif'
 import FooterPage from './Footer';
 
@@ -115,12 +118,12 @@ class About extends React.Component {
                     Software Engineer, Design
                   </h6>
                   <p className='grey-text'>
-                    Serial entreprenuer and dog enthusiast finds dream job!
+                    Serial entrepreneur and dog enthusiast.
                   </p>
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='facebook'
+                      icon='instagram'
                       className='p-2 m-2 fa-lg fb-ic'
                     />
                   </a>
@@ -134,7 +137,7 @@ class About extends React.Component {
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='dribbble'
+                      icon='github'
                       className='p-2 m-2 fa-lg dribbble-ic'
                     />
                   </a>
@@ -145,16 +148,16 @@ class About extends React.Component {
                   <MDBAvatar
                     tag='img'
                     className='mx-auto z-depth-1'
-                    src='https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg'
+                    src={Jon}
                     alt='First sample avatar image'
                   />
                 </MDBCol>
                 <MDBCol md='6' className='float-right'>
                   <h4>
-                    <strong>Maria Kate</strong>
+                    <strong>Jonathan Cox</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Photographer
+                    Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -163,21 +166,21 @@ class About extends React.Component {
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='facebook'
+                      icon='instagram'
                       className='p-2 m-2 fa-lg fb-ic'
                     />
                   </a>
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='youtube'
+                      icon='twitter'
                       className='p-2 m-2 fa-lg yt-ic'
                     />
                   </a>
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='instagram'
+                      icon='github'
                       className='p-2 m-2 fa-lg ins-ic'
                     />
                   </a>
@@ -191,16 +194,16 @@ class About extends React.Component {
                   <MDBAvatar
                     tag='img'
                     className='mx-auto z-depth-1'
-                    src='https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg'
+                    src={Gerrit}
                     alt='First sample avatar image'
                   />
                 </MDBCol>
                 <MDBCol md='6' className='float-right'>
                   <h4>
-                    <strong>Anna Deynah</strong>
+                    <strong>Gerrit Van Leeuwen</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Web Developer
+                    Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -209,7 +212,7 @@ class About extends React.Component {
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='facebook'
+                      icon='instagram'
                       className='p-2 m-2 fa-lg fb-ic'
                     />
                   </a>
@@ -234,16 +237,16 @@ class About extends React.Component {
                   <MDBAvatar
                     tag='img'
                     className='mx-auto z-depth-1'
-                    src='https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg'
+                    src={Logan}
                     alt='First sample avatar image'
                   />
                 </MDBCol>
                 <MDBCol md='6' className='float-right'>
                   <h4>
-                    <strong>Sara Melyah</strong>
+                    <strong>Logan Blackstad</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Front-end Developer
+                    Full-Stack Developer.
                   </h6>
                   <p className='grey-text'>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -252,21 +255,21 @@ class About extends React.Component {
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='google-plus'
+                      icon='instagram'
                       className='p-2 m-2 fa-lg gplus-ic'
                     />
                   </a>
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='linkedin'
+                      icon='twitter'
                       className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
                   <a href='!#'>
                     <MDBIcon
                       fab
-                      icon='envelope'
+                      icon='github'
                       className='p-2 m-2 fa-lg email-ic'
                     />
                   </a>

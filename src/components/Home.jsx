@@ -51,19 +51,10 @@ function Home(props) {
                 })
 
             })
+            //redirects to/editprofile
             history.push('/editprofile');
 
     }
-    // cant get data to save when redirect occurs...
-    // const redirectTo = () => {
-    //     let path = '/editprofile';
-    //     history.push(path);
-    // }
-
-    // if (redirect) {
-    //     return <Redirect to='/editprofile'/>
-    // }
-
 
     return (
         <div id='classicformpage'>

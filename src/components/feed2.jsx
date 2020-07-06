@@ -11,8 +11,9 @@ const SocialPage2 = () => {
             </header>
 
             <MDBCard
-                className="my-5 px-5 pt-4"
-                style={{ fontWeight: 300, minWidth: 2000 }}
+            
+                className="mb-5 px-5 pt-4 fluid"
+                style={{ fontWeight: 300, maxWidth: 2000 }}
             >
                 <MDBCardBody className="py-0">
                     <MDBRow>
@@ -28,7 +29,7 @@ const SocialPage2 = () => {
                                 <div className="excerpt">
                                     <div className="brief">
                                         <a href="#!" className="name">
-                                            John Doe
+                                            Spot
                     </a> added you as a friend
                     <div className="date">1 hour ago</div>
                                     </div>
@@ -52,8 +53,8 @@ const SocialPage2 = () => {
                                 <div className="excerpt">
                                     <div className="brief">
                                         <a href="#!" className="name">
-                                            Anna Smith
-                    </a> added <a href="#!">2 new illustrations</a>
+                                            Heidi
+                    </a> added <a href="#!">2 new photos</a>
                                         <div className="date">4 hours ago</div>
                                     </div>
                                     <div className="added-images">
@@ -88,7 +89,7 @@ const SocialPage2 = () => {
                                 <div className="excerpt">
                                     <div className="brief">
                                         <a href="#!" className="name">
-                                            Danny Moore
+                                            Herschel
                     </a> added you as a friend
                     <div href="#!" className="date">
                                             7 hours ago
@@ -114,7 +115,7 @@ const SocialPage2 = () => {
                                 <div className="excerpt">
                                     <div className="brief">
                                         <a href="#!" className="name">
-                                            Lili Rose
+                                            Wilder
                     </a> posted on her page
                     <div className="date">2 days ago</div>
                                     </div>
@@ -144,7 +145,7 @@ const SocialPage2 = () => {
                                 <div className="excerpt">
                                     <div className="brief">
                                         <a href="#!" className="name">
-                                            Kate Harrison
+                                            Kobe
                     </a> added <a href="#!"> 2 new photos</a> of you
                     <div className="date">3 days ago</div>
                                     </div>
@@ -172,10 +173,6 @@ const SocialPage2 = () => {
                     </MDBRow>
                 </MDBCardBody>
             </MDBCard>
-            <footer>
-                <FooterPage />
-            </footer>
-
         </div>
     );
 }

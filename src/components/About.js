@@ -391,8 +391,8 @@ class About extends React.Component {
             )}
           </section>
 
-          <hr className='my-5' />
-          <section id='contact'>
+
+          {/* <section id='contact'>
             <MDBRow>
               <MDBCol lg='8'>
                 <MDBCardBody className='form'>
@@ -499,7 +499,7 @@ class About extends React.Component {
                 </MDBCardBody>
               </MDBCol>
             </MDBRow>
-          </section>
+          </section> */}
         </MDBContainer>
         <footer>
           <FooterPage />

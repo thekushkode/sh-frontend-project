@@ -31,6 +31,7 @@
 </head>
 
 <body>
+  
   <form netlify netlify-honeypot='bot-field' name='contact' hidden>
     <p className="h5 text-center mb-4">Write to us</p>
 
@@ -41,13 +42,9 @@
       <MDBInput label="Subject" name='subject' icon="tag" group type="text" validate error="wrong" success="right" />
       <MDBInput type="textarea" name='message' rows="2" label="Your message" icon="pencil-alt" />
     </div>
-    <div className="text-center">
-      <MDBBtn outline color="primary" type='submit'>
-        Send
-        <MDBIcon far icon="paper-plane" className="ml-1" />
-      </MDBBtn>
-    </div>
   </form>
+
+
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <!--

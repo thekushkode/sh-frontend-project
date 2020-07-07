@@ -21,7 +21,7 @@ import {
 } from 'mdbreact';
 import './extended.css';
 import NavbarPage from './Nav';
-import Ike from './ike.png';
+import Ike from './images/ike.png';
 import SocialPage2 from './feed2';
 import FooterPage from './Footer';
 

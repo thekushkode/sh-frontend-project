@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Dog from './smalldog.png';
+import Dog from './images/smalldog.png';
 //import Geocode from 'react-geocode';
 import FooterPage from './Footer';
 //import { connect } from 'react-redux';

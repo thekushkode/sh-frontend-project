@@ -14,7 +14,7 @@ import {
   MDBSelectInput
 } from 'mdbreact';
 import './EditProfile.css';
-import Dog from './ike.png';
+import Dog from './images/ike.png';
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
 import firebase from '../firebase';

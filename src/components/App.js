@@ -19,6 +19,7 @@ import Terms from './Terms';
 import Privacy from './Privacy';
 import Login from './Login';
 import VetMap from './VetMap';
+import MessagesPage from './messages/MessagesPage'
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route path='/privacy' component={Privacy} />
           <Route path='/login' component={Login} />
           <Route path='/vets' component={VetMap} />
+          <Route path='/messagestest' component={MessagesPage} />
         </Switch>
       </div>
     </Router>

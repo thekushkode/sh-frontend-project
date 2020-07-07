@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   MDBContainer,
   MDBRow,
@@ -24,21 +24,57 @@ import NavbarPage from './Nav';
 import Ike from './images/ike.png';
 import SocialPage2 from './feed2';
 import FooterPage from './Footer';
+import firebase from '../firebase';
 
-class PExtended extends React.Component {
+
+
+class PExtended extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bootstrap: false,
+      spayneut: false,
       wordpress: false,
       angular: false,
       mdb: false,
       community: false,
       pro: false,
       send: false,
-      submit: false
+      submit: false,
+      user: '',
+      dogData: {}
     };
   }
+
+
+
+  componentDidMount() {
+    const db = firebase.firestore();
+    let user = firebase.auth().currentUser;
+    let currDog = this;
+    if (user) {
+      console.log(user)
+      // User is signed in.
+      db.collection("Dogs")
+        .where('ownerId', '==', user.uid)
+        .get()
+        .then(function (querySnapshot) {
+          let data;
+          querySnapshot.forEach(function (doc) {
+            data = doc.data();
+            console.log(data)
+            currDog.setState({
+              dogData: data,
+                user: user
+            })
+          })
+        })
+    } else {
+      alert('Please log-in or create an account.');
+    }
+  }
+
+
+
 
   toggle = item => {
     console.log(item);
@@ -49,8 +85,8 @@ class PExtended extends React.Component {
 
   renderModal = type => {
     const string =
-      type === 'bootstrap'
-        ? 'Bootstrap Master'
+      type === 'spayneut'
+        ? 'Spayed or Neutered'
         : type === 'wordpress'
           ? 'Wordpress Master'
           : type === 'angular'
@@ -151,12 +187,12 @@ class PExtended extends React.Component {
                     />
                     <MDBCardBody>
                       <MDBCardTitle>
-                        <strong>Ike Kushner</strong>
+                        <strong>{this.state.dogData.dogName}</strong>
                       </MDBCardTitle>
                       <h5>
                         Chief Executive Log Lifter
                     </h5>
-                      <p className='dark-grey-text'>Brookhaven, Ga</p>
+                      <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
                       <MDBBtn floating tag='a' color=''>
                         <MDBIcon fab icon='facebook' className='dark-grey-text' />
                       </MDBBtn>
@@ -164,8 +200,7 @@ class PExtended extends React.Component {
                         <MDBIcon fab icon='instagram' className='dark-grey-text' />
                       </MDBBtn>
                       <p className='card-text mt-3'>
-                        Some quick example text to build on the card title and make
-                        up the bulk of the card's content.
+                      {this.state.dogData.bio}
                   </p>
                       <MDBBtn
                         color='info'
@@ -180,7 +215,7 @@ class PExtended extends React.Component {
                   <MDBCard className='mb-4'>
                     <MDBCardBody className='text-center'>
                       <h5>
-                        <strong>Ike's Badges</strong>
+                        <strong>{this.state.dogData.dogName}'s Badges</strong>
                       </h5>
 
                       <hr className='my-3' />
@@ -192,7 +227,7 @@ class PExtended extends React.Component {
                         className='px-3'
                         onClick={() => this.toggle('bootstrap')}
                       >
-                        Neutered | Spayed: True
+                        Neutered | Spayed: {this.state.dogData.spayNeut}
                   </MDBBtn>
                       <MDBBtn
                         color='blue-grey'
@@ -201,7 +236,7 @@ class PExtended extends React.Component {
                         className='px-3'
                         onClick={() => this.toggle('wordpress')}
                       >
-                        Friendly
+                        {this.state.dogData.temperament}
                   </MDBBtn>
                       <MDBBtn
                         size='sm'
@@ -209,7 +244,7 @@ class PExtended extends React.Component {
                         className='px-3'
                         onClick={() => this.toggle('angular')}
                       >
-                        Has Vaccines: True
+                        Has Vaccines: {this.state.dogData.vaccines}
                   </MDBBtn>
                       <MDBBtn
                         color='secondary'
@@ -218,7 +253,7 @@ class PExtended extends React.Component {
                         className='px-3'
                         onClick={() => this.toggle('mdb')}
                       >
-                        X-Large
+                        {this.state.dogData.size}
                   </MDBBtn>
                       <MDBBtn
                         color='deep-purple'
@@ -227,7 +262,7 @@ class PExtended extends React.Component {
                         className='px-3'
                         onClick={() => this.toggle('community')}
                       >
-                        Rottweiler
+                        {this.state.dogData.breed}
                   </MDBBtn>
                       <MDBBtn
                         color='indigo'
@@ -236,7 +271,7 @@ class PExtended extends React.Component {
                         className='px-3'
                         onClick={() => this.toggle('pro')}
                       >
-                        Atlanta
+                        {this.state.dogData.city}
                   </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
@@ -244,7 +279,7 @@ class PExtended extends React.Component {
                   <MDBCard className='mb-4'>
                     <MDBCardBody>
                       <h5 className='text-center mb-4'>
-                        <strong>Ike's Friends </strong>
+                        <strong>{this.state.dogData.dogName}'s Friends </strong>
                       </h5>
                       <ul className='list-unstyled pt-4'>
                         <li>
@@ -289,7 +324,7 @@ class PExtended extends React.Component {
                 <MDBCol lg='8' md='12' className='text-center'>
                   <div className='text-center mt-3'>
                     <h4>
-                      <strong>Ike's Feed</strong>
+                      <strong>{this.state.dogData.dogName}'s Feed</strong>
                     </h4>
                     <MDBBtn
                       color='info'

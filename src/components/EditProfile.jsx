@@ -215,7 +215,7 @@ function EditProfile(props) {
                     tag='img'
                     alt='Anna Deynah'
                     src={Dog}
-                    className='z-depth-1-half mb-4'
+                    className='rounded-circle z-depth-1-half mb-4'
                   />
                   <UploadFile />
                   {/* <Upload /> */}

@@ -1,6 +1,6 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBIcon } from "mdbreact";
-import CoolDog from './sunglasses.jpg';
+import CoolDog from './images/sunglasses.jpg';
 
 const FeaturesPage = () => {
     return (

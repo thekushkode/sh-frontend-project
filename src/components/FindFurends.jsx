@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Dog from './smalldog.png';
+import Dog from './images/smalldog.png';
 // import Geocode from 'react-geocode';
 import { connect, useDispatch, useSelector } from 'react-redux'; //could import connect?
 import { setUser, unSetUser, setProfile } from '../redux/actions';

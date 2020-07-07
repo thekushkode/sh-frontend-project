@@ -14,11 +14,11 @@ import {
 import Lightbox from 'react-image-lightbox';
 import './About.css';
 import NavbarPage from './Nav';
-import Kush from './kush.gif';
-import Jon from './jon.gif';
-import Logan from './logan.gif';
-import Gerrit from './gerrit.gif';
-import Dogs from './sh-dogplay.gif'
+import Kush from './images/kush.gif';
+import Jon from './images/jon.gif';
+import Logan from './images/logan.gif';
+import Gerrit from './images/gerrit.gif';
+import Dogs from './images/sh-dogplay.gif'
 import FooterPage from './Footer';
 
 const images = [

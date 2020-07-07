@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
-import Dog from './smalldog.png';
+import Dog from './images/smalldog.png';
 
 export class GMap extends Component {
     constructor(props) {

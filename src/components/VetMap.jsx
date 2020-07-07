@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Vet from './vet.png';
+import Vet from './images/vet.png';
 
 export class VetMap extends Component {
     constructor(props) {

@@ -72,7 +72,7 @@ const Chat = () => {
         <MDBContainer fluid>
           <MDBRow>
             <MDBCol lg='4'>
-              <MDBInput type='text' icon='search' label='Search Message' />
+              <MDBInput type='text' icon='search' label='Search Messages' containerClass="text-left"/>
               <MDBListGroup>
                 {messages.length && messages.map((item) => <>{item}</>)}
                 <a href='#!'>

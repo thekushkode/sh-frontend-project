@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import { Marker } from 'google-maps-react';
-import Dog from './images/smalldog.png';
+import { InfoWindow } from 'google-maps-react';
 
-class AddressMarker extends Component {
+class DetailedInfo extends Component {
     state = {
-        dogData: null
+        places: null
     }
 
-    updateAddress = () => {
+    getPlaceDetails = () => {
         const { google, map } = this.props;
         const service = new google.maps.places.PlacesService(map);
         const startPoint = new google.maps.LatLng(33.753746, -84.386330);
 
         var request = {
             location: startPoint,
-            radius: '50000',
-            query: [this.props.address],
+            placeId: '',
             fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
-        service.textSearch(request, (results, status) => {
+        service.getDetails(request, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 this.setState({
-                    dogData: results
+                    places: results
                 })
 
                 map.setCenter(results[0].geometry.location);
@@ -32,21 +30,21 @@ class AddressMarker extends Component {
 
 
     componentDidMount() {
-        this.updateAddress()
+        this.getPlaceDetails()
     }
 
     componentDidUpdate(previousProps) {
-        if (previousProps.address !== this.props.address) {
-            this.updateAddress()
+        if (previousProps.placeId !== this.props.placeId) {
+            this.getPlaceDetails()
         }
     }
 
 
     render() {
         console.log(this.state.dogData)
-        if (this.state.dogData) {
+        if (this.state.places) {
             return (
-                <Marker {...this.props} position={this.state.dogData[0].geometry.location} />
+                <InfoWindow {...this.props} position={this.state.places[0].geometry.location} />
             )
         } else {
             return ''
@@ -54,4 +52,4 @@ class AddressMarker extends Component {
     }
 }
 
-export default AddressMarker;
+export default DetailedInfo;

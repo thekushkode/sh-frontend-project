@@ -203,12 +203,28 @@ class PExtended extends Component {
                       {this.state.dogData.bio}
                   </p>
                       <MDBBtn
-                        color='info'
+                        color='purple-gradient'
                         size='sm'
                         rounded
                         href='/editprofile'
                       >
                         Edit Profile
+                    </MDBBtn>
+                      <MDBBtn
+                        color='blue-gradient'
+                        size='sm'
+                        rounded
+                        href='/editprofile'
+                      >
+                        Request PlayDate
+                    </MDBBtn>
+                      <MDBBtn
+                        color='peach-gradient'
+                        size='sm'
+                        rounded
+                        href='/editprofile'
+                      >
+                        Follow {this.state.dogData.dogName}
                     </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>

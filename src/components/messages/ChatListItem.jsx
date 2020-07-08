@@ -1,6 +1,9 @@
+// Google Firebase Cloud Messaging (FCM) stores messages in a cloud database - message size must be < 1Mb
+// moment used to parse, validate, manipulate, and display dates and times in JavaScript.
+
 import React from 'react'
-import { useDispatch } from 'react-redux';
 import { MDBListGroupItem } from 'mdbreact'
+import { useDispatch } from 'react-redux';
 import MessagesWindow from './MessagesWindow'
 import { loadMessages } from '../../redux/actions/index.js'
 import firebase from '../../firebase';
@@ -14,8 +17,7 @@ export default function ChatListItem({ messages }) {
     // set db to firebase store 
     const db = firebase.firestore();
 
-    // create React Hook for ChatListItem
-    // purpose: boolean for chat list visibility
+    // <visible> state variable, initialized to false
     const [visible, setVisible] = React.useState(false);
 
     let dispatch = useDispatch();
@@ -23,6 +25,7 @@ export default function ChatListItem({ messages }) {
     function itemClicked() {
         dispatch(loadMessages(messages));
     }
+
     return (
         <MDBListGroupItem hover onClick={itemClicked}>
             <div className='d-flex justify-content-between mb-1'>

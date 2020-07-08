@@ -15,13 +15,23 @@ import './Login.css';
 import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import firebase from '../firebase';
+import { setProfile } from '../redux/actions';
+import { connect } from 'react-redux';
+
+let db = firebase.firestore();
+
 
 class Login extends React.Component {
-  state = {
-    collapseID: '',
-    email: '',
-    password: ''
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapseID: '',
+      email: '',
+      password: '',
+      user: ''
+    };
+
+  }
 
 
   toggleCollapse = collapseID => () =>
@@ -32,13 +42,23 @@ class Login extends React.Component {
   userSignIn = (e) => {
     // authentication
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-    .then(() => {
-      this.props.history.push('/profile')
-    })
+      .then(() => {
+        let userData = {}
+        db.collection("Users")
+          .where("email", "==", this.state.email).limit(1).get()
+          .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              userData = { data: doc.data(), id: doc.id }
+            })
+          }).then(res => {
+            this.props.setProfile(userData)
+          })
+        this.props.history.push('/profile')
+      })
   }
 
   handleChange = (e) => {
-    const {value, name} = e.target;
+    const { value, name } = e.target;
     this.setState({
       [name]: value
     })
@@ -66,24 +86,26 @@ class Login extends React.Component {
                             icon='user'
                             className='mt-2 mb-2 text-white'
                           />{' '}
-                          Log in:
+                          Login
                         </h3>
                       </div>
                       <MDBInput
                         type='email'
                         name='email'
-                        label='Your email'
+                        label='Email'
                         icon='envelope'
                         iconClass='white-text'
+                        containerClass="text-left"
                         value={this.state.email}
                         onChange={this.handleChange}
                       />
                       <MDBInput
                         type='password'
                         name='password'
-                        label='Your password'
+                        label='Password'
                         icon='lock'
                         iconClass='white-text'
+                        containerClass="text-left"
                         value={this.state.password}
                         onChange={this.handleChange}
                       />
@@ -134,4 +156,11 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = {
+  setProfile
+}
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Login);

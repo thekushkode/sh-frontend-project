@@ -90,33 +90,36 @@ function Home(props) {
                                 <MDBCard id='classic-card'>
                                     <MDBCardBody className='white-text'>
                                         <h3 className='text-center'>
-                                            <MDBIcon icon='user' /> Register:
+                                            <MDBIcon icon='user' /> Register
                                             </h3>
                                         <hr className='hr-light' />
 
                                         <MDBInput
                                             className='white-text'
                                             iconClass='white-text'
-                                            label='Your Name'
+                                            label='Name'
                                             icon='user'
                                             name='name'
+                                            containerClass="text-left"
                                             onChange={(e) => { setName(e.target.value) }}
                                         />
                                         <MDBInput
                                             className='white-text'
                                             iconClass='white-text'
-                                            label='Your Email'
+                                            label='Email'
                                             icon='envelope'
                                             name='email'
+                                            containerClass="text-left"
                                             onChange={(e) => { setEmail(e.target.value) }}
                                         />
                                         <MDBInput
                                             className='white-text'
                                             iconClass='white-text'
-                                            label='Your Password'
+                                            label='Password'
                                             icon='lock'
                                             type='password'
                                             name='password'
+                                            containerClass="text-left"
                                             onChange={(e) => { setPassword(e.target.value) }}
                                         />
                                         <MDBInput
@@ -125,6 +128,7 @@ function Home(props) {
                                             label='Zip Code'
                                             icon='map-pin'
                                             name='zipcode'
+                                            containerClass="text-left"
                                             onChange={(e) => { setZipcode(e.target.value) }}
                                         />
                                         <div className='text-center mt-4 black-text'>

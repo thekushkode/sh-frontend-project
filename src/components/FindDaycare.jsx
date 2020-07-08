@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Hotel from './love_hotel.png';
+// import Hotel from './images/hotel.png'
 
 export class DayCare extends Component {
     constructor(props) {

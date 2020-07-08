@@ -93,7 +93,7 @@ class About extends React.Component {
         </section>
         <MDBContainer>
           <section id='team'>
-            <h2 className='text-center my-5 h1'>Our amazing team</h2>
+            <h2 className='text-center my-5 h1'>Our Amazing Team</h2>
             <p className='text-center mb-5 w-responsive mx-auto'>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
               error amet numquam iure provident voluptate esse quasi, veritatis
@@ -120,7 +120,7 @@ class About extends React.Component {
                   <p className='grey-text'>
                     Serial entrepreneur and dog enthusiast.
                   </p>
-                  <a href='!#'>
+                  <a href='https://github.com/thekushkode'>
                     <MDBIcon
                       fab
                       icon='instagram'
@@ -134,11 +134,11 @@ class About extends React.Component {
                       className='p-2 m-2 fa-lg tw-ic'
                     />
                   </a>
-                  <a href='!#'>
+                  <a href='https://github.com/thekushkode'>
                     <MDBIcon
                       fab
                       icon='github'
-                      className='p-2 m-2 fa-lg dribbble-ic'
+                      className='p-2 m-2 fa-lg git-ic'
                     />
                   </a>
                 </MDBCol>
@@ -160,28 +160,27 @@ class About extends React.Component {
                     Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quod eos id officiis hic tenetur.
+                    Coffee Enthusiast and Full-Stack guru.
                   </p>
-                  <a href='!#'>
+                  <a href='https://www.linkedin.com/in/jonathancox11/'>
                     <MDBIcon
                       fab
-                      icon='instagram'
-                      className='p-2 m-2 fa-lg fb-ic'
+                      icon='linkedin'
+                      className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  <a href='!#'>
+                  {/* <a href='!#'>
                     <MDBIcon
                       fab
                       icon='twitter'
                       className='p-2 m-2 fa-lg yt-ic'
                     />
-                  </a>
-                  <a href='!#'>
+                  </a> */}
+                  <a href='https://github.com/jonathancox1'>
                     <MDBIcon
                       fab
                       icon='github'
-                      className='p-2 m-2 fa-lg ins-ic'
+                      className='p-2 m-2 fa-lg git-ic'
                     />
                   </a>
                 </MDBCol>
@@ -206,28 +205,27 @@ class About extends React.Component {
                     Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quod eos id officiis hic tenetur.
+                    Atlanta-based software engineer specializing in full-stack web development.
                   </p>
-                  <a href='!#'>
+                  <a href='https://www.linkedin.com/in/grrtvnlw/'>
                     <MDBIcon
                       fab
-                      icon='instagram'
-                      className='p-2 m-2 fa-lg fb-ic'
+                      icon='linkedin'
+                      className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  <a href='!#'>
-                    <MDBIcon
-                      fab
-                      icon='twitter'
-                      className='p-2 m-2 fa-lg tw-ic'
-                    />
-                  </a>
-                  <a href='!#'>
+                  <a href='https://github.com/grrtvnlw'>
                     <MDBIcon
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg git-ic'
+                    />
+                  </a>
+                  <a href='https://twitter.com/grrtvnlw'>
+                    <MDBIcon
+                      fab
+                      icon='twitter'
+                      className='p-2 m-2 fa-lg tw-ic'
                     />
                   </a>
                 </MDBCol>
@@ -246,27 +244,26 @@ class About extends React.Component {
                     <strong>Logan Blackstad</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Full-Stack Developer.
+                    Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quod eos id officiis hic tenetur.
+                    Dog and Music Lover. Tinker-er.  
                   </p>
-                  <a href='!#'>
+                  <a href='https://www.linkedin.com/in/loganblackstad/'>
                     <MDBIcon
                       fab
-                      icon='instagram'
-                      className='p-2 m-2 fa-lg gplus-ic'
+                      icon='linkedin'
+                      className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  <a href='!#'>
+                  {/* <a href='!#'>
                     <MDBIcon
                       fab
                       icon='twitter'
                       className='p-2 m-2 fa-lg li-ic'
                     />
-                  </a>
-                  <a href='!#'>
+                  </a> */}
+                  <a href='https://github.com/loganblackstad'>
                     <MDBIcon
                       fab
                       icon='github'

@@ -6,39 +6,14 @@ import Conversation from './Conversation';
 
 export default function MessagesPage() {
     const [allMessages, setAllMessages] = React.useState({});
+    const [stuff, setStuff] = React.useState('');
     const db = firebase.firestore();
 
 
     useEffect(() => {
         // db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
         //     'eSoolOZFcrpniMgINzq1':
-        //         [
-        //             {
-        //                 message: 'newest',
-        //                 timeStamp: Date.now(),
-        //                 sender: 'thisuesername'
-        //             },
-        //             {
-        //                 message: 'test2',
-        //                 timeStamp: Date.now(),
-        //                 sender: 'thisuesername'
-        //             },
-        //             {
-        //                 message: 'test2',
-        //                 timeStamp: Date.now(),
-        //                 sender: 'thisuesername'
-        //             },
-        //             {
-        //                 message: 'test2',
-        //                 timeStamp: Date.now(),
-        //                 sender: 'thisuesername'
-        //             },
-        //             {
-        //                 message: 'test2',
-        //                 timeStamp: Date.now(),
-        //                 sender: 'thisuesername'
-        //             }
-        //         ]
+        //         [...currentMessages, newMessage]
         // }).then(res => {
         //     return console.log(res)
         // })
@@ -48,6 +23,18 @@ export default function MessagesPage() {
                 console.log(res.data())
                 setAllMessages(res.data());
             })
+
+        // find dogs where the owner = 'uid'
+        // db.collection("Dogs")
+        //     .where("ownerId", "==", "wV4u772G0cRAEoOXK5NMweIWi8w2")
+        //     .get()
+        //     .then(function (querySnapshot) {
+        //         let data;
+        //         querySnapshot.forEach(function (doc) {
+        //             data = doc.data();
+        //         })
+        //         setStuff(data);
+        //     })
 
     }, [])
 

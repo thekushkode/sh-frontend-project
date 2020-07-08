@@ -29,3 +29,9 @@ export const clearProfile = () => {
 //         type: 'SIGN_IN'
 //     }
 // }
+
+export const loadMessages = (payload) => ({
+    type: 'SET_MESSAGES',
+    payload
+})
+

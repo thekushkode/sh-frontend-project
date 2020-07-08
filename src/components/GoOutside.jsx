@@ -99,6 +99,7 @@ export class GMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
+                            //let placesId = store.pl
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
                                     visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Vet from './hospital.png';
+import DetailedInfo from './DetailedInfo';
 
 class VetMap extends Component {
     constructor(props) {
@@ -30,11 +31,11 @@ class VetMap extends Component {
         service.textSearch(request, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 this.setState({
-                    stores: results
+                    stores: results,
                 })
 
                 map.setCenter(results[0].geometry.location);
-            }
+            } // .then(service = placeDetails search based on place_id and add to state?)
         });
     }
 
@@ -86,17 +87,28 @@ class VetMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
+                            console.log(store)
                             return (
-                                <InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
+                                <DetailedInfo marker={this.state.activeMarker} key={index}
+                                visible={this.state.selectedPlace.id === index} name={.name}>
                                     <div>
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
                                         <p>{store.formatted_phone_number}</p>
-                                        <p>{store.website}</p>
+                                        <p><a href={store.website}>{store.website}</a></p>
                                     </div>
-                                </InfoWindow >
+                                </DetailedInfo >
+                                // <InfoWindow marker={this.state.activeMarker}
+                                //     visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
+                                //     <div>
+                                //         <h4>{store.name}</h4>
+                                //         <h6>{store.formatted_address}</h6>
+                                //         <p>Rating: {store.rating}/5</p>
+                                //         <p>{store.formatted_phone_number}</p>
+                                //         <p><a href={store.website}>{store.website}</a></p>
+                                //     </div>
+                                // </InfoWindow >
                             )
                         })}
                     </Map>

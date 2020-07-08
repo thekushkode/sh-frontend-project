@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   MDBContainer,
   MDBRow,
@@ -20,22 +21,37 @@ import MessagesWindow from './messages/MessagesWindow';
 const Chat = () => {
   const db = firebase.firestore();
   const [allMessages, setAllMessages] = React.useState({});
-  const [currentChat, setCurrentChat] = React.useState('')
+  const [chatInput, setChatInput] = React.useState('')
+  const reduxMessages = useSelector(state => state.messages)
 
   useEffect(() => {
-    db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').get()
-      .then(res => {
-        console.log(res.data())
-        setAllMessages(res.data());
-      })
-
-    // db.collection('Message').doc('0y0bZo5QnIQp4b0SJbE2')
-    //   .onSnapshot(snapshot => {
-    //     Object.keys(snapshot).forEach((doc) => console.log(doc))
+    // db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').get()
+    //   .then(res => {
+    //     console.log(res.data())
+    //     setAllMessages(res.data());
     //   })
+
+    db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2')
+      .onSnapshot((snapshot) => {
+        setAllMessages(snapshot.data());
+      })
   }, [])
 
+  function changeInput(value) {
+    setChatInput(value);
+  }
 
+  function submitMessage() {
+    // submit to db
+    db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
+      'eSoolOZFcrpniMgINzq1':
+        [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: 'jerrySeinfeld' }]
+    }).then(res => {
+      return console.log(res)
+    })
+
+    setChatInput('')
+  }
 
   const messages = Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
     return (
@@ -43,7 +59,6 @@ const Chat = () => {
     )
   })
 
-  console.log(allMessages)
   return (
     <div>
       <header style={{ marginBottom: '100px' }}>
@@ -80,7 +95,7 @@ const Chat = () => {
             </MDBCol>
 
             <MDBCol lg='8' className='mt-lg-0 mt-5'>
-              <div className='border border-dark p-4'>
+              <div className='border border-dark p-4' style={{ overflowY: 'auto', maxHeight: '75vh' }}>
                 <MessagesWindow />
                 {/* <div className='text-center'>
                   <small>16 July, 23:54</small>
@@ -151,11 +166,14 @@ const Chat = () => {
                         containerClass='chat-message-type'
                         label='Type your message'
                         rows='2'
+                        value={chatInput}
+                        onChange={(e) => changeInput(e.target.value)}
                       />
                       <div className='mt-5'>
                         <a
                           className='btn btn-primary btn-lg waves-effect waves-light'
                           href='#!'
+                          onClick={() => submitMessage()}
                         >
                           Send
                       </a>

@@ -3,18 +3,18 @@ import { useDispatch } from 'react-redux';
 import { MDBListGroupItem } from 'mdbreact'
 import MessagesWindow from './MessagesWindow'
 import { loadMessages } from '../../redux/actions/index.js'
+import firebase from '../../firebase';
 import moment from 'moment'
 moment().format()
 
 
 
 export default function ChatListItem({ messages }) {
+    const db = firebase.firestore();
     const [visible, setVisible] = React.useState(false);
     let dispatch = useDispatch();
 
-
     function itemClicked() {
-        console.log('item clicked')
         dispatch(loadMessages(messages));
     }
     return (

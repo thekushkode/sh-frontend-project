@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-// import Hotel from './images/hotel.png';
 import Hotel from './love_hotel.png';
 
 export class DayCare extends Component {
@@ -40,7 +39,6 @@ export class DayCare extends Component {
     }
 
     onMarkerClick = (props, marker) => {
-        console.log(props);
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
@@ -84,16 +82,13 @@ export class DayCare extends Component {
                                     store.geometry.location
                                 } name={store.name} options={{ icon: Hotel }}
                                     onClick={this.onMarkerClick} />
-
                             )
                         })}
                         {this.state.stores.map((store, index) => {
-                            console.log(store)
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
                                 visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} >
                                     <div>
-                                        {/* <h4>{this.state.selectedPlace.name}</h4> */}
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
@@ -101,7 +96,6 @@ export class DayCare extends Component {
                                         <p>{store.website}</p>
                                     </div>
                                 </InfoWindow >
-
                             )
                         })}
                     </Map>
@@ -112,5 +106,5 @@ export class DayCare extends Component {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
+    apiKey: `${process.env.REACT_APP_GOOGLE_KEY}`
 })(DayCare);

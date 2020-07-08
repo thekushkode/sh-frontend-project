@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Hotel from './images/hotel.png';
+// import Hotel from './images/hotel.png';
+import Hotel from './love_hotel.png';
 
 export class DayCare extends Component {
     constructor(props) {
@@ -38,25 +39,17 @@ export class DayCare extends Component {
         });
     }
 
-    onMarkerClick = (props, marker, e) => {
+    onMarkerClick = (props, marker) => {
         console.log(props);
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
         });
-        return (
-            < InfoWindow marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow} name={props.name} >
-                <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                </div>
-            </InfoWindow >
-        )
     }
 
 
-    onMapClicked = (props) => {
+    onMapClicked = () => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
@@ -80,7 +73,7 @@ export class DayCare extends Component {
                         google={this.props.google}
                         onClick={this.onMapClicked}
                         onReady={this.fetchPlaces}
-                        zoom={14}
+                        zoom={13}
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                     >
@@ -95,11 +88,17 @@ export class DayCare extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
+                            console.log(store)
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.showingInfoWindow} name={store.name} >
+                                visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} >
                                     <div>
-                                        <h4>{this.state.selectedPlace.name}</h4>
+                                        {/* <h4>{this.state.selectedPlace.name}</h4> */}
+                                        <h4>{store.name}</h4>
+                                        <h6>{store.formatted_address}</h6>
+                                        <p>Rating: {store.rating}/5</p>
+                                        <p>{store.formatted_phone_number}</p>
+                                        <p>{store.website}</p>
                                     </div>
                                 </InfoWindow >
 

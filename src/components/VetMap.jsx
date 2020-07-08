@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-// import Vet from './images/vet.png';
 import Vet from './hospital.png';
 
 class VetMap extends Component {
@@ -87,16 +86,10 @@ class VetMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
-                            console.log(this.state.selectedPlace)
-                            console.log(store)
                             return (
                                 <InfoWindow marker={this.state.activeMarker}
                                     visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
                                     <div>
-                                        {/* <h4>{this.state.selectedPlace.name}</h4>
-                                        <h6>{this.state.selectedPlace.formatted_address}</h6>
-                                        <p>{this.state.selectedPlace.formatted_phone_number}</p>
-                                        <p>{this.state.selectedPlace.website}</p> */}
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
@@ -114,5 +107,5 @@ class VetMap extends Component {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
+    apiKey: `${process.env.REACT_APP_GOOGLE_KEY}`
 })(VetMap);

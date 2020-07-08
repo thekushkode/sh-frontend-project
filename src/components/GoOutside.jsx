@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
-// import Dog from './images/smalldog.png';
 import Dog from './dog.png';
 
 export class GMap extends Component {
@@ -51,25 +50,16 @@ export class GMap extends Component {
         });
     }
 
-    onMarkerClick = (props, marker, e) => {
-        console.log(props);
+    onMarkerClick = (props, marker) => {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
         });
-        return (
-            < InfoWindow marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow} name={props.name} >
-                <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                </div>
-            </InfoWindow >
-        )
     }
 
 
-    onMapClicked = (props) => {
+    onMapClicked = () => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
@@ -106,19 +96,13 @@ export class GMap extends Component {
                                     store.geometry.location
                                 } name={store.name} options={{ icon: Dog }}
                                     onClick={this.onMarkerClick} />
-
                             )
                         })}
                         {this.state.stores.map((store, index) => {
-                            console.log(store)
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
                                     visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
                                     <div>
-                                        {/* <h4>{this.state.selectedPlace.name}</h4>
-                                        <h6>{this.state.selectedPlace.address}</h6>
-                                        <p>{this.state.selectedPlace.formatted_phone_number}</p>
-                                        <p>{this.state.selectedPlace.website}</p> */}
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
@@ -126,7 +110,6 @@ export class GMap extends Component {
                                         <p>{store.website}</p>
                                     </div>
                                 </InfoWindow >
-
                             )
                         })}
                     </Map>
@@ -137,5 +120,5 @@ export class GMap extends Component {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
+    apiKey: `${process.env.REACT_APP_GOOGLE_KEY}`
 })(GMap);

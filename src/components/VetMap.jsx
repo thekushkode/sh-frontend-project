@@ -90,7 +90,7 @@ class VetMap extends Component {
                             console.log(store)
                             return (
                                 <DetailedInfo marker={this.state.activeMarker} key={index}
-                                visible={this.state.selectedPlace.id === index} name={.name}>
+                                visible={this.state.selectedPlace.id === index} name={store.name}>
                                     <div>
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>

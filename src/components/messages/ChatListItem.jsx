@@ -10,8 +10,14 @@ moment().format()
 
 
 export default function ChatListItem({ messages }) {
+    
+    // set db to firebase store 
     const db = firebase.firestore();
+
+    // create React Hook for ChatListItem
+    // purpose: boolean for chat list visibility
     const [visible, setVisible] = React.useState(false);
+
     let dispatch = useDispatch();
 
     function itemClicked() {

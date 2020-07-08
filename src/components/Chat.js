@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import ScrollToBottom from 'react-scroll-to-bottom';
+import { css } from 'glamor';
 import {
   MDBContainer,
   MDBRow,
@@ -19,6 +21,7 @@ import FooterPage from './Footer';
 import MessagesWindow from './messages/MessagesWindow';
 import { loadMessages, setProfile } from '../redux/actions/index.js'
 import { useDispatch } from 'react-redux';
+
 
 
 const Chat = () => {
@@ -59,6 +62,11 @@ const Chat = () => {
     )
   })
 
+  const ROOT_CSS = css({
+    height: 600,
+    width: 600
+  });
+
   return (
     <div>
       <header style={{ marginBottom: '100px' }}>
@@ -68,7 +76,7 @@ const Chat = () => {
         <MDBContainer fluid>
           <MDBRow>
             <MDBCol lg='4'>
-              <MDBInput type='text' icon='search' label='Search Messages' containerClass="text-left"/>
+              <MDBInput type='text' icon='search' label='Search Messages' containerClass="text-left" />
               <MDBListGroup>
                 {messages.length && messages.map((item) => <>{item}</>)}
                 <a href='#!'>
@@ -85,13 +93,13 @@ const Chat = () => {
                       </span>
                       <small>Jul 13</small>
                     </div>
-                    <p className='text-truncate' style={{textAlign: "left"}}>
-                    Hey, I see that you too are a dog dad!  Do you think that your dog and my dog would want to ...
+                    <p className='text-truncate' style={{ textAlign: "left" }}>
+                      Hey, I see that you too are a dog dad!  Do you think that your dog and my dog would want to ...
                   </p>
                   </MDBListGroupItem>
                 </a>
                 <a href='#!'>
-                  <MDBListGroupItem hover active style={{background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057'}}>
+                  <MDBListGroupItem hover active style={{ background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057' }}>
                     <MDBAvatar
                       src='https://avatars3.githubusercontent.com/u/60439987?s=400&u=e190fc8437480d708e1dae41861555aca792716e&v=4'
                       alt='User Profile - Logan'
@@ -104,8 +112,8 @@ const Chat = () => {
                       </span>
                       <small>Jul 10</small>
                     </div>
-                    <p className='text-truncate' style={{textAlign: "left"}}>
-                    Yo Bro!  I've got a friendly Rottweiler...
+                    <p className='text-truncate' style={{ textAlign: "left" }}>
+                      Yo Bro!  I've got a friendly Rottweiler...
                   </p>
                   </MDBListGroupItem>
                 </a>
@@ -113,8 +121,10 @@ const Chat = () => {
             </MDBCol>
 
             <MDBCol lg='8' className='mt-lg-0 mt-5'>
-              <div className='border border-dark p-4' style={{ overflowY: 'auto', maxHeight: '75vh' }}>
-                <MessagesWindow />
+              <div className='border border-dark py-4'>
+                <ScrollToBottom className={ROOT_CSS}>
+                  <MessagesWindow />
+                </ScrollToBottom>
                 {/* <div className='text-center'>
                   <small>16 July, 23:54</small>
                 </div>
@@ -177,6 +187,7 @@ const Chat = () => {
                 </div> */}
 
               </div>
+
               <div className='row'>
                 <div className='col-md-12'>
                   <div className='d-flex flex-row'>

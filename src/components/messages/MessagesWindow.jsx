@@ -5,7 +5,7 @@ import firebase from '../../firebase';
 import '../Chat.css';
 
 
-export default function MessagesWindow({ content }) {
+export default function MessagesWindow() {
     const messages = useSelector(state => state.messages)
     const user = useSelector(state => state.user)
 
@@ -15,9 +15,9 @@ export default function MessagesWindow({ content }) {
                 {messages && messages.map((item) => {
                     let styles;
                     if (item.sender === user.displayName) {
-                        styles = ['end', 'primary-color', 'text-white']
+                        styles = ['end', 'aqua-gradient', 'text-white']
                     } else {
-                        styles = ['start', 'grey lighten-3', 'text-black']
+                        styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
                     }
                     return (
                         <SingleMessage formating={styles} content={item} />

@@ -39,25 +39,17 @@ export class DayCare extends Component {
         });
     }
 
-    onMarkerClick = (props, marker, e) => {
+    onMarkerClick = (props, marker) => {
         console.log(props);
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
         });
-        return (
-            < InfoWindow marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow} name={props.name} >
-                <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                </div>
-            </InfoWindow >
-        )
     }
 
 
-    onMapClicked = (props) => {
+    onMapClicked = () => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
@@ -96,11 +88,17 @@ export class DayCare extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
+                            console.log(store)
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.showingInfoWindow} name={store.name} >
+                                visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} >
                                     <div>
-                                        <h4>{this.state.selectedPlace.name}</h4>
+                                        {/* <h4>{this.state.selectedPlace.name}</h4> */}
+                                        <h4>{store.name}</h4>
+                                        <h6>{store.formatted_address}</h6>
+                                        <p>Rating: {store.rating}/5</p>
+                                        <p>{store.formatted_phone_number}</p>
+                                        <p>{store.website}</p>
                                     </div>
                                 </InfoWindow >
 

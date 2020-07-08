@@ -36,7 +36,7 @@ export class GMap extends Component {
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['dog park'],
+            query: ['dog park', 'pet store'],
             fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
@@ -110,14 +110,20 @@ export class GMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
+                            console.log(store)
                             return (
                                 < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.showingInfoWindow} name={store.name} address={store.formatted_address}>
+                                    visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
                                     <div>
-                                        <h4>{this.state.selectedPlace.name}</h4>
+                                        {/* <h4>{this.state.selectedPlace.name}</h4>
                                         <h6>{this.state.selectedPlace.address}</h6>
                                         <p>{this.state.selectedPlace.formatted_phone_number}</p>
-                                        <p>{this.state.selectedPlace.website}</p>
+                                        <p>{this.state.selectedPlace.website}</p> */}
+                                        <h4>{store.name}</h4>
+                                        <h6>{store.formatted_address}</h6>
+                                        <p>Rating: {store.rating}/5</p>
+                                        <p>{store.formatted_phone_number}</p>
+                                        <p>{store.website}</p>
                                     </div>
                                 </InfoWindow >
 

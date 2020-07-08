@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
-import Dog from './images/smalldog.png';
+// import Dog from './images/smalldog.png';
+import Dog from './dog.png';
 
 export class GMap extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ export class GMap extends Component {
         var request = {
             location: startPoint,
             radius: '50000',
-            query: ['dog park', 'pet store'],
+            query: ['dog park'],
             fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
@@ -94,7 +95,7 @@ export class GMap extends Component {
                         google={this.props.google}
                         onClick={this.onMapClicked}
                         onReady={this.fetchPlaces}
-                        zoom={14}
+                        zoom={13}
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                     >

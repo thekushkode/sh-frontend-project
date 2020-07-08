@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import NavbarPage from './Nav';
-import Hotel from './images/hotel.png';
+// import Hotel from './images/hotel.png';
+import Hotel from './love_hotel.png';
 
 export class DayCare extends Component {
     constructor(props) {
@@ -80,7 +81,7 @@ export class DayCare extends Component {
                         google={this.props.google}
                         onClick={this.onMapClicked}
                         onReady={this.fetchPlaces}
-                        zoom={14}
+                        zoom={13}
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                     >

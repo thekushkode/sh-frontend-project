@@ -4,7 +4,6 @@ import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
 import Dog from './dog.png';
-import SearchBar from './SearchBar'
 
 export class GMap extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export class GMap extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            zipCode: '90014',
+            zipCode: '',
             map: null
         }
     }
@@ -86,7 +85,6 @@ export class GMap extends Component {
     };
 
     handleChange = (e) => {
-        console.log(e.target.value)
         this.setState({
             zipCode: e.target.value
         })

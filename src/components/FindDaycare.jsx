@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
+import Geocode from 'react-geocode';
 import NavbarPage from './Nav';
 import Hotel from './love_hotel.png';
-// import Hotel from './images/hotel.png'
 
 export class DayCare extends Component {
     constructor(props) {
@@ -13,30 +14,56 @@ export class DayCare extends Component {
             infoWindow: false,
             showingInfoWindow: false,
             activeMarker: {},
-            selectedPlace: {}
+            selectedPlace: {},
+            zipCode: '',
+            map: null
         }
     }
 
-    fetchPlaces = (mapProps, map) => {
-        const { google } = mapProps;
-        const service = new google.maps.places.PlacesService(map);
-        const startPoint = new google.maps.LatLng(33.753746, -84.386330);
-        var request = {
-            location: startPoint,
-            radius: '50000',
-            query: ['dog boarding'],
-            fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
-        };
+    mapReady = (mapProps, map) => {
+        this.setState({
+            map
+        }, this.fetchPlaces)
+    }
 
-        service.textSearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                this.setState({
-                    stores: results
-                })
+    fetchPlaces = () => {
+        if (this.state.map) {
+            Geocode.setLanguage('en');
+            Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`);
+            Geocode.fromAddress(this.state.zipCode).then(
+                response => {
+                    const { lat, lng } = response.results[0].geometry.location;
+                    console.log(lat, lng);
+                    const { google } = this.props;
+                    const service = new google.maps.places.PlacesService(this.state.map);
+                    // const startPoint = new google.maps.LatLng(33.753746, -84.386330);
+                    const startPoint = new google.maps.LatLng(lat, lng);
+                    var request = {
+                        location: startPoint,
+                        radius: '50000',
+                        query: ['dog boarding'],
+                        fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
+                    };
+                    service.textSearch(request, (results, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            this.setState({
+                                stores: results
+                            })
 
-                map.setCenter(results[0].geometry.location);
-            }
-        });
+                            const bounds = new google.maps.LatLngBounds();
+
+                            results.forEach(result => {
+                                bounds.extend(result.geometry.location);
+                            });
+                            this.state.map.fitBounds(bounds);
+                        }
+                    });
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+        }
     }
 
     onMarkerClick = (props, marker) => {
@@ -57,6 +84,20 @@ export class DayCare extends Component {
         }
     };
 
+    handleChange = (e) => {
+        this.setState({
+            zipCode: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.fetchPlaces()
+        this.setState({
+            zipCode: ''
+        })
+    }
+
     render() {
         const mapStyles = {
             width: '100%',
@@ -71,7 +112,7 @@ export class DayCare extends Component {
                     <Map
                         google={this.props.google}
                         onClick={this.onMapClicked}
-                        onReady={this.fetchPlaces}
+                        onReady={this.mapReady}
                         zoom={13}
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
@@ -101,6 +142,18 @@ export class DayCare extends Component {
                         })}
                     </Map>
                 </main>
+                <footer style={{position: 'bottom', padding: '0px', margin: '0px'}} className='fixed-bottom'>
+                    {/* <SearchBar /> */}
+                    <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
+                        <MDBCol md="6">
+                        <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
+                            <MDBIcon icon="search"/>
+                            <input className="form-control form-control-lg ml-3 w-75" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
+                            <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
+                        </MDBFormInline>
+                        </MDBCol>
+                    </div>
+                </footer>
             </div>
         );
     };

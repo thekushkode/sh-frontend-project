@@ -11,6 +11,7 @@
     "google-map-react": "^1.1.7",
     "google-maps-react": "^2.0.6",
     "mdbreact": "git+https://oauth2:6syYtvFQnuxN4Wm3wMHp@git.mdbootstrap.com/mdb/react/re-pro.git",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-geocode": "^0.2.1",

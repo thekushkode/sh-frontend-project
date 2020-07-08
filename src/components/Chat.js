@@ -17,9 +17,13 @@ import './Chat.css';
 import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import MessagesWindow from './messages/MessagesWindow';
+import { loadMessages } from '../redux/actions/index.js'
+import { useDispatch } from 'react-redux';
+
 
 const Chat = () => {
   const db = firebase.firestore();
+  let dispatch = useDispatch();
   const [allMessages, setAllMessages] = React.useState({});
   const [chatInput, setChatInput] = React.useState('')
   const reduxMessages = useSelector(state => state.messages)
@@ -34,6 +38,7 @@ const Chat = () => {
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2')
       .onSnapshot((snapshot) => {
         setAllMessages(snapshot.data());
+        // dispatch(loadMessages(snapshot.data()))
       })
   }, [])
 
@@ -42,16 +47,15 @@ const Chat = () => {
   }
 
   function submitMessage() {
-    // submit to db
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
       'eSoolOZFcrpniMgINzq1':
         [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: 'jerrySeinfeld' }]
-    }).then(res => {
-      return console.log(res)
     })
-
+    dispatch(loadMessages([...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: 'jerrySeinfeld' }]
+    ))
     setChatInput('')
   }
+
 
   const messages = Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
     return (
@@ -158,29 +162,30 @@ const Chat = () => {
                 </p>
                 </div> */}
 
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <div className='d-flex flex-row'>
-                      <MDBInput
-                        type='textarea'
-                        containerClass='chat-message-type'
-                        label='Type your message'
-                        rows='2'
-                        value={chatInput}
-                        onChange={(e) => changeInput(e.target.value)}
-                      />
-                      <div className='mt-5'>
-                        <a
-                          className='btn btn-primary btn-lg waves-effect waves-light'
-                          href='#!'
-                          onClick={() => submitMessage()}
-                        >
-                          Send
+              </div>
+              <div className='row'>
+                <div className='col-md-12'>
+                  <div className='d-flex flex-row'>
+                    <MDBInput
+                      type='textarea'
+                      containerClass='chat-message-type'
+                      label='Type your message'
+                      rows='2'
+                      value={chatInput}
+                      onChange={(e) => changeInput(e.target.value)}
+                    />
+                    <div className='mt-5'>
+                      <a
+                        className='btn btn-primary btn-lg waves-effect waves-light'
+                        href='#!'
+                        onClick={() => submitMessage()}
+                      >
+                        Send
                       </a>
-                      </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </MDBCol>
           </MDBRow>

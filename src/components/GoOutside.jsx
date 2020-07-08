@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
-import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
 import Dog from './dog.png';
 
@@ -108,7 +107,6 @@ export class GMap extends Component {
         return (
             <div>
                 <header className='pb-0 mb-0'>
-                    <NavbarPage />
                 </header>
                 <main>
                     <Map

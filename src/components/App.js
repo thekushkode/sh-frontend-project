@@ -20,6 +20,7 @@ import Privacy from './Privacy';
 import Login from './Login';
 import VetMap from './VetMap';
 import MessagesPage from './messages/MessagesPage'
+import NavbarPage from './Nav';
 
 function App() {
 
@@ -39,7 +40,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-
+        <NavbarPage />
         </header>
         <Switch>
           <Route exact path='/' component={Home} />

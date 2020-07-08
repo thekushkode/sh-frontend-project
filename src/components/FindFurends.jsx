@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import NavbarPage from './Nav';
 import Dog from './images/smalldog.png';
 // import Geocode from 'react-geocode';
 import { connect, useDispatch, useSelector } from 'react-redux'; //could import connect?
@@ -101,7 +100,6 @@ export class Furends extends Component {
         return (
             <div>
                 <header>
-                    <NavbarPage />
                 </header>
                 <main>
                     <Map

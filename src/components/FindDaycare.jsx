@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import Geocode from 'react-geocode';
-import NavbarPage from './Nav';
 import Hotel from './love_hotel.png';
 
 export class DayCare extends Component {
@@ -106,7 +105,6 @@ export class DayCare extends Component {
         return (
             <div>
                 <header>
-                    <NavbarPage />
                 </header>
                 <main>
                     <Map

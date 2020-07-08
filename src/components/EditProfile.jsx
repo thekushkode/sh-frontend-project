@@ -90,7 +90,7 @@ function EditProfile(props) {
         vaccines,
         bio,
         ownerId: user.uid
-      })
+      }) //CAN I REMOVE THE FIRST PART OF IF AND JUST HAVE WHATS IN ELSE STATEMENT? 
     } else {
       db.collection('Dogs').doc(dogId).set({
         dogName,
@@ -133,7 +133,7 @@ function EditProfile(props) {
                   <MDBCardBody>
                     <MDBRow>
                       <MDBCol md='6'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { setDogName(e.target.value) }} />
+  <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) {{ setDogName(e.target.value) }}}} />
                       </MDBCol>
                       <MDBCol md='6'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
@@ -141,7 +141,7 @@ function EditProfile(props) {
                     </MDBRow>
                     <MDBRow>
                       <MDBCol md='12'>
-                        <MDBInput type='text' name='street' value={street} label='Address' onChange={(e) => { setStreet(e.target.value) }} />
+                        <MDBInput type='text' name='street' value={street} label='Address' onChange={(e) => { e.target.value && setStreet(e.target.value) }} />
                       </MDBCol>
                     </MDBRow>
                     <MDBRow>

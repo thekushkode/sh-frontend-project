@@ -78,20 +78,38 @@ const Chat = () => {
                 <a href='#!'>
                   <MDBListGroupItem hover active>
                     <MDBAvatar
-                      src='https://mdbootstrap.com/img/Photos/Avatars/adach.jpg'
-                      alt='User mugshot'
+                      src='https://avatars0.githubusercontent.com/u/26091324?s=460&u=6eeeb5f4240af272f7f35e2197630ecb07195148&v=4'
+                      alt='User Profile - Logan'
                       tag='img'
                       className='float-left mr-3'
                     />
                     <div className='d-flex justify-content-between mb-1 '>
                       <span className='mb-1'>
-                        <strong>Dawid Adach</strong>
+                        <strong>Logan</strong>
                       </span>
-                      <small>13 July</small>
+                      <small>Jul 13</small>
                     </div>
-                    <p className='text-truncate'>
-                      <strong>You: </strong> Donec id elit non mi porta gravida at
-                    eget metus. Maecenas sed diam eget risus varius blandit.
+                    <p className='text-truncate' style={{textAlign: "left"}}>
+                    Hey, I see that you too are a dog dad!  Do you think that your dog and my dog would want to ...
+                  </p>
+                  </MDBListGroupItem>
+                </a>
+                <a href='#!'>
+                  <MDBListGroupItem hover active style={{background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057'}}>
+                    <MDBAvatar
+                      src='https://avatars3.githubusercontent.com/u/60439987?s=400&u=e190fc8437480d708e1dae41861555aca792716e&v=4'
+                      alt='User Profile - Logan'
+                      tag='img'
+                      className='float-left mr-3'
+                    />
+                    <div className='d-flex justify-content-between mb-1'>
+                      <span className='mb-1'>
+                        <strong>Rob</strong>
+                      </span>
+                      <small>Jul 10</small>
+                    </div>
+                    <p className='text-truncate' style={{textAlign: "left"}}>
+                    Yo Bro!  I've got a friendly Rottweiler...
                   </p>
                   </MDBListGroupItem>
                 </a>

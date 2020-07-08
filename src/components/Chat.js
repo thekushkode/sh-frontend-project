@@ -17,7 +17,7 @@ import './Chat.css';
 import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import MessagesWindow from './messages/MessagesWindow';
-import { loadMessages } from '../redux/actions/index.js'
+import { loadMessages, setProfile } from '../redux/actions/index.js'
 import { useDispatch } from 'react-redux';
 
 
@@ -27,18 +27,14 @@ const Chat = () => {
   const [allMessages, setAllMessages] = React.useState({});
   const [chatInput, setChatInput] = React.useState('')
   const reduxMessages = useSelector(state => state.messages)
+  const user = useSelector(state => state.user)
+  const profile = useSelector(state => state.profile)
+  let currentUser = firebase.auth().currentUser;
 
   useEffect(() => {
-    // db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').get()
-    //   .then(res => {
-    //     console.log(res.data())
-    //     setAllMessages(res.data());
-    //   })
-
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2')
       .onSnapshot((snapshot) => {
         setAllMessages(snapshot.data());
-        // dispatch(loadMessages(snapshot.data()))
       })
   }, [])
 
@@ -49,9 +45,9 @@ const Chat = () => {
   function submitMessage() {
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
       'eSoolOZFcrpniMgINzq1':
-        [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: 'jerrySeinfeld' }]
+        [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: user.displayName }]
     })
-    dispatch(loadMessages([...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: 'jerrySeinfeld' }]
+    dispatch(loadMessages([...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: user.displayName }]
     ))
     setChatInput('')
   }

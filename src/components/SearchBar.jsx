@@ -1,16 +1,14 @@
 import React from 'react';
-import { MDBCol, MDBFormInline, MDBIcon } from 'mdbreact';
+import { MDBCol, MDBFormInline, Button } from 'mdbreact';
+
 const SearchPage = () => {
   return (
-    <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
-      {/* <h1>Hello World</h1> */}
     <MDBCol md="6">
       <MDBFormInline className="md-form">
-        <MDBIcon icon="search" />
-        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" />
+        <input className="form-control form-control-sm ml-2 w-200" type="text" placeholder="Enter Furends Name" aria-label="Search" />
+        <Button type='submit' size='sm' className='btn-rounded aqua-gradient' >Search</Button>
       </MDBFormInline>
     </MDBCol>
-    </div>
   );
 }
 export default SearchPage;

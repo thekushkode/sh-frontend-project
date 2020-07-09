@@ -47,7 +47,7 @@ function EditProfile(props) {
 
   useEffect(() => {
     if (user && !dogId) {
-      db.collection('Dogs').where('ownerid', '==', user.uid).get()
+      db.collection('Dogs').where('ownerid', '==', user.id).get()
         .then(querySnapshot => {
           console.log(querySnapshot);
           let dog = null;
@@ -89,7 +89,7 @@ function EditProfile(props) {
         spayNeut,
         vaccines,
         bio,
-        ownerId: user.uid
+        ownerId: user.id
       }) //CAN I REMOVE THE FIRST PART OF IF AND JUST HAVE WHATS IN ELSE STATEMENT? 
     } else {
       db.collection('Dogs').doc(dogId).set({
@@ -133,7 +133,7 @@ function EditProfile(props) {
                   <MDBCardBody>
                     <MDBRow>
                       <MDBCol md='6'>
-  <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) {{ setDogName(e.target.value) }}}} />
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
                       </MDBCol>
                       <MDBCol md='6'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />

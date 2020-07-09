@@ -35,11 +35,13 @@ const Chat = () => {
   let currentUser = firebase.auth().currentUser;
 
   useEffect(() => {
-    db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2')
+    console.log(profile.id)
+    db.collection('Messages').doc(profile.id)
       .onSnapshot((snapshot) => {
+        console.log('snapshot', snapshot.data())
         setAllMessages(snapshot.data());
       })
-  }, [])
+  }, [db, profile])
 
   function changeInput(value) {
     setChatInput(value);
@@ -48,15 +50,27 @@ const Chat = () => {
   function submitMessage() {
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
       'eSoolOZFcrpniMgINzq1':
-        [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: user.displayName }]
+        [...reduxMessages,
+        {
+          message: chatInput,
+          timeStamp: Date.now(),
+          sender: user.displayName
+        }
+        ]
     })
-    dispatch(loadMessages([...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: user.displayName }]
+    dispatch(loadMessages(
+      [...reduxMessages,
+      {
+        message: chatInput, timeStamp: Date.now(),
+        sender: user.displayName
+      }
+      ]
     ))
     setChatInput('')
   }
 
 
-  const messages = Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
+  const messages = allMessages && Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
     )
@@ -78,7 +92,7 @@ const Chat = () => {
             <MDBCol lg='4'>
               <MDBInput type='text' icon='search' label='Search Messages' containerClass="text-left" />
               <MDBListGroup>
-                {messages.length && messages.map((item) => <>{item}</>)}
+                {messages && messages.map((item) => <>{item}</>)}
                 <a href='#!'>
                   <MDBListGroupItem hover active>
                     <MDBAvatar

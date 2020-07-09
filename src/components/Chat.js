@@ -87,7 +87,6 @@ const Chat = () => {
   return (
     <div>
       <header style={{ marginBottom: '100px' }}>
-        <NavbarPage />
       </header>
       <div id='chat' className='m-4'>
         <MDBContainer fluid>

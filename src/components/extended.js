@@ -20,7 +20,6 @@ import {
   MDBModalFooter
 } from 'mdbreact';
 import './extended.css';
-import NavbarPage from './Nav';
 import Ike from './images/ike.png';
 import SocialPage2 from './feed2';
 import FooterPage from './Footer';
@@ -160,7 +159,6 @@ class PExtended extends Component {
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
-          <NavbarPage />
         </header>
         <main>
 

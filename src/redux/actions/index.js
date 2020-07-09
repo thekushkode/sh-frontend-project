@@ -31,7 +31,7 @@ export const clearProfile = () => {
 // }
 
 export const loadMessages = (payload) => ({
-    type: 'SET_MESSAGES',
+    type: 'LOAD_MESSAGES',
     payload
 })
 

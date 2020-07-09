@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { css } from 'glamor';
 import {
@@ -20,52 +21,62 @@ import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import MessagesWindow from './messages/MessagesWindow';
 import { loadMessages, setProfile } from '../redux/actions/index.js'
-import { useDispatch } from 'react-redux';
 
 
 
 const Chat = () => {
   const db = firebase.firestore();
   let dispatch = useDispatch();
-  const [allMessages, setAllMessages] = React.useState({});
+  const [allMessages, setAllMessages] = React.useState('');
   const [chatInput, setChatInput] = React.useState('')
   const reduxMessages = useSelector(state => state.messages)
   const user = useSelector(state => state.user)
   const profile = useSelector(state => state.profile)
+  const history = useHistory();
+
   let currentUser = firebase.auth().currentUser;
+  if (!currentUser) {
+    history.push('/')
+  }
+
 
   useEffect(() => {
-    console.log(profile.id)
-    db.collection('Messages').doc(profile.id)
-      .onSnapshot((snapshot) => {
-        console.log('snapshot', snapshot.data())
-        setAllMessages(snapshot.data());
-      })
-  }, [db, profile])
+    if (user) {
+      db.collection("Messages")
+        .where("members", "array-contains", user.id)
+        .get()
+        .then(function (querySnapshot) {
+          let dataArray = []
+          querySnapshot.forEach(function (doc) {
+            console.log(doc.id, doc.data())
+            dataArray.push({ id: doc.id, data: doc.data() })
+          })
+          setAllMessages(dataArray)
+        })
+    }
+  }, [db, user])
 
   function changeInput(value) {
     setChatInput(value);
   }
 
   function submitMessage() {
-    db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
-      'eSoolOZFcrpniMgINzq1':
-        [...reduxMessages,
-        {
-          message: chatInput,
-          timeStamp: Date.now(),
-          sender: user.displayName
-        }
-        ]
+    let allNewMessages = [...reduxMessages.data.messages,
+    {
+      message: chatInput,
+      timeStamp: Date.now(),
+      sender: user.data.displayName
+    }]
+    db.collection('Messages').doc(reduxMessages.id).update({
+      'messages': allNewMessages
     })
-    dispatch(loadMessages(
-      [...reduxMessages,
-      {
-        message: chatInput, timeStamp: Date.now(),
-        sender: user.displayName
+    dispatch(loadMessages({
+      ...reduxMessages,
+      data: {
+        ...reduxMessages.data,
+        messages: allNewMessages
       }
-      ]
-    ))
+    }))
     setChatInput('')
   }
 
@@ -88,7 +99,7 @@ const Chat = () => {
 
 
 
-  const messages = allMessages && Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
+  const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
     )
@@ -111,7 +122,7 @@ const Chat = () => {
               <MDBListGroup>
                 {messages && messages.map((item) => <>{item}</>)}
                 <a href='#!'>
-                  <MDBListGroupItem hover active>
+                  <MDBListGroupItem hover>
                     <MDBAvatar
                       src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/gerrit.gif?alt=media'
                       alt='User Profile - Logan'
@@ -130,7 +141,7 @@ const Chat = () => {
                   </MDBListGroupItem>
                 </a>
                 <a href='#!'>
-                  <MDBListGroupItem hover active style={{ background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057' }}>
+                  <MDBListGroupItem hover style={{ background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057' }}>
                     <MDBAvatar
                       src={imgRef}
                       alt='User Profile - Logan'

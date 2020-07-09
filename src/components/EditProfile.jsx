@@ -118,7 +118,7 @@ function EditProfile(props) {
   return (
     <div>
       <header style={{ marginBottom: '120px' }}>
-        <NavbarPage />
+        {/* <NavbarPage /> */}
       </header>
       <div id='profile-v1' className='mb-5'>
         <MDBContainer fluid className='mb-5'>

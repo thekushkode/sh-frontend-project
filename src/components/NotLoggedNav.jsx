@@ -7,7 +7,7 @@ import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 
 
-class LoggedNav extends Component {
+class NotLoggedNav extends Component {
     state = {
         isOpen: false,
         redirect: false
@@ -100,4 +100,4 @@ class LoggedNav extends Component {
     }
 }
 
-export default LoggedNav;
+export default NotLoggedNav;

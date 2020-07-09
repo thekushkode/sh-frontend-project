@@ -13,7 +13,6 @@ import {
 } from 'mdbreact';
 import Lightbox from 'react-image-lightbox';
 import './About.css';
-import NavbarPage from './Nav';
 import Kush from './images/kush.gif';
 import Jon from './images/jon.gif';
 import Logan from './images/logan.gif';
@@ -54,7 +53,6 @@ class About extends React.Component {
     return (
       <div id='about'>
         <header style={{ marginBottom: '80px' }}>
-          <NavbarPage />
         </header>
 
         <section id='home'>

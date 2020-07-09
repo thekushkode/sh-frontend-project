@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import NavbarPage from './Nav';
+import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
+import Geocode from 'react-geocode';
 import Vet from './hospital.png';
 import DetailedInfo from './DetailedInfo';
 
-class VetMap extends Component {
+export class VetMap extends Component {
     constructor(props) {
         super(props);
 
@@ -13,30 +14,54 @@ class VetMap extends Component {
             infoWindow: false,
             showingInfoWindow: false,
             activeMarker: {},
-            selectedPlace: {}
+            selectedPlace: {},
+            zipCode: '',
+            map: null
         }
     }
 
-    fetchPlaces = (mapProps, map) => {
-        const { google } = mapProps;
-        const service = new google.maps.places.PlacesService(map);
-        const startPoint = new google.maps.LatLng(33.753746, -84.386330);
-        var request = {
-            location: startPoint,
-            radius: '50000',
-            query: ['dog vet', 'vets near me'],
-            fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
-        };
+    mapReady = (mapProps, map) => {
+        this.setState({
+            map
+        }, this.fetchPlaces)
+    }
 
-        service.textSearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                this.setState({
-                    stores: results,
-                })
+    fetchPlaces = () => {
+        if (this.state.map) {
+            Geocode.setLanguage('en');
+            Geocode.setApiKey('AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts');
+            Geocode.fromAddress(this.state.zipCode).then(
+                response => {
+                    const { lat, lng } = response.results[0].geometry.location;
+                    const { google } = this.props;
+                    const service = new google.maps.places.PlacesService(this.state.map);
+                    const startPoint = new google.maps.LatLng(lat, lng);
+                    var request = {
+                        location: startPoint,
+                        radius: '50000',
+                        query: ['dog vets'],
+                        fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
+                    };
+                    service.textSearch(request, (results, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            this.setState({
+                                stores: results
+                            })
 
-                map.setCenter(results[0].geometry.location);
-            } // .then(service = placeDetails search based on place_id and add to state?)
-        });
+                            const bounds = new google.maps.LatLngBounds();
+
+                            results.forEach(result => {
+                                bounds.extend(result.geometry.location);
+                            });
+                            this.state.map.fitBounds(bounds);
+                        }
+                    });
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+        }
     }
 
     onMarkerClick = (props, marker) => {
@@ -57,23 +82,34 @@ class VetMap extends Component {
         }
     };
 
+    handleChange = (e) => {
+        this.setState({
+            zipCode: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.fetchPlaces()
+        this.setState({
+            zipCode: ''
+        })
+    }
+
     render() {
         const mapStyles = {
             width: '100%',
-            height: '90%',
-            marginTop: '85px',
+            height: '100%',
         };
-
         return (
             <div>
                 <header>
-                    <NavbarPage />
                 </header>
                 <main>
                     <Map
                         google={this.props.google}
                         onClick={this.onMapClicked}
-                        onReady={this.fetchPlaces}
+                        onReady={this.mapReady}
                         zoom={13}
                         style={mapStyles}
                         initialCenter={{ lat: 33.753746, lng: -84.386330 }}
@@ -90,7 +126,7 @@ class VetMap extends Component {
                             let placeId = store.place_id;
                             return (
                                 <DetailedInfo marker={this.state.activeMarker} key={index}
-                                visible={this.state.selectedPlace.id === index} name={store.name} placeId={placeId}>
+                                    visible={this.state.selectedPlace.id === index} name={store.name} placeId={placeId}>
                                     <div>
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
@@ -101,11 +137,22 @@ class VetMap extends Component {
                         })}
                     </Map>
                 </main>
+                <footer style={{position: 'bottom', padding: '0px', margin: '0px'}} className='fixed-bottom'>
+                    <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
+                        <MDBCol md="6">
+                        <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
+                            <MDBIcon icon="search"/>
+                            <input className="form-control form-control-lg ml-3 w-35" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
+                            <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
+                        </MDBFormInline>
+                        </MDBCol>
+                    </div>
+                </footer>
             </div>
         );
     };
 };
 
 export default GoogleApiWrapper({
-    apiKey: `${process.env.REACT_APP_GOOGLE_KEY}`
+    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts'
 })(VetMap);

@@ -6,7 +6,6 @@ const Terms = () => {
     return (
         <div>
             <header style={{ marginBottom: '100px' }}>
-                <NavbarPage />
             </header>
             <main className='text-left m-4'>
                 <h1>Terms & Conditions</h1>

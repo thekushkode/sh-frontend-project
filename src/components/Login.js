@@ -12,7 +12,6 @@ import {
   MDBBtn
 } from 'mdbreact';
 import './Login.css';
-import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import firebase from '../firebase';
 import { setProfile } from '../redux/actions';
@@ -67,9 +66,6 @@ class Login extends React.Component {
   render() {
     return (
       <div className='classic-form-page' id='login'>
-
-        <NavbarPage />
-
         <MDBView>
           <MDBMask
             className='d-flex justify-content-center align-items-center'

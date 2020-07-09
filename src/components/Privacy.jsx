@@ -6,7 +6,6 @@ const Privacy = () => {
     return (
         <div>
             <header style={{ marginBottom: '100px' }}>
-                <NavbarPage />
             </header>
             <main className='text-left m-4'>
                 <h1><b>Privacy</b></h1>

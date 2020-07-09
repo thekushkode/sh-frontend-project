@@ -87,28 +87,16 @@ class VetMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
-                            console.log(store)
+                            let placeId = store.place_id;
                             return (
                                 <DetailedInfo marker={this.state.activeMarker} key={index}
-                                visible={this.state.selectedPlace.id === index} name={store.name}>
+                                visible={this.state.selectedPlace.id === index} name={store.name} placeId={placeId}>
                                     <div>
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
-                                        <p>{store.formatted_phone_number}</p>
-                                        <p><a href={store.website}>{store.website}</a></p>
                                     </div>
                                 </DetailedInfo >
-                                // <InfoWindow marker={this.state.activeMarker}
-                                //     visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
-                                //     <div>
-                                //         <h4>{store.name}</h4>
-                                //         <h6>{store.formatted_address}</h6>
-                                //         <p>Rating: {store.rating}/5</p>
-                                //         <p>{store.formatted_phone_number}</p>
-                                //         <p><a href={store.website}>{store.website}</a></p>
-                                //     </div>
-                                // </InfoWindow >
                             )
                         })}
                     </Map>

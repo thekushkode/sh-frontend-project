@@ -4,7 +4,8 @@ import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
 import Dog from './dog.png';
-import SearchBar from './SearchBar'
+import DetailedInfo from './DetailedInfo';
+
 
 export class GMap extends Component {
     constructor(props) {
@@ -131,18 +132,16 @@ export class GMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
-                            //let placesId = store.pl
+                            let placeId = store.place_id;
                             return (
-                                < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
+                                <DetailedInfo marker={this.state.activeMarker} key={index}
+                                    visible={this.state.selectedPlace.id === index} name={store.name} placeId={placeId}>
                                     <div>
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
-                                        <p>{store.formatted_phone_number}</p>
-                                        <p>{store.website}</p>
                                     </div>
-                                </InfoWindow >
+                                </DetailedInfo >
                             )
                         })}
                     </Map>

@@ -70,6 +70,24 @@ const Chat = () => {
   }
 
 
+
+  // Create a reference with an initial file path and name
+  var storage = firebase.storage();
+  // var pathReference = storage.ref('images/stars.jpg');
+
+  // Create a reference from a Google Cloud Storage URI
+  var gsReference = storage.refFromURL('gs://sh-frontend-8f893.appspot.com/gerrit.gif')
+
+  var imgFileName = 'kush.gif'
+  var imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgFileName + '?alt=media'
+
+  // Create a reference from an HTTPS URL
+  // Note that in the URL, characters are URL escaped!
+  // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
+
+
+
+
   const messages = allMessages && Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
@@ -84,7 +102,6 @@ const Chat = () => {
   return (
     <div>
       <header style={{ marginBottom: '100px' }}>
-        <NavbarPage />
       </header>
       <div id='chat' className='m-4'>
         <MDBContainer fluid>
@@ -96,14 +113,14 @@ const Chat = () => {
                 <a href='#!'>
                   <MDBListGroupItem hover active>
                     <MDBAvatar
-                      src='https://avatars0.githubusercontent.com/u/26091324?s=460&u=6eeeb5f4240af272f7f35e2197630ecb07195148&v=4'
+                      src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/gerrit.gif?alt=media'
                       alt='User Profile - Logan'
                       tag='img'
                       className='float-left mr-3'
                     />
                     <div className='d-flex justify-content-between mb-1 '>
                       <span className='mb-1'>
-                        <strong>Logan</strong>
+                        <strong>Gerrit</strong>
                       </span>
                       <small>Jul 13</small>
                     </div>
@@ -115,7 +132,7 @@ const Chat = () => {
                 <a href='#!'>
                   <MDBListGroupItem hover active style={{ background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057' }}>
                     <MDBAvatar
-                      src='https://avatars3.githubusercontent.com/u/60439987?s=400&u=e190fc8437480d708e1dae41861555aca792716e&v=4'
+                      src={imgRef}
                       alt='User Profile - Logan'
                       tag='img'
                       className='float-left mr-3'

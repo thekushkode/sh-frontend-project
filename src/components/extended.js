@@ -20,7 +20,6 @@ import {
   MDBModalFooter
 } from 'mdbreact';
 import './extended.css';
-import NavbarPage from './Nav';
 import Ike from './images/ike.png';
 import SocialPage2 from './feed2';
 import FooterPage from './Footer';
@@ -160,7 +159,6 @@ class PExtended extends Component {
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
-          <NavbarPage />
         </header>
         <main>
 
@@ -193,17 +191,17 @@ class PExtended extends Component {
                         Chief Executive Log Lifter
                     </h5>
                       <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
-                      <MDBBtn floating tag='a' color=''>
-                        <MDBIcon fab icon='facebook' className='dark-grey-text' />
+                      <MDBBtn floating tag='a' className='morpheus-den-gradient'>
+                        <MDBIcon fab icon='facebook' className='white-text' />
                       </MDBBtn>
-                      <MDBBtn floating tag='a' color=''>
-                        <MDBIcon fab icon='instagram' className='dark-grey-text' />
+                      <MDBBtn floating tag='a' className='young-passion-gradient'>
+                        <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
                       <p className='card-text mt-3'>
                       {this.state.dogData.bio}
                   </p>
                       <MDBBtn
-                        color='purple-gradient'
+                        className='purple-gradient'
                         size='sm'
                         rounded
                         href='/editprofile'
@@ -211,18 +209,18 @@ class PExtended extends Component {
                         Edit Profile
                     </MDBBtn>
                       <MDBBtn
-                        color='blue-gradient'
+                        className='blue-gradient'
                         size='sm'
                         rounded
-                        href='/editprofile'
+                        href='/messages'
                       >
                         Request PlayDate
                     </MDBBtn>
                       <MDBBtn
-                        color='peach-gradient'
+                        className='peach-gradient'
                         size='sm'
                         rounded
-                        href='/editprofile'
+                        href='#!'
                       >
                         Follow {this.state.dogData.dogName}
                     </MDBBtn>

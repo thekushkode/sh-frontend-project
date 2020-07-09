@@ -1,6 +1,5 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer } from "mdbreact";
-import NavbarPage from "./Nav";
 import FooterPage from "./Footer";
 import FormPage from './Form';
 
@@ -8,7 +7,6 @@ const ContactPage = () => {
     return (
         <div>
             <header style={{ marginBottom: '100px' }}>
-                <NavbarPage />
             </header>
             <main className='mt-4'>
                 <MDBContainer className="my-5">

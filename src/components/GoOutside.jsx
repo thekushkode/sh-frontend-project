@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
-import NavbarPage from './Nav';
 import Geocode from 'react-geocode';
 import Dog from './dog.png';
-import SearchBar from './SearchBar'
+import DetailedInfo from './DetailedInfo';
+
 
 export class GMap extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ export class GMap extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            zipCode: '90014',
+            zipCode: '',
             map: null
         }
     }
@@ -30,14 +30,12 @@ export class GMap extends Component {
     fetchPlaces = () => {
         if (this.state.map) {
             Geocode.setLanguage('en');
-            Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`);
+            Geocode.setApiKey('AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts');
             Geocode.fromAddress(this.state.zipCode).then(
                 response => {
                     const { lat, lng } = response.results[0].geometry.location;
-                    console.log(lat, lng);
                     const { google } = this.props;
                     const service = new google.maps.places.PlacesService(this.state.map);
-                    // const startPoint = new google.maps.LatLng(33.753746, -84.386330);
                     const startPoint = new google.maps.LatLng(lat, lng);
                     var request = {
                         location: startPoint,
@@ -86,7 +84,6 @@ export class GMap extends Component {
     };
 
     handleChange = (e) => {
-        console.log(e.target.value)
         this.setState({
             zipCode: e.target.value
         })
@@ -110,7 +107,6 @@ export class GMap extends Component {
         return (
             <div>
                 <header className='pb-0 mb-0'>
-                    <NavbarPage />
                 </header>
                 <main>
                     <Map
@@ -131,29 +127,26 @@ export class GMap extends Component {
                             )
                         })}
                         {this.state.stores.map((store, index) => {
-                            //let placesId = store.pl
+                            let placeId = store.place_id;
                             return (
-                                < InfoWindow marker={this.state.activeMarker}
-                                    visible={this.state.activeMarker && this.state.activeMarker.id  === index} id={index} name={store.name} address={store.formatted_address}>
+                                <DetailedInfo marker={this.state.activeMarker} key={index}
+                                    visible={this.state.selectedPlace.id === index} name={store.name} placeId={placeId}>
                                     <div>
                                         <h4>{store.name}</h4>
                                         <h6>{store.formatted_address}</h6>
                                         <p>Rating: {store.rating}/5</p>
-                                        <p>{store.formatted_phone_number}</p>
-                                        <p>{store.website}</p>
                                     </div>
-                                </InfoWindow >
+                                </DetailedInfo >
                             )
                         })}
                     </Map>
                 </main>
                 <footer style={{position: 'bottom', padding: '0px', margin: '0px'}} className='fixed-bottom'>
-                    {/* <SearchBar /> */}
                     <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
                         <MDBCol md="6">
                         <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
                             <MDBIcon icon="search"/>
-                            <input className="form-control form-control-lg ml-3 w-75" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
+                            <input className="form-control form-control-lg ml-3 w-35" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
                             <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
                         </MDBFormInline>
                         </MDBCol>
@@ -165,5 +158,5 @@ export class GMap extends Component {
 };
 
 export default GoogleApiWrapper({
-    apiKey: `${process.env.REACT_APP_GOOGLE_KEY}`
+    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts'
 })(GMap);

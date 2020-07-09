@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import NavbarPage from './Nav';
 import Dog from './images/smalldog.png';
 // import Geocode from 'react-geocode';
 import { connect, useDispatch, useSelector } from 'react-redux'; //could import connect?
@@ -38,7 +37,7 @@ export class Furends extends Component {
     }
 
     fetchPlaces = (mapProps, map) => {
-        
+
         // const { google } = mapProps;
         // const service = new google.maps.places.PlacesService(map);
         // const startPoint = new google.maps.LatLng(33.753746, -84.386330);
@@ -96,12 +95,11 @@ export class Furends extends Component {
         };
         const { users } = this.state;
         //console.log({ users });
-        
+
 
         return (
             <div>
                 <header>
-                    <NavbarPage />
                 </header>
                 <main>
                     <Map
@@ -116,7 +114,7 @@ export class Furends extends Component {
                             let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
                             // console.log(address);
                             return (
-                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name} 
+                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
                                     onClick={this.onMarkerClick} />
 
                             )

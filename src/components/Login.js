@@ -43,7 +43,7 @@ class Login extends React.Component {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         let userData = {}
-        db.collection("Users")
+        db.collection("Users") //user.email
           .where("email", "==", this.state.email).limit(1).get()
           .then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {

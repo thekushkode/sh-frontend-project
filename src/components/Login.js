@@ -13,11 +13,9 @@ import {
 } from 'mdbreact';
 import './Login.css';
 import FooterPage from './Footer';
-import firebase from '../firebase';
-import { setProfile } from '../redux/actions';
 import { connect } from 'react-redux';
+import firebase from '../firebase';
 
-let db = firebase.firestore();
 
 
 class Login extends React.Component {
@@ -42,16 +40,6 @@ class Login extends React.Component {
     // authentication
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        let userData = {}
-        db.collection("Users") //user.email
-          .where("email", "==", this.state.email).limit(1).get()
-          .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-              userData = { data: doc.data(), id: doc.id }
-            })
-          }).then(res => {
-            this.props.setProfile(userData)
-          })
         this.props.history.push('/profile')
       })
   }
@@ -152,11 +140,4 @@ class Login extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  setProfile
-}
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(Login);
+export default Login

@@ -47,7 +47,7 @@ function EditProfile(props) {
 
   useEffect(() => {
     if (user && !dogId) {
-      db.collection('Dogs').where('ownerid', '==', user.uid).get()
+      db.collection('Dogs').where('ownerid', '==', user.id).get()
         .then(querySnapshot => {
           console.log(querySnapshot);
           let dog = null;
@@ -89,9 +89,10 @@ function EditProfile(props) {
         size,
         spayNeut,
         vaccines,
-        bio,
         avatar,
-        ownerId: user.uid
+        bio,
+        ownerId: user.id
+        
       }) //CAN I REMOVE THE FIRST PART OF IF AND JUST HAVE WHATS IN ELSE STATEMENT? 
     } else {
       db.collection('Dogs').doc(dogId).set({

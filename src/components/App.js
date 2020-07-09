@@ -12,7 +12,7 @@ import DayCare from './FindDaycare';
 import Furends from './FindFurends';
 import firebase from '../firebase';
 import { useDispatch } from 'react-redux';
-import { setUser, unSetUser } from '../redux/actions';
+import { setUser, unSetUser, setProfile } from '../redux/actions';
 import EditProfile from './EditProfile';
 import { TestMap } from './TestMap';
 import Terms from './Terms';
@@ -22,13 +22,42 @@ import VetMap from './VetMap';
 import MessagesPage from './messages/MessagesPage'
 import NavbarPage from './Nav';
 
-function App() {
 
+
+function App() {
+  let db = firebase.firestore();
   const dispatch = useDispatch();
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        dispatch(setUser(user))
+        // dispatch(setUser(user))
+        let userID;
+
+        let userData = {}
+        let userProfile = {}
+        db.collection("Users")
+          .where("email", "==", user.email).limit(1).get()
+          .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              userData = { data: doc.data(), id: doc.id }
+              userID = doc.id;
+            })
+          }).then(res => {
+            db.collection("Dogs")
+              .where("ownerId", "==", userID).get()
+              .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                  userProfile = { data: doc.data(), id: doc.id }
+                })
+              }).then(res => {
+                dispatch(setProfile(userProfile));
+                dispatch(setUser(userData));
+              })
+          })
+
+
+
       } else {
         dispatch(unSetUser());
       }

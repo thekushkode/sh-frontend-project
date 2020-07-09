@@ -16,7 +16,7 @@ class AddressMarker extends Component {
             location: startPoint,
             radius: '50000',
             query: [this.props.address],
-            fields: ['name', 'geometry'],
+            fields: ['name', 'geometry', 'formatted_address', 'formatted_phone_number', 'website'],
         };
 
         service.textSearch(request, (results, status) => {

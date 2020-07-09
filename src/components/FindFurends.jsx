@@ -37,7 +37,7 @@ export class Furends extends Component {
     }
 
     fetchPlaces = (mapProps, map) => {
-        
+
         // const { google } = mapProps;
         // const service = new google.maps.places.PlacesService(map);
         // const startPoint = new google.maps.LatLng(33.753746, -84.386330);
@@ -95,7 +95,7 @@ export class Furends extends Component {
         };
         const { users } = this.state;
         //console.log({ users });
-        
+
 
         return (
             <div>
@@ -114,7 +114,7 @@ export class Furends extends Component {
                             let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
                             // console.log(address);
                             return (
-                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name} 
+                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
                                     onClick={this.onMarkerClick} />
 
                             )

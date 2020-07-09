@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.4.1",
     "firebase": "^7.15.5",
+    "glamor": "^2.20.40",
     "google-map-react": "^1.1.7",
     "google-maps-react": "^2.0.6",
     "mdbreact": "git+https://oauth2:6syYtvFQnuxN4Wm3wMHp@git.mdbootstrap.com/mdb/react/re-pro.git",
@@ -19,6 +20,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-scroll-to-bottom": "^3.0.0",
     "redux": "^4.0.5",
     "rgpl": "^1.0.2"
   },

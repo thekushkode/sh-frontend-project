@@ -40,7 +40,7 @@ export default function SingleMessage(props) {
                 {(props.formatting[0] === 'start' ? props.content.sender : '')}
             </small>
             <div className={`d-flex justify-content-${props.formatting[0]} mb-3`}>
-                <div className={`${props.formatting[1]} ${props.formatting[2]} rounded px-1 w-75`} style={{ backgroundColor: props.formatting[3], borderRadius: '20px !important' }} >
+                <div className={`${props.formatting[1]} ${props.formatting[2]} rounded-pill px-1 w-75`} style={{ backgroundColor: props.formatting[3], borderRadius: '20px !important' }} >
 
                     {/* sender should get left and right aligned based on you vs recipient */}
                     {/* <div className='row pl-1 m-0'>

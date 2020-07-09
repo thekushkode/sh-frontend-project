@@ -26,18 +26,12 @@ import { useHistory } from "react-router-dom";
 
 function Home(props) {
 
-
-
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [zipcode, setZipcode] = useState('');
     //const [redirect, setRedirect] = useState('');
-    var user = firebase.auth().currentUser;
-    if (user) {
-        history.push('/');
-    }
 
     const newUser = (e) => {
         // authentication

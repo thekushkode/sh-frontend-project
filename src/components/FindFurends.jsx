@@ -6,10 +6,6 @@ import { connect, useDispatch, useSelector } from 'react-redux'; //could import 
 import { setUser, unSetUser, setProfile } from '../redux/actions';
 import firebase from '../firebase';
 import AddressMarker from './AddressMarker';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar } from "mdbreact";
-import SearchPage from './SearchBar';
-import DogResults from './DogResults';
-import './DogResults.css';
 
 const db = firebase.firestore();
 
@@ -71,6 +67,14 @@ export class Furends extends Component {
             activeMarker: marker,
             showingInfoWindow: true
         });
+        // return (
+        //     < InfoWindow marker={this.state.activeMarker}
+        //         visible={this.state.showingInfoWindow} name={props.name} >
+        //         <div>
+        //             <h1>{this.state.selectedPlace.name}</h1>
+        //         </div>
+        //     </InfoWindow >
+        // )
     }
 
 
@@ -86,84 +90,49 @@ export class Furends extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '100%',
+            height: '90%',
+            marginTop: '85px',
         };
-
-        const containerStyle = {
-            marginLeft: '20px',
-            width: '60%',
-            height: '80%',
-        }
-
-
-        const scrollContainerStyle = { width: "450px", maxHeight: "330px" };
-
         const { users } = this.state;
         //console.log({ users });
 
 
         return (
             <div>
-                <header style={{ marginBottom: '100px' }}>
+                <header>
                 </header>
                 <main>
-                    <div className='d-flex flex-row justify-content-between'>
-                        <div style={{ width: '500px' }}>
-                            <Map
-                                containerStyle={containerStyle}
-                                google={this.props.google}
-                                onClick={this.onMapClicked}
-                                onReady={this.fetchPlaces}
-                                zoom={10}
+                    <Map
+                        google={this.props.google}
+                        onClick={this.onMapClicked}
+                        onReady={this.fetchPlaces}
+                        zoom={14}
+                        style={mapStyles}
+                        initialCenter={{ lat: 33.753746, lng: -84.386330 }}
+                    >
+                        {this.state.users.map((user, index, mapProps) => {
+                            let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
+                            // console.log(address);
+                            return (
+                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
+                                    onClick={this.onMarkerClick} />
 
-                                style={mapStyles}
-                                initialCenter={{ lat: 33.753746, lng: -84.386330 }}
-                            >
-                                {this.state.users.map((user, index, mapProps) => {
-                                    let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
-                                    // console.log(address);
-                                    return (
-                                        <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
-                                            onClick={this.onMarkerClick} />
+                            )
+                        })}
+                        {this.state.users.map((user, index) => {
+                            return (
+                                < InfoWindow marker={this.state.activeMarker} key={index}
+                                    visible={this.state.selectedPlace.id === index} name={user.name} >
+                                    <div>
+                                        <h4>{user.dogName}</h4>
+                                        <p>{user.breed}</p>
+                                        <p>{user.temperament}</p>
+                                    </div>
+                                </InfoWindow >
 
-                                    )
-                                })}
-                                {this.state.users.map((user, index) => {
-                                    return (
-                                        < InfoWindow marker={this.state.activeMarker} key={index}
-                                            visible={this.state.selectedPlace.id === index} name={user.name} >
-                                            <div>
-                                                <h4>{user.dogName}</h4>
-                                                <p>{user.breed}</p>
-                                                <p>{user.temperament}</p>
-                                            </div>
-                                        </InfoWindow >
-
-                                    )
-                                })}
-                            </Map>
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', width: '40%', paddingLeft: '30px' }}>
-                            <div style={{ paddingLeft: '120px' }}>
-                                <SearchPage />
-                            </div>
-                            <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
-                                <DogResults />
-                                <DogResults />
-                                <DogResults />
-                                <DogResults />
-                            </div>
-                            {/* <div>
-                                <DogResults />
-                            </div>
-                            <div>
-                                <DogResults />
-                            </div>
-                            <div>
-                                <DogResults />
-                            </div> */}
-                        </div>
-                    </div>
+                            )
+                        })}
+                    </Map>
                 </main>
             </div>
         );

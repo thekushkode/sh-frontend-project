@@ -30,7 +30,15 @@ export default function ChatListItem(props) {
     const [visible, setVisible] = React.useState(false);
 
     function itemClicked() {
-        dispatch(loadMessages(props.id));
+        if (reduxMessages.data) {
+            if (props.id.data.messages.length < reduxMessages.data.messages.length) {
+                return;
+            } else {
+                dispatch(loadMessages(props.id));
+            }
+        } else {
+            dispatch(loadMessages(props.id));
+        }
     }
 
     return (

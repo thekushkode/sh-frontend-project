@@ -21,15 +21,12 @@ import Login from './Login';
 import VetMap from './VetMap';
 import MessagesPage from './messages/MessagesPage'
 import NavbarPage from './Nav';
-import NotLoggedNav from './NotLoggedNav';
 
 
 
 function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
-  var user = firebase.auth().currentUser;
-
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -72,8 +69,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          { user ? <NavbarPage /> : <NotLoggedNav /> }
-          
+        <NavbarPage />
         </header>
         <Switch>
           <Route exact path='/' component={Home} />

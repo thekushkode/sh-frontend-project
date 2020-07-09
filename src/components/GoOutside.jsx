@@ -17,7 +17,7 @@ export class GMap extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            zipCode: '90014',
+            zipCode: '30305',
             map: null
         }
     }

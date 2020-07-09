@@ -14,15 +14,14 @@ import {
   MDBSelectInput
 } from 'mdbreact';
 import './EditProfile.css';
-import Dog from './images/ike.png';
+import Dog from './images/avatar.png';
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
 import firebase from '../firebase';
 import { useSelector } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
-//import Upload from './FileUpload';
-import UploadFile from './Upload';
+import InputPage from './InputPage';
 
 const db = firebase.firestore();
 function EditProfile(props) {
@@ -44,6 +43,7 @@ function EditProfile(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
     if (user && !dogId) {
@@ -68,6 +68,7 @@ function EditProfile(props) {
               setSpayNeut(dog.spayNeut);
               setVaccines(dog.vaccines);
               setBio(dog.bio);
+              setAvatar(dog.avatar)
               setProfile(dog);
             }
           })
@@ -89,6 +90,7 @@ function EditProfile(props) {
         spayNeut,
         vaccines,
         bio,
+        avatar,
         ownerId: user.uid
       }) //CAN I REMOVE THE FIRST PART OF IF AND JUST HAVE WHATS IN ELSE STATEMENT? 
     } else {
@@ -103,6 +105,7 @@ function EditProfile(props) {
         size,
         spayNeut,
         vaccines,
+        avatar,
         bio
       }, { merge: true })
     }
@@ -133,7 +136,7 @@ function EditProfile(props) {
                   <MDBCardBody>
                     <MDBRow>
                       <MDBCol md='6'>
-  <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) {{ setDogName(e.target.value) }}}} />
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) {{ setDogName(e.target.value) }}}} />
                       </MDBCol>
                       <MDBCol md='6'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
@@ -217,8 +220,10 @@ function EditProfile(props) {
                     src={Dog}
                     className='rounded-circle z-depth-1-half mb-4'
                   />
-                  <UploadFile />
-                  {/* <Upload /> */}
+                  <InputPage value={avatar} type='file' onChange={(e) => { setAvatar(e.target.value) }}/>
+                  {/* <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
+                      Add Photo
+                  </MDBBtn> */}
                   <MDBCardBody className='pt-0 mt-0'>
                     <h3 className='mb-3 font-bold'>
                       <strong>Ike</strong>
@@ -230,7 +235,7 @@ function EditProfile(props) {
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                       ullamco laboris nisi ut aliquip consequat.
                   </p>
-                    <MDBBtn color='info' rounded>
+                    <MDBBtn color='info' size='sm' rounded>
                       Follow
                   </MDBBtn>
                   </MDBCardBody>

@@ -4,6 +4,7 @@ import NavbarPage from './Nav';
 import Hotel from './love_hotel.png';
 import DetailedInfo from './DetailedInfo';
 
+
 export class DayCare extends Component {
     constructor(props) {
         super(props);

@@ -14,5 +14,8 @@ var firebaseConfig = {
     measurementId: "G-TXEQFGMR4H"
 };
 
+// var api_key = process.env.API_KEY;
+
+
 firebase.initializeApp(firebaseConfig);
 export default firebase;

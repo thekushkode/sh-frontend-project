@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import ScrollToBottom from 'react-scroll-to-bottom';
+import { css } from 'glamor';
 import {
   MDBContainer,
   MDBRow,
@@ -17,20 +19,22 @@ import './Chat.css';
 import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import MessagesWindow from './messages/MessagesWindow';
+import { loadMessages, setProfile } from '../redux/actions/index.js'
+import { useDispatch } from 'react-redux';
+
+
 
 const Chat = () => {
   const db = firebase.firestore();
+  let dispatch = useDispatch();
   const [allMessages, setAllMessages] = React.useState({});
   const [chatInput, setChatInput] = React.useState('')
   const reduxMessages = useSelector(state => state.messages)
+  const user = useSelector(state => state.user)
+  const profile = useSelector(state => state.profile)
+  let currentUser = firebase.auth().currentUser;
 
   useEffect(() => {
-    // db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').get()
-    //   .then(res => {
-    //     console.log(res.data())
-    //     setAllMessages(res.data());
-    //   })
-
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2')
       .onSnapshot((snapshot) => {
         setAllMessages(snapshot.data());
@@ -42,22 +46,26 @@ const Chat = () => {
   }
 
   function submitMessage() {
-    // submit to db
     db.collection('Messages').doc('0y0bZo5QnIQp4b0SJbE2').update({
       'eSoolOZFcrpniMgINzq1':
-        [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: 'jerrySeinfeld' }]
-    }).then(res => {
-      return console.log(res)
+        [...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: user.displayName }]
     })
-
+    dispatch(loadMessages([...reduxMessages, { message: chatInput, timeStamp: Date.now(), sender: user.displayName }]
+    ))
     setChatInput('')
   }
+
 
   const messages = Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
     )
   })
+
+  const ROOT_CSS = css({
+    height: 600,
+    width: 600
+  });
 
   return (
     <div>
@@ -68,26 +76,44 @@ const Chat = () => {
         <MDBContainer fluid>
           <MDBRow>
             <MDBCol lg='4'>
-              <MDBInput type='text' icon='search' label='Search Message' />
+              <MDBInput type='text' icon='search' label='Search Messages' containerClass="text-left" />
               <MDBListGroup>
                 {messages.length && messages.map((item) => <>{item}</>)}
                 <a href='#!'>
                   <MDBListGroupItem hover active>
                     <MDBAvatar
-                      src='https://mdbootstrap.com/img/Photos/Avatars/adach.jpg'
-                      alt='User mugshot'
+                      src='https://avatars0.githubusercontent.com/u/26091324?s=460&u=6eeeb5f4240af272f7f35e2197630ecb07195148&v=4'
+                      alt='User Profile - Logan'
                       tag='img'
                       className='float-left mr-3'
                     />
                     <div className='d-flex justify-content-between mb-1 '>
                       <span className='mb-1'>
-                        <strong>Dawid Adach</strong>
+                        <strong>Logan</strong>
                       </span>
-                      <small>13 July</small>
+                      <small>Jul 13</small>
                     </div>
-                    <p className='text-truncate'>
-                      <strong>You: </strong> Donec id elit non mi porta gravida at
-                    eget metus. Maecenas sed diam eget risus varius blandit.
+                    <p className='text-truncate' style={{ textAlign: "left" }}>
+                      Hey, I see that you too are a dog dad!  Do you think that your dog and my dog would want to ...
+                  </p>
+                  </MDBListGroupItem>
+                </a>
+                <a href='#!'>
+                  <MDBListGroupItem hover active style={{ background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057' }}>
+                    <MDBAvatar
+                      src='https://avatars3.githubusercontent.com/u/60439987?s=400&u=e190fc8437480d708e1dae41861555aca792716e&v=4'
+                      alt='User Profile - Logan'
+                      tag='img'
+                      className='float-left mr-3'
+                    />
+                    <div className='d-flex justify-content-between mb-1'>
+                      <span className='mb-1'>
+                        <strong>Rob</strong>
+                      </span>
+                      <small>Jul 10</small>
+                    </div>
+                    <p className='text-truncate' style={{ textAlign: "left" }}>
+                      Yo Bro!  I've got a friendly Rottweiler...
                   </p>
                   </MDBListGroupItem>
                 </a>
@@ -95,8 +121,10 @@ const Chat = () => {
             </MDBCol>
 
             <MDBCol lg='8' className='mt-lg-0 mt-5'>
-              <div className='border border-dark p-4' style={{ overflowY: 'auto', maxHeight: '75vh' }}>
-                <MessagesWindow />
+              <div className='border border-dark py-4'>
+                <ScrollToBottom className={ROOT_CSS}>
+                  <MessagesWindow />
+                </ScrollToBottom>
                 {/* <div className='text-center'>
                   <small>16 July, 23:54</small>
                 </div>
@@ -158,29 +186,31 @@ const Chat = () => {
                 </p>
                 </div> */}
 
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <div className='d-flex flex-row'>
-                      <MDBInput
-                        type='textarea'
-                        containerClass='chat-message-type'
-                        label='Type your message'
-                        rows='2'
-                        value={chatInput}
-                        onChange={(e) => changeInput(e.target.value)}
-                      />
-                      <div className='mt-5'>
-                        <a
-                          className='btn btn-primary btn-lg waves-effect waves-light'
-                          href='#!'
-                          onClick={() => submitMessage()}
-                        >
-                          Send
+              </div>
+
+              <div className='row'>
+                <div className='col-md-12'>
+                  <div className='d-flex flex-row'>
+                    <MDBInput
+                      type='textarea'
+                      containerClass='chat-message-type'
+                      label='Type your message'
+                      rows='2'
+                      value={chatInput}
+                      onChange={(e) => changeInput(e.target.value)}
+                    />
+                    <div className='mt-5'>
+                      <a
+                        className='btn btn-primary btn-lg waves-effect waves-light'
+                        href='#!'
+                        onClick={() => submitMessage()}
+                      >
+                        Send
                       </a>
-                      </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </MDBCol>
           </MDBRow>

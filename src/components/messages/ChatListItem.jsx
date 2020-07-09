@@ -3,14 +3,14 @@
 
 import React from 'react'
 import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-  MDBListGroup,
-  MDBListGroupItem,
-  MDBBadge,
-  MDBAvatar
+    MDBContainer,
+    MDBRow,
+    MDBCol,
+    MDBInput,
+    MDBListGroup,
+    MDBListGroupItem,
+    MDBBadge,
+    MDBAvatar
 } from 'mdbreact';
 import { useDispatch } from 'react-redux';
 import MessagesWindow from './MessagesWindow'
@@ -22,7 +22,7 @@ moment().format()
 
 
 export default function ChatListItem({ messages }) {
-    
+
     const db = firebase.firestore();
 
     // <visible> state variable, initialized to false
@@ -49,8 +49,8 @@ export default function ChatListItem({ messages }) {
                 </span>
                 <small>{moment(messages[0].timeStamp).format('MMM Do')}</small>
             </div>
-            <p className='text-truncate' style={{textAlign: "left"}}>
-            {messages[0].message.slice(0,24) + (messages[0].message.length > 24 ? "..." : '')}
+            <p className='text-truncate' style={{ textAlign: "left" }}>
+                {messages[0].message && messages[0].message.slice(0, 24) + (messages[0].message.length > 24 ? "..." : '')}
             </p>
             {visible && <MessagesWindow content={messages} />}
         </MDBListGroupItem>

@@ -49,7 +49,7 @@ export default function ChatListItem({ messages }) {
                 </span>
                 <small>{moment(messages[0].timeStamp).format('MMM Do')}</small>
             </div>
-            <p className='text-truncate' style={{ textAlign: "left" }}>
+            <p className='text-truncate'>
                 {messages[0].message && messages[0].message.slice(0, 24) + (messages[0].message.length > 24 ? "..." : '')}
             </p>
             {visible && <MessagesWindow content={messages} />}

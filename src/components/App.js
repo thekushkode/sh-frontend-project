@@ -24,6 +24,7 @@ import MessagesPage from './messages/MessagesPage'
 import NavbarPage from './Nav';
 import NotLogged from './NotLogged';
 import ReactGA from 'react-ga';
+import NewChat from './messages/NewChat';
 
 
 
@@ -114,6 +115,7 @@ function App() {
           <Route exact path='/vets' component={VetMap} />
           <Route exact path='/messagestest' component={MessagesPage} />
           <Route path='/search/' component={Friend} />
+          <Route path='/newchat' component={NewChat} />
         </Switch>
       </div>
     </Router>

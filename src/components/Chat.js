@@ -69,8 +69,6 @@ const Chat = () => {
     setChatInput('')
   }
 
-
-
   // Create a reference with an initial file path and name
   var storage = firebase.storage();
   // var pathReference = storage.ref('images/stars.jpg');
@@ -84,9 +82,6 @@ const Chat = () => {
   // Create a reference from an HTTPS URL
   // Note that in the URL, characters are URL escaped!
   // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
-
-
-
 
   const messages = allMessages && Object.keys(allMessages).length && Object.keys(allMessages).map((item) => {
     return (

@@ -10,6 +10,7 @@ import ContactPage from './Contact';
 import SocialPage2 from './feed2';
 import DayCare from './FindDaycare';
 import Furends from './FindFurends';
+import Friend from './Friend';
 import firebase from '../firebase';
 import { useDispatch } from 'react-redux';
 import { setUser, unSetUser, setProfile } from '../redux/actions';
@@ -59,6 +60,7 @@ function App() {
 
 
       } else {
+        console.log('else app.js')
         dispatch(unSetUser());
       }
     });
@@ -73,21 +75,22 @@ function App() {
         </header>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/messages' component={Chat} />
-          <Route path='/profile' component={PExtended} />
-          <Route path='/about' component={About} />
-          <Route path='/outside' component={GMap} />
-          <Route path='/furends' component={Furends} />
-          <Route path='/petcare' component={DayCare} />
-          <Route path='/contact' component={ContactPage} />
-          <Route path='/feed2' component={SocialPage2} />
-          <Route path='/editprofile' component={EditProfile} />
-          <Route path='/test' component={TestMap} />
-          <Route path='/terms' component={Terms} />
-          <Route path='/privacy' component={Privacy} />
-          <Route path='/login' component={Login} />
-          <Route path='/vets' component={VetMap} />
-          <Route path='/messagestest' component={MessagesPage} />
+          <Route exact path='/messages' component={Chat} />
+          <Route exact path='/profile' component={PExtended} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/outside' component={GMap} />
+          <Route exact path='/furends' component={Furends} />
+          <Route exact path='/petcare' component={DayCare} />
+          <Route exact path='/contact' component={ContactPage} />
+          <Route exact path='/feed2' component={SocialPage2} />
+          <Route exact path='/editprofile' component={EditProfile} />
+          <Route exact path='/test' component={TestMap} />
+          <Route exact path='/terms' component={Terms} />
+          <Route exact path='/privacy' component={Privacy} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/vets' component={VetMap} />
+          <Route exact path='/messagestest' component={MessagesPage} />
+          <Route path='/search/' component={Friend} />
         </Switch>
       </div>
     </Router>

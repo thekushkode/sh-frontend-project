@@ -73,8 +73,8 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          { currUser ? <NavbarPage /> : <NotLogged /> }
-          
+          {currUser ? <NavbarPage /> : <NotLogged />}
+
 
         </header>
         <Switch>

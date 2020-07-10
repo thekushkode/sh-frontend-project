@@ -42,10 +42,22 @@ const Chat = () => {
 
   useEffect(() => {
     if (user) {
-      db.collection("Messages")
-        .where("members", "array-contains", user.id)
-        .get()
-        .then(function (querySnapshot) {
+      // db.collection("Messages")
+      //   .where("members", "array-contains", user.id)
+      //   .get()
+      //   .then(function (querySnapshot) {
+      //     let dataArray = []
+      //     querySnapshot.forEach(function (doc) {
+      //       console.log(doc.id, doc.data())
+      //       dataArray.push({ id: doc.id, data: doc.data() })
+      //     })
+      //     setAllMessages(dataArray)
+      //   })
+
+
+      db.collection('Messages')
+        .where('members', 'array-contains', user.id)
+        .onSnapshot((querySnapshot) => {
           let dataArray = []
           querySnapshot.forEach(function (doc) {
             console.log(doc.id, doc.data())
@@ -54,13 +66,25 @@ const Chat = () => {
           setAllMessages(dataArray)
         })
     }
-  }, [db, user])
+  }, [])
 
   function changeInput(value) {
     setChatInput(value);
   }
 
-  function submitMessage() {
+  function enterKey(target) {
+    if (target.charCode === 13) {
+      alert('enter')
+    } else {
+      alert('not enter')
+    }
+    console.log(target)
+    console.log(target.charCode)
+  }
+
+  function submitMessage(e) {
+    console.log(e)
+    e.preventDefault()
     let allNewMessages = [...reduxMessages.data.messages,
     {
       message: chatInput,
@@ -231,23 +255,29 @@ const Chat = () => {
               <div className='row'>
                 <div className='col-md-12'>
                   <div className='d-flex flex-row'>
-                    <MDBInput
-                      type='textarea'
-                      containerClass='chat-message-type'
-                      label='Type your message'
-                      rows='2'
-                      value={chatInput}
-                      onChange={(e) => changeInput(e.target.value)}
-                    />
-                    <div className='mt-5'>
-                      <a
-                        className='btn btn-primary btn-lg waves-effect waves-light'
-                        href='#!'
-                        onClick={() => submitMessage()}
-                      >
-                        Send
-                      </a>
-                    </div>
+                    <form onSubmit={(e) => submitMessage(e)}>
+                      <input
+                        type='input'
+                        containerClass='chat-message-type'
+                        label='Type your message'
+                        rows='1'
+                        style={{ width: 200 }}
+                        value={chatInput}
+                        onChange={(e) => changeInput(e.target.value)}
+                      // onKeyPress={(e) => enterKey(e.target)}
+                      />
+                      <div className='mt-5'>
+                        <button
+                          className='btn btn-primary btn-lg waves-effect waves-light'
+                          htmlType='submit'
+                          href="#!"
+                        // onClick={(e) => submitMessage(e)}
+                        >
+                          Send
+                      </button>
+                      </div>
+                    </form>
+
                   </div>
                 </div>
 

@@ -15,6 +15,7 @@
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-ga": "^3.1.2",
     "react-geocode": "^0.2.1",
     "react-google-maps": "^9.4.5",
     "react-redux": "^7.2.0",

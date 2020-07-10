@@ -2,12 +2,12 @@ import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
 import NavbarPage from "./Nav";
 import FooterPage from "./Footer";
+import GoogleAd from "./GoogleAd";
 
 const SocialPage2 = () => {
     return (
         <div>
             <header style={{ marginBottom: '100px' }}>
-                <NavbarPage />
             </header>
             <main>
                 <MDBRow>
@@ -180,6 +180,7 @@ const SocialPage2 = () => {
                     <MDBCol md={6}>
                         <div>
                             Adsense Here
+                            <GoogleAd />
                         </div>
                     </MDBCol>
                 </MDBRow>

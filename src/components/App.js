@@ -22,6 +22,7 @@ import VetMap from './VetMap';
 import MessagesPage from './messages/MessagesPage'
 import NavbarPage from './Nav';
 import NotLogged from './NotLogged';
+import ReactGA from 'react-ga';
 
 
 
@@ -30,6 +31,22 @@ function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
   let currUser;
+
+  ReactGA.initialize('UA-172377344-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+  ReactGA.pageview('/');
+  ReactGA.pageview('/messages');
+  ReactGA.pageview('/profile');
+  ReactGA.pageview('/about');
+  ReactGA.pageview('/editprofile');
+  ReactGA.pageview('/outside');
+  ReactGA.pageview('/furends');
+  ReactGA.pageview('/vets');
+  ReactGA.pageview('/petcare');
+  ReactGA.pageview('/feed2');
+  ReactGA.pageview('/login');
+  ReactGA.pageview('/terms');
+  ReactGA.pageview('/privacy');
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -73,8 +90,8 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          { currUser ? <NavbarPage /> : <NotLogged /> }
-          
+          {currUser ? <NavbarPage /> : <NotLogged />}
+
 
         </header>
         <Switch>

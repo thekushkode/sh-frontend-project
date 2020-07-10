@@ -12,7 +12,7 @@ import {
     MDBBadge,
     MDBAvatar
 } from 'mdbreact';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MessagesWindow from './MessagesWindow'
 import { loadMessages } from '../../redux/actions/index.js'
 import firebase from '../../firebase';
@@ -21,17 +21,24 @@ moment().format()
 
 
 
-export default function ChatListItem({ messages }) {
-
+export default function ChatListItem(props) {
+    const reduxMessages = useSelector(state => state.messages)
+    let dispatch = useDispatch();
     const db = firebase.firestore();
 
     // <visible> state variable, initialized to false
     const [visible, setVisible] = React.useState(false);
 
-    let dispatch = useDispatch();
-
     function itemClicked() {
-        dispatch(loadMessages(messages));
+        if (reduxMessages.data) {
+            if (props.id.data.messages.length < reduxMessages.data.messages.length) {
+                return;
+            } else {
+                dispatch(loadMessages(props.id));
+            }
+        } else {
+            dispatch(loadMessages(props.id));
+        }
     }
 
     return (
@@ -45,14 +52,15 @@ export default function ChatListItem({ messages }) {
             />
             <div className='d-flex justify-content-between mb-1'>
                 <span className='mb-1'>
-                    <strong>{messages[0].sender}</strong>
+                    <strong>{props.id.data.messages[0].sender}</strong>
                 </span>
-                <small>{moment(messages[0].timeStamp).format('MMM Do')}</small>
-            </div>
-            <p className='text-truncate'>
-                {messages[0].message && messages[0].message.slice(0, 24) + (messages[0].message.length > 24 ? "..." : '')}
+                <small>{moment(props.id.data.messages[0].timeStamp).format('MMM Do')}</small>
+            </div
+            <p className='text-truncate' style={{ textAlign: "left" }}>
+                {props.id.data.messages[0].message && props.id.data.messages[0].message.slice(0, 24) + (props.id.data.messages[0].message.length > 24 ? "..." : '')}
+
             </p>
-            {visible && <MessagesWindow content={messages} />}
+            {/* {visible && <MessagesWindow content={messages} />} */}
         </MDBListGroupItem>
     )
 }

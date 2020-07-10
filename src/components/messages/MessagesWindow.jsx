@@ -11,11 +11,11 @@ import { css } from 'glamor';
 export default function MessagesWindow() {
     const messages = useSelector(state => state.messages)
     const user = useSelector(state => state.user)
-
+    console.log(messages)
     return (
         <div>
             <ul>
-                {messages && messages.map((item) => {
+                {messages.data && messages.data.messages.map((item) => {
                     let styles;
                     if (item.sender === user.displayName) {
                         // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']

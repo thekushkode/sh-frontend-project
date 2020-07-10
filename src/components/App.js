@@ -104,14 +104,13 @@ function App() {
           <Route exact path='/outside' component={GMap} />
           <Route exact path='/furends' component={Furends} />
           <Route exact path='/petcare' component={DayCare} />
+          <Route exact path='/vets' component={VetMap} />
           <Route exact path='/contact' component={ContactPage} />
           <Route exact path='/feed2' component={SocialPage2} />
           <Route exact path='/editprofile' component={EditProfile} />
-          <Route exact path='/test' component={TestMap} />
           <Route exact path='/terms' component={Terms} />
           <Route exact path='/privacy' component={Privacy} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/vets' component={VetMap} />
           <Route exact path='/messagestest' component={MessagesPage} />
           <Route path='/search/' component={Friend} />
         </Switch>

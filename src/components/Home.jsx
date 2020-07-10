@@ -58,9 +58,9 @@ function Home(props) {
 
     return (
         <div id='classicformpage'>
-            <div>
-                <NavbarPage />
-            </div>
+            <header>
+                
+            </header>
             <MDBView>
                 <MDBMask className='d-flex justify-content-center align-items-center gradient' />
                 <MDBContainer

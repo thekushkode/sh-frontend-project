@@ -30,10 +30,12 @@ import NotLogged from './NotLogged';
 function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
+  let currUser;
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
+        currUser = user;
         // dispatch(setUser(user))
         let userID;
 
@@ -73,7 +75,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          { user ? <NavbarPage /> : <NotLogged /> }
+          { currUser ? <NavbarPage /> : <NotLogged /> }
           
 
         </header>

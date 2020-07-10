@@ -32,6 +32,9 @@ export default function ChatListItem(props) {
 
     useEffect(() => {
         console.log(props.id.id)
+    }, [])
+
+    function itemClicked() {
         db.collection('Messages').doc(props.id.id)
             .onSnapshot((querySnapshot) => {
                 console.log(querySnapshot.id)
@@ -43,18 +46,8 @@ export default function ChatListItem(props) {
                     }
                 ))
             })
-    }, [])
+        dispatch(loadMessages(props.id));
 
-    function itemClicked() {
-        if (reduxMessages.data) {
-            if (props.id.data.messages.length < reduxMessages.data.messages.length) {
-                return;
-            } else {
-                dispatch(loadMessages(props.id));
-            }
-        } else {
-            dispatch(loadMessages(props.id));
-        }
     }
 
     return (

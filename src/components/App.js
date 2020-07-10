@@ -21,6 +21,8 @@ import Login from './Login';
 import VetMap from './VetMap';
 import MessagesPage from './messages/MessagesPage'
 import NavbarPage from './Nav';
+import NotLogged from './NotLogged';
+
 
 
 
@@ -69,7 +71,9 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-        <NavbarPage />
+          { user ? <NavbarPage /> : <NotLogged /> }
+          
+
         </header>
         <Switch>
           <Route exact path='/' component={Home} />

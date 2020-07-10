@@ -11,6 +11,7 @@ import SearchPage from './SearchBar';
 import DogSearch from './DogSearch';
 import './DogSearch.css';
 
+
 const db = firebase.firestore();
 
 //TRYING TO USE COMBO OF REDUX / FIREBASE (ONLY FB IF POSSIBLE) TO DISPLAY USERS ON MAP AND DISPLAY CURRENT USER ON SAME MAP.
@@ -71,6 +72,14 @@ export class Furends extends Component {
             activeMarker: marker,
             showingInfoWindow: true
         });
+        // return (
+        //     < InfoWindow marker={this.state.activeMarker}
+        //         visible={this.state.showingInfoWindow} name={props.name} >
+        //         <div>
+        //             <h1>{this.state.selectedPlace.name}</h1>
+        //         </div>
+        //     </InfoWindow >
+        // )
     }
 
 
@@ -86,27 +95,19 @@ export class Furends extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '100%',
+            height: '90%',
+            marginTop: '85px',
         };
-
-        const containerStyle = {
-            marginLeft: '20px',
-            width: '60%',
-            height: '80%',
-        }
-
-
-        const scrollContainerStyle = { width: "450px", maxHeight: "330px" };
-
         const { users } = this.state;
         //console.log({ users });
 
 
         return (
             <div>
-                <header style={{ marginBottom: '100px' }}>
+                <header>
                 </header>
                 <main>
+
                     <div className='d-flex flex-row justify-content-between'>
                         <div style={{ width: '500px' }}>
                             <Map
@@ -156,6 +157,7 @@ export class Furends extends Component {
                             </div>
                         </div>
                     </div>
+
                 </main>
             </div>
         );

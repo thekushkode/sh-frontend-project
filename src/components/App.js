@@ -25,11 +25,10 @@ import NotLogged from './NotLogged';
 
 
 
+
 function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
-  var user = firebase.auth().currentUser;
-
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -74,6 +73,7 @@ function App() {
         <header className="App-header">
           { user ? <NavbarPage /> : <NotLogged /> }
           
+
         </header>
         <Switch>
           <Route exact path='/' component={Home} />

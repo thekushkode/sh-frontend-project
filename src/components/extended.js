@@ -24,6 +24,8 @@ import Ike from './images/ike.png';
 import SocialPage2 from './feed2';
 import FooterPage from './Footer';
 import firebase from '../firebase';
+import ProfileFeed from './ProfileFeed';
+import ProfileUpload from './ProfileUpload';
 
 
 
@@ -63,7 +65,7 @@ class PExtended extends Component {
             console.log(data)
             currDog.setState({
               dogData: data,
-                user: user
+              user: user
             })
           })
         })
@@ -82,79 +84,79 @@ class PExtended extends Component {
     });
   };
 
-  renderModal = type => {
-    const string =
-      type === 'spayneut'
-        ? 'Spayed or Neutered'
-        : type === 'wordpress'
-          ? 'Wordpress Master'
-          : type === 'angular'
-            ? 'Angular Master'
-            : type === 'mdb'
-              ? 'MDB Master'
-              : type === 'community'
-                ? 'Community Contributor'
-                : type === 'pro'
-                  ? 'MDB Pro User'
-                  : type === 'send'
-                    ? 'New Message'
-                    : type === 'submit'
-                      ? 'Submit new project'
-                      : false;
-    const icon =
-      type === 'send' ? 'envelope-o' : type === 'submit' ? 'file' : 'trophy';
-    const lBtnTxt = type === 'send' ? 'cancel' : 'close';
-    const rBtnTxt =
-      type === 'send' ? 'send' : type === 'submit' ? 'submit ' : 'Go to';
-    const rBtnIcon =
-      type === 'send'
-        ? 'paper-plane'
-        : type === 'submit'
-          ? 'check'
-          : 'arrow-right';
+  // renderModal = type => {
+  //   const string =
+  //     type === 'spayneut'
+  //       ? 'Spayed or Neutered'
+  //       : type === 'wordpress'
+  //         ? 'Boner Master'
+  //         : type === 'angular'
+  //           ? 'Angular Master'
+  //           : type === 'mdb'
+  //             ? 'MDB Master'
+  //             : type === 'community'
+  //               ? 'Community Contributor'
+  //               : type === 'pro'
+  //                 ? 'MDB Pro User'
+  //                 : type === 'send'
+  //                   ? 'New Message'
+  //                   : type === 'submit'
+  //                     ? 'Submit new project'
+  //                     : false;
+  //   const icon =
+  //     type === 'send' ? 'envelope-o' : type === 'submit' ? 'file' : 'trophy';
+  //   const lBtnTxt = type === 'send' ? 'cancel' : 'close';
+  //   const rBtnTxt =
+  //     type === 'send' ? 'send' : type === 'submit' ? 'submit ' : 'Go to';
+  //   const rBtnIcon =
+  //     type === 'send'
+  //       ? 'paper-plane'
+  //       : type === 'submit'
+  //         ? 'check'
+  //         : 'arrow-right';
 
-    return (
-      <MDBModal
-        isOpen={this.state[type]}
-        toggle={() => this.toggle(type)}
-        cascading
-      >
-        <MDBModalHeader
-          toggle={() => this.toggle(type)}
-          className='light-blue darken-3 white-text'
-        >
-          <MDBIcon icon={icon} className='mr-2' /> {string}
-        </MDBModalHeader>
-        <MDBModalBody>
-          {type === 'send' ? (
-            <MDBInput type='textarea' label='Your message' rows={15} />
-          ) : type === 'submit' ? (
-            <div>
-              <MDBInput type='text' label='Project name' />
-              <MDBInput type='text' label='Project URL address' />
-              <MDBInput type='text' label='Image URL' />
-              <MDBInput type='textarea' label='Description' />
-            </div>
-          ) : (
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
-                  quibusdam modi veritatis non accusamus distinctio consequuntur
-                  aliquam, assumenda tempore in illum aspernatur quia, minus ex!
-                  Eius tenetur praesentium, consectetur quod!
-                </p>
-              )}
-        </MDBModalBody>
-        <MDBModalFooter center>
-          <MDBBtn outline color='primary' onClick={() => this.toggle(type)}>
-            {lBtnTxt}
-          </MDBBtn>
-          <MDBBtn color='primary'>
-            {rBtnTxt} <MDBIcon icon={rBtnIcon} className='ml-1' />
-          </MDBBtn>
-        </MDBModalFooter>
-      </MDBModal>
-    );
-  };
+  //   return (
+  //     <MDBModal
+  //       isOpen={this.state[type]}
+  //       toggle={() => this.toggle(type)}
+  //       cascading
+  //     >
+  //       <MDBModalHeader
+  //         toggle={() => this.toggle(type)}
+  //         className='light-blue darken-3 white-text'
+  //       >
+  //         <MDBIcon icon={icon} className='mr-2' /> {string}
+  //       </MDBModalHeader>
+  //       <MDBModalBody>
+  //         {type === 'send' ? (
+  //           <MDBInput type='textarea' label='Your message' rows={15} />
+  //         ) : type === 'submit' ? (
+  //           <div>
+  //             <MDBInput type='text' label='Project name' />
+  //             <MDBInput type='text' label='Project URL address' />
+  //             <MDBInput type='text' label='Image URL' />
+  //             <MDBInput type='textarea' label='Description' />
+  //           </div>
+  //         ) : (
+  //               <p>
+  //                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
+  //                 quibusdam modi veritatis non accusamus distinctio consequuntur
+  //                 aliquam, assumenda tempore in illum aspernatur quia, minus ex!
+  //                 Eius tenetur praesentium, consectetur quod!
+  //               </p>
+  //             )}
+  //       </MDBModalBody>
+  //       <MDBModalFooter center>
+  //         <MDBBtn outline color='primary' onClick={() => this.toggle(type)}>
+  //           {lBtnTxt}
+  //         </MDBBtn>
+  //         <MDBBtn color='primary'>
+  //           {rBtnTxt} <MDBIcon icon={rBtnIcon} className='ml-1' />
+  //         </MDBBtn>
+  //       </MDBModalFooter>
+  //     </MDBModal>
+  //   );
+  // };
   render() {
     return (
       <div>
@@ -163,18 +165,18 @@ class PExtended extends Component {
         <main>
 
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
-            {this.renderModal('wordpress')}
+            {/* {this.renderModal('wordpress')}
             {this.renderModal('bootstrap')}
             {this.renderModal('angular')}
             {this.renderModal('mdb')}
             {this.renderModal('community')}
             {this.renderModal('pro')}
             {this.renderModal('send')}
-            {this.renderModal('submit')}
+            {this.renderModal('submit')} */}
 
             <MDBContainer fluid>
               <MDBRow>
-                <MDBCol lg='4' md='12'>
+                <MDBCol lg='4' md='4'>
                   <MDBCard className='profile-card text-center mb-4'>
                     <MDBAvatar
                       tag='img'
@@ -198,8 +200,8 @@ class PExtended extends Component {
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
                       <p className='card-text mt-3'>
-                      {this.state.dogData.bio}
-                  </p>
+                        {this.state.dogData.bio}
+                      </p>
                       <MDBBtn
                         className='purple-gradient'
                         size='sm'
@@ -223,7 +225,7 @@ class PExtended extends Component {
                         href='#!'
                       >
                         Follow {this.state.dogData.dogName}
-                    </MDBBtn>
+                      </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
                   <MDBCard className='mb-4'>
@@ -242,7 +244,7 @@ class PExtended extends Component {
                         onClick={() => this.toggle('bootstrap')}
                       >
                         Neutered | Spayed: {this.state.dogData.spayNeut}
-                  </MDBBtn>
+                      </MDBBtn>
                       <MDBBtn
                         color='blue-grey'
                         size='sm'
@@ -251,7 +253,7 @@ class PExtended extends Component {
                         onClick={() => this.toggle('wordpress')}
                       >
                         {this.state.dogData.temperament}
-                  </MDBBtn>
+                      </MDBBtn>
                       <MDBBtn
                         size='sm'
                         rounded
@@ -259,7 +261,7 @@ class PExtended extends Component {
                         onClick={() => this.toggle('angular')}
                       >
                         Has Vaccines: {this.state.dogData.vaccines}
-                  </MDBBtn>
+                      </MDBBtn>
                       <MDBBtn
                         color='secondary'
                         size='sm'
@@ -268,7 +270,7 @@ class PExtended extends Component {
                         onClick={() => this.toggle('mdb')}
                       >
                         {this.state.dogData.size}
-                  </MDBBtn>
+                      </MDBBtn>
                       <MDBBtn
                         color='deep-purple'
                         size='sm'
@@ -277,7 +279,7 @@ class PExtended extends Component {
                         onClick={() => this.toggle('community')}
                       >
                         {this.state.dogData.breed}
-                  </MDBBtn>
+                      </MDBBtn>
                       <MDBBtn
                         color='indigo'
                         size='sm'
@@ -286,7 +288,7 @@ class PExtended extends Component {
                         onClick={() => this.toggle('pro')}
                       >
                         {this.state.dogData.city}
-                  </MDBBtn>
+                      </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
 
@@ -335,61 +337,46 @@ class PExtended extends Component {
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
-                <MDBCol lg='8' md='12' className='text-center'>
-                  <div className='text-center mt-3'>
-                    <h4>
-                      <strong>{this.state.dogData.dogName}'s Feed</strong>
-                    </h4>
-                    <MDBBtn
-                      color='info'
-                      rounded
-                      className='mt-4'
-                      onClick={() => {
-                        this.toggle('submit');
-                      }}
-                    >
-                      New Post <MDBIcon icon='image' className='ml-1' />
-                    </MDBBtn>
-                  </div>
-                  <div>
-                    <SocialPage2 />
-                  </div>
-                  <MDBPagination circle className='my-4 float-right'>
-                    <li className='page-item disabled clearfix d-none d-md-block'>
-                      <a className='page-link' href='#!'>
-                        First
-                  </a>
-                    </li>
-                    <MDBPageItem disabled>
-                      <MDBPageNav className='page-link' aria-label='Previous'>
-                        <span aria-hidden='true'>&laquo;</span>
-                        <span className='sr-only'>Previous</span>
-                      </MDBPageNav>
-                    </MDBPageItem>
-                    <MDBPageItem active>
-                      <MDBPageNav className='page-link'>
-                        1 <span className='sr-only'>(current)</span>
-                      </MDBPageNav>
-                    </MDBPageItem>
-                    <MDBPageItem>
-                      <MDBPageNav className='page-link'>2</MDBPageNav>
-                    </MDBPageItem>
-                    <MDBPageItem>
-                      <MDBPageNav className='page-link'>3</MDBPageNav>
-                    </MDBPageItem>
-                    <MDBPageItem>
-                      <MDBPageNav className='page-link'>4</MDBPageNav>
-                    </MDBPageItem>
-                    <MDBPageItem>
-                      <MDBPageNav className='page-link'>5</MDBPageNav>
-                    </MDBPageItem>
-                    <MDBPageItem>
-                      <MDBPageNav className='page-link' aria-label='Next'>
-                        <span aria-hidden='true'>&raquo;</span>
-                        <span className='sr-only'>Next</span>
-                      </MDBPageNav>
-                    </MDBPageItem>
-                  </MDBPagination>
+                <MDBCol lg='8' md='8' className='text-center'>
+                  <MDBRow>
+                    <MDBCol>
+                      <div className='text-center mt-3'>
+                        <h4>
+                          <strong>{this.state.dogData.dogName}'s Feed</strong>
+                        </h4>
+                      </div>
+                      <div style={{ marginTop: '20px', paddingLeft: '100px', paddingRight: '100px' }}>
+                        <div className="form-group">
+                          <label htmlFor="exampleFormControlTextarea1">
+                            Write New Post:
+                          </label>
+                          <textarea
+                            className="form-control"
+                            id="exampleFormControlTextarea1"
+                            rows="4"
+                          />
+                        </div>
+                        <div className='d-flex justify-content-around'>
+                          <ProfileUpload />
+                          <MDBBtn
+                          className='btn btn-rounded blue-gradient'
+                          onClick={() => {
+                            this.toggle('submit');
+                          }}
+                          >
+                          Post <MDBIcon icon='image' className='ml-1' />
+                        </MDBBtn>
+                        </div>
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol>
+                      <div className='ml-5 mt-3'>
+                        <ProfileFeed />
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
                 </MDBCol>
               </MDBRow>
             </MDBContainer>

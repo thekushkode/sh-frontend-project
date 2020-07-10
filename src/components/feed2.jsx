@@ -1,8 +1,8 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
-import NavbarPage from "./Nav";
-import FooterPage from "./Footer";
+//import FooterPage from "./Footer";
 import GoogleAd from "./GoogleAd";
+//import AdSense from 'react-adsense';
 
 const SocialPage2 = () => {
     return (

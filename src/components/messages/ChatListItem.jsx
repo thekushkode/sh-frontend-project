@@ -55,7 +55,7 @@ export default function ChatListItem(props) {
                     <strong>{props.id.data.messages[0].sender}</strong>
                 </span>
                 <small>{moment(props.id.data.messages[0].timeStamp).format('MMM Do')}</small>
-            </div
+            </div>
             <p className='text-truncate' style={{ textAlign: "left" }}>
                 {props.id.data.messages[0].message && props.id.data.messages[0].message.slice(0, 24) + (props.id.data.messages[0].message.length > 24 ? "..." : '')}
 

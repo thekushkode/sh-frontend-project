@@ -17,7 +17,7 @@ export default function MessagesWindow() {
             <ul>
                 {messages.data && messages.data.messages.map((item) => {
                     let styles;
-                    if (item.sender === user.displayName) {
+                    if (item.sender === user.data.displayName) {
                         // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
                         styles = ['end', '', 'text-white', 'rgb(0,153,255)']
                     } else {

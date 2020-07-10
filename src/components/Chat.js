@@ -42,10 +42,22 @@ const Chat = () => {
 
   useEffect(() => {
     if (user) {
-      db.collection("Messages")
-        .where("members", "array-contains", user.id)
-        .get()
-        .then(function (querySnapshot) {
+      // db.collection("Messages")
+      //   .where("members", "array-contains", user.id)
+      //   .get()
+      //   .then(function (querySnapshot) {
+      //     let dataArray = []
+      //     querySnapshot.forEach(function (doc) {
+      //       console.log(doc.id, doc.data())
+      //       dataArray.push({ id: doc.id, data: doc.data() })
+      //     })
+      //     setAllMessages(dataArray)
+      //   })
+
+
+      db.collection('Messages')
+        .where('members', 'array-contains', user.id)
+        .onSnapshot((querySnapshot) => {
           let dataArray = []
           querySnapshot.forEach(function (doc) {
             console.log(doc.id, doc.data())
@@ -54,7 +66,7 @@ const Chat = () => {
           setAllMessages(dataArray)
         })
     }
-  }, [db, user])
+  }, [])
 
   function changeInput(value) {
     setChatInput(value);

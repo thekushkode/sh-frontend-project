@@ -1,7 +1,7 @@
 // Google Firebase Cloud Messaging (FCM) stores messages in a cloud database - message size must be < 1Mb
 // moment used to parse, validate, manipulate, and display dates and times in JavaScript.
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     MDBContainer,
     MDBRow,
@@ -23,11 +23,27 @@ moment().format()
 
 export default function ChatListItem(props) {
     const reduxMessages = useSelector(state => state.messages)
+    const user = useSelector(state => state.user)
     let dispatch = useDispatch();
     const db = firebase.firestore();
 
     // <visible> state variable, initialized to false
     const [visible, setVisible] = React.useState(false);
+
+    useEffect(() => {
+        console.log(props.id.id)
+        db.collection('Messages').doc(props.id.id)
+            .onSnapshot((querySnapshot) => {
+                console.log(querySnapshot.id)
+                // dispatch(loadMessages({ querySnapshot }))
+                dispatch(loadMessages(
+                    {
+                        id: querySnapshot.id,
+                        data: querySnapshot.data()
+                    }
+                ))
+            })
+    }, [])
 
     function itemClicked() {
         if (reduxMessages.data) {
@@ -55,7 +71,7 @@ export default function ChatListItem(props) {
                     <strong>{props.id.data.messages[0].sender}</strong>
                 </span>
                 <small>{moment(props.id.data.messages[0].timeStamp).format('MMM Do')}</small>
-            </div
+            </div>
             <p className='text-truncate' style={{ textAlign: "left" }}>
                 {props.id.data.messages[0].message && props.id.data.messages[0].message.slice(0, 24) + (props.id.data.messages[0].message.length > 24 ? "..." : '')}
 

@@ -111,7 +111,7 @@ export class Furends extends Component {
                     <div className='d-flex flex-row justify-content-between'>
                         <div style={{ width: '500px' }}>
                             <Map
-                                containerStyle={containerStyle}
+                                // containerStyle={containerStyle}
                                 google={this.props.google}
                                 onClick={this.onMapClicked}
                                 onReady={this.fetchPlaces}
@@ -148,7 +148,7 @@ export class Furends extends Component {
                             <div style={{ paddingLeft: '120px' }}>
                                 <SearchPage />
                             </div>
-                            <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
+                            <div className='scrollbar scrollbar-primary'>
                                 {/* Have default Dogs show here. Based on zip or city */}
                                 <DogSearch />
                                 <DogSearch />

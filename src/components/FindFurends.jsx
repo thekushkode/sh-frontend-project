@@ -8,8 +8,8 @@ import firebase from '../firebase';
 import AddressMarker from './AddressMarker';
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar } from "mdbreact";
 import SearchPage from './SearchBar';
-import DogResults from './DogResults';
-import './DogResults.css';
+import DogSearch from './DogSearch';
+import './DogSearch.css';
 
 const db = firebase.firestore();
 
@@ -148,20 +148,12 @@ export class Furends extends Component {
                                 <SearchPage />
                             </div>
                             <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
-                                <DogResults />
-                                <DogResults />
-                                <DogResults />
-                                <DogResults />
+                                {/* Have default Dogs show here. Based on zip or city */}
+                                <DogSearch />
+                                <DogSearch />
+                                <DogSearch />
+                                <DogSearch />
                             </div>
-                            {/* <div>
-                                <DogResults />
-                            </div>
-                            <div>
-                                <DogResults />
-                            </div>
-                            <div>
-                                <DogResults />
-                            </div> */}
                         </div>
                     </div>
                 </main>

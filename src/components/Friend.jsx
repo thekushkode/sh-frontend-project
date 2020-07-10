@@ -26,6 +26,9 @@ import SocialPage2 from './feed2';
 import FooterPage from './Footer';
 import firebase from '../firebase';
 import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 
 
 
@@ -46,7 +49,6 @@ class Friend extends Component {
     };
   }
 
-  
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
@@ -75,6 +77,28 @@ class Friend extends Component {
     // } else {
     //   alert('Please log-in or create an account.');
     // }
+  }
+
+  letsChat = (dog) => {
+    const db = firebase.firestore();
+    let userID = this.props.user.id
+    let userName = this.props.user.data.displayName
+    console.log(userID)
+    console.log(dog.ownerId)
+    if (userID) {
+      db.collection("Messages").doc()
+        .set({
+            members: [userID, dog.ownerId],
+            messages: [
+                {
+                    sender: `${userName}`,
+                    timeStamp: Date.now(),
+                    message: `${userName} wants to chat`
+                }
+            ]
+        })
+        // return <Redirect to='/messages' />
+    } 
   }
 
   toggle = item => {
@@ -295,6 +319,15 @@ class Friend extends Component {
                           >
                             Follow {dog.dogName}
                         </MDBBtn>
+                        <MDBBtn
+                            className='peach-gradient'
+                            size='sm'
+                            rounded
+                            onClick={() => this.letsChat(dog)}
+                            // href='/messages'
+                          >
+                            Chat
+                        </MDBBtn>
                         </MDBCardFooter>
                       </MDBCard>
                     </MDBCol>
@@ -350,4 +383,13 @@ class Friend extends Component {
   }
 }
 
-export default Friend;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Friend)

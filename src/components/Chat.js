@@ -124,7 +124,7 @@ const Chat = () => {
                 <a href='#!'>
                   <MDBListGroupItem hover>
                     <MDBAvatar
-                      src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/gerrit.gif?alt=media'
+                      src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default.jpg?alt=media'
                       alt='User Profile - Logan'
                       tag='img'
                       className='float-left mr-3'

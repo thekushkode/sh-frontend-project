@@ -6,6 +6,11 @@ import { connect, useDispatch, useSelector } from 'react-redux'; //could import 
 import { setUser, unSetUser, setProfile } from '../redux/actions';
 import firebase from '../firebase';
 import AddressMarker from './AddressMarker';
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar } from "mdbreact";
+import SearchPage from './SearchBar';
+import DogSearch from './DogSearch';
+import './DogSearch.css';
+
 
 const db = firebase.firestore();
 
@@ -102,37 +107,57 @@ export class Furends extends Component {
                 <header>
                 </header>
                 <main>
-                    <Map
-                        google={this.props.google}
-                        onClick={this.onMapClicked}
-                        onReady={this.fetchPlaces}
-                        zoom={14}
-                        style={mapStyles}
-                        initialCenter={{ lat: 33.753746, lng: -84.386330 }}
-                    >
-                        {this.state.users.map((user, index, mapProps) => {
-                            let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
-                            // console.log(address);
-                            return (
-                                <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
-                                    onClick={this.onMarkerClick} />
 
-                            )
-                        })}
-                        {this.state.users.map((user, index) => {
-                            return (
-                                < InfoWindow marker={this.state.activeMarker} key={index}
-                                    visible={this.state.selectedPlace.id === index} name={user.name} >
-                                    <div>
-                                        <h4>{user.dogName}</h4>
-                                        <p>{user.breed}</p>
-                                        <p>{user.temperament}</p>
-                                    </div>
-                                </InfoWindow >
+                    <div className='d-flex flex-row justify-content-between'>
+                        <div style={{ width: '500px' }}>
+                            <Map
+                                containerStyle={containerStyle}
+                                google={this.props.google}
+                                onClick={this.onMapClicked}
+                                onReady={this.fetchPlaces}
+                                zoom={10}
 
-                            )
-                        })}
-                    </Map>
+                                style={mapStyles}
+                                initialCenter={{ lat: 33.753746, lng: -84.386330 }}
+                            >
+                                {this.state.users.map((user, index, mapProps) => {
+                                    let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
+                                    // console.log(address);
+                                    return (
+                                        <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
+                                            onClick={this.onMarkerClick} />
+
+                                    )
+                                })}
+                                {this.state.users.map((user, index) => {
+                                    return (
+                                        < InfoWindow marker={this.state.activeMarker} key={index}
+                                            visible={this.state.selectedPlace.id === index} name={user.name} >
+                                            <div>
+                                                <h4>{user.dogName}</h4>
+                                                <p>{user.breed}</p>
+                                                <p>{user.temperament}</p>
+                                            </div>
+                                        </InfoWindow >
+
+                                    )
+                                })}
+                            </Map>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', width: '40%', paddingLeft: '30px' }}>
+                            <div style={{ paddingLeft: '120px' }}>
+                                <SearchPage />
+                            </div>
+                            <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
+                                {/* Have default Dogs show here. Based on zip or city */}
+                                <DogSearch />
+                                <DogSearch />
+                                <DogSearch />
+                                <DogSearch />
+                            </div>
+                        </div>
+                    </div>
+
                 </main>
             </div>
         );

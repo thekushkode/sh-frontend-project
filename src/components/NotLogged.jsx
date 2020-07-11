@@ -58,6 +58,9 @@ class NotLogged extends Component {
                                 </MDBDropdown>
                             </MDBNavItem>
                             <MDBNavItem>
+                                <MDBNavLink to='/messages'>Messages</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
                                 <MDBNavLink to='/contact'>Contact</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>

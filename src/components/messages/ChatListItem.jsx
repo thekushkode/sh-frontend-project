@@ -47,8 +47,10 @@ export default function ChatListItem(props) {
                 ))
             })
         dispatch(loadMessages(props.id));
-
     }
+    let messageData = props.id.data
+    let lastMessage = (messageData.messages.length - 1)
+    let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
 
     return (
         <MDBListGroupItem hover onClick={itemClicked}>
@@ -61,15 +63,17 @@ export default function ChatListItem(props) {
             />
             <div className='d-flex justify-content-between mb-1'>
                 <span className='mb-1'>
-                    <strong>{props.id.data.messages[0].sender}</strong>
+                    {userNames.map((name, index) => {
+                        return (
+                            <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
+                        )
+                    })}
                 </span>
-                <small>{moment(props.id.data.messages[0].timeStamp).format('MMM Do')}</small>
+                <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
             </div>
             <p className='text-truncate' style={{ textAlign: "left" }}>
-                {props.id.data.messages[0].message && props.id.data.messages[0].message.slice(0, 24) + (props.id.data.messages[0].message.length > 24 ? "..." : '')}
-
+                {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}
             </p>
-            {/* {visible && <MessagesWindow content={messages} />} */}
         </MDBListGroupItem>
     )
 }

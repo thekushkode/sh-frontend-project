@@ -88,7 +88,8 @@ class Friend extends Component {
     if (userID) {
       db.collection("Messages").doc()
         .set({
-          members: [userID, dog.ownerId],  // dog.ownerId should change to dog owners username once username is saved in dogs profile
+          members: [userID, dog.ownerId],
+          userNames: [userName, dog.dogName],  // dog.dogName should change to dog owners username once username is saved in dogs profile
           messages: [
             {
               sender: `${userName}`,

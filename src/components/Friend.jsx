@@ -29,6 +29,7 @@ import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
+import Chat from './Chat';
 
 
 
@@ -89,6 +90,7 @@ class Friend extends Component {
       db.collection("Messages").doc()
         .set({
             members: [userID, dog.ownerId],
+            userName: [userName, dog.ownerId],
             messages: [
                 {
                     sender: `${userName}`,
@@ -97,7 +99,8 @@ class Friend extends Component {
                 }
             ]
         })
-        // return <Redirect to='/messages' />
+        return <Redirect to='/messages' />
+        // return <Chat />
     } 
   }
 
@@ -324,7 +327,7 @@ class Friend extends Component {
                             size='sm'
                             rounded
                             onClick={() => this.letsChat(dog)}
-                            // href='/messages'
+                            href='http://localhost:3000/messages'
                           >
                             Chat
                         </MDBBtn>

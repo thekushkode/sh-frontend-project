@@ -6,6 +6,7 @@ import {
   MDBCard,
   MDBCardTitle,
   MDBCardBody,
+  MDBCardFooter,
   MDBIcon,
   MDBBadge,
   MDBAvatar,
@@ -17,6 +18,7 @@ import FooterPage from './Footer';
 import firebase from '../firebase';
 import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
+import GoOutside from './GoOutside';
 
 
 
@@ -26,7 +28,7 @@ class PExtended extends Component {
     this.state = {
       submit: false,
       user: '',
-      dogData: {},
+      dogData: [],
       postValue: '',
       imgValue: ''
     };
@@ -44,15 +46,27 @@ class PExtended extends Component {
       db.collection("Dogs")
         .where('ownerId', '==', user.uid)
         .get()
+        // .then(function (querySnapshot) {
+        //   let data;
+        //   querySnapshot.forEach(function (doc) {
+        //     data = doc.data();
+        //     console.log(data)
+        //     currDog.setState({
+        //       dogData: data,
+        //       user: user
+        //     })
+        //   })
+        // })
         .then(function (querySnapshot) {
-          let data;
+          console.log(querySnapshot)
+          let data = [];
           querySnapshot.forEach(function (doc) {
-            data = doc.data();
-            console.log(data)
-            currDog.setState({
-              dogData: data,
-              user: user
-            })
+            data.push(doc.data());
+          })
+          console.log(data)
+          currDog.setState({
+            dogData: data,
+            user: user
           })
         })
     } else {
@@ -95,6 +109,20 @@ class PExtended extends Component {
         <main>
 
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
+
+          <div>
+    <h3>Select your doggo, {this.state.user.displayName}</h3>
+            <ul>
+            { this.state.dogData && this.state.dogData.map((dog, index) => {
+              console.log(dog)
+              return (
+              <li><a href={`/profile/${dog.dogName}`} key={index}>{dog.dogName}</a></li>
+              )
+              })
+            }
+            </ul>  
+          </div> 
+          
 
             <MDBContainer fluid>
               <MDBRow>
@@ -158,6 +186,7 @@ class PExtended extends Component {
 
                       <hr className='my-3' />
 
+                      {this.state.dogData.spayNeut && 
                       <MDBBtn
                         color='light-blue'
                         size='sm'
@@ -165,7 +194,8 @@ class PExtended extends Component {
                         className='px-3'
                       >
                         Neutered | Spayed: {this.state.dogData.spayNeut}
-                      </MDBBtn>
+                      </MDBBtn> }
+                      {this.state.dogData.temperament && 
                       <MDBBtn
                         color='blue-grey'
                         size='sm'
@@ -173,14 +203,16 @@ class PExtended extends Component {
                         className='px-3'
                       >
                         {this.state.dogData.temperament}
-                      </MDBBtn>
+                      </MDBBtn> }
+                      {this.state.dogData.vaccines && 
                       <MDBBtn
                         size='sm'
                         rounded
                         className='px-3'
                       >
                         Has Vaccines: {this.state.dogData.vaccines}
-                      </MDBBtn>
+                      </MDBBtn> }
+                      {this.state.dogData.size &&
                       <MDBBtn
                         color='secondary'
                         size='sm'
@@ -188,7 +220,8 @@ class PExtended extends Component {
                         className='px-3'
                       >
                         {this.state.dogData.size}
-                      </MDBBtn>
+                      </MDBBtn> }
+                      {this.state.dogData.breed &&
                       <MDBBtn
                         color='deep-purple'
                         size='sm'
@@ -196,7 +229,8 @@ class PExtended extends Component {
                         className='px-3'
                       >
                         {this.state.dogData.breed}
-                      </MDBBtn>
+                      </MDBBtn> }
+                      {this.state.dogData.city &&
                       <MDBBtn
                         color='indigo'
                         size='sm'
@@ -204,7 +238,7 @@ class PExtended extends Component {
                         className='px-3'
                       >
                         {this.state.dogData.city}
-                      </MDBBtn>
+                      </MDBBtn> }
                     </MDBCardBody>
                   </MDBCard>
 

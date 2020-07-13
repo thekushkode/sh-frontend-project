@@ -2,14 +2,17 @@ import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBInput } from 'mdbreact';
 
 const FormPage = () => {
+
+
+
     return (
         <MDBContainer>
             <MDBRow>
                 <MDBCol>
-                    <form netlify netlify-honeypot='bot-field' name='contact' method='post'>
+                    <form data-netlify='true' netlify-honeypot='bot-field' name='contact' method='post' action='/thankyou'>
                         <p className="h5 text-center mb-4">Write to Us:</p>
-                        <MDBInput type='hidden' name='contact' value='contact' />
                         <div className="grey-text">
+                            <MDBInput type='hidden' name='contact' value='contact' />
                             <MDBInput label="Your name" name='name' icon="user" group type="text" validate error="wrong" containerClass="text-left"
                                 success="right" />
                             <MDBInput label="Your email" name='email' icon="envelope" group type="email" validate error="wrong" containerClass="text-left"

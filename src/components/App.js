@@ -24,6 +24,7 @@ import NavbarPage from './Nav';
 import NotLogged from './NotLogged';
 import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
+import ThankYou from './ThankYou';
 
 
 
@@ -111,6 +112,7 @@ function App() {
           <Route exact path='/terms' component={Terms} />
           <Route exact path='/privacy' component={Privacy} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/thankyou' component={ThankYou} />
           <Route exact path='/messagestest' component={MessagesPage} />
           <Route path='/search/' component={Friend} />
           <Route path='/newchat' component={NewChat} />

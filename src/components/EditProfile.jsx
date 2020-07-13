@@ -46,8 +46,9 @@ function EditProfile(props) {
   const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
+    console.log(user);
     if (user && !dogId) {
-      db.collection('Dogs').where('ownerid', '==', user.id).get()
+      db.collection('Dogs').where('ownerId', '==', user.id).get()
         .then(querySnapshot => {
           console.log(querySnapshot);
           let dog = null;
@@ -92,8 +93,7 @@ function EditProfile(props) {
         avatar,
         bio,
         ownerId: user.id
-        
-      }) //CAN I REMOVE THE FIRST PART OF IF AND JUST HAVE WHATS IN ELSE STATEMENT? 
+      }) 
     } else {
       db.collection('Dogs').doc(dogId).set({
         dogName,
@@ -137,7 +137,7 @@ function EditProfile(props) {
                   <MDBCardBody>
                     <MDBRow>
                       <MDBCol md='6'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) {{ setDogName(e.target.value) }}}} />
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
                       </MDBCol>
                       <MDBCol md='6'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
@@ -217,11 +217,11 @@ function EditProfile(props) {
                 <MDBCard className='profile-card'>
                   <MDBAvatar
                     tag='img'
-                    alt='Anna Deynah'
+                    alt='Default Dog Profile Image'
                     src={Dog}
                     className='rounded-circle z-depth-1-half mb-4'
                   />
-                  <InputPage value={avatar} type='file' onChange={(e) => { setAvatar(e.target.value) }}/>
+                  <InputPage value={avatar} type='file' onChange={(e) => { setAvatar(e.target.value) }} />
                   {/* <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
                       Add Photo
                   </MDBBtn> */}
@@ -229,7 +229,7 @@ function EditProfile(props) {
                     <h3 className='mb-3 font-bold'>
                       <strong>Ike</strong>
                     </h3>
-                    <h6 className='font-bold cyan-text mb-4'>Rottweiler</h6>
+                    <h6 className='font-bold cyan-text mb-4'>Breed: Rottweiler</h6>
                     <p className='mt-4 text-muted'>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna

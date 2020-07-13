@@ -53,7 +53,6 @@ class Friend extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let currDog = this;
     console.log(this.props.location.pathname.slice(8));
     let friend = this.props.location.pathname.slice(8);
     // if (user) {
@@ -70,7 +69,7 @@ class Friend extends Component {
           data.push(doc.data());
         })
         console.log(data)
-        currDog.setState({
+        this.setState({
           dogData: data,
           user: user
         })

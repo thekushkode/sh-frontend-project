@@ -21,8 +21,6 @@ import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 
-
-
 class PExtended extends Component {
   constructor(props) {
     super(props);

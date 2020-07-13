@@ -93,10 +93,7 @@ class About extends React.Component {
           <section id='team'>
             <h2 className='text-center my-5 h1'>Our Amazing Team</h2>
             <p className='text-center mb-5 w-responsive mx-auto'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-              error amet numquam iure provident voluptate esse quasi, veritatis
-              totam voluptas nostrum quisquam eum porro a pariatur accusamus
-              veniam.
+              The Social Hound team is a group of determined Full-Stack bootcamp coders based in the Atlanta metro area.
             </p>
             <MDBRow className='mb-lg-4 text-center text-md-left'>
               <MDBCol lg='6' md='12' className='mb-4'>
@@ -245,7 +242,7 @@ class About extends React.Component {
                     Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
-                    Dog and Music Lover. Tinker-er.  
+                    Dog and Music Lover. Tinker-er.
                   </p>
                   <a href='https://www.linkedin.com/in/loganblackstad/'>
                     <MDBIcon
@@ -276,7 +273,7 @@ class About extends React.Component {
           <hr className='my-5' />
 
           <section id='products' className='text-center'>
-            <h1 className='text-center my-5 h1'>We create awesome products</h1>
+            <h1 className='text-center my-5 h1'>We Enhance The Dog Experience</h1>
             <p className='text-center mb-5 w-responsive mx-auto lead grey-text'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -285,29 +282,23 @@ class About extends React.Component {
             <MDBRow>
               <div className='col-md-4 mb-4'>
                 <MDBIcon icon='area-chart pink-text' size='4x' />
-                <h4 className='font-weight-bold my-4'>Analytics</h4>
+                <h4 className='font-weight-bold my-4'>Wellness</h4>
                 <p className='grey-text'>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                  An intentional health and wellness plan can help your dog live his/her longest and healthiest. SocialHound makes it easier to plan for grooming, wellness-checks, and socialization in an effort to prevent major health and lifestyle complications.
                 </p>
               </div>
               <div className='col-md-4 mb-4'>
                 <MDBIcon icon='pencil cyan-text' size='4x' />
-                <h4 className='font-weight-bold my-4'>Design</h4>
+                <h4 className='font-weight-bold my-4'>Connectedness</h4>
                 <p className='grey-text'>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                  A social pup is a happy pup! Social Hound encourages the promotion of positive dog and human demeanor. We encourage best practices for public interaction and make it as easy as possible to make pup-connections.
                 </p>
               </div>
               <div className='col-md-4 mb-4'>
                 <MDBIcon icon='laptop indigo-text' size='4x' />
                 <h4 className='font-weight-bold my-4'>Development</h4>
                 <p className='grey-text'>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit maiores nam, aperiam minima assumenda deleniti
-                  hic.
+                  Social Hound is dedicated to your dog's social development. As a part of this commitment,the developers of Social Hound are devoted to creating and serving content that is most helpful to creating connections and promoting healthy choices for your pet.
                 </p>
               </div>
             </MDBRow>
@@ -318,9 +309,7 @@ class About extends React.Component {
           <section id='work'>
             <h1 className='text-center my-5 h1'>Our work</h1>
             <p className='text-center mb-5 w-responsive mx-auto'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
+              Social Hound was born out of love for our Pups. Our love for them is what drives the love for our work.
             </p>
 
             <div className='mdb-lightbox'>

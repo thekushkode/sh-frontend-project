@@ -24,6 +24,7 @@ import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
 
 const db = firebase.firestore();
+
 function EditProfile(props) {
 
   const history = useHistory();
@@ -46,10 +47,11 @@ function EditProfile(props) {
   const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
+    // console.log(user);
     if (user && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.id).get()
         .then(querySnapshot => {
-          console.log(querySnapshot);
+          // console.log(querySnapshot);
           let dog = null;
           querySnapshot.forEach(doc => {
             if (!dog) {
@@ -92,8 +94,7 @@ function EditProfile(props) {
         avatar,
         bio,
         ownerId: user.id
-        
-      }) //CAN I REMOVE THE FIRST PART OF IF AND JUST HAVE WHATS IN ELSE STATEMENT? 
+      }) 
     } else {
       db.collection('Dogs').doc(dogId).set({
         dogName,
@@ -129,7 +130,7 @@ function EditProfile(props) {
                   <div className='admin-up d-flex justify-content-start'>
                     <div className='data'>
                       <h5 className='font-weight-bold dark-grey-text mt-2 ml-2'>
-                        Dog's Profile -{' '}
+                        {/* Dog's Profile -{' '} */}
                         <span className='text-muted'>Complete your profile</span>
                       </h5>
                     </div>
@@ -137,7 +138,7 @@ function EditProfile(props) {
                   <MDBCardBody>
                     <MDBRow>
                       <MDBCol md='6'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) {{ setDogName(e.target.value) }}}} />
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
                       </MDBCol>
                       <MDBCol md='6'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
@@ -217,11 +218,11 @@ function EditProfile(props) {
                 <MDBCard className='profile-card'>
                   <MDBAvatar
                     tag='img'
-                    alt='Anna Deynah'
+                    alt='Default Dog Profile Image'
                     src={Dog}
                     className='rounded-circle z-depth-1-half mb-4'
                   />
-                  <InputPage value={avatar} type='file' onChange={(e) => { setAvatar(e.target.value) }}/>
+                  <InputPage value={avatar} type='file' onChange={(e) => { setAvatar(e.target.value) }} />
                   {/* <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
                       Add Photo
                   </MDBBtn> */}
@@ -229,7 +230,7 @@ function EditProfile(props) {
                     <h3 className='mb-3 font-bold'>
                       <strong>Ike</strong>
                     </h3>
-                    <h6 className='font-bold cyan-text mb-4'>Rottweiler</h6>
+                    <h6 className='font-bold cyan-text mb-4'>Breed: Rottweiler</h6>
                     <p className='mt-4 text-muted'>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -251,6 +252,6 @@ function EditProfile(props) {
       </footer>
     </div>
   );
-};
+}
 
 export default EditProfile;

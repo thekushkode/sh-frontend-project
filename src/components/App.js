@@ -12,10 +12,9 @@ import DayCare from './FindDaycare';
 import Furends from './FindFurends';
 import Friend from './Friend';
 import firebase from '../firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser, unSetUser, setProfile } from '../redux/actions';
 import EditProfile from './EditProfile';
-import { TestMap } from './TestMap';
 import Terms from './Terms';
 import Privacy from './Privacy';
 import Login from './Login';
@@ -26,11 +25,14 @@ import NotLogged from './NotLogged';
 import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
 import DogProfile from './DogProfile'
+import ThankYou from './ThankYou';
+
+
+
 
 function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
-  let currUser;
 
   ReactGA.initialize('UA-172377344-1');
   ReactGA.pageview(window.location.pathname + window.location.search);
@@ -51,7 +53,7 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        currUser = user;
+        // currUser = user;
         // dispatch(setUser(user))
         let userID;
 
@@ -66,7 +68,7 @@ function App() {
             })
           }).then(res => {
             db.collection("Dogs")
-              .where("ownerId", "==", userID).get()
+              .where("ownerId", "==", user.uid).get()
               .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                   userProfile = { data: doc.data(), id: doc.id }
@@ -86,6 +88,7 @@ function App() {
     });
   })
 
+  const currUser = useSelector(state => state.user);
 
   return (
     <Router>
@@ -93,7 +96,6 @@ function App() {
         <header className="App-header">
           {/* {currUser ? <NavbarPage /> : <NotLogged />} */}
           <NavbarPage />
-
 
         </header>
         <Switch>
@@ -111,6 +113,7 @@ function App() {
           <Route exact path='/terms' component={Terms} />
           <Route exact path='/privacy' component={Privacy} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/thankyou' component={ThankYou} />
           <Route exact path='/messagestest' component={MessagesPage} />
           <Route path='/search/' component={Friend} />
           <Route path='/newchat/' component={NewChat} />

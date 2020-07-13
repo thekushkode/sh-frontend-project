@@ -25,9 +25,7 @@ import NavbarPage from './Nav';
 import NotLogged from './NotLogged';
 import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
-
-
-
+import DogProfile from './DogProfile'
 
 function App() {
   let db = firebase.firestore();
@@ -115,7 +113,8 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/messagestest' component={MessagesPage} />
           <Route path='/search/' component={Friend} />
-          <Route path='/newchat' component={NewChat} />
+          <Route path='/newchat/' component={NewChat} />
+          <Route exact path='/profile/:dogId' component={DogProfile} />
         </Switch>
       </div>
     </Router>

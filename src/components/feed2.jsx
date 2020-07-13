@@ -6,14 +6,15 @@ import GoogleAd from "./GoogleAd";
 
 import React, { useEffect } from 'react'
 import firebase from '../firebase';
+import Post from "./Post";
 
 export default function SocialPage2() {
 
     // <allMessages> state variable, initialized to an empty object {}
     // <stuff> state variable, initialized to an empty string ''
-    const [allFeedContent, setAllFeedContent] = React.useState({});
+    const [allFeedContent, setAllFeedContent] = React.useState([]);
     // const [stuff, setStuff] = React.useState('');
-    
+
     const db = firebase.firestore();
 
     useEffect(() => {
@@ -27,7 +28,7 @@ export default function SocialPage2() {
         db.collection('Feed').doc('s8WggZvXWEZRiMfnaxBq').get()
             .then(res => {
                 console.log(res.data())
-                setAllFeedContent(res.data());
+                setAllFeedContent(res.data().posts);
             })
 
         // find dogs where the owner = 'uid'
@@ -44,31 +45,57 @@ export default function SocialPage2() {
 
     }, [])
 
-
-    const feed = Object.keys(allFeedContent).length && Object.keys(allFeedContent).map((item) => {
-        {console.log(allFeedContent[item])}
-        return (
-            // <Conversation messages={allMessages[item]} />
-            <div>{allFeedContent[item]}</div>
-        )
-    })
-
-
-
     return (
-        Object.keys(allFeedContent).length && Object.keys(allFeedContent).map((item) => {
-            {console.log(allFeedContent[item][0].Content)}
-            {console.log(item)}
-            return (
-                // <Conversation messages={allMessages[item]} />
-                <div style={{marginTop: '200px'}}>
-                    <p>{allFeedContent[item][0].Content}</p>
-                    <p>-{allFeedContent[item][0].Sender}</p>
-                    {/* <p>posted at: {allFeedContent[item][0].timestamp}</p> */}
-                </div>
-            )
-        })
+        <div style={{ marginTop: '200px' }}>
+            {allFeedContent && allFeedContent.map((item) => {
+                switch (item.Type) {
+                    case 'Post':
+                        return (
+                            <Post data={item} />
+                        )
+                        break;
+                    // case 'Friend':
+                    //     return (
+                    //         <FriendPost data={item} />
+                    //     )
+                    //     break;
+                    // case 'Photo':
+                    // return (
+                    //     <PhotoPost data={item} />
+                    //     )
+                    //     break;
+                    default:
+                        break;
+                }
+                
+            })}
+        </div>
     )
+
+    // return (
+    //     Object.keys(allFeedContent).length && Object.keys(allFeedContent).map((item) => {
+    //         {console.log(allFeedContent[item][0].Content)}
+    //         {console.log(item)}
+    //         return (
+    //             // <Conversation messages={allMessages[item]} />
+    //             <div style={{marginTop: '200px'}}>
+    //                 <p>{allFeedContent[item][0].Content}</p>
+    //                 <p>-{allFeedContent[item][0].Sender}</p>
+    //                 {/* <p>posted at: {allFeedContent[item][0].timestamp}</p> */}
+    //             </div>
+    //         )
+    //     })
+    // )
+    // return (
+    //     feed.length && feed[0].map((item) => {
+    //         {console.log(feed[item])}
+    //         {console.log(item)}
+    //         return (
+    //             // <Conversation messages={allMessages[item]} />
+    //         <p>{item}</p>
+    //         )
+    //     })
+    // )
 }
 
 

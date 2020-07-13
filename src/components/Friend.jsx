@@ -87,10 +87,10 @@ class Friend extends Component {
     console.log(userID)
     console.log(dog.ownerId)
     if (userID) {
-      db.collection("Messages").doc()
+      return db.collection("Messages").doc()
         .set({
             members: [userID, dog.ownerId],
-            userName: [userName, dog.ownerId],
+            userNames: [userName, dog.dogName],
             messages: [
                 {
                     sender: `${userName}`,
@@ -99,8 +99,10 @@ class Friend extends Component {
                 }
             ]
         })
-        return <Redirect to='/messages' />
-        // return <Chat />
+        .then(() => {
+          this.props.history.push('/messages')
+        })
+        
     } 
   }
 
@@ -327,7 +329,7 @@ class Friend extends Component {
                             size='sm'
                             rounded
                             onClick={() => this.letsChat(dog)}
-                            href='http://localhost:3000/messages'
+                            // href='http://localhost:3000/messages'
                           >
                             Chat
                         </MDBBtn>

@@ -47,7 +47,7 @@ function EditProfile(props) {
 
   useEffect(() => {
     if (user && !dogId) {
-      db.collection('Dogs').where('ownerid', '==', user.id).get()
+      db.collection('Dogs').where('ownerId', '==', user.id).get()
         .then(querySnapshot => {
           console.log(querySnapshot);
           let dog = null;

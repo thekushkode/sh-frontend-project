@@ -6,10 +6,11 @@ import { connect, useDispatch, useSelector } from 'react-redux'; //could import 
 import { setUser, unSetUser, setProfile } from '../redux/actions';
 import firebase from '../firebase';
 import AddressMarker from './AddressMarker';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar, MDBFormInline, Button } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar, MDBFormInline, Button, MDBCardTitle, MDBAvatar } from "mdbreact";
 import SearchPage from './SearchBar';
 import DogSearch from './DogSearch';
 import './DogSearch.css';
+import Ike from './images/ike.png';
 
 
 const db = firebase.firestore();

@@ -43,13 +43,10 @@
 <body>
 
   <form netlify netlify-honeypot='bot-field' name='contact' hidden>
-    <p className="h5 text-center mb-4">Write to us</p>
-
     <div className="grey-text">
-      <MDBInput label="Your name" name='name' icon="user" group type="text" validate error="wrong" success="right" />
-      <MDBInput label="Your email" name='email' icon="envelope" group type="email" validate error="wrong"
-        success="right" />
-      <MDBInput label="Subject" name='subject' icon="tag" group type="text" validate error="wrong" success="right" />
+      <MDBInput label="Your name" name='name' icon="user" group type="text" />
+      <MDBInput label="Your email" name='email' icon="envelope" group type="email" />
+      <MDBInput label="Subject" name='subject' icon="tag" group type="text" />
       <MDBInput type="textarea" name='message' rows="2" label="Your message" icon="pencil-alt" />
     </div>
   </form>

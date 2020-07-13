@@ -96,7 +96,7 @@ export class Furends extends Component {
         const mapStyles = {
             width: '100%',
             height: '90%',
-            marginTop: '85px',
+            marginTop: '100px',
         };
         const { users } = this.state;
         //console.log({ users });
@@ -118,7 +118,7 @@ export class Furends extends Component {
                     <div className='d-flex flex-row justify-content-between'>
                         <div style={{ width: '500px' }}>
                             <Map
-                                // containerStyle={containerStyle}
+                                containerStyle={containerStyle}
                                 google={this.props.google}
                                 onClick={this.onMapClicked}
                                 onReady={this.fetchPlaces}
@@ -155,7 +155,7 @@ export class Furends extends Component {
                             <div style={{ paddingLeft: '120px' }}>
                                 <SearchPage />
                             </div>
-                            <div className='scrollbar scrollbar-primary'>
+                            <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
                                 {/* Have default Dogs show here. Based on zip or city */}
                                 <DogSearch />
                                 <DogSearch />

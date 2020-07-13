@@ -56,24 +56,24 @@ class Friend extends Component {
     console.log(this.props.location.pathname.slice(8));
     let friend = this.props.location.pathname.slice(8);
     // if (user) {
-      // console.log(user)
-      // User is signed in.
-      db.collection("Dogs")
-        // .where('dogName', '==', friend)
-        .where('zipcode', '==', friend)
-        .get()
-        .then(function (querySnapshot) {
-          console.log(querySnapshot)
-          let data = [];
-          querySnapshot.forEach(function (doc) {
-            data.push(doc.data());
-          })
-          console.log(data)
-          currDog.setState({
-            dogData: data,
-            user: user
-          })
+    // console.log(user)
+    // User is signed in.
+    db.collection("Dogs")
+      // .where('dogName', '==', friend)
+      .where('zipcode', '==', friend)
+      .get()
+      .then(function (querySnapshot) {
+        console.log(querySnapshot)
+        let data = [];
+        querySnapshot.forEach(function (doc) {
+          data.push(doc.data());
         })
+        console.log(data)
+        currDog.setState({
+          dogData: data,
+          user: user
+        })
+      })
     // } else {
     //   alert('Please log-in or create an account.');
     // }
@@ -88,17 +88,18 @@ class Friend extends Component {
     if (userID) {
       db.collection("Messages").doc()
         .set({
-            members: [userID, dog.ownerId],
-            messages: [
-                {
-                    sender: `${userName}`,
-                    timeStamp: Date.now(),
-                    message: `${userName} wants to chat`
-                }
-            ]
+          members: [userID, dog.ownerId],
+          userNames: [userName, dog.dogName],  // dog.dogName should change to dog owners username once username is saved in dogs profile
+          messages: [
+            {
+              sender: `${userName}`,
+              timeStamp: Date.now(),
+              message: `${userName} wants to chat`
+            }
+          ]
         })
-        // return <Redirect to='/messages' />
-    } 
+      // return <Redirect to='/messages' />
+    }
   }
 
   toggle = item => {
@@ -199,144 +200,144 @@ class Friend extends Component {
             {this.renderModal('submit')}
 
             <MDBContainer fluid>
-            { this.state.dogData && this.state.dogData.map(dog => {
-              return (
-                <div>
-                  <MDBRow>
-                    <MDBCol lg='4' md='12'>
-                      <MDBCard className='profile-card text-center mb-4'>
-                        <MDBAvatar
-                          tag='img'
-                          alt='Rottweiler dog photo'
-                          width='400'
-                          src={Ike}
-                          className='rounded-circle z-depth-1-half mb-4'
-                        />
-                        <MDBCardBody>
-                          <MDBCardTitle>
-                            <strong>{dog.dogName}</strong>
-                          </MDBCardTitle>
-                          <p className='card-text mt-3'>
-                            <b>Breed: </b>{dog.breed}
-                          </p>
-                          <p className='card-text mt-3'>
-                            <b>Bio: </b>{dog.bio}
-                          </p>
-                          <p className='dark-grey-text'>{dog.city}, {dog.userState}</p>
-                          
-                          <p className='card-text mt-3'>
-                          <MDBBtn floating tag='a' className='morpheus-den-gradient'>
-                            <MDBIcon fab icon='facebook' className='white-text' />
-                          </MDBBtn>
-                          <MDBBtn floating tag='a' className='young-passion-gradient'>
-                            <MDBIcon fab icon='instagram' className='white-text' />
-                          </MDBBtn>
-                          </p>
-                          {/* <MDBCard className='mb-4'>
+              {this.state.dogData && this.state.dogData.map(dog => {
+                return (
+                  <div>
+                    <MDBRow>
+                      <MDBCol lg='4' md='12'>
+                        <MDBCard className='profile-card text-center mb-4'>
+                          <MDBAvatar
+                            tag='img'
+                            alt='Rottweiler dog photo'
+                            width='400'
+                            src={Ike}
+                            className='rounded-circle z-depth-1-half mb-4'
+                          />
+                          <MDBCardBody>
+                            <MDBCardTitle>
+                              <strong>{dog.dogName}</strong>
+                            </MDBCardTitle>
+                            <p className='card-text mt-3'>
+                              <b>Breed: </b>{dog.breed}
+                            </p>
+                            <p className='card-text mt-3'>
+                              <b>Bio: </b>{dog.bio}
+                            </p>
+                            <p className='dark-grey-text'>{dog.city}, {dog.userState}</p>
+
+                            <p className='card-text mt-3'>
+                              <MDBBtn floating tag='a' className='morpheus-den-gradient'>
+                                <MDBIcon fab icon='facebook' className='white-text' />
+                              </MDBBtn>
+                              <MDBBtn floating tag='a' className='young-passion-gradient'>
+                                <MDBIcon fab icon='instagram' className='white-text' />
+                              </MDBBtn>
+                            </p>
+                            {/* <MDBCard className='mb-4'>
                         <MDBCardBody className='text-center'> */}
-                          <h5>
-                            <strong>{dog.dogName}'s Badges</strong>
-                          </h5>
-                          <hr className='my-3' />
-                          <MDBBtn
-                            color='light-blue'
-                            size='sm'
-                            rounded
-                            className='px-3'
-                            onClick={() => this.toggle('bootstrap')}
-                          >
-                            Neutered | Spayed: {dog.spayNeut}
-                      </MDBBtn>
-                          <MDBBtn
-                            color='blue-grey'
-                            size='sm'
-                            rounded
-                            className='px-3'
-                            onClick={() => this.toggle('wordpress')}
-                          >
-                            {dog.temperament}
-                      </MDBBtn>
-                          <MDBBtn
-                            size='sm'
-                            rounded
-                            className='px-3'
-                            onClick={() => this.toggle('angular')}
-                          >
-                            Has Vaccines: {dog.vaccines}
-                      </MDBBtn>
-                          <MDBBtn
-                            color='secondary'
-                            size='sm'
-                            rounded
-                            className='px-3'
-                            onClick={() => this.toggle('mdb')}
-                          >
-                            {dog.size}
-                      </MDBBtn>
-                          <MDBBtn
-                            color='deep-purple'
-                            size='sm'
-                            rounded
-                            className='px-3'
-                            onClick={() => this.toggle('community')}
-                          >
-                            {dog.breed}
-                      </MDBBtn>
-                          <MDBBtn
-                            color='indigo'
-                            size='sm'
-                            rounded
-                            className='px-3'
-                            onClick={() => this.toggle('pro')}
-                          >
-                            {dog.city}
-                      </MDBBtn>
-                        {/* </MDBCardBody>
+                            <h5>
+                              <strong>{dog.dogName}'s Badges</strong>
+                            </h5>
+                            <hr className='my-3' />
+                            <MDBBtn
+                              color='light-blue'
+                              size='sm'
+                              rounded
+                              className='px-3'
+                              onClick={() => this.toggle('bootstrap')}
+                            >
+                              Neutered | Spayed: {dog.spayNeut}
+                            </MDBBtn>
+                            <MDBBtn
+                              color='blue-grey'
+                              size='sm'
+                              rounded
+                              className='px-3'
+                              onClick={() => this.toggle('wordpress')}
+                            >
+                              {dog.temperament}
+                            </MDBBtn>
+                            <MDBBtn
+                              size='sm'
+                              rounded
+                              className='px-3'
+                              onClick={() => this.toggle('angular')}
+                            >
+                              Has Vaccines: {dog.vaccines}
+                            </MDBBtn>
+                            <MDBBtn
+                              color='secondary'
+                              size='sm'
+                              rounded
+                              className='px-3'
+                              onClick={() => this.toggle('mdb')}
+                            >
+                              {dog.size}
+                            </MDBBtn>
+                            <MDBBtn
+                              color='deep-purple'
+                              size='sm'
+                              rounded
+                              className='px-3'
+                              onClick={() => this.toggle('community')}
+                            >
+                              {dog.breed}
+                            </MDBBtn>
+                            <MDBBtn
+                              color='indigo'
+                              size='sm'
+                              rounded
+                              className='px-3'
+                              onClick={() => this.toggle('pro')}
+                            >
+                              {dog.city}
+                            </MDBBtn>
+                            {/* </MDBCardBody>
                       </MDBCard> */}
-                        </MDBCardBody>
-                        <MDBCardFooter>
-                        <MDBBtn
-                            className='purple-gradient'
-                            size='sm'
-                            rounded
-                            href='/editprofile'
-                          >
-                            Edit Profile
+                          </MDBCardBody>
+                          <MDBCardFooter>
+                            <MDBBtn
+                              className='purple-gradient'
+                              size='sm'
+                              rounded
+                              href='/editprofile'
+                            >
+                              Edit Profile
                         </MDBBtn>
-                          <MDBBtn
-                            className='blue-gradient'
-                            size='sm'
-                            rounded
-                            href='/messages'
-                          >
-                            Request PlayDate
+                            <MDBBtn
+                              className='blue-gradient'
+                              size='sm'
+                              rounded
+                              href='/messages'
+                            >
+                              Request PlayDate
                         </MDBBtn>
-                          <MDBBtn
-                            className='peach-gradient'
-                            size='sm'
-                            rounded
-                            href='#!'
-                          >
-                            Follow {dog.dogName}
-                        </MDBBtn>
-                        <MDBBtn
-                            className='peach-gradient'
-                            size='sm'
-                            rounded
-                            onClick={() => this.letsChat(dog)}
+                            <MDBBtn
+                              className='peach-gradient'
+                              size='sm'
+                              rounded
+                              href='#!'
+                            >
+                              Follow {dog.dogName}
+                            </MDBBtn>
+                            <MDBBtn
+                              className='peach-gradient'
+                              size='sm'
+                              rounded
+                              onClick={() => this.letsChat(dog)}
                             // href='/messages'
-                          >
-                            Chat
+                            >
+                              Chat
                         </MDBBtn>
-                        </MDBCardFooter>
-                      </MDBCard>
-                    </MDBCol>
-                  </MDBRow>
-                </div>
-              )
+                          </MDBCardFooter>
+                        </MDBCard>
+                      </MDBCol>
+                    </MDBRow>
+                  </div>
+                )
               })
-            }
-            <MDBPagination circle className='my-4 float-right'>
+              }
+              <MDBPagination circle className='my-4 float-right'>
                 <li className='page-item disabled clearfix d-none d-md-block'>
                   <a className='page-link' href='#!'>
                     First

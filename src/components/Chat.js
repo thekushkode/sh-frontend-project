@@ -131,7 +131,9 @@ const Chat = () => {
 
   const ROOT_CSS = css({
     height: 600,
-    width: 600
+    width: 600,
+    marginTop: 40,
+    overflowX: 'hidden',
   });
 
   return (
@@ -187,9 +189,10 @@ const Chat = () => {
             </MDBCol>
 
             <MDBCol lg='8' className='mt-lg-0 mt-5'>
-              <div className='border border-dark py-4'>
-                <ScrollToBottom className={ROOT_CSS}>
-                  <MessagesWindow />
+              {/* <div className='border border-dark py-4'> */}
+              <div className='py-4'>
+                <ScrollToBottom className={ROOT_CSS} style={{ overflowX: "hidden" }}>
+                  <MessagesWindow style={{ overflowX: "hidden" }} />
                 </ScrollToBottom>
                 {/* <div className='text-center'>
                   <small>16 July, 23:54</small>
@@ -257,22 +260,35 @@ const Chat = () => {
               <div className='row'>
                 <div className='col-md-12'>
                   <div className='d-flex flex-row'>
-                    <form onSubmit={(e) => submitMessage(e)}>
+                    <form onSubmit={(e) => submitMessage(e)}
+                      style={{
+                        display: 'flex',
+                      }}>
                       <input
                         type='input'
                         containerClass='chat-message-type'
                         label='Type your message'
                         rows='1'
-                        style={{ width: 200 }}
+                        style={{
+                          marginLeft: '40px',
+                          marginTop: '8px',
+                          width: 450,
+                          height: 37,
+                          borderRadius: "20px",
+                          border: '2px solid #dddddd',
+                        }}
                         value={chatInput}
                         onChange={(e) => changeInput(e.target.value)}
                       // onKeyPress={(e) => enterKey(e.target)}
                       />
-                      <div className='mt-5'>
+                      <div className=''>
                         <button
-                          className='btn btn-primary btn-lg waves-effect waves-light'
+                          className='btn btn-primary btn-md rounded-pill waves-effect waves-light'
                           htmlType='submit'
                           href="#!"
+                          style={{
+                            display: 'flex',
+                          }}
                         // onClick={(e) => submitMessage(e)}
                         >
                           Send
@@ -291,7 +307,7 @@ const Chat = () => {
       <footer>
         <FooterPage />
       </footer>
-    </div>
+    </div >
   );
 };
 

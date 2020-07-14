@@ -1,23 +1,3 @@
-// getDogData = () => {
-//   let user = firebase.auth().currentUser;
-//   if (user) {
-//     if (this.props.match.params.dogId) {
-//       console.log(this.props.match.params.dogId)
-//       db.collection("Dogs")
-//         .doc(this.props.match.params.dogId)
-//         .get()
-//         .then(this.storeDogData)
-//     } else {
-//       console.log(user)
-//       // User is signed in.
-//       db.collection("Dogs")
-//         .where('ownerId', '==', user.uid)
-//         .get()
-//         .then(this.storeDogData)
-//     }
-//   } 
-// }
-
 import React, { Component } from 'react';
 import {
   MDBContainer,
@@ -171,10 +151,14 @@ class DogProfile extends Component {
                   <MDBCard className='profile-card text-center mb-4'>
                     <MDBAvatar
                       tag='img'
-                      alt='Rottweiler dog photo'
-                      // width='400'
-                      src={Ike}
-                      className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
+                      alt='Dog photo'
+                      width='400'
+                      style={{ margin: '0 auto' }}
+                      src={this.state.dogData.avatar}
+                      className='rounded-circle z-depth-1-half mb-4 mt-3'
+
+                      //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
+
                     />
                     <MDBDropdown>
                       <MDBDropdownToggle caret color="primary">
@@ -204,6 +188,11 @@ class DogProfile extends Component {
                       <MDBBtn floating tag='a' className='young-passion-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
+                      
+                      <p className='card-text mt-3'>
+                        Bio: {this.state.dogData.bio}
+                      </p>
+
                       <MDBBtn
                         className='purple-gradient'
                         size='sm'

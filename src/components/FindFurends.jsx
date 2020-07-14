@@ -224,7 +224,7 @@ export class Furends extends Component {
                                                             <p className='card-text mt-3'>
                                                                 <b>Breed: </b>{dog.breed}
                                                             </p>
-                                                            
+                                                            <Button href={`/profile/${dog.dogName}`}>Profile</Button>
                                                         </MDBCardBody>
                                                     </MDBCard>
                                                 </MDBCol>

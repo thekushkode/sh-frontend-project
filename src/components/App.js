@@ -29,7 +29,7 @@ import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
 import SpinnerPage from './Spinner';
 import Notification from './Notification';
-import UserProfile from './GuestProfile';
+import UserProfile from './PublicProfile';
 
 function App() {
   let db = firebase.firestore();

@@ -155,14 +155,15 @@ class DogProfile extends Component {
                       <MDBBtn floating tag='a' className='young-passion-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
-                      <MDBBtn
+                      <Link to="/editprofile"><MDBBtn
                         className='purple-gradient'
                         size='sm'
                         rounded
-                        href='/editprofile'
+                      
+                        // href='/editprofile'
                       >
                         Edit Profile
-                    </MDBBtn>
+                    </MDBBtn></Link>
                       <MDBBtn
                         className='blue-gradient'
                         size='sm'

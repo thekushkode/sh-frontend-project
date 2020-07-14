@@ -6,6 +6,7 @@ import {
   MDBCard,
   MDBCardTitle,
   MDBCardBody,
+  MDBCardFooter,
   MDBIcon,
   MDBBadge,
   MDBAvatar,
@@ -17,8 +18,8 @@ import FooterPage from './Footer';
 import firebase from '../firebase';
 import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
-
-
+import GoOutside from './GoOutside';
+import { Link } from 'react-router-dom'
 
 class PExtended extends Component {
   constructor(props) {
@@ -26,13 +27,11 @@ class PExtended extends Component {
     this.state = {
       submit: false,
       user: '',
-      dogData: {},
+      dogData: [],
       postValue: '',
       imgValue: ''
     };
   }
-
-
 
   componentDidMount() {
     const db = firebase.firestore();
@@ -45,19 +44,22 @@ class PExtended extends Component {
         .where('ownerId', '==', user.uid)
         .get()
         .then(function (querySnapshot) {
-          let data;
+          console.log(querySnapshot)
+          let data = [];
           querySnapshot.forEach(function (doc) {
-            data = doc.data();
-            console.log(data)
-            currDog.setState({
-              dogData: data,
-              user: user
-            })
+            const dogData = {
+              ...doc.data(),
+              dogId: doc.id
+            }
+            data.push(dogData);
+          })
+          console.log(data)
+          currDog.setState({
+            dogData: data,
+            user: user
           })
         })
-    } else {
-      alert('Please log-in or create an account.');
-    }
+    } 
   }
 
   handleChange = (e) => {
@@ -95,6 +97,20 @@ class PExtended extends Component {
         <main>
 
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
+
+            <div>
+              {this.state.dogData.length >= 1 && <h3>Select your doggo, {this.state.user.displayName}</h3>}
+              <ul>
+                {this.state.dogData && this.state.dogData.map((dog, index) => {
+                  console.log(dog)
+                  return (
+                    <li><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></li>
+                  )
+                })
+                }
+              </ul>
+            </div>
+
 
             <MDBContainer fluid>
               <MDBRow>
@@ -158,53 +174,59 @@ class PExtended extends Component {
 
                       <hr className='my-3' />
 
-                      <MDBBtn
-                        color='light-blue'
-                        size='sm'
-                        rounded
-                        className='px-3'
-                      >
-                        Neutered | Spayed: {this.state.dogData.spayNeut}
-                      </MDBBtn>
-                      <MDBBtn
-                        color='blue-grey'
-                        size='sm'
-                        rounded
-                        className='px-3'
-                      >
-                        {this.state.dogData.temperament}
-                      </MDBBtn>
-                      <MDBBtn
-                        size='sm'
-                        rounded
-                        className='px-3'
-                      >
-                        Has Vaccines: {this.state.dogData.vaccines}
-                      </MDBBtn>
-                      <MDBBtn
-                        color='secondary'
-                        size='sm'
-                        rounded
-                        className='px-3'
-                      >
-                        {this.state.dogData.size}
-                      </MDBBtn>
-                      <MDBBtn
-                        color='deep-purple'
-                        size='sm'
-                        rounded
-                        className='px-3'
-                      >
-                        {this.state.dogData.breed}
-                      </MDBBtn>
-                      <MDBBtn
-                        color='indigo'
-                        size='sm'
-                        rounded
-                        className='px-3'
-                      >
-                        {this.state.dogData.city}
-                      </MDBBtn>
+                      {this.state.dogData.spayNeut &&
+                        <MDBBtn
+                          color='light-blue'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          Neutered | Spayed: {this.state.dogData.spayNeut}
+                        </MDBBtn>}
+                      {this.state.dogData.temperament &&
+                        <MDBBtn
+                          color='blue-grey'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.temperament}
+                        </MDBBtn>}
+                      {this.state.dogData.vaccines &&
+                        <MDBBtn
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          Has Vaccines: {this.state.dogData.vaccines}
+                        </MDBBtn>}
+                      {this.state.dogData.size &&
+                        <MDBBtn
+                          color='secondary'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.size}
+                        </MDBBtn>}
+                      {this.state.dogData.breed &&
+                        <MDBBtn
+                          color='deep-purple'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.breed}
+                        </MDBBtn>}
+                      {this.state.dogData.city &&
+                        <MDBBtn
+                          color='indigo'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.city}
+                        </MDBBtn>}
                     </MDBCardBody>
                   </MDBCard>
 

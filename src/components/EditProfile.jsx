@@ -24,6 +24,7 @@ import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
 
 const db = firebase.firestore();
+
 function EditProfile(props) {
 
   const history = useHistory();
@@ -46,11 +47,11 @@ function EditProfile(props) {
   const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     if (user && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.id).get()
         .then(querySnapshot => {
-          console.log(querySnapshot);
+          // console.log(querySnapshot);
           let dog = null;
           querySnapshot.forEach(doc => {
             if (!dog) {
@@ -129,7 +130,7 @@ function EditProfile(props) {
                   <div className='admin-up d-flex justify-content-start'>
                     <div className='data'>
                       <h5 className='font-weight-bold dark-grey-text mt-2 ml-2'>
-                        Dog's Profile -{' '}
+                        {/* Dog's Profile -{' '} */}
                         <span className='text-muted'>Complete your profile</span>
                       </h5>
                     </div>
@@ -251,6 +252,6 @@ function EditProfile(props) {
       </footer>
     </div>
   );
-};
+}
 
 export default EditProfile;

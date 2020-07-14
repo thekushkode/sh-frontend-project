@@ -29,6 +29,7 @@ import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
+import Chat from './Chat';
 
 
 
@@ -52,7 +53,6 @@ class Friend extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let currDog = this;
     console.log(this.props.location.pathname.slice(8));
     let friend = this.props.location.pathname.slice(8);
     // if (user) {
@@ -69,7 +69,7 @@ class Friend extends Component {
           data.push(doc.data());
         })
         console.log(data)
-        currDog.setState({
+        this.setState({
           dogData: data,
           user: user
         })
@@ -86,20 +86,23 @@ class Friend extends Component {
     console.log(userID)
     console.log(dog.ownerId)
     if (userID) {
-      db.collection("Messages").doc()
+      return db.collection("Messages").doc()
         .set({
-          members: [userID, dog.ownerId],
-          userNames: [userName, dog.dogName],  // dog.dogName should change to dog owners username once username is saved in dogs profile
-          messages: [
-            {
-              sender: `${userName}`,
-              timeStamp: Date.now(),
-              message: `${userName} wants to chat`
-            }
-          ]
+            members: [userID, dog.ownerId],
+            userNames: [userName, dog.dogName],
+            messages: [
+                {
+                    sender: `${userName}`,
+                    timeStamp: Date.now(),
+                    message: `${userName} wants to chat`
+                }
+            ]
         })
-      // return <Redirect to='/messages' />
-    }
+        .then(() => {
+          this.props.history.push('/messages')
+        })
+        
+    } 
   }
 
   toggle = item => {
@@ -312,22 +315,22 @@ class Friend extends Component {
                             >
                               Request PlayDate
                         </MDBBtn>
-                            <MDBBtn
-                              className='peach-gradient'
-                              size='sm'
-                              rounded
-                              href='#!'
-                            >
-                              Follow {dog.dogName}
-                            </MDBBtn>
-                            <MDBBtn
-                              className='peach-gradient'
-                              size='sm'
-                              rounded
-                              onClick={() => this.letsChat(dog)}
-                            // href='/messages'
-                            >
-                              Chat
+                          <MDBBtn
+                            className='peach-gradient'
+                            size='sm'
+                            rounded
+                            href='#!'
+                          >
+                            Follow {dog.dogName}
+                        </MDBBtn>
+                        <MDBBtn
+                            className='peach-gradient'
+                            size='sm'
+                            rounded
+                            onClick={() => this.letsChat(dog)}
+                            // href='http://localhost:3000/messages'
+                          >
+                            Chat
                         </MDBBtn>
                           </MDBCardFooter>
                         </MDBCard>

@@ -24,6 +24,7 @@ import NavbarPage from './Nav';
 import NotLogged from './NotLogged';
 import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
+import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
 
 
@@ -94,7 +95,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           {currUser ? <NavbarPage /> : <NotLogged />}
-
+          {/* <NavbarPage /> */}
 
         </header>
         <Switch>
@@ -115,7 +116,8 @@ function App() {
           <Route exact path='/thankyou' component={ThankYou} />
           <Route exact path='/messagestest' component={MessagesPage} />
           <Route path='/search/' component={Friend} />
-          <Route path='/newchat' component={NewChat} />
+          <Route path='/newchat/' component={NewChat} />
+          <Route exact path='/profile/:dogId' component={DogProfile} />
         </Switch>
       </div>
     </Router>

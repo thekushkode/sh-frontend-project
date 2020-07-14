@@ -29,6 +29,7 @@ import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
 import SpinnerPage from './Spinner';
 import Notification from './Notification';
+import LoadingPage from './LoadingPage';
 
 function App() {
   let db = firebase.firestore();
@@ -111,6 +112,7 @@ function App() {
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
+              <Route exact path='/load' component={LoadingPage} />
               <Route><Redirect to="/" /></Route>
             </Switch>
           </div>
@@ -143,6 +145,7 @@ function App() {
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
+              <Route exact path='/load' component={LoadingPage} />
               <Route path='/search/' component={Friend} />
               <Route path='/newchat/' component={NewChat} />
             </Switch>
@@ -152,7 +155,7 @@ function App() {
     case UNINITIALIZED:
     case AUTHENTICATING:
     default:
-      return <div className='text-center'><SpinnerPage /></div>
+      return <div className='text-center'><LoadingPage /></div>
 //       return <Route exact path='/spin' component={SpinnerPage} />
   }
 }

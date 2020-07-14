@@ -5,6 +5,7 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
+  MDBFileInput,
   MDBContainer,
   MDBAvatar,
   MDBBtn,
@@ -22,6 +23,7 @@ import { useSelector } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
+import UploadFile from './Upload';
 
 const db = firebase.firestore();
 function EditProfile(props) {
@@ -30,7 +32,6 @@ function EditProfile(props) {
   //grabs redux state
   const user = useSelector(state => state.user);
   // const profile = useSelector(state => state.profile);
-  console.log(user);
   const [dogId, setDogId] = useState('');
   const [dogName, setDogName] = useState('');
   const [breed, setBreed] = useState('');
@@ -76,6 +77,10 @@ function EditProfile(props) {
     }
   })
 
+
+
+
+
   const updateProfile = (e) => {
     if (!dogId) {
       db.collection('Dogs').add({
@@ -112,6 +117,7 @@ function EditProfile(props) {
     }
     history.push('/profile');
   }
+
 
 
 
@@ -218,10 +224,17 @@ function EditProfile(props) {
                   <MDBAvatar
                     tag='img'
                     alt='Default Dog Profile Image'
-                    src={Dog}
+                    // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
+                    src={(avatar ? avatar : Dog)}
                     className='rounded-circle z-depth-1-half mb-4'
                   />
-                  <InputPage value={avatar} type='file' onChange={(e) => { setAvatar(e.target.value) }} />
+
+                  <InputPage value={avatar} onUpload={(imgRef) => {
+                    console.log('uploaded', imgRef)
+                    setAvatar(imgRef)
+                  }} />
+
+
                   {/* <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
                       Add Photo
                   </MDBBtn> */}

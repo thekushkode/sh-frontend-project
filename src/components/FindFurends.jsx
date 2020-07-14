@@ -89,7 +89,7 @@ export class Furends extends Component {
     //     //     radius: '50000',
     //     //     query: ['3669 School Street Atlanta, GA 30341'],
     //     //     fields: ['name', 'geometry'],
-    //     // };
+        // };
 
     //     // service.textSearch(request, (results, status) => {
     //     //     if (status === google.maps.places.PlacesServiceStatus.OK) {

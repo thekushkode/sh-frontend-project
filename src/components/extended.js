@@ -36,14 +36,15 @@ class PExtended extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
+    let doggo = this
     if (user) {
-      console.log(user)
+      // console.log(user)
       // User is signed in.
       db.collection("Dogs")
         .where('ownerId', '==', user.uid)
         .get()
         .then(function (querySnapshot) {
-          console.log(querySnapshot)
+          // console.log(querySnapshot)
           let data = [];
           querySnapshot.forEach(function (doc) {
             const dogData = {
@@ -53,7 +54,7 @@ class PExtended extends Component {
             data.push(dogData);
           })
           console.log(data)
-          this.setState({
+          doggo.setState({
             dogData: data,
             user: user
           })
@@ -61,32 +62,32 @@ class PExtended extends Component {
     } 
   }
 
-  // handleChange = (e) => {
-  //   console.log('changed');
-  //   this.setState({
-  //     postValue: e.target.postValue,
-  //     imgValue: e.target.imgValue
-  //   })
-  //   console.log(this.state.postValue);
-  //   console.log(this.state.imgValue);
-  // }
+  handleChange = (e) => {
+    console.log('changed');
+    this.setState({
+      postValue: e.target.postValue,
+      imgValue: e.target.imgValue
+    })
+    console.log(this.state.postValue);
+    console.log(this.state.imgValue);
+  }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('submitted');
-  //   console.log(e.target.postValue);
-  //   this.setState({
-  //     postValue: e.target.postValue,
-  //     imgValue: e.target.imgValue
-  //   });
-  // }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submitted');
+    console.log(e.target.postValue);
+    this.setState({
+      postValue: e.target.postValue,
+      imgValue: e.target.imgValue
+    });
+  }
 
-  // toggle = item => {
-  //   console.log(item);
-  //   this.setState({
-  //     [item]: !this.state[item]
-  //   });
-  // };
+  toggle = item => {
+    console.log(item);
+    this.setState({
+      [item]: !this.state[item]
+    });
+  };
 
   render() {
     console.log('testing')
@@ -96,7 +97,7 @@ class PExtended extends Component {
         </header>
         <main>
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
-            {/* <div>
+            <div>
               {this.state.dogData.length >= 1 && <h3>Select your doggo, {this.state.user.displayName}</h3>}
               <ul>
                 {this.state.dogData.map((dog, index) => {
@@ -106,7 +107,7 @@ class PExtended extends Component {
                 })
                 }
               </ul>
-            </div> */}
+            </div>
 
             <MDBContainer fluid>
               <MDBRow>

@@ -36,20 +36,11 @@ export default function SocialPage2() {
                                     {allFeedContent && allFeedContent.map((item) => {
                                         switch (item.Type) {
                                             case 'Post':
-                                                return (
-                                                    <Post data={item} />
-                                                )
-                                                break;
+                                                return <Post data={item} />
                                             case 'Friend':
-                                                return (
-                                                    <FriendPost data={item} />
-                                                )
-                                                break;
+                                                return <FriendPost data={item} />
                                             case 'Photo':
-                                            return (
-                                                <PhotoPost data={item} />
-                                                )
-                                                break;
+                                                return <PhotoPost data={item} />
                                             default:
                                                 break;
                                         }

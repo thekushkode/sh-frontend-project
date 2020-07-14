@@ -16,7 +16,7 @@ export default function PhotoPost(props) {
           <a href="#!" className="name">
             {props.data.Sender}</a> added 
           <a href="#!">2 new photos</a>
-          <div className="date">{props.data.timestamp}</div>
+          <div className="date">{props.data.timestamp.toString()}</div>
         </div>
         <div className="added-images">
           <img

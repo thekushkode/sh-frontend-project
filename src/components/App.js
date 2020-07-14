@@ -29,8 +29,8 @@ import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
 import SpinnerPage from './Spinner';
 import Notification from './Notification';
+import UserProfile from './PublicProfile';
 import LoadingPage from './LoadingPage';
-import UserProfile from './GuestProfile';
 
 function App() {
   let db = firebase.firestore();

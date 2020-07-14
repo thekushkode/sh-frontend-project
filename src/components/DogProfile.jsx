@@ -42,7 +42,7 @@ class DogProfile extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let doggo = this;
+    // let doggo = this;
     if (user) {
       if (this.props.match.params.dogId) {
         console.log(this.props.match.params.dogId)
@@ -64,7 +64,7 @@ class DogProfile extends Component {
         db.collection("Dogs")
           .where('ownerId', '==', user.uid)
           .get()
-          .then(function (querySnapshot) {
+          .then(querySnapshot => {
             // console.log(querySnapshot)
             let data = [];
             querySnapshot.forEach(function (doc) {
@@ -76,7 +76,7 @@ class DogProfile extends Component {
             })
             console.log(data)
 
-            doggo.setState({
+            this.setState({
               allDogData: data,
               user: user
             })
@@ -85,14 +85,42 @@ class DogProfile extends Component {
     }
   }
 
-  componentDidUpdate() {
-    let user = firebase.auth().currentUser;
+  // componentDidUpdate() {
+  //   let user = firebase.auth().currentUser;
+  //   const db = firebase.firestore();
+  //   if (user) {
+  //     if (this.props.match.params.dogId) {
+  //       console.log(this.props.match.params.dogId)
+  //       db.collection("Dogs")
+  //         .doc(this.props.match.params.dogId)
+  //         .get()
+  //         .then(doc => {
+  //           // let data = [];
+  //           const dogData = {
+  //             ...doc.data(),
+  //             dogId: doc.id
+  //           }
+  //           // data.push(dogData)
+  //           this.setState({
+  //             dogData: dogData,
+  //             user: user
+  //           })
+  //         })
+  //     }
+  //   }
+  // }
+
+  handleClick = (id) => (e) => {
     const db = firebase.firestore();
-    if (user) {
-      if (this.props.match.params.dogId) {
-        console.log(this.props.match.params.dogId)
+    // if (this.props.match.params.dogId) {
+      console.log(id)
+      console.log(this.state.dogData.dogId)
+      // let newDog = id
+      // let currDog = this.state.dogData.dogId
+      // if (newDog !== currDog) {
         db.collection("Dogs")
-          .doc(this.props.match.params.dogId)
+          // .doc(this.props.match.params.dogId)
+          .doc(id)
           .get()
           .then(doc => {
             // let data = [];
@@ -102,12 +130,11 @@ class DogProfile extends Component {
             }
             // data.push(dogData)
             this.setState({
-              dogData: dogData,
-              user: user
+              dogData: dogData
             })
           })
-      }
-    }
+      // }
+    // }
   }
 
   handleChange = (e) => {
@@ -167,7 +194,7 @@ class DogProfile extends Component {
                       <MDBDropdownMenu basic >
                         {this.state.allDogData && this.state.allDogData.map((dog, index) => {
                           return (
-                            <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></MDBDropdownItem>
+                            <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index} onClick={this.handleClick(dog.dogId)}>{dog.dogName}</Link></MDBDropdownItem>
                           )
                         })}
                         < MDBDropdownItem divider />
@@ -180,7 +207,7 @@ class DogProfile extends Component {
                       </MDBCardTitle>
                       <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
                       <h5>
-                        {this.state.dogData.bio}
+                        Bio: {this.state.dogData.bio}
                       </h5>
                       <MDBBtn floating tag='a' className='morpheus-den-gradient'>
                         <MDBIcon fab icon='facebook' className='white-text' />
@@ -188,19 +215,13 @@ class DogProfile extends Component {
                       <MDBBtn floating tag='a' className='young-passion-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
-                      
-                      <p className='card-text mt-3'>
-                        Bio: {this.state.dogData.bio}
-                      </p>
-
-                      <MDBBtn
+                      <Link to="/editprofile"><MDBBtn
                         className='purple-gradient'
                         size='sm'
                         rounded
-                        href='/editprofile'
                       >
                         Edit Profile
-                    </MDBBtn>
+                    </MDBBtn></Link>
                       <MDBBtn
                         className='blue-gradient'
                         size='sm'

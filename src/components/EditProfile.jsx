@@ -12,7 +12,8 @@ import {
   MDBSelect,
   MDBSelectOption,
   MDBSelectOptions,
-  MDBSelectInput
+  MDBSelectInput,
+  Link
 } from 'mdbreact';
 import './EditProfile.css';
 import Dog from './images/avatar.png';
@@ -140,11 +141,8 @@ function EditProfile(props) {
       }, { merge: true })
       console.log(avatar);
     }
-    history.push('/profile');
+    history.push(`/profile/${props.match.params.dogId}`);
   }
-
-
-
 
   return (
     <div>
@@ -239,7 +237,7 @@ function EditProfile(props) {
                       </MDBCol>
                     </MDBRow>
                     <MDBBtn color='info' rounded onClick={updateProfile}>
-                      Save
+                      <Link to={`/profile/${dogId}`}>Save</Link>
                   </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>

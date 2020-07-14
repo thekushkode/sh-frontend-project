@@ -29,6 +29,7 @@ import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
 import SpinnerPage from './Spinner';
 import Notification from './Notification';
+import UserProfile from './GuestProfile';
 
 function App() {
   let db = firebase.firestore();
@@ -143,8 +144,9 @@ function App() {
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
-              <Route path='/search/' component={Friend} />
+              <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
+              <Route><Redirect to="/profile" /></Route>
             </Switch>
           </div>
         </Router>

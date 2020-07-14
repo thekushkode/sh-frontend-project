@@ -26,6 +26,8 @@ import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
 import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
+import SpinnerPage from './Spinner';
+import Notification from './Notification';
 
 
 
@@ -118,6 +120,8 @@ function App() {
           <Route path='/search/' component={Friend} />
           <Route path='/newchat/' component={NewChat} />
           <Route exact path='/profile/:dogId' component={DogProfile} />
+          <Route exact path='/spin' component={SpinnerPage} />
+          <Route exact path='/notify' component={Notification} />
         </Switch>
       </div>
     </Router>

@@ -15,8 +15,8 @@ export default function Post(props) {
                 <div className="brief">
                     <a href="#!" className="name">
                         {props.data.Sender}
-                    </a> posted on her page
-                    <div className="date">{props.data.timestamp}</div>
+                    </a> posted on their page
+                    <div className="date">{props.data.timestamp.toString()}</div>
                 </div>
                 <div className="added-text">
                     {props.data.Content}

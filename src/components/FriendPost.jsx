@@ -10,7 +10,7 @@ export default function FriendPost(props) {
       <div className="excerpt">
         <div className="brief">
           <div><a href="#!" className="name">{props.data.Sender}</a> added you as a friend</div>
-          <div className="date">{props.data.timestamp}</div>
+          <div className="date">{props.data.timestamp.toString()}</div>
         </div>
         <div className="feed-footer">
           <a href="#!" className="like">

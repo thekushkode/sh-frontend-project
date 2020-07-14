@@ -27,15 +27,14 @@ export class Furends extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            // users: [],
+            users: [],
             location: '',
             dogData: []
         }
     }
 
     handleChange = (e) => {
-        console.log('hello world')
-        console.log(e.target.value)
+        // console.log(e.target.value)
         this.setState({
             location: e.target.value
         })
@@ -46,6 +45,7 @@ export class Furends extends Component {
 
         // let friend = this.props.location.pathname.slice(8);
         let friend = this.state.location
+        let doggo = this
         // if (user) {
         // console.log(user)
         // User is signed in.
@@ -57,10 +57,14 @@ export class Furends extends Component {
                 console.log(querySnapshot)
                 let data = [];
                 querySnapshot.forEach(function (doc) {
-                    data.push(doc.data());
+                    const dogData = {
+                        ...doc.data(),
+                        dogId: doc.id
+                    }
+                    data.push(dogData);
                 })
                 console.log(data)
-                this.setState({
+                doggo.setState({
                     location: '',
                     dogData: data
                 })
@@ -224,7 +228,7 @@ export class Furends extends Component {
                                                             <p className='card-text mt-3'>
                                                                 <b>Breed: </b>{dog.breed}
                                                             </p>
-                                                            <Button href={`/profile/${dog.dogName}`}>Profile</Button>
+                                                            <Button href={`/profile/${dog.dogId}`}>Profile</Button>
                                                         </MDBCardBody>
                                                     </MDBCard>
                                                 </MDBCol>

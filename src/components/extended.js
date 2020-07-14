@@ -36,15 +36,15 @@ class PExtended extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let currDog = this;
+    let doggo = this
     if (user) {
-      console.log(user)
+      // console.log(user)
       // User is signed in.
       db.collection("Dogs")
         .where('ownerId', '==', user.uid)
         .get()
         .then(function (querySnapshot) {
-          console.log(querySnapshot)
+          // console.log(querySnapshot)
           let data = [];
           querySnapshot.forEach(function (doc) {
             const dogData = {
@@ -54,7 +54,7 @@ class PExtended extends Component {
             data.push(dogData);
           })
           console.log(data)
-          currDog.setState({
+          doggo.setState({
             dogData: data,
             user: user
           })
@@ -90,19 +90,17 @@ class PExtended extends Component {
   };
 
   render() {
+    console.log('testing')
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
-
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
-
             <div>
               {this.state.dogData.length >= 1 && <h3>Select your doggo, {this.state.user.displayName}</h3>}
               <ul>
-                {this.state.dogData && this.state.dogData.map((dog, index) => {
-                  console.log(dog)
+                {this.state.dogData.map((dog, index) => {
                   return (
                     <li><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></li>
                   )
@@ -110,7 +108,6 @@ class PExtended extends Component {
                 }
               </ul>
             </div>
-
 
             <MDBContainer fluid>
               <MDBRow>
@@ -546,9 +543,9 @@ class PExtended extends Component {
             </MDBContainer>
           </div>
         </main>
-        <footer>
+        {/* <footer>
           <FooterPage />
-        </footer>
+        </footer> */}
       </div>
     );
   }

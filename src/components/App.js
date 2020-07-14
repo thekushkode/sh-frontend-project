@@ -129,7 +129,6 @@ function App() {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/messages' component={Chat} />
-              <Route exact path='/profile' component={PExtended} />
               <Route exact path='/about' component={About} />
               <Route exact path='/outside' component={GMap} />
               <Route exact path='/furends' component={Furends} />
@@ -145,7 +144,6 @@ function App() {
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route path='/user/:dogId' component={UserProfile} />
-
               <Route path='/newchat/' component={NewChat} />
               <Route><Redirect to="/profile" /></Route>
             </Switch>

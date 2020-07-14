@@ -10,14 +10,12 @@ import {
   MDBInput,
   MDBListGroup,
   MDBListGroupItem,
-  MDBBadge,
   MDBAvatar
 } from 'mdbreact';
 
 import firebase from '../firebase';
 import ChatListItem from './messages/ChatListItem'
 import './Chat.css';
-import NavbarPage from './Nav';
 import FooterPage from './Footer';
 import MessagesWindow from './messages/MessagesWindow';
 import { loadMessages, setProfile } from '../redux/actions/index.js'

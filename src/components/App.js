@@ -27,6 +27,8 @@ import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
 import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
+import SpinnerPage from './Spinner';
+import Notification from './Notification';
 
 function App() {
   let db = firebase.firestore();
@@ -107,6 +109,8 @@ function App() {
               <Route exact path='/privacy' component={Privacy} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/thankyou' component={ThankYou} />
+              <Route exact path='/spin' component={SpinnerPage} />
+              <Route exact path='/notify' component={Notification} />
               <Route><Redirect to="/" /></Route>
             </Switch>
           </div>
@@ -137,6 +141,8 @@ function App() {
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
+              <Route exact path='/spin' component={SpinnerPage} />
+              <Route exact path='/notify' component={Notification} />
               <Route path='/search/' component={Friend} />
               <Route path='/newchat/' component={NewChat} />
             </Switch>
@@ -147,6 +153,7 @@ function App() {
     case AUTHENTICATING:
     default:
       return <div>Loading</div>
+//       return <Route exact path='/spin' component={SpinnerPage} />
   }
 }
 

@@ -7,9 +7,9 @@ const FooterPage = () => {
             <MDBContainer fluid className="text-center text-md-left">
                 <MDBRow>
                     <MDBCol md="6">
-                        <h5 className="title">Social Hound</h5>
+                        <h5 className="title">SocialHound</h5>
                         <p>
-                            The worlds first social network for dogs!
+                            The World's First Social Network for Dogs!
                         </p>
                         <MDBContainer>
                             <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' size="lg" tag="a" floating social="fb">

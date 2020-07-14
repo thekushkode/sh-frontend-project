@@ -29,6 +29,8 @@ import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
 import SpinnerPage from './Spinner';
 import Notification from './Notification';
+import LoadingPage from './LoadingPage';
+import UserProfile from './GuestProfile';
 
 function App() {
   let db = firebase.firestore();
@@ -111,6 +113,7 @@ function App() {
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
+              <Route exact path='/load' component={LoadingPage} />
               <Route><Redirect to="/" /></Route>
             </Switch>
           </div>
@@ -133,7 +136,7 @@ function App() {
               <Route exact path='/petcare' component={DayCare} />
               <Route exact path='/vets' component={VetMap} />
               <Route exact path='/contact' component={ContactPage} />
-              <Route exact path='/feed2' component={SocialPage2} />
+              <Route exact path='/feed' component={SocialPage2} />
               <Route exact path='/editprofile' component={EditProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
@@ -141,10 +144,10 @@ function App() {
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
-              <Route exact path='/spin' component={SpinnerPage} />
-              <Route exact path='/notify' component={Notification} />
-              <Route path='/search/' component={Friend} />
+              <Route path='/user/:dogId' component={UserProfile} />
+
               <Route path='/newchat/' component={NewChat} />
+              <Route><Redirect to="/profile" /></Route>
             </Switch>
           </div>
         </Router>
@@ -152,7 +155,7 @@ function App() {
     case UNINITIALIZED:
     case AUTHENTICATING:
     default:
-      return <div>Loading</div>
+      return <div className='text-center'><LoadingPage /></div>
 //       return <Route exact path='/spin' component={SpinnerPage} />
   }
 }

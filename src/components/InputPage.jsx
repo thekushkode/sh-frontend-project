@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { MDBFileInput } from "mdbreact";
 import firebase from '../firebase';
+import SpinnerPage from "./Spinner";
 
 const db = firebase.firestore();
 
@@ -64,7 +65,7 @@ function InputPage(props) {
     return (
         <>
             <MDBFileInput {...props} type='file' getValue={imgUpload} />
-            {loading && 'image uploading'}
+            {loading && <SpinnerPage />}
         </>
     );
 

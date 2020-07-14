@@ -116,17 +116,18 @@ class PExtended extends Component {
                     <MDBAvatar
                       tag='img'
                       alt='Rottweiler dog photo'
-                      width='400'
+                      // width='20%'
                       src={Ike}
-                      className='rounded-circle z-depth-1-half mb-4'
+                      className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
                     />
                     <MDBCardBody>
                       <MDBCardTitle>
                         <strong>{this.state.dogData.dogName}</strong>
                       </MDBCardTitle>
+                      <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
                       <h5>
-                        Chief Executive Log Lifter
-                    </h5>
+                        {this.state.dogData.bio}
+                      </h5>
                       <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
                       <MDBBtn floating tag='a' className='morpheus-den-gradient'>
                         <MDBIcon fab icon='facebook' className='white-text' />

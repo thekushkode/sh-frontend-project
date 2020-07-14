@@ -55,6 +55,7 @@ class Friend extends Component {
     let user = firebase.auth().currentUser;
     console.log(this.props.location.pathname.slice(8));
     let friend = this.props.location.pathname.slice(8);
+    let doggo = this
     // if (user) {
     // console.log(user)
     // User is signed in.
@@ -69,7 +70,7 @@ class Friend extends Component {
           data.push(doc.data());
         })
         console.log(data)
-        this.setState({
+        doggo.setState({
           dogData: data,
           user: user
         })

@@ -9,7 +9,7 @@ import { Redirect } from 'react-router-dom';
 
 class NavbarPage extends Component {
     state = {
-        isOpen: true,
+        isOpen: false,
         redirect: false
     };
 

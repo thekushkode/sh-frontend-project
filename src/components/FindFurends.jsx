@@ -6,7 +6,7 @@ import { connect, useDispatch, useSelector } from 'react-redux'; //could import 
 import { setUser, unSetUser, setProfile } from '../redux/actions';
 import firebase from '../firebase';
 import AddressMarker from './AddressMarker';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar, MDBFormInline, Button, MDBCardTitle, MDBAvatar } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar, MDBFormInline, Button, MDBCardTitle, MDBAvatar, MDBView, MDBMask } from "mdbreact";
 import SearchPage from './SearchBar';
 import DogSearch from './DogSearch';
 import './DogSearch.css';
@@ -93,7 +93,7 @@ export class Furends extends Component {
     //     //     radius: '50000',
     //     //     query: ['3669 School Street Atlanta, GA 30341'],
     //     //     fields: ['name', 'geometry'],
-        // };
+    // };
 
     //     // service.textSearch(request, (results, status) => {
     //     //     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -141,12 +141,12 @@ export class Furends extends Component {
         };
         const { users } = this.state;
         //console.log({ users });
-        const scrollContainerStyle = { width: "450px", maxHeight: "330px" };
+        const scrollContainerStyle = { width: "90%", maxHeight: "330px", marginLeft: '40px' };
 
         const containerStyle = {
             marginLeft: '20px',
-            width: '60%',
-            height: '80%',
+            width: '50%',
+            height: '90%',
         }
 
 
@@ -155,6 +155,14 @@ export class Furends extends Component {
                 <header>
                 </header>
                 <main>
+                    {/* <MDBRow>
+                        <MDBCol>
+
+                        </MDBCol>
+                        <MDBCol>
+
+                        </MDBCol>
+                    </MDBRow> */}
                     <div className='d-flex flex-row justify-content-between'>
                         <div style={{ width: '500px' }}>
                             <Map
@@ -189,15 +197,14 @@ export class Furends extends Component {
                                 })}
                             </Map>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', width: '40%', paddingLeft: '30px' }}>
-                            <div style={{ paddingLeft: '120px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
+                            <div style={{ marginLeft: '75px' }}>
                                 {/* <SearchPage /> */}
-                                <div style={{ marginTop: '100px', marginBottom: '0px', paddingBottom: '0px' }}>
-                                    <MDBCol md="6">
+                                <div style={{ marginTop: '65px', marginLeft: '100px' }}>
+                                    <MDBCol md="6" className='d-flex'>
                                         <MDBFormInline className="md-form" onSubmit={this.handleFormSubmit}>
-                                            <MDBIcon icon="search" />
-                                            <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" value={this.state.location} onChange={this.handleChange} />
-                                            <Button type='submit'>Find Furrends</Button>
+                                            <input className="form-control form-control-sm ml-3" type="text" placeholder="Search" aria-label="Search" value={this.state.location} onChange={this.handleChange} />
+                                            <Button className='blue-gradient' rounded size='sm' type='submit'>Find Furends</Button>
                                         </MDBFormInline>
                                     </MDBCol>
                                 </div>
@@ -208,35 +215,29 @@ export class Furends extends Component {
                                 <DogSearch />
                                 <DogSearch />
                                 <DogSearch /> */}
-                                {this.state.dogData && this.state.dogData.map(dog => {
-                                    return (
-                                        <div>
-                                            <MDBRow>
-                                                <MDBCol lg='4' md='12'>
-                                                    <MDBCard className='profile-card text-center mb-4'>
-                                                        <MDBAvatar
-                                                            tag='img'
-                                                            alt='Rottweiler dog photo'
-                                                            width='400'
+                                <MDBRow>
+                                    {this.state.dogData && this.state.dogData.map(dog => {
+                                        return (
+
+                                            <MDBCol md='4' className='mt-1'>
+                                                <MDBView hover>
+                                                    <a href={`/user/${dog.dogId}`}>
+                                                        <img
                                                             src={Ike}
-                                                            className='rounded-circle z-depth-1-half mb-4'
+                                                            className="img-fluid rounded-circle"
+                                                            alt="Dog Avatar"
                                                         />
-                                                        <MDBCardBody>
-                                                            <MDBCardTitle>
-                                                                <strong>{dog.dogName}</strong>
-                                                            </MDBCardTitle>
-                                                            <p className='card-text mt-3'>
-                                                                <b>Breed: </b>{dog.breed}
-                                                            </p>
-                                                            <Button href={`/user/${dog.dogId}`}>Profile</Button>
-                                                        </MDBCardBody>
-                                                    </MDBCard>
-                                                </MDBCol>
-                                            </MDBRow>
-                                        </div>
-                                    )
-                                })
-                                }
+                                                        <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                                            <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                                            <p className="white-text"><strong>{dog.breed}</strong></p>
+                                                        </MDBMask>
+                                                    </a>
+                                                </MDBView>
+                                            </MDBCol>
+
+                                        )
+                                    })}
+                                </MDBRow>
                             </div>
                         </div>
                     </div>

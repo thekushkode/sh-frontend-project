@@ -1,23 +1,3 @@
-// getDogData = () => {
-//   let user = firebase.auth().currentUser;
-//   if (user) {
-//     if (this.props.match.params.dogId) {
-//       console.log(this.props.match.params.dogId)
-//       db.collection("Dogs")
-//         .doc(this.props.match.params.dogId)
-//         .get()
-//         .then(this.storeDogData)
-//     } else {
-//       console.log(user)
-//       // User is signed in.
-//       db.collection("Dogs")
-//         .where('ownerId', '==', user.uid)
-//         .get()
-//         .then(this.storeDogData)
-//     }
-//   } 
-// }
-
 import React, { Component } from 'react';
 import {
   MDBContainer,
@@ -31,6 +11,10 @@ import {
   MDBBadge,
   MDBAvatar,
   MDBBtn,
+  MDBDropdown,
+  MDBDropdownItem,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
 } from 'mdbreact';
 import './extended.css';
 import Ike from './images/ike.png';
@@ -50,13 +34,15 @@ class DogProfile extends Component {
       user: '',
       dogData: [],
       postValue: '',
-      imgValue: ''
+      imgValue: '',
+      allDogData: []
     };
   }
 
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
+    let doggo = this;
     if (user) {
       if (this.props.match.params.dogId) {
         console.log(this.props.match.params.dogId)
@@ -75,22 +61,51 @@ class DogProfile extends Component {
               user: user
             })
           })
-        // .then(function (querySnapshot) {
-        //   console.log(querySnapshot)
-        //   let data = [];
-        //   querySnapshot.forEach(doc => {
-        //     const dogData = {
-        //       ...doc.data(),
-        //       dogId: doc.id
-        //     }
-        //     data.push(dogData);
-        //   })
-        //   console.log(data)
-        //   this.setState({
-        //     dogData: data,
-        //     user: user
-        //   })
-        // })
+        db.collection("Dogs")
+          .where('ownerId', '==', user.uid)
+          .get()
+          .then(function (querySnapshot) {
+            // console.log(querySnapshot)
+            let data = [];
+            querySnapshot.forEach(function (doc) {
+              const dogData = {
+                ...doc.data(),
+                dogId: doc.id
+              }
+              data.push(dogData);
+            })
+            console.log(data)
+
+            doggo.setState({
+              allDogData: data,
+              user: user
+            })
+          })
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    let user = firebase.auth().currentUser;
+    const db = firebase.firestore();
+    if (user) {
+      if (this.props.match.params.dogId) {
+        console.log(this.props.match.params.dogId)
+        db.collection("Dogs")
+          .doc(this.props.match.params.dogId)
+          .get()
+          .then(doc => {
+            // let data = [];
+            const dogData = {
+              ...doc.data(),
+              dogId: doc.id
+            }
+            // data.push(dogData)
+            this.setState({
+              dogData: dogData,
+              user: user
+            })
+          })
       }
     }
   }
@@ -145,6 +160,20 @@ class DogProfile extends Component {
                       //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
 
                     />
+                    <MDBDropdown>
+                      <MDBDropdownToggle caret color="primary">
+                        Select Dog
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu basic >
+                        {this.state.allDogData && this.state.allDogData.map((dog, index) => {
+                          return (
+                            <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></MDBDropdownItem>
+                          )
+                        })}
+                        < MDBDropdownItem divider />
+                        <MDBDropdownItem>Add Dog</MDBDropdownItem>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
                     <MDBCardBody>
                       <MDBCardTitle>
                         <strong>{this.state.dogData.dogName}</strong>

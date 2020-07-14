@@ -48,7 +48,7 @@ class NavbarPage extends Component {
                                 <MDBNavLink to="/feed">My Feed</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/profile">Profile</MDBNavLink>
+                                <MDBNavLink to="/profile/:dogId">Profile</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>

@@ -11,6 +11,10 @@ import {
   MDBBadge,
   MDBAvatar,
   MDBBtn,
+  MDBDropdown,
+  MDBDropdownItem,
+  MDBDropdownToggle,
+  MDBDropdownMenu
 } from 'mdbreact';
 import './extended.css';
 import Ike from './images/ike.png';
@@ -59,7 +63,7 @@ class PExtended extends Component {
             user: user
           })
         })
-    } 
+    }
   }
 
   handleChange = (e) => {
@@ -96,7 +100,7 @@ class PExtended extends Component {
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
-          <div id='profile-ex' className='mb-5 mt-4 mx-4'>
+          {/* <div id='profile-ex' className='mb-5 mt-4 mx-4'>
             <div>
               {this.state.dogData.length >= 1 && <h3>Select your doggo, {this.state.user.displayName}</h3>}
               <ul>
@@ -107,7 +111,7 @@ class PExtended extends Component {
                 })
                 }
               </ul>
-            </div>
+            </div> */}
 
             <MDBContainer fluid>
               <MDBRow>
@@ -120,6 +124,20 @@ class PExtended extends Component {
                       src={Ike}
                       className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
                     />
+                    <MDBDropdown>
+                      <MDBDropdownToggle caret color="primary">
+                        Select Dog
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu basic >
+                        {this.state.dogData && this.state.dogData.map((dog, index) => {
+                          return (
+                            <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></MDBDropdownItem>
+                          )
+                        })}
+                        < MDBDropdownItem divider />
+                        <MDBDropdownItem>Add Dog</MDBDropdownItem>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
                     <MDBCardBody>
                       <MDBCardTitle>
                         <strong>{this.state.dogData.dogName}</strong>
@@ -542,11 +560,11 @@ class PExtended extends Component {
                 </MDBCol>
               </MDBRow>
             </MDBContainer>
-          </div>
+
         </main>
-        {/* <footer>
+        <footer>
           <FooterPage />
-        </footer> */}
+        </footer>
       </div>
     );
   }

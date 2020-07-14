@@ -14,13 +14,18 @@ function InputPage(props) {
 
         setLoading(true);
 
-        console.log(files[0].name);
+        console.log(typeof files[0]);
         // FileList { 0: File, length: 1 }
         // 0: File { name: "bentley.PNG", lastModified: 1594648700779, lastModifiedDate: Mon Jul 13 2020 09: 58: 20 GMT - 0400(Eastern Daylight Time), webkitRelativePath: "", size: 1179597, … }
         // length: 1
 
 
         let fileObj = files[0];
+        // const newObj = Object.assign(fileObj, { 'name': fileObj.name.toLowerCase() })
+
+        // fileObj['name'] = fileObj.name.toLowerCase();
+        // console.log(newObj);
+        // fileObj.name = fileObj.name.toLowerCase();
 
         // Create a reference with an initial file path and name
         let storage = firebase.storage();
@@ -29,6 +34,7 @@ function InputPage(props) {
         // Create a reference from a Google Cloud Storage URI
         // var gsReference = storage.refFromURL('gs://sh-frontend-8f893.appspot.com/gerrit.gif')
 
+        // let imgFileName = files[0].name.toLowerCase()
         let imgFileName = files[0].name
 
         // Create a reference from an HTTPS URL

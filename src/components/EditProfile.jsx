@@ -73,6 +73,8 @@ function EditProfile(props) {
               setBio(dog.bio);
               setAvatar(dog.avatar)
               setProfile(dog);
+              console.log(dog.avatar);
+              console.log(dog);
             }
           })
         })
@@ -99,7 +101,7 @@ function EditProfile(props) {
         avatar,
         bio,
         ownerId: user.id
-      }) 
+      })
     } else {
       db.collection('Dogs').doc(dogId).set({
         dogName,
@@ -115,6 +117,7 @@ function EditProfile(props) {
         avatar,
         bio
       }, { merge: true })
+      console.log(avatar);
     }
     history.push('/profile');
   }
@@ -127,7 +130,7 @@ function EditProfile(props) {
       <header style={{ marginBottom: '120px' }}>
         <NavbarPage />
       </header>
-      <div id='profile-v1' className='mb-5'>
+      <div id='profile-v1' className='mb-5' style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <MDBContainer fluid className='mb-5'>
           <section className='section team-section mb-5'>
             <MDBRow center className='text-center'>
@@ -227,7 +230,8 @@ function EditProfile(props) {
                     alt='Default Dog Profile Image'
                     // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
                     src={(avatar ? avatar : Dog)}
-                    className='rounded-circle z-depth-1-half mb-4'
+                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
+                    className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
                   <InputPage value={avatar} onUpload={(imgRef) => {
@@ -236,9 +240,10 @@ function EditProfile(props) {
                   }} />
 
 
-                  {/* <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
+                  {/* 
+                  <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
                       Add Photo
-                  </MDBBtn> */}
+                  </MDBBtn> 
                   <MDBCardBody className='pt-0 mt-0'>
                     <h3 className='mb-3 font-bold'>
                       <strong>Ike</strong>
@@ -254,6 +259,7 @@ function EditProfile(props) {
                       Follow
                   </MDBBtn>
                   </MDBCardBody>
+                  */}
                 </MDBCard>
               </MDBCol>
             </MDBRow>

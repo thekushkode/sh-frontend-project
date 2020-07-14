@@ -75,23 +75,23 @@ class DogProfile extends Component {
               user: user
             })
           })
-          // .then(function (querySnapshot) {
-          //   console.log(querySnapshot)
-          //   let data = [];
-          //   querySnapshot.forEach(doc => {
-          //     const dogData = {
-          //       ...doc.data(),
-          //       dogId: doc.id
-          //     }
-          //     data.push(dogData);
-          //   })
-          //   console.log(data)
-          //   this.setState({
-          //     dogData: data,
-          //     user: user
-          //   })
-          // })
-      } 
+        // .then(function (querySnapshot) {
+        //   console.log(querySnapshot)
+        //   let data = [];
+        //   querySnapshot.forEach(doc => {
+        //     const dogData = {
+        //       ...doc.data(),
+        //       dogId: doc.id
+        //     }
+        //     data.push(dogData);
+        //   })
+        //   console.log(data)
+        //   this.setState({
+        //     dogData: data,
+        //     user: user
+        //   })
+        // })
+      }
     }
   }
 
@@ -136,10 +136,14 @@ class DogProfile extends Component {
                   <MDBCard className='profile-card text-center mb-4'>
                     <MDBAvatar
                       tag='img'
-                      alt='Rottweiler dog photo'
-                      // width='400'
-                      src={Ike}
-                      className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
+                      alt='Dog photo'
+                      width='400'
+                      style={{ margin: '0 auto' }}
+                      src={this.state.dogData.avatar}
+                      className='rounded-circle z-depth-1-half mb-4 mt-3'
+
+                      //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
+
                     />
                     <MDBCardBody>
                       <MDBCardTitle>
@@ -155,6 +159,11 @@ class DogProfile extends Component {
                       <MDBBtn floating tag='a' className='young-passion-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
+                      
+                      <p className='card-text mt-3'>
+                        Bio: {this.state.dogData.bio}
+                      </p>
+
                       <MDBBtn
                         className='purple-gradient'
                         size='sm'
@@ -566,7 +575,7 @@ class DogProfile extends Component {
         </footer>
       </div>
     );
-  } 
+  }
 }
 
 export default DogProfile;

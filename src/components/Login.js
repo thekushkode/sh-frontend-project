@@ -40,7 +40,7 @@ class Login extends React.Component {
     // authentication
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        this.props.history.push('/profile')
+        this.props.history.push('/profile/:dogId')
       })
   }
 

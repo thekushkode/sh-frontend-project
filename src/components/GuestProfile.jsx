@@ -137,7 +137,6 @@ class UserProfile extends Component {
                           <h5>
                             {dog.bio}
                           </h5>
-                          <p className='dark-grey-text'>{dog.city}, {dog.userState}</p>
                           <MDBBtn floating tag='a' className='morpheus-den-gradient'>
                             <MDBIcon fab icon='facebook' className='white-text' />
                           </MDBBtn>
@@ -154,7 +153,7 @@ class UserProfile extends Component {
                             onClick={() => this.letsChat(dog)}
                           >
                             Chat
-                    </MDBBtn>
+                          </MDBBtn>
                           <MDBBtn
                             className='blue-gradient'
                             size='sm'
@@ -162,7 +161,7 @@ class UserProfile extends Component {
                             href='/messages'
                           >
                             Request PlayDate
-                </MDBBtn>
+                          </MDBBtn>
                           <MDBBtn
                             className='peach-gradient'
                             size='sm'
@@ -248,7 +247,7 @@ class UserProfile extends Component {
                                 Questions{' '}
                                 <MDBBadge color='primary' className='float-right'>
                                   34
-                    </MDBBadge>
+                                </MDBBadge>
                               </p>
                             </li>
                             <hr />
@@ -257,7 +256,7 @@ class UserProfile extends Component {
                                 Answers{' '}
                                 <MDBBadge color='primary' className='float-right'>
                                   17
-                    </MDBBadge>
+                                </MDBBadge>
                               </p>
                             </li>
                             <hr />
@@ -266,7 +265,7 @@ class UserProfile extends Component {
                                 Submited projects{' '}
                                 <MDBBadge color='primary' className='float-right'>
                                   12
-                    </MDBBadge>
+                                </MDBBadge>
                               </p>
                             </li>
                             <hr />
@@ -275,7 +274,7 @@ class UserProfile extends Component {
                                 Pull requests{' '}
                                 <MDBBadge color='primary' className='float-right'>
                                   3
-                    </MDBBadge>
+                                </MDBBadge>
                               </p>
                             </li>
                           </ul>
@@ -289,32 +288,6 @@ class UserProfile extends Component {
                             <h4>
                               <strong>{dog.dogName}'s Feed</strong>
                             </h4>
-                          </div>
-                          <div style={{ marginTop: '20px', paddingLeft: '100px', paddingRight: '100px' }}>
-                            <div className="form-group">
-                              <form onSubmit={this.handleSubmit}>
-                                <label htmlFor="exampleFormControlTextarea1">
-                                  Write New Post:
-                      </label>
-                                <textarea
-                                  className="form-control"
-                                  id="exampleFormControlTextarea1"
-                                  rows="2"
-                                  value={this.state.postValue}
-                                  name='post'
-                                  onChange={this.handleChange}
-                                />
-                                <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} />
-                                <MDBBtn
-                                  type='submit'
-                                  className='btn btn-rounded blue-gradient'
-                                >
-                                  Post <MDBIcon icon='image' className='ml-1' />
-                                </MDBBtn>
-                              </form>
-                            </div>
-                            <div className='d-flex justify-content-around'>
-                            </div>
                           </div>
                         </MDBCol>
                       </MDBRow>

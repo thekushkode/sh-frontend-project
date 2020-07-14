@@ -36,7 +36,6 @@ class PExtended extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let currDog = this;
     if (user) {
       console.log(user)
       // User is signed in.
@@ -54,7 +53,7 @@ class PExtended extends Component {
             data.push(dogData);
           })
           console.log(data)
-          currDog.setState({
+          this.setState({
             dogData: data,
             user: user
           })
@@ -62,55 +61,52 @@ class PExtended extends Component {
     } 
   }
 
-  handleChange = (e) => {
-    console.log('changed');
-    this.setState({
-      postValue: e.target.postValue,
-      imgValue: e.target.imgValue
-    })
-    console.log(this.state.postValue);
-    console.log(this.state.imgValue);
-  }
+  // handleChange = (e) => {
+  //   console.log('changed');
+  //   this.setState({
+  //     postValue: e.target.postValue,
+  //     imgValue: e.target.imgValue
+  //   })
+  //   console.log(this.state.postValue);
+  //   console.log(this.state.imgValue);
+  // }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submitted');
-    console.log(e.target.postValue);
-    this.setState({
-      postValue: e.target.postValue,
-      imgValue: e.target.imgValue
-    });
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('submitted');
+  //   console.log(e.target.postValue);
+  //   this.setState({
+  //     postValue: e.target.postValue,
+  //     imgValue: e.target.imgValue
+  //   });
+  // }
 
-  toggle = item => {
-    console.log(item);
-    this.setState({
-      [item]: !this.state[item]
-    });
-  };
+  // toggle = item => {
+  //   console.log(item);
+  //   this.setState({
+  //     [item]: !this.state[item]
+  //   });
+  // };
 
   render() {
+    console.log('testing')
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
-
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
-
-            <div>
+            {/* <div>
               {this.state.dogData.length >= 1 && <h3>Select your doggo, {this.state.user.displayName}</h3>}
               <ul>
-                {this.state.dogData && this.state.dogData.map((dog, index) => {
-                  console.log(dog)
+                {this.state.dogData.map((dog, index) => {
                   return (
                     <li><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></li>
                   )
                 })
                 }
               </ul>
-            </div>
-
+            </div> */}
 
             <MDBContainer fluid>
               <MDBRow>
@@ -546,9 +542,9 @@ class PExtended extends Component {
             </MDBContainer>
           </div>
         </main>
-        <footer>
+        {/* <footer>
           <FooterPage />
-        </footer>
+        </footer> */}
       </div>
     );
   }

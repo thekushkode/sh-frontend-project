@@ -5,13 +5,20 @@ import {
 } from "mdbreact";
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+// import { allReducers } from '../redux/reducers/index';
+// import { store } from '../index';
 
 
 class NavbarPage extends Component {
-    state = {
-        isOpen: false,
-        redirect: false
-    };
+    constructor(props) {
+        super(props)
+        
+        this.state = {
+            isOpen: false,
+            redirect: false
+        };
+    }
 
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
@@ -35,6 +42,7 @@ class NavbarPage extends Component {
             return <Redirect to='/' />
         }
 
+        console.log(this.props.profile.id)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
@@ -48,7 +56,7 @@ class NavbarPage extends Component {
                                 <MDBNavLink to="/feed">My Feed</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="/profile/:dogId">Profile</MDBNavLink>
+                                <MDBNavLink to={`/profile/${this.props.profile.id}`}>Profile</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
@@ -111,4 +119,13 @@ class NavbarPage extends Component {
     }
 }
 
-export default NavbarPage;
+const mapStateToProps = (state) => {
+    return {
+        profile: state.profile
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(NavbarPage)

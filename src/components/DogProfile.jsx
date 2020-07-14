@@ -63,22 +63,34 @@ class DogProfile extends Component {
         db.collection("Dogs")
           .doc(this.props.match.params.dogId)
           .get()
-          .then(function (querySnapshot) {
-            console.log(querySnapshot)
-            let data = [];
-            querySnapshot.forEach(function (doc) {
-              const dogData = {
-                ...doc.data(),
-                dogId: doc.id
-              }
-              data.push(dogData);
-            })
-            console.log(data)
+          .then(doc => {
+            // let data = [];
+            const dogData = {
+              ...doc.data(),
+              dogId: doc.id
+            }
+            // data.push(dogData)
             this.setState({
-              dogData: data,
+              dogData: dogData,
               user: user
             })
           })
+          // .then(function (querySnapshot) {
+          //   console.log(querySnapshot)
+          //   let data = [];
+          //   querySnapshot.forEach(doc => {
+          //     const dogData = {
+          //       ...doc.data(),
+          //       dogId: doc.id
+          //     }
+          //     data.push(dogData);
+          //   })
+          //   console.log(data)
+          //   this.setState({
+          //     dogData: data,
+          //     user: user
+          //   })
+          // })
       } 
     }
   }

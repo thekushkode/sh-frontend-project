@@ -1,3 +1,5 @@
+import { AUTHENTICATING, LOGGED_IN, LOGGED_OUT } from "../reducers/auth"
+
 export const setUser = (user) => {
     return {
         type: 'SET_USER',
@@ -24,11 +26,23 @@ export const clearProfile = () => {
     }
 }
 
-// export const signIn = () => {
-//     return {
-//         type: 'SIGN_IN'
-//     }
-// }
+export const authStart = () => {
+    return {
+        type: AUTHENTICATING
+    }
+}
+
+export const loggedIn = () => {
+    return {
+        type: LOGGED_IN
+    }
+}
+
+export const loggedOut = () => {
+    return {
+        type: LOGGED_OUT
+    }
+}
 
 export const loadMessages = (payload) => ({
     type: 'LOAD_MESSAGES',

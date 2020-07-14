@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
 import Chat from './Chat';
 import PExtended from './extended';
@@ -13,7 +13,8 @@ import Furends from './FindFurends';
 import Friend from './Friend';
 import firebase from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, unSetUser, setProfile } from '../redux/actions';
+import { setUser, unSetUser, setProfile, authStart, loggedIn, loggedOut } from '../redux/actions';
+import { UNINITIALIZED, AUTHENTICATING, LOGGED_IN, LOGGED_OUT } from "../redux/reducers/auth";
 import EditProfile from './EditProfile';
 import Terms from './Terms';
 import Privacy from './Privacy';
@@ -26,9 +27,6 @@ import ReactGA from 'react-ga';
 import NewChat from './messages/NewChat';
 import DogProfile from './DogProfile'
 import ThankYou from './ThankYou';
-
-
-
 
 function App() {
   let db = firebase.firestore();
@@ -51,6 +49,7 @@ function App() {
   ReactGA.pageview('/privacy');
 
   useEffect(() => {
+    dispatch(authStart())
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // currUser = user;
@@ -76,52 +75,79 @@ function App() {
               }).then(res => {
                 dispatch(setProfile(userProfile));
                 dispatch(setUser(userData));
+                dispatch(loggedIn());
               })
           })
-
-
-
       } else {
         console.log('else app.js')
         dispatch(unSetUser());
+        dispatch(loggedOut());
       }
     });
-  })
+  }, [])
 
-  const currUser = useSelector(state => state.user);
+  const authState = useSelector(state => state.auth);
 
-  return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          {currUser ? <NavbarPage /> : <NotLogged />}
-          {/* <NavbarPage /> */}
-
-        </header>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/messages' component={Chat} />
-          <Route exact path='/profile' component={PExtended} />
-          <Route exact path='/about' component={About} />
-          <Route exact path='/outside' component={GMap} />
-          <Route exact path='/furends' component={Furends} />
-          <Route exact path='/petcare' component={DayCare} />
-          <Route exact path='/vets' component={VetMap} />
-          <Route exact path='/contact' component={ContactPage} />
-          <Route exact path='/feed2' component={SocialPage2} />
-          <Route exact path='/editprofile' component={EditProfile} />
-          <Route exact path='/terms' component={Terms} />
-          <Route exact path='/privacy' component={Privacy} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/thankyou' component={ThankYou} />
-          <Route exact path='/messagestest' component={MessagesPage} />
-          <Route path='/search/' component={Friend} />
-          <Route path='/newchat/' component={NewChat} />
-          <Route exact path='/profile/:dogId' component={DogProfile} />
-        </Switch>
-      </div>
-    </Router>
-  );
+  switch (authState) {
+    case LOGGED_OUT:
+      return (
+        <Router>
+          <div className="App">
+            <header className="App-header">
+              <NotLogged />
+            </header>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/about' component={About} />
+              <Route exact path='/outside' component={GMap} />
+              <Route exact path='/petcare' component={DayCare} />
+              <Route exact path='/vets' component={VetMap} />
+              <Route exact path='/contact' component={ContactPage} />
+              <Route exact path='/terms' component={Terms} />
+              <Route exact path='/privacy' component={Privacy} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/thankyou' component={ThankYou} />
+              <Route><Redirect to="/" /></Route>
+            </Switch>
+          </div>
+        </Router>
+      )
+    case LOGGED_IN:
+      return (
+        <Router>
+          <div className="App">
+            <header className="App-header">
+              <NavbarPage />
+            </header>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/messages' component={Chat} />
+              <Route exact path='/profile' component={PExtended} />
+              <Route exact path='/about' component={About} />
+              <Route exact path='/outside' component={GMap} />
+              <Route exact path='/furends' component={Furends} />
+              <Route exact path='/petcare' component={DayCare} />
+              <Route exact path='/vets' component={VetMap} />
+              <Route exact path='/contact' component={ContactPage} />
+              <Route exact path='/feed2' component={SocialPage2} />
+              <Route exact path='/editprofile' component={EditProfile} />
+              <Route exact path='/terms' component={Terms} />
+              <Route exact path='/privacy' component={Privacy} />
+              <Route exact path='/login'><Redirect to="/profile"/></Route>
+              <Route exact path='/thankyou' component={ThankYou} />
+              <Route exact path='/messagestest' component={MessagesPage} />
+              <Route exact path='/profile/:dogId' component={DogProfile} />
+              <Route path='/search/' component={Friend} />
+              <Route path='/newchat/' component={NewChat} />
+            </Switch>
+          </div>
+        </Router>
+      )
+    case UNINITIALIZED:
+    case AUTHENTICATING:
+    default:
+      return <div>Loading</div>
+  }
 }
 
 export default App;

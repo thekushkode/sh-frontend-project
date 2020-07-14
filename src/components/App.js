@@ -94,8 +94,8 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          {/* {currUser ? <NavbarPage /> : <NotLogged />} */}
-          <NavbarPage />
+          {currUser ? <NavbarPage /> : <NotLogged />}
+          {/* <NavbarPage /> */}
 
         </header>
         <Switch>

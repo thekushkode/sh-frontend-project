@@ -152,7 +152,7 @@ function App() {
     case UNINITIALIZED:
     case AUTHENTICATING:
     default:
-      return <div>Loading</div>
+      return <div className='text-center'><SpinnerPage /></div>
 //       return <Route exact path='/spin' component={SpinnerPage} />
   }
 }

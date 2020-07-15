@@ -110,31 +110,20 @@ class DogProfile extends Component {
   //   }
   // }
 
-  handleClick = (id) => (e) => {
+  handleClick = (id) => () => {
     const db = firebase.firestore();
-    // if (this.props.match.params.dogId) {
-      console.log(id)
-      console.log(this.state.dogData.dogId)
-      // let newDog = id
-      // let currDog = this.state.dogData.dogId
-      // if (newDog !== currDog) {
         db.collection("Dogs")
-          // .doc(this.props.match.params.dogId)
           .doc(id)
           .get()
           .then(doc => {
-            // let data = [];
             const dogData = {
               ...doc.data(),
               dogId: doc.id
             }
-            // data.push(dogData)
             this.setState({
               dogData: dogData
             })
           })
-      // }
-    // }
   }
 
   handleChange = (e) => {
@@ -215,13 +204,13 @@ class DogProfile extends Component {
                       <MDBBtn floating tag='a' className='young-passion-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
-                      <Link to="/editprofile"><MDBBtn
+                      <MDBBtn
                         className='purple-gradient'
                         size='sm'
                         rounded
                       >
-                        Edit Profile
-                    </MDBBtn></Link>
+                        <Link to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
+                    </MDBBtn>
                       <MDBBtn
                         className='blue-gradient'
                         size='sm'

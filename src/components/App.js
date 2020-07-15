@@ -136,7 +136,7 @@ function App() {
               <Route exact path='/vets' component={VetMap} />
               <Route exact path='/contact' component={ContactPage} />
               <Route exact path='/feed' component={SocialPage2} />
-              <Route exact path='/editprofile' component={EditProfile} />
+              <Route exact path='/editprofile/:dogId' component={EditProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
               <Route exact path='/login'><Redirect to="/profile"/></Route>

@@ -12,7 +12,8 @@ import {
   MDBSelect,
   MDBSelectOption,
   MDBSelectOptions,
-  MDBSelectInput
+  MDBSelectInput,
+  Link
 } from 'mdbreact';
 import './EditProfile.css';
 import Dog from './images/avatar.png';
@@ -50,11 +51,10 @@ function EditProfile(props) {
   useEffect(() => {
     // console.log(user);
     if (user && !dogId) {
-      db.collection('Dogs').where('ownerId', '==', user.id).get()
-        .then(querySnapshot => {
-          // console.log(querySnapshot);
-          let dog = null;
-          querySnapshot.forEach(doc => {
+      // db.collection('Dogs').where('ownerId', '==', user.id).get()
+      db.collection("Dogs").doc(props.match.params.dogId).get()
+        .then(doc => {
+            let dog = null
             if (!dog) {
               setDogId(doc.id);
               dog = doc.data();
@@ -76,14 +76,36 @@ function EditProfile(props) {
               console.log(dog.avatar);
               console.log(dog);
             }
-          })
         })
+        // .then(querySnapshot => {
+        //   // console.log(querySnapshot);
+        //   let dog = null;
+        //   querySnapshot.forEach(doc => {
+        //     if (!dog) {
+        //       setDogId(doc.id);
+        //       dog = doc.data();
+        //     }
+        //     if (dog) {
+        //       setDogName(dog.dogName);
+        //       setBreed(dog.breed);
+        //       setStreet(dog.street);
+        //       setCity(dog.city);
+        //       setUserState(dog.userState);
+        //       setZipcode(dog.zipcode);
+        //       setTemperament(dog.temperament);
+        //       setSize(dog.size);
+        //       setSpayNeut(dog.spayNeut);
+        //       setVaccines(dog.vaccines);
+        //       setBio(dog.bio);
+        //       setAvatar(dog.avatar)
+        //       setProfile(dog);
+        //       console.log(dog.avatar);
+        //       console.log(dog);
+        //     }
+        //   })
+        // })
     }
   })
-
-
-
-
 
   const updateProfile = (e) => {
     if (!dogId) {
@@ -119,11 +141,8 @@ function EditProfile(props) {
       }, { merge: true })
       console.log(avatar);
     }
-    history.push('/profile');
+    history.push(`/profile/${props.match.params.dogId}`);
   }
-
-
-
 
   return (
     <div>
@@ -218,7 +237,7 @@ function EditProfile(props) {
                       </MDBCol>
                     </MDBRow>
                     <MDBBtn color='info' rounded onClick={updateProfile}>
-                      Save
+                      <Link to={`/profile/${dogId}`}>Save</Link>
                   </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>

@@ -1,15 +1,23 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFeed } from '../redux/actions';
+
 moment().format()
 
 export default function PhotoPost(props) {
 
+  const feed = useSelector(state => state.feed)
+  const dispatch = useDispatch();
+
   function handleClick() {
-    console.log('hello world')
-    let likes = parseInt(props.data.Likes)
-    likes++
-    return likes
+    // console.log('hello world')
+    let likes = parseInt(feed[3].Likes)
+    console.log(likes)
+    likes = likes + 1
+    console.log(likes)
+    dispatch(setFeed(likes))
   }
 
   return (
@@ -26,7 +34,7 @@ export default function PhotoPost(props) {
           <a href="#!" className="name">
             {props.data.Sender}</a> added 
           <a href="#!"> 2 new photos</a>
-          <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
+          <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
         </div>
         <div className="added-images">
           <img

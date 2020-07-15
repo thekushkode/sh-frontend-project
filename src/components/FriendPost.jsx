@@ -12,7 +12,7 @@ export default function FriendPost(props) {
       <div className="excerpt">
         <div className="brief">
           <div><a href="#!" className="name">{props.data.Sender}</a> added you as a friend</div>
-          <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
+          <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
         </div>
         <div className="feed-footer">
           <a href="#!" className="like">

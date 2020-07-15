@@ -20,28 +20,11 @@ export default function SocialPage2() {
     useEffect(() => {
         db.collection('Feed').get()
             .then(data => {
-                let feed = [];
                 data.forEach(doc => {
-                    // console.log(doc.data().posts)
-                    feed.push(doc.data().posts)
-                    dispatch(setFeed(feed))
+                    dispatch(setFeed(doc.data().posts))
                 });
 
             })
-            // .onSnapshot((querySnapshot) => {
-            //     let dataArray = []
-            //     querySnapshot.forEach(function (doc) {
-            //         console.log(doc.id, doc.data())
-            //         dataArray.push({ id: doc.id, data: doc.data() })
-            //     })
-            //     setFeed(dataArray)
-            // })
-            // .then(res => {
-            //     // console.log(res.data())
-            //     console.log(res)
-            //     // setAllFeedContent(res.data().posts);
-            //     dispatch.setFeed((res.data().posts));
-            // })
     }, [])
 
     return (
@@ -54,7 +37,7 @@ export default function SocialPage2() {
                         <MDBCard className="mb-5 px-5 pt-4 fluid" style={{ fontWeight: 300, maxWidth: 2000 }}>
                             <MDBCardBody className="py-0">
                                 <MDBRow>
-                                    {feed && feed[0].map((item) => {
+                                    {feed && feed.map((item) => {
                                         console.log(item)
                                         switch (item.Type) {
                                             case 'Post':

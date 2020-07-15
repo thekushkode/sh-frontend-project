@@ -144,7 +144,7 @@ class DogProfile extends Component {
     console.log('submitted');
     console.log(this.state.postValue);
     console.log(this.props.feed[0])
-    this.props.setFeed([...this.props.feed[0], this.state.postValue])
+    // this.props.setFeed([...this.props.feed[0], this.state.postValue])
   }
 
   toggle = item => {

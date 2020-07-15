@@ -200,7 +200,7 @@ class About extends React.Component {
                     Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
-                    Full-stack engineer and lover of rooftops.
+                    Full-Stack engineer and lover of rooftops.
                   </p>
                   <a href='https://www.linkedin.com/in/grrtvnlw/'>
                     <MDBIcon

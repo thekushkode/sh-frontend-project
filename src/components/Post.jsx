@@ -6,6 +6,7 @@ moment().format()
 
 export default function Post(props) {
     // const feed = useSelector(state => state.feed)
+
     return (
         <div className="news">
             <div className="label">
@@ -24,7 +25,7 @@ export default function Post(props) {
                 <div className="added-text">
                     {props.data.Content}
                 </div>
-                    <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
+                    <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                 <div className="feed-footer">
                     <a href="#!" className="like">
                         <MDBIcon icon="heart" />

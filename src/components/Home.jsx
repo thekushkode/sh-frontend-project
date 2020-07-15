@@ -38,12 +38,12 @@ function Home(props) {
         // authentication
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(createdUser => {
-                props.history.push('/newprofile');
+                // props.history.push('/newprofile');
                 console.log('created new user')
                 createdUser.user.updateProfile({
                     email: email
-
                 })
+                
                 const db = firebase.firestore();
                 console.log('updating user info', createdUser.user.uid)
                 //create user in Users db
@@ -52,12 +52,12 @@ function Home(props) {
                 })
                     .then(doc => {
                         console.log(`this is the ${doc}`)
-                        
+                        props.history.push('/newprofile')
                     })
                     .catch(err => console.error(err))
 
+                    props.history.push('/newprofile')
             })
-            //redirects to/editprofile
             // return <Redirect to='/newprofile' />
 
     }

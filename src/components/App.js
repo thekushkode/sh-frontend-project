@@ -141,13 +141,13 @@ function App() {
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
-              <Route exact path='/login'><Redirect to="/profile"/></Route>
+              <Route exact path='/login'><Redirect to="/profile/:dogId"/></Route>
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
-              <Route><Redirect to="/profile" /></Route>
+              <Route><Redirect to="/feed" /></Route>
             </Switch>
           </div>
         </Router>

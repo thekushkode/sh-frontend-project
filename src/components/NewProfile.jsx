@@ -51,7 +51,7 @@ function NewProfile(props) {
   useEffect(() => {
     // console.log(user);
     if (user && !dogId) {
-      db.collection('Dogs').where('ownerId', '==', user.id).get()
+      db.collection('Dogs').where('ownerId', '==', user.uid).get()
         .then(doc => {
             let dog = null
             if (!dog) {

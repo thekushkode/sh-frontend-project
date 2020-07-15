@@ -125,7 +125,7 @@ function EditProfile(props) {
         vaccines,
         avatar,
         bio,
-        ownerId: user.id
+        ownerId: user.uid
       })
     } else {
       db.collection('Dogs').doc(dogId).set({

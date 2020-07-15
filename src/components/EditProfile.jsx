@@ -36,6 +36,7 @@ function EditProfile(props) {
   // const profile = useSelector(state => state.profile);
   const [dogId, setDogId] = useState('');
   const [dogName, setDogName] = useState('');
+  const [ownerName, setOwnerName] = useState('');
   const [breed, setBreed] = useState('');
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
@@ -59,6 +60,7 @@ function EditProfile(props) {
               dog = doc.data();
             }
             if (dog) {
+              setOwnerName(dog.ownerName);
               setDogName(dog.dogName);
               setBreed(dog.breed);
               setStreet(dog.street);
@@ -110,6 +112,7 @@ function EditProfile(props) {
     if (!dogId) {
       // let user = firebase.auth().currentUser;
       db.collection('Dogs').add({
+        ownerName,
         dogName,
         breed,
         street,
@@ -126,6 +129,7 @@ function EditProfile(props) {
       })
     } else {
       db.collection('Dogs').doc(dogId).set({
+        ownerName,
         dogName,
         breed,
         street,
@@ -165,10 +169,13 @@ function EditProfile(props) {
                   </div>
                   <MDBCardBody>
                     <MDBRow>
-                      <MDBCol md='6'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
+                      <MDBCol md='4'>
+                        <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} />
                       </MDBCol>
-                      <MDBCol md='6'>
+                      <MDBCol md='4'>
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dog Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
+                      </MDBCol>
+                      <MDBCol md='4'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
                       </MDBCol>
                     </MDBRow>

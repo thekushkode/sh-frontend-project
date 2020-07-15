@@ -92,7 +92,7 @@ class UserProfile extends Component {
     if (userID) {
       return db.collection("Dogs").doc('tyH4yBBzhshmbYQUmozv')
         .update({ 
-          friends: [...friends, 'eSJ53k72HPGlftt4f43m']
+          // friends: [...friends, 'eSJ53k72HPGlftt4f43m']
         })
         .then(() => {
           this.props.history.push('/messages')

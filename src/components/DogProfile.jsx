@@ -115,18 +115,18 @@ class DogProfile extends Component {
 
   handleClick = (id) => () => {
     const db = firebase.firestore();
-        db.collection("Dogs")
-          .doc(id)
-          .get()
-          .then(doc => {
-            const dogData = {
-              ...doc.data(),
-              dogId: doc.id
-            }
-            this.setState({
-              dogData: dogData
-            })
-          })
+    db.collection("Dogs")
+      .doc(id)
+      .get()
+      .then(doc => {
+        const dogData = {
+          ...doc.data(),
+          dogId: doc.id
+        }
+        this.setState({
+          dogData: dogData
+        })
+      })
   }
 
   handleChange = (e) => {
@@ -159,11 +159,11 @@ class DogProfile extends Component {
       .catch(err => {
         console.error(err)
       })
-      this.setState({
-        postValue: ''
-        // imgValue: e.target.imgValue
-      })
-      // dispatch(setFeed(newPost))
+    this.setState({
+      postValue: ''
+      // imgValue: e.target.imgValue
+    })
+    // dispatch(setFeed(newPost))
   }
 
   toggle = item => {
@@ -193,11 +193,11 @@ class DogProfile extends Component {
                       src={this.state.dogData.avatar}
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
 
-                      //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
+                    //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
 
                     />
                     <MDBDropdown>
-                      <MDBDropdownToggle caret color="primary">
+                      <MDBDropdownToggle caret rounded className="aqua-gradient">
                         Select Dog
                       </MDBDropdownToggle>
                       <MDBDropdownMenu basic >
@@ -218,34 +218,39 @@ class DogProfile extends Component {
                       <h5>
                         Bio: {this.state.dogData.bio}
                       </h5>
-                      <MDBBtn floating tag='a' className='morpheus-den-gradient'>
+                      <MDBBtn floating tag='a' className='blue-gradient'>
                         <MDBIcon fab icon='facebook' className='white-text' />
                       </MDBBtn>
-                      <MDBBtn floating tag='a' className='young-passion-gradient'>
+                      <MDBBtn floating tag='a' className='purple-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text' />
                       </MDBBtn>
+                    </MDBCardBody>
+                  </MDBCard>
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody>
+
                       <MDBBtn
-                        className='purple-gradient'
-                        size='sm'
+                        className='rare-wind-gradient'
+                        
                         rounded
                       >
-                        <Link to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
-                    </MDBBtn>
-                      <MDBBtn
-                        className='blue-gradient'
-                        size='sm'
-                        rounded
-                        href='/messages'
-                      >
-                        Request PlayDate
-                    </MDBBtn>
+                        <Link style={{ textDecoration: 'none' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
+                      </MDBBtn>
                       <MDBBtn
                         className='peach-gradient'
-                        size='sm'
+                        
                         rounded
                         href='#!'
                       >
                         Follow {this.state.dogData.dogName}
+                      </MDBBtn>
+                      <MDBBtn
+                        className='blue-gradient'
+                        
+                        rounded
+                        href='/messages'
+                      >
+                        Request PlayDate
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
@@ -389,8 +394,8 @@ class DogProfile extends Component {
                             </MDBBtn>
                           </form>
                         </div>
-                        <div className='d-flex justify-content-around'>
-                        </div>
+                        {/* <div className='d-flex justify-content-around'>
+                        </div> */}
                       </div>
                     </MDBCol>
                   </MDBRow>

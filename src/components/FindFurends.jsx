@@ -174,15 +174,15 @@ export class Furends extends Component {
                                 style={mapStyles}
                                 initialCenter={{ lat: 33.753746, lng: -84.386330 }}
                             >
-                                {this.state.users.map((user, index, mapProps) => {
-                                    let address = users[index].street + ' ' + users[index].city + ', ' + users[index].userState + ' ' + users[index].zipcode;
+                                {this.state.dogData.map((user, index, mapProps) => {
+                                    let address = user.street + ' ' + user.city + ', ' + user.userState + ' ' + user.zipcode;
                                     // console.log(address);
                                     return (
                                         <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
                                             onClick={this.onMarkerClick} />
                                     )
                                 })}
-                                {this.state.users.map((user, index) => {
+                                {this.state.dogData.map((user, index) => {
                                     return (
                                         < InfoWindow marker={this.state.activeMarker} key={index}
                                             visible={this.state.selectedPlace.id === index} name={user.name} >

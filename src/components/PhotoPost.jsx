@@ -1,7 +1,17 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
+import moment from 'moment';
+moment().format()
 
 export default function PhotoPost(props) {
+
+  function handleClick() {
+    console.log('hello world')
+    let likes = parseInt(props.data.Likes)
+    likes++
+    return likes
+  }
+
   return (
     <div className="news">
       <div className="label">
@@ -15,25 +25,25 @@ export default function PhotoPost(props) {
         <div className="brief">
           <a href="#!" className="name">
             {props.data.Sender}</a> added 
-          <a href="#!">2 new photos</a>
-          <div className="date">{props.data.timestamp.toString()}</div>
+          <a href="#!"> 2 new photos</a>
+          <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
         </div>
         <div className="added-images">
           <img
             src="https://mdbootstrap.com/img/Photos/Others/images/71.jpg"
             alt=""
-            className="z-depth-1 rounded mb-md-0 mb-2"
+            className="z-depth-1 rounded mb-md-0 mb-2 w-50 h-50"
           />
           <img
             src="https://mdbootstrap.com/img/Photos/Others/images/74.jpg"
             alt=""
-            className="z-depth-1 rounded"
+            className="z-depth-1 rounded w-50 h-50"
           />
         </div>
         <div className="feed-footer">
           <a href="#!" className="like">
-            <MDBIcon icon="heart" />
-            <span>18 likes</span>
+            <MDBIcon icon="heart" onClick={() => handleClick()}/>
+            <span> {props.data.Likes} </span>likes
           </a>
         </div>
       </div>

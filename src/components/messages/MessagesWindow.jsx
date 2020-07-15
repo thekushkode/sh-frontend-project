@@ -16,13 +16,13 @@ export default function MessagesWindow() {
     const profile = useSelector(state => state.profile)
     let userNames;
     let friends;
-    if (messages.data) {
-        console.log('messages.data')
-        userNames = messages.data.userNames.filter((name) => name !== user.data.displayName)
-        if (profile.data.friends) {
-            friends = profile.data.friends.map((name) => name)
-        }
-    }
+    // if (messages.data) {
+    //     console.log('messages.data')
+    //     userNames = messages.data.userNames.filter((name) => name !== user.data.displayName)
+    //     if (profile.data.friends) {
+    //         friends = profile.data.friends.map((name) => name)
+    //     }
+    // }
 
 
 
@@ -31,7 +31,7 @@ export default function MessagesWindow() {
         // create dropdown or other method for choosing between your friends
         // filter out any friends that are already included in conversation
         // check if user has friends array, some users do not
-        let selectableFrieds = friends && friends.filter((friend) => friend !== messages.data.members)
+        let selectableFriends = friends && friends.filter((friend) => friend !== messages.data.members)
         // save the clicked value to the variable chosenFriend
         let chosenFriend = 'b2GTIs6T5zEjHQMvrtiF'
         // get chosenFriends dog profile to access their userName and unique ID

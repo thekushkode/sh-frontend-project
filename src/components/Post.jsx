@@ -1,7 +1,11 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
+import { useSelector } from 'react-redux';
+import moment from 'moment';
+moment().format()
 
 export default function Post(props) {
+    // const feed = useSelector(state => state.feed)
     return (
         <div className="news">
             <div className="label">
@@ -16,15 +20,15 @@ export default function Post(props) {
                     <a href="#!" className="name">
                         {props.data.Sender}
                     </a> posted on their page
-                    <div className="date">{props.data.timestamp.toString()}</div>
                 </div>
                 <div className="added-text">
                     {props.data.Content}
                 </div>
+                    <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
                 <div className="feed-footer">
                     <a href="#!" className="like">
                         <MDBIcon icon="heart" />
-                        <span>7 likes</span>
+                        <span> {props.data.Likes} </span> likes
                     </a>
                 </div>
             </div>

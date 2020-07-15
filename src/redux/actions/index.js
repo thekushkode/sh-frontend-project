@@ -49,3 +49,15 @@ export const loadMessages = (payload) => ({
     payload
 })
 
+export const setFeed = (feed) => {
+    return {
+        type: 'SET_FEED',
+        payload: feed
+    }
+}
+
+export const unSetFeed = () => {
+    return {
+        type: 'UNSET_FEED'
+    }
+}

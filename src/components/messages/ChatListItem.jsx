@@ -51,7 +51,7 @@ export default function ChatListItem(props) {
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
     console.log(messageData.userNames)
-    let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
+    // let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
 
     return (
         <MDBListGroupItem hover onClick={itemClicked}>
@@ -64,9 +64,14 @@ export default function ChatListItem(props) {
             />
             <div className='d-flex justify-content-between mb-1'>
                 <span className='mb-1'>
-                    {userNames.map((name, index) => {
+                    {/* {userNames.map((name, index) => {
                         return (
                             <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
+                        )
+                    })} */}
+                    {messageData.userNames && messageData.userNames.map((name, index) => {
+                        return (
+                            <strong>{name}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong>
                         )
                     })}
                 </span>

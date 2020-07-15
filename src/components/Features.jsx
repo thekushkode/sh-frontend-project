@@ -54,6 +54,17 @@ const FeaturesPage = () => {
                             </p>
                         </MDBCol>
                     </MDBRow>
+                    <MDBRow className="mb-3">
+                        <MDBCol size="1">
+                            <MDBIcon icon="share" size="lg" className="indigo-text" />
+                        </MDBCol>
+                        <MDBCol xl="10" md="11" size="10">
+                            <h5 className="font-weight-bold mb-3">Flourish</h5>
+                            <p className="grey-text">
+                                Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other dogs and animals gives many more opportunities to explore with your pup outside of your yard!
+                            </p>
+                        </MDBCol>
+                    </MDBRow>
                 </MDBCol>
             </MDBRow>
         </section>

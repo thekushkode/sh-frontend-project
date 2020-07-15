@@ -18,13 +18,13 @@ export default function SocialPage2() {
     const feed = useSelector(state => state.feed)
 
     useEffect(() => {
-        db.collection('Feed').onSnapshot(
+        db.collection('Feed').orderBy("timestamp", "desc").limit(10).onSnapshot(
             // .then(doc => {
             //     console.log(doc)
             //     dispatch(setFeed(doc.data()))
             // })
             querySnapshot => {
-                console.log(querySnapshot)
+                // console.log(querySnapshot)
                 let feed = [];
                 querySnapshot.forEach(function (doc) {
                     const feedData = {
@@ -33,7 +33,7 @@ export default function SocialPage2() {
                     }
                     feed.push(feedData);
                 })
-                console.log(feed)
+                // console.log(feed)
                 dispatch(setFeed(feed))
             });
     }, [])
@@ -49,7 +49,7 @@ export default function SocialPage2() {
                             <MDBCardBody className="py-0">
                                 <MDBRow>
                                     {feed && feed.map((item) => {
-                                        console.log(item)
+                                        // console.log(item)
                                         switch (item.Type) {
                                             case 'Post':
                                                 return <Post data={item} />

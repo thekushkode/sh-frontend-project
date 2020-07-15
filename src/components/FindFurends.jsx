@@ -28,7 +28,7 @@ export class Furends extends Component {
             activeMarker: {},
             selectedPlace: {},
             users: [],
-            location: '',
+            location: props.profile.data.zipcode,
             dogData: []
         }
     }
@@ -41,7 +41,7 @@ export class Furends extends Component {
     }
 
     handleFormSubmit = (e) => {
-        e.preventDefault();
+        e && e.preventDefault();
 
         // let friend = this.props.location.pathname.slice(8);
         let friend = this.state.location
@@ -71,7 +71,10 @@ export class Furends extends Component {
             })
     }
 
-    // componentDidMount() {
+    componentDidMount() { 
+        this.handleFormSubmit()
+    }
+
 
     //     // db.collection("Dogs")
     //     //     .get()
@@ -249,12 +252,16 @@ export class Furends extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.setUser,
-        profile: state.setProfile
+        user: state.user,
+        profile: state.profile
     }
 }
 
+const WrappedContainer = GoogleApiWrapper({
+    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts'
+})(Furends);
 
-export default connect(mapStateToProps, { setUser, setProfile })(GoogleApiWrapper({
-    apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts' //re insert google api key
-})(Furends));
+export default connect(
+    mapStateToProps,
+    null
+)(WrappedContainer)

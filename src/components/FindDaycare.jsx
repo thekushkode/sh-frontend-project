@@ -16,7 +16,7 @@ export class DayCare extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            zipCode: props.user.data.zipcode,
+            zipCode: props.profile.data.zipcode,
             map: null
         }
     }
@@ -156,7 +156,8 @@ export class DayCare extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        profile: state.profile
     }
 }
 

@@ -42,7 +42,7 @@ class NavbarPage extends Component {
             return <Redirect to='/' />
         }
 
-        console.log(this.props.profile.id)
+        // console.log(this.props.profile.id)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>

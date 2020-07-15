@@ -53,8 +53,9 @@ function NewProfile(props) {
 
 
   useEffect(() => {
-    // console.log(user);
-    if (user && !dogId) {
+    console.log(user.uid);
+    console.log(dogId)
+    if (user.uid && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
       //   .then(doc => {
       //     console.log(doc.data)
@@ -82,15 +83,18 @@ function NewProfile(props) {
       //       }
       //   })
         .then(querySnapshot => {
-          // console.log(querySnapshot);
+          console.log('howdy');
+          console.log(querySnapshot)
           let dog = null;
           querySnapshot.forEach(doc => {
             if (!dog) {
-              let userProfile = { data: doc.data(), id: doc.id }
-              dispatch(setProfile(userProfile));
+              console.log('test 1')
+              setDogId(doc.id);
+              dog = doc.data();
             }
             if (dog) {
-              let userProfile = { data: dog, id: doc.id }
+              console.log('test 2')
+              let userProfile = { data: doc.data(), id: doc.id }
               setDogName(dog.dogName);
               setOwnerName(dog.ownerName);
               setBreed(dog.breed);
@@ -111,11 +115,10 @@ function NewProfile(props) {
           })
         })
     }
-  })
+  }, )
 
   const updateProfile = (e) => {
     if (!dogId) {
-      // let user = firebase.auth().currentUser;
       db.collection('Dogs').add({
         dogName,
         ownerName,
@@ -132,25 +135,14 @@ function NewProfile(props) {
         bio,
         ownerId: user.uid
       })
-    } else {
-      db.collection('Dogs').doc(dogId).set({
-        dogName,
-        ownerName,
-        breed,
-        street,
-        city,
-        userState,
-        zipcode,
-        temperament,
-        size,
-        spayNeut,
-        vaccines,
-        avatar,
-        bio
-      }, { merge: true })
-      console.log(avatar);
-    }
-    // history.push(`/profile/${props.match.params.dogId}`);
+      .then((querySnapshot) => {
+        console.log('test 2')
+        let userProfile = { data: querySnapshot, id: querySnapshot.id }
+        dispatch(setProfile(userProfile));
+        console.log(profile.id)
+        history.push(`/profile/${querySnapshot.id}`);
+      })
+    } 
   }
 
   return (
@@ -249,9 +241,7 @@ function NewProfile(props) {
                       </MDBCol>
                     </MDBRow>
                     <MDBBtn color='info' rounded onClick={updateProfile}>
-                      {console.log(profile.id)}
-                      {/* {console.log(state.profile.id)} */}
-                      <Link style={{ textDecoration: 'none' }} to={`/profile/${profile.id}`}>Save</Link>
+                      Save
                     </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>

@@ -54,7 +54,7 @@ const Chat = () => {
 
 
       db.collection('Messages')
-        .where('members', 'array-contains', user.id)
+        .where('members', 'array-contains', user.uid)
         .onSnapshot((querySnapshot) => {
           let dataArray = []
           querySnapshot.forEach(function (doc) {

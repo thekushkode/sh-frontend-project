@@ -20,6 +20,7 @@ import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux' 
 
 class UserProfile extends Component {
   constructor(props) {
@@ -74,6 +75,24 @@ class UserProfile extends Component {
               message: `${userName} wants to chat`
             }
           ]
+        })
+        .then(() => {
+          this.props.history.push('/messages')
+        })
+    }
+  }
+
+  addFriend = (dog) => {
+    const db = firebase.firestore();
+    let user = firebase.auth().currentUser;
+    let userID = user.uid
+    let userName = user.displayName
+    console.log(userID)
+    console.log(dog.ownerId)
+    if (userID) {
+      return db.collection("Dogs").doc('tyH4yBBzhshmbYQUmozv')
+        .update({ 
+          friends: [...friends, 'eSJ53k72HPGlftt4f43m']
         })
         .then(() => {
           this.props.history.push('/messages')
@@ -167,7 +186,7 @@ class UserProfile extends Component {
                             className='peach-gradient'
                             size='sm'
                             rounded
-                            href='#!'
+                            onClick={() => this.addFriend(dog)}
                           >
                             Follow {dog.dogName}
                           </MDBBtn>
@@ -538,4 +557,14 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+const mapStateToProps = (state) => {
+  return {
+      user: state.user,
+      profile: state.profile
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(UserProfile)

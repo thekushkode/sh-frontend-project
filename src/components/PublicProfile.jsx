@@ -57,8 +57,9 @@ class UserProfile extends Component {
 
   letsChat = (dog) => {
     const db = firebase.firestore();
-    let userID = this.props.user.id
-    let userName = this.props.user.data.displayName
+    let user = firebase.auth().currentUser;
+    let userID = user.uid
+    let userName = user.displayName
     console.log(userID)
     console.log(dog.ownerId)
     if (userID) {

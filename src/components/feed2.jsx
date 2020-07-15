@@ -18,23 +18,24 @@ export default function SocialPage2() {
     const feed = useSelector(state => state.feed)
 
     useEffect(() => {
-        db.collection('Feed').doc('s8WggZvXWEZRiMfnaxBq').get()
-            .then(doc => {
-                dispatch(setFeed(doc.data().posts))
-            })
-            // .then(querySnapshot => {
-            //     console.log(querySnapshot)
-            //     let feed = [];
-            //     querySnapshot.forEach(function (doc) {
-            //         const feedData = {
-            //             ...doc.data(),
-            //             docId: doc.id
-            //         }
-            //         feed.push(feedData);
-            //     })
-            //     console.log(feed)
-            //     dispatch(setFeed(feed))
-            // });
+        db.collection('Feed').onSnapshot(
+            // .then(doc => {
+            //     console.log(doc)
+            //     dispatch(setFeed(doc.data()))
+            // })
+            querySnapshot => {
+                console.log(querySnapshot)
+                let feed = [];
+                querySnapshot.forEach(function (doc) {
+                    const feedData = {
+                        ...doc.data(),
+                        docId: doc.id
+                    }
+                    feed.push(feedData);
+                })
+                console.log(feed)
+                dispatch(setFeed(feed))
+            });
     }, [])
 
     return (

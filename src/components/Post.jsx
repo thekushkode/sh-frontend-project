@@ -19,7 +19,7 @@ export default function Post(props) {
             <div className="excerpt">
                 <div className="brief">
                     <a href="#!" className="name">
-                        {props.data.Sender}
+                        {props.data.SenderName}
                     </a> posted on their page
                 </div>
                 <div className="added-text">

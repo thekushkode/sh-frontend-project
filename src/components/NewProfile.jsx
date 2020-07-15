@@ -28,7 +28,7 @@ import UploadFile from './Upload';
 
 const db = firebase.firestore();
 
-function EditProfile(props) {
+function NewProfile(props) {
 
   const history = useHistory();
   //grabs redux state
@@ -51,7 +51,7 @@ function EditProfile(props) {
   useEffect(() => {
     // console.log(user);
     if (user && !dogId) {
-      db.collection("Dogs").doc(props.match.params.dogId).get()
+      db.collection('Dogs').where('ownerId', '==', user.id).get()
         .then(doc => {
             let dog = null
             if (!dog) {
@@ -292,4 +292,4 @@ function EditProfile(props) {
   );
 }
 
-export default EditProfile;
+export default NewProfile;

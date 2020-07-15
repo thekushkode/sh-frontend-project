@@ -31,6 +31,7 @@ import SpinnerPage from './Spinner';
 import Notification from './Notification';
 import UserProfile from './PublicProfile';
 import LoadingPage from './LoadingPage';
+import NewProfile from './NewProfile';
 
 function App() {
   let db = firebase.firestore();
@@ -57,7 +58,7 @@ function App() {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // currUser = user;
-        // dispatch(setUser(user))
+        dispatch(setUser(user))
         let userID;
 
         let userData = {}
@@ -137,6 +138,7 @@ function App() {
               <Route exact path='/contact' component={ContactPage} />
               <Route exact path='/feed' component={SocialPage2} />
               <Route exact path='/editprofile/:dogId' component={EditProfile} />
+              <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
               <Route exact path='/login'><Redirect to="/profile"/></Route>
@@ -145,7 +147,7 @@ function App() {
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
-              <Route><Redirect to="/feed" /></Route>
+              <Route><Redirect to="/profile" /></Route>
             </Switch>
           </div>
         </Router>

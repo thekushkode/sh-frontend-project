@@ -12,19 +12,29 @@ import PhotoPost from "./PhotoPost";
 
 export default function SocialPage2() {
 
-    const [allFeedContent, setAllFeedContent] = React.useState([]);
+    // const [allFeedContent, setAllFeedContent] = React.useState([]);
     const db = firebase.firestore();
     const dispatch = useDispatch();
     const feed = useSelector(state => state.feed)
 
     useEffect(() => {
-        db.collection('Feed').get()
-            .then(data => {
-                data.forEach(doc => {
-                    dispatch(setFeed(doc.data().posts))
-                });
-
+        db.collection('Feed').doc('s8WggZvXWEZRiMfnaxBq').get()
+            .then(doc => {
+                dispatch(setFeed(doc.data().posts))
             })
+            // .then(querySnapshot => {
+            //     console.log(querySnapshot)
+            //     let feed = [];
+            //     querySnapshot.forEach(function (doc) {
+            //         const feedData = {
+            //             ...doc.data(),
+            //             docId: doc.id
+            //         }
+            //         feed.push(feedData);
+            //     })
+            //     console.log(feed)
+            //     dispatch(setFeed(feed))
+            // });
     }, [])
 
     return (

@@ -130,21 +130,37 @@ class DogProfile extends Component {
   }
 
   handleChange = (e) => {
-    console.log('changed');
-    console.log(e.target.value);
     this.setState({
       postValue: e.target.value,
-      imgValue: e.target.imgValue
+      // imgValue: e.target.imgValue
     })
-    console.log(this.state.postValue);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const db = firebase.firestore();
+    let user = firebase.auth().currentUser;
     console.log('submitted');
     console.log(this.state.postValue);
-    console.log(this.props.feed[0])
-    // this.props.setFeed([...this.props.feed[0], this.state.postValue])
+    console.log(user)
+    const newPost = {
+      Content: this.state.postValue,
+      Likes: 0,
+      Sender: user.displayName,
+      Type: 'Post',
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }
+    db.collection('Feed').doc('s8WggZvXWEZRiMfnaxBq').add(newPost)
+      .then(doc => {
+        console.log(`${doc.id} created successfully`)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+      this.setState({
+        postValue: ''
+        // imgValue: e.target.imgValue
+      })
   }
 
   toggle = item => {

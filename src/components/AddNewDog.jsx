@@ -57,60 +57,6 @@ function AddNewDog(props) {
     // console.log(user);
     if (user && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
-        // .then(doc => {
-        //   console.log(doc.data)
-        //     let dog = null
-        //     if (!dog) {
-        //       setDogId(doc.id);
-        //       dog = doc.data();
-        //     }
-        //     if (dog) {
-        //       setDogName(dog.dogName);
-        //       setBreed(dog.breed);
-        //       setStreet(dog.street);
-        //       setCity(dog.city);
-        //       setUserState(dog.userState);
-        //       setZipcode(dog.zipcode);
-        //       setTemperament(dog.temperament);
-        //       setSize(dog.size);
-        //       setSpayNeut(dog.spayNeut);
-        //       setVaccines(dog.vaccines);
-        //       setBio(dog.bio);
-        //       setAvatar(dog.avatar)
-        //       setProfile(dog);
-        //       console.log(dog.avatar);
-        //       console.log(dog);
-        //     }
-        // })
-        // .then(querySnapshot => {
-        //   // console.log(querySnapshot);
-        //   let dog = null;
-        //   querySnapshot.forEach(doc => {
-        //     if (!dog) {
-        //       setDogId(doc.id);
-        //       dog = doc.data();
-        //     }
-        //     if (dog) {
-        //       let userProfile = { data: dog, id: doc.id }
-        //       setDogName(dog.dogName);
-        //       setOwnerName(dog.ownerName);
-        //       setBreed(dog.breed);
-        //       setStreet(dog.street);
-        //       setCity(dog.city);
-        //       setUserState(dog.userState);
-        //       setZipcode(dog.zipcode);
-        //       setTemperament(dog.temperament);
-        //       setSize(dog.size);
-        //       setSpayNeut(dog.spayNeut);
-        //       setVaccines(dog.vaccines);
-        //       setBio(dog.bio);
-        //       setAvatar(dog.avatar)
-        //       dispatch(setProfile(userProfile));
-        //       console.log(dog.avatar);
-        //       console.log(dog);
-        //     }
-        //   })
-        // })
     }
   })
 
@@ -133,26 +79,12 @@ function AddNewDog(props) {
         bio,
         ownerId: user.uid
       })
-    } else {
-      db.collection('Dogs').doc(dogId).set({
-        dogName,
-        ownerName,
-        breed,
-        street,
-        city,
-        userState,
-        zipcode,
-        temperament,
-        size,
-        spayNeut,
-        vaccines,
-        avatar,
-        bio
-      }, { merge: true })
-      console.log(avatar);
-    }
-    // history.push(`/profile/${props.match.params.dogId}`);
+      .then((res) => {
+        console.log(res.id)
+        history.push(`/profile/${res.id}`)
+      })
   }
+}
 
   return (
     <div>
@@ -252,7 +184,7 @@ function AddNewDog(props) {
                     <MDBBtn color='info' rounded onClick={updateProfile}>
                       {console.log(profile.id)}
                       {/* {console.log(state.profile.id)} */}
-                      <Link style={{ textDecoration: 'none' }} to={`/profile/${profile.id}`}>Save</Link>
+                        Save
                     </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>

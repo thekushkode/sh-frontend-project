@@ -13,7 +13,7 @@ import Furends from './FindFurends';
 import Friend from './Friend';
 import firebase from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, unSetUser, setProfile, authStart, loggedIn, loggedOut } from '../redux/actions';
+import { setUser, unSetUser, setProfile, clearProfile, authStart, loggedIn, loggedOut } from '../redux/actions';
 import { UNINITIALIZED, AUTHENTICATING, LOGGED_IN, LOGGED_OUT } from "../redux/reducers/auth";
 import EditProfile from './EditProfile';
 import Terms from './Terms';
@@ -87,6 +87,7 @@ function App() {
       } else {
         console.log('else app.js')
         dispatch(unSetUser());
+        dispatch(clearProfile());
         dispatch(loggedOut());
       }
     });

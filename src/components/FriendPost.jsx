@@ -15,7 +15,7 @@ export default function FriendPost(props) {
         <div className="feed-footer">
           <a href="#!" className="like">
             <MDBIcon icon="heart" />
-            <span>5 likes</span>
+            <span> {props.data.Likes} </span> likes
           </a>
         </div>
       </div>

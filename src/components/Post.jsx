@@ -24,7 +24,7 @@ export default function Post(props) {
                 <div className="feed-footer">
                     <a href="#!" className="like">
                         <MDBIcon icon="heart" />
-                        <span>7 likes</span>
+                        <span> {props.data.Likes} </span> likes
                     </a>
                 </div>
             </div>

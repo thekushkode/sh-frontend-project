@@ -1,10 +1,10 @@
-// import React from "react";
+import React, { useEffect } from 'react';
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
-//import FooterPage from "./Footer";
+import FooterPage from "./Footer";
 import GoogleAd from "./GoogleAd";
 //import AdSense from 'react-adsense';
-
-import React, { useEffect } from 'react'
+import { setFeed, unSetFeed } from '../redux/actions/index';
+import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import Post from "./Post";
 import FriendPost from "./FriendPost";
@@ -14,26 +14,48 @@ export default function SocialPage2() {
 
     const [allFeedContent, setAllFeedContent] = React.useState([]);
     const db = firebase.firestore();
+    const dispatch = useDispatch();
+    const feed = useSelector(state => state.feed)
 
     useEffect(() => {
-        db.collection('Feed').doc('s8WggZvXWEZRiMfnaxBq').get()
-            .then(res => {
-                console.log(res.data())
-                setAllFeedContent(res.data().posts);
+        db.collection('Feed').get()
+            .then(data => {
+                let feed = [];
+                data.forEach(doc => {
+                    console.log(doc.data().posts)
+                    feed.push(doc.data().posts)
+                    dispatch(setFeed(feed))
+                });
+
             })
+            // .onSnapshot((querySnapshot) => {
+            //     let dataArray = []
+            //     querySnapshot.forEach(function (doc) {
+            //         console.log(doc.id, doc.data())
+            //         dataArray.push({ id: doc.id, data: doc.data() })
+            //     })
+            //     setFeed(dataArray)
+            // })
+            // .then(res => {
+            //     // console.log(res.data())
+            //     console.log(res)
+            //     // setAllFeedContent(res.data().posts);
+            //     dispatch.setFeed((res.data().posts));
+            // })
     }, [])
 
     return (
         <div style={{ marginTop: '200px' }}>
             <header style={{ marginBottom: '100px' }}>
             </header>
-                <main>
-                    <MDBRow>
-                        <MDBCol md={6}>
-                            <MDBCard className="mb-5 px-5 pt-4 fluid" style={{ fontWeight: 300, maxWidth: 2000 }}>
-                                <MDBCardBody className="py-0">
-                                    <MDBRow>
-                                    {allFeedContent && allFeedContent.map((item) => {
+            <main>
+                <MDBRow>
+                    <MDBCol md={6}>
+                        <MDBCard className="mb-5 px-5 pt-4 fluid" style={{ fontWeight: 300, maxWidth: 2000 }}>
+                            <MDBCardBody className="py-0">
+                                <MDBRow>
+                                    {feed && feed[0].map((item) => {
+                                        console.log(item)
                                         switch (item.Type) {
                                             case 'Post':
                                                 return <Post data={item} />

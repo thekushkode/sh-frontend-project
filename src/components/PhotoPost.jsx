@@ -2,6 +2,14 @@ import React from 'react'
 import { MDBIcon } from "mdbreact";
 
 export default function PhotoPost(props) {
+
+  function handleClick() {
+    console.log('hello world')
+    let likes = parseInt(props.data.Likes)
+    likes++
+    return likes
+  }
+
   return (
     <div className="news">
       <div className="label">
@@ -22,18 +30,18 @@ export default function PhotoPost(props) {
           <img
             src="https://mdbootstrap.com/img/Photos/Others/images/71.jpg"
             alt=""
-            className="z-depth-1 rounded mb-md-0 mb-2"
+            className="z-depth-1 rounded mb-md-0 mb-2 w-50 h-50"
           />
           <img
             src="https://mdbootstrap.com/img/Photos/Others/images/74.jpg"
             alt=""
-            className="z-depth-1 rounded"
+            className="z-depth-1 rounded w-50 h-50"
           />
         </div>
         <div className="feed-footer">
           <a href="#!" className="like">
-            <MDBIcon icon="heart" />
-            <span>18 likes</span>
+            <MDBIcon icon="heart" onClick={() => handleClick()}/>
+            <span> {props.data.Likes} </span>likes
           </a>
         </div>
       </div>

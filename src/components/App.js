@@ -32,6 +32,7 @@ import Notification from './Notification';
 import UserProfile from './PublicProfile';
 import LoadingPage from './LoadingPage';
 import NewProfile from './NewProfile';
+import AddNewDog from './AddNewDog';
 
 function App() {
   let db = firebase.firestore();
@@ -79,7 +80,7 @@ function App() {
                 })
               }).then(res => {
                 dispatch(setProfile(userProfile));
-                dispatch(setUser(userData));
+                // dispatch(setUser(userData));
                 dispatch(loggedIn());
               })
           })
@@ -115,7 +116,7 @@ function App() {
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
               <Route exact path='/load' component={LoadingPage} />
-              <Route><Redirect to="/" /></Route>
+              {/* <Route><Redirect to="/" /></Route> */}
             </Switch>
           </div>
         </Router>
@@ -145,9 +146,10 @@ function App() {
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
+              <Route exact path='/add' component={AddNewDog} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
-              <Route><Redirect to="/feed" /></Route>
+              <Route><Redirect to="/newprofile" /></Route>
             </Switch>
           </div>
         </Router>

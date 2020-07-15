@@ -28,7 +28,7 @@ import UploadFile from './Upload';
 
 const db = firebase.firestore();
 
-function NewProfile(props) {
+function AddNewDog(props) {
   
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,6 +38,7 @@ function NewProfile(props) {
   // const profile = useSelector(state => state.profile);
   const [dogId, setDogId] = useState('');
   const [ownerName, setOwnerName] = useState('');
+  const [ownerId, setOwnerId] = useState('');
   const [dogName, setDogName] = useState('');
   const [breed, setBreed] = useState('');
   const [street, setStreet] = useState('');
@@ -56,60 +57,60 @@ function NewProfile(props) {
     // console.log(user);
     if (user && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
-      //   .then(doc => {
-      //     console.log(doc.data)
-      //       let dog = null
-      //       if (!dog) {
-      //         setDogId(doc.id);
-      //         dog = doc.data();
-      //       }
-      //       if (dog) {
-      //         setDogName(dog.dogName);
-      //         setBreed(dog.breed);
-      //         setStreet(dog.street);
-      //         setCity(dog.city);
-      //         setUserState(dog.userState);
-      //         setZipcode(dog.zipcode);
-      //         setTemperament(dog.temperament);
-      //         setSize(dog.size);
-      //         setSpayNeut(dog.spayNeut);
-      //         setVaccines(dog.vaccines);
-      //         setBio(dog.bio);
-      //         setAvatar(dog.avatar)
-      //         setProfile(dog);
-      //         console.log(dog.avatar);
-      //         console.log(dog);
-      //       }
-      //   })
-        .then(querySnapshot => {
-          // console.log(querySnapshot);
-          let dog = null;
-          querySnapshot.forEach(doc => {
-            if (!dog) {
-              let userProfile = { data: doc.data(), id: doc.id }
-              dispatch(setProfile(userProfile));
-            }
-            if (dog) {
-              let userProfile = { data: dog, id: doc.id }
-              setDogName(dog.dogName);
-              setOwnerName(dog.ownerName);
-              setBreed(dog.breed);
-              setStreet(dog.street);
-              setCity(dog.city);
-              setUserState(dog.userState);
-              setZipcode(dog.zipcode);
-              setTemperament(dog.temperament);
-              setSize(dog.size);
-              setSpayNeut(dog.spayNeut);
-              setVaccines(dog.vaccines);
-              setBio(dog.bio);
-              setAvatar(dog.avatar)
-              dispatch(setProfile(userProfile));
-              console.log(dog.avatar);
-              console.log(dog);
-            }
-          })
-        })
+        // .then(doc => {
+        //   console.log(doc.data)
+        //     let dog = null
+        //     if (!dog) {
+        //       setDogId(doc.id);
+        //       dog = doc.data();
+        //     }
+        //     if (dog) {
+        //       setDogName(dog.dogName);
+        //       setBreed(dog.breed);
+        //       setStreet(dog.street);
+        //       setCity(dog.city);
+        //       setUserState(dog.userState);
+        //       setZipcode(dog.zipcode);
+        //       setTemperament(dog.temperament);
+        //       setSize(dog.size);
+        //       setSpayNeut(dog.spayNeut);
+        //       setVaccines(dog.vaccines);
+        //       setBio(dog.bio);
+        //       setAvatar(dog.avatar)
+        //       setProfile(dog);
+        //       console.log(dog.avatar);
+        //       console.log(dog);
+        //     }
+        // })
+        // .then(querySnapshot => {
+        //   // console.log(querySnapshot);
+        //   let dog = null;
+        //   querySnapshot.forEach(doc => {
+        //     if (!dog) {
+        //       setDogId(doc.id);
+        //       dog = doc.data();
+        //     }
+        //     if (dog) {
+        //       let userProfile = { data: dog, id: doc.id }
+        //       setDogName(dog.dogName);
+        //       setOwnerName(dog.ownerName);
+        //       setBreed(dog.breed);
+        //       setStreet(dog.street);
+        //       setCity(dog.city);
+        //       setUserState(dog.userState);
+        //       setZipcode(dog.zipcode);
+        //       setTemperament(dog.temperament);
+        //       setSize(dog.size);
+        //       setSpayNeut(dog.spayNeut);
+        //       setVaccines(dog.vaccines);
+        //       setBio(dog.bio);
+        //       setAvatar(dog.avatar)
+        //       dispatch(setProfile(userProfile));
+        //       console.log(dog.avatar);
+        //       console.log(dog);
+        //     }
+        //   })
+        // })
     }
   })
 
@@ -306,4 +307,4 @@ function NewProfile(props) {
   );
 }
 
-export default NewProfile;
+export default AddNewDog;

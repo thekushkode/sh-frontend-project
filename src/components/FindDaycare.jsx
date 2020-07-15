@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import { connect } from 'react-redux';
 import Geocode from 'react-geocode';
-import Hotel from './love_hotel.png';
+import Hotel from './images/love_hotel.png';
 import DetailedInfo from './DetailedInfo';
 
 export class DayCare extends Component {

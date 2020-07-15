@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import { connect } from 'react-redux';
 import Geocode from 'react-geocode';
-import Vet from './hospital.png';
+import Vet from './images/hospital.png';
 import DetailedInfo from './DetailedInfo';
 
 class VetMap extends Component {

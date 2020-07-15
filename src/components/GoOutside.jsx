@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import { connect } from 'react-redux';
 import Geocode from 'react-geocode';
-import Dog from './dog.png';
+import Dog from './images/dog.png';
 import DetailedInfo from './DetailedInfo';
 
 

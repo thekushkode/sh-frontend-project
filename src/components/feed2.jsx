@@ -39,31 +39,26 @@ export default function SocialPage2() {
     }, [])
 
     return (
-        <div style={{ marginTop: '200px' }}>
-            <header style={{ marginBottom: '100px' }}>
-            </header>
+        <div>
             <main>
                 <MDBRow>
-                    <MDBCol md={6}>
-                        <MDBCard className="mb-5 px-5 pt-4 fluid" style={{ fontWeight: 300, maxWidth: 2000 }}>
-                            <MDBCardBody className="py-0">
-                                <MDBRow>
-                                    {feed && feed.map((item) => {
-                                        console.log(item)
-                                        switch (item.Type) {
-                                            case 'Post':
-                                                return <Post data={item} />
-                                            case 'Friend':
-                                                return <FriendPost data={item} />
-                                            case 'Photo':
-                                                return <PhotoPost data={item} />
-                                            default:
-                                                break;
-                                        }
-                                    })}
-                                </MDBRow>
-                            </MDBCardBody>
-                        </MDBCard>
+                    <MDBCol>
+
+                        {feed && feed.map((item) => {
+                            console.log(item)
+                            switch (item.Type) {
+                                case 'Post':
+                                    return <Post data={item} />
+                                case 'Friend':
+                                    return <FriendPost data={item} />
+                                case 'Photo':
+                                    return <PhotoPost data={item} />
+                                default:
+                                    break;
+                            }
+                        })}
+
+
                     </MDBCol>
                 </MDBRow>
             </main>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
+import { connect } from 'react-redux';
 import Geocode from 'react-geocode';
 import Dog from './dog.png';
 import DetailedInfo from './DetailedInfo';
 
 
-export class GMap extends Component {
+class GMap extends Component {
     constructor(props) {
         super(props);
 
@@ -16,7 +17,7 @@ export class GMap extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            zipCode: '30305',
+            zipCode: props.user.data.zipcode,
             map: null
         }
     }
@@ -157,6 +158,17 @@ export class GMap extends Component {
     };
 };
 
-export default GoogleApiWrapper({
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const WrappedContainer = GoogleApiWrapper({
     apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts'
 })(GMap);
+
+export default connect(
+    mapStateToProps,
+    null
+)(WrappedContainer)

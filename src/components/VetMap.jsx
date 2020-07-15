@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
+import { connect } from 'react-redux';
 import Geocode from 'react-geocode';
 import Vet from './hospital.png';
 import DetailedInfo from './DetailedInfo';
 
-export class VetMap extends Component {
+class VetMap extends Component {
     constructor(props) {
         super(props);
 
@@ -15,7 +16,7 @@ export class VetMap extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            zipCode: '30305',
+            zipCode: props.user.data.zipcode,
             map: null
         }
     }
@@ -137,14 +138,14 @@ export class VetMap extends Component {
                         })}
                     </Map>
                 </main>
-                <footer style={{position: 'bottom', padding: '0px', margin: '0px'}} className='fixed-bottom'>
-                    <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
+                <footer style={{ position: 'bottom', padding: '0px', margin: '0px' }} className='fixed-bottom'>
+                    <div style={{ marginTop: '100px', marginBottom: '0px', paddingBottom: '0px' }}>
                         <MDBCol md="6">
-                        <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
-                            <MDBIcon icon="search"/>
-                            <input className="form-control form-control-lg ml-3 w-35" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
-                            <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
-                        </MDBFormInline>
+                            <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
+                                <MDBIcon icon="search" />
+                                <input className="form-control form-control-lg ml-3 w-35" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
+                                <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
+                            </MDBFormInline>
                         </MDBCol>
                     </div>
                 </footer>
@@ -153,6 +154,17 @@ export class VetMap extends Component {
     };
 };
 
-export default GoogleApiWrapper({
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const WrappedContainer = GoogleApiWrapper({
     apiKey: 'AIzaSyDXL-StIbh_r3CWBCFSF0Tlqtwo8QmSIts'
 })(VetMap);
+
+export default connect(
+    mapStateToProps,
+    null
+)(WrappedContainer)

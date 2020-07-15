@@ -136,17 +136,15 @@ class DogProfile extends Component {
       postValue: e.target.value,
       imgValue: e.target.imgValue
     })
-    console.log(this.state.imgValue);
+    console.log(this.state.postValue);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('submitted');
-    console.log(e.target.postValue);
-    this.setState({
-      postValue: e.target.postValue,
-      imgValue: e.target.imgValue
-    });
+    console.log(this.state.postValue);
+    console.log(this.props.feed[0])
+    this.props.setFeed([...this.props.feed[0], this.state.postValue])
   }
 
   toggle = item => {
@@ -397,7 +395,7 @@ class DogProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      feed: state.feed
+    feed: state.feed
   }
 }
 

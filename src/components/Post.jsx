@@ -1,7 +1,10 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
+import { useSelector } from 'react-redux'
 
 export default function Post(props) {
+    const feed = useSelector(state => state.feed)
+
     return (
         <div className="news">
             <div className="label">

@@ -22,7 +22,7 @@ export default function SocialPage2() {
             .then(data => {
                 let feed = [];
                 data.forEach(doc => {
-                    console.log(doc.data().posts)
+                    // console.log(doc.data().posts)
                     feed.push(doc.data().posts)
                     dispatch(setFeed(feed))
                 });

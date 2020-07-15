@@ -145,7 +145,7 @@ function App() {
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
-              <Route><Redirect to="/profile" /></Route>
+              <Route><Redirect to="/feed" /></Route>
             </Switch>
           </div>
         </Router>

@@ -1,5 +1,7 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
+import moment from 'moment';
+moment().format()
 
 export default function FriendPost(props) {
   return (
@@ -10,7 +12,7 @@ export default function FriendPost(props) {
       <div className="excerpt">
         <div className="brief">
           <div><a href="#!" className="name">{props.data.Sender}</a> added you as a friend</div>
-          <div className="date">{props.data.timestamp.toString()}</div>
+          <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
         </div>
         <div className="feed-footer">
           <a href="#!" className="like">

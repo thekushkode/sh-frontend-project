@@ -1,5 +1,7 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
+import moment from 'moment';
+moment().format()
 
 export default function PhotoPost(props) {
 
@@ -24,7 +26,7 @@ export default function PhotoPost(props) {
           <a href="#!" className="name">
             {props.data.Sender}</a> added 
           <a href="#!"> 2 new photos</a>
-          <div className="date">{props.data.timestamp.toString()}</div>
+          <div className="date">- {moment(props.data.timestamp.toDate()).format('LLLL')}</div>
         </div>
         <div className="added-images">
           <img

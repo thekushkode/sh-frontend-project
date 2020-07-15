@@ -207,7 +207,7 @@ class DogProfile extends Component {
                           )
                         })}
                         < MDBDropdownItem divider />
-                        <MDBDropdownItem>Add Dog</MDBDropdownItem>
+                        <MDBDropdownItem><Link to={`/add`}>Add Dog</Link></MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                     <MDBCardBody>

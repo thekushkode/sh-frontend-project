@@ -46,6 +46,7 @@ function Home(props) {
                 
                 const db = firebase.firestore();
                 console.log('updating user info', createdUser.user.uid)
+                history.push('/newprofile')
                 //create user in Users db
                 db.collection('Users').doc(createdUser.user.uid).set({
                     email: email,
@@ -56,8 +57,8 @@ function Home(props) {
                     })
                     .catch(err => console.error(err))
 
-                    props.history.push('/newprofile')
-            })
+                })
+                history.push('/newprofile')
             // return <Redirect to='/newprofile' />
 
     }

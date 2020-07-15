@@ -38,16 +38,13 @@ function Home(props) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(createdUser => {
                 createdUser.user.updateProfile({
-                    displayName: name
+                    email: email
 
                 })
                 const db = firebase.firestore();
                 //create user in Users db
                 db.collection('Users').doc(createdUser.user.uid).set({
                     email: email,
-                    displayName: name,
-                    zipcode: zipcode
-
                 })
 
             })
@@ -78,7 +75,7 @@ function Home(props) {
                                 </h1>
                             <hr className='hr-light' />
                             <h6 className='mb-4'>
-                                Social Hound is the 1st social media platform made just for your pup. Use the sign-up form to get started and once signed-in, you'll be able to create your pup's profile, find friend's location and posts, set-up play dates, and search for places you and your pup can enjoy together!<br /><br />Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other dogs and animals gives many more opportunities to explore with your pup outside of your yard. We hope you enjoy SocialHound and making new fur-ends!
+                                Social Hound is the 1st social media platform made just for your pup. Use the sign-up form to get started and once signed-in, you'll be able to create your pup's profile, find friend's location and posts, set-up play dates, and search for places you and your pup can enjoy together! We hope you enjoy SocialHound and making new fur-ends!
                                 </h6>
                             <MDBBtn outline color='white' href='/about'>
                                 Learn More
@@ -94,15 +91,6 @@ function Home(props) {
                                             </h3>
                                         <hr className='hr-light' />
 
-                                        <MDBInput
-                                            className='white-text'
-                                            iconClass='white-text'
-                                            label='Name'
-                                            icon='user'
-                                            name='name'
-                                            containerClass="text-left"
-                                            onChange={(e) => { setName(e.target.value) }}
-                                        />
                                         <MDBInput
                                             className='white-text'
                                             iconClass='white-text'
@@ -122,15 +110,7 @@ function Home(props) {
                                             containerClass="text-left"
                                             onChange={(e) => { setPassword(e.target.value) }}
                                         />
-                                        <MDBInput
-                                            className='white-text'
-                                            iconClass='white-text'
-                                            label='Zip Code'
-                                            icon='map-pin'
-                                            name='zipcode'
-                                            containerClass="text-left"
-                                            onChange={(e) => { setZipcode(e.target.value) }}
-                                        />
+
                                         <div className='text-center mt-4 black-text'>
                                             <MDBBtn color='indigo' onClick={newUser}>Sign Up</MDBBtn>
                                             <hr className='hr-light' />

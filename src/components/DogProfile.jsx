@@ -25,7 +25,7 @@ import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
-import { connect } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 import { setFeed, unSetFeed } from '../redux/actions/index';
 
 
@@ -139,6 +139,7 @@ class DogProfile extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const db = firebase.firestore();
+    // const dispatch = useDispatch();
     let user = firebase.auth().currentUser;
     console.log('submitted');
     console.log(this.state.postValue);
@@ -146,11 +147,12 @@ class DogProfile extends Component {
     const newPost = {
       Content: this.state.postValue,
       Likes: 0,
-      Sender: user.displayName,
+      SenderName: user.displayName,
+      SenderID: user.uid,
       Type: 'Post',
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      timestamp: new Date()
     }
-    db.collection('Feed').doc('s8WggZvXWEZRiMfnaxBq').add(newPost)
+    db.collection('Feed').add(newPost)
       .then(doc => {
         console.log(`${doc.id} created successfully`)
       })
@@ -161,6 +163,7 @@ class DogProfile extends Component {
         postValue: ''
         // imgValue: e.target.imgValue
       })
+      // dispatch(setFeed(newPost))
   }
 
   toggle = item => {

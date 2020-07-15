@@ -28,7 +28,7 @@ import UploadFile from './Upload';
 
 const db = firebase.firestore();
 
-function EditProfile(props) {
+function NewProfile(props) {
 
   const history = useHistory();
   //grabs redux state
@@ -36,7 +36,6 @@ function EditProfile(props) {
   // const profile = useSelector(state => state.profile);
   const [dogId, setDogId] = useState('');
   const [dogName, setDogName] = useState('');
-  const [ownerName, setOwnerName] = useState('');
   const [breed, setBreed] = useState('');
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
@@ -52,7 +51,7 @@ function EditProfile(props) {
   useEffect(() => {
     // console.log(user);
     if (user && !dogId) {
-      db.collection("Dogs").doc(props.match.params.dogId).get()
+      db.collection('Dogs').where('ownerId', '==', user.uid).get()
         .then(doc => {
             let dog = null
             if (!dog) {
@@ -60,7 +59,6 @@ function EditProfile(props) {
               dog = doc.data();
             }
             if (dog) {
-              setOwnerName(dog.ownerName);
               setDogName(dog.dogName);
               setBreed(dog.breed);
               setStreet(dog.street);
@@ -112,7 +110,6 @@ function EditProfile(props) {
     if (!dogId) {
       // let user = firebase.auth().currentUser;
       db.collection('Dogs').add({
-        ownerName,
         dogName,
         breed,
         street,
@@ -125,11 +122,10 @@ function EditProfile(props) {
         vaccines,
         avatar,
         bio,
-        ownerId: user.uid
+        ownerId: user.id
       })
     } else {
       db.collection('Dogs').doc(dogId).set({
-        ownerName,
         dogName,
         breed,
         street,
@@ -169,13 +165,10 @@ function EditProfile(props) {
                   </div>
                   <MDBCardBody>
                     <MDBRow>
-                      <MDBCol md='4'>
-                        <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} />
+                      <MDBCol md='6'>
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
                       </MDBCol>
-                      <MDBCol md='4'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dog Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
-                      </MDBCol>
-                      <MDBCol md='4'>
+                      <MDBCol md='6'>
                         <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
                       </MDBCol>
                     </MDBRow>
@@ -299,4 +292,4 @@ function EditProfile(props) {
   );
 }
 
-export default EditProfile;
+export default NewProfile;

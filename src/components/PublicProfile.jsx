@@ -91,7 +91,8 @@ class UserProfile extends Component {
         })
         .then(() => {
           const newPost = {
-            Content: `${this.props.profile.data.ownerName} and ${dog.dogName} are friends`,
+            Avatar: this.props.profile.data.avatar,
+            Content: `${this.props.profile.data.dogName} and ${dog.dogName} are friends`,
             Likes: 0,
             SenderID: user.uid,
             Type: 'Friend',

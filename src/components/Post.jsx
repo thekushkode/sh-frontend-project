@@ -8,7 +8,6 @@ moment().format()
 export default function Post(props) {
 
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
-    //const dispatch = useDispatch();
     const db = firebase.firestore();
 
 
@@ -16,7 +15,6 @@ export default function Post(props) {
         db.collection('Feed').doc(props.data.docId).set({
             Likes: props.data.Likes + 1,
         }, {merge: true})
-        //dispatch(increment(props.data.docId));
     }
 
 
@@ -26,7 +24,7 @@ export default function Post(props) {
             <div className=''>
                 <div className='w-30'>
                     <img
-                        src={props.data.avatar ? props.data.avatar : defaultDogImg}
+                        src={props.data.Avatar ? props.data.Avatar : defaultDogImg}
                         alt=""
                         className="rounded-circle z-depth-1-half"
                         style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}

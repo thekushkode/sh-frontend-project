@@ -115,6 +115,7 @@ class DogProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     const newPost = {
+      Avatar: this.props.profile.data.avatar,
       Content: this.state.postValue,
       Likes: 0,
       SenderName: this.props.profile.data.dogName,
@@ -314,43 +315,6 @@ class DogProfile extends Component {
 
                         )
                       })}
-                      {/* <ul className='list-unstyled pt-4'>
-                        <li>
-                          <p>
-                            Questions{' '}
-                            <MDBBadge color='primary' className='float-right'>
-                              34
-                        </MDBBadge>
-                          </p>
-                        </li>
-                        <hr />
-                        <li>
-                          <p>
-                            Answers{' '}
-                            <MDBBadge color='primary' className='float-right'>
-                              17
-                        </MDBBadge>
-                          </p>
-                        </li>
-                        <hr />
-                        <li>
-                          <p>
-                            Submited projects{' '}
-                            <MDBBadge color='primary' className='float-right'>
-                              12
-                        </MDBBadge>
-                          </p>
-                        </li>
-                        <hr />
-                        <li>
-                          <p>
-                            Pull requests{' '}
-                            <MDBBadge color='primary' className='float-right'>
-                              3
-                        </MDBBadge>
-                          </p>
-                        </li>
-                      </ul> */}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>

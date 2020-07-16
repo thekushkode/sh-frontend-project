@@ -16,6 +16,7 @@ import Ike from './images/ike.png';
 const db = firebase.firestore();
 
 //TRYING TO USE COMBO OF REDUX / FIREBASE (ONLY FB IF POSSIBLE) TO DISPLAY USERS ON MAP AND DISPLAY CURRENT USER ON SAME MAP.
+let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
 //need help with {connect}
 export class Furends extends Component {
@@ -34,7 +35,6 @@ export class Furends extends Component {
     }
 
     handleChange = (e) => {
-        // console.log(e.target.value)
         this.setState({
             location: e.target.value
         })
@@ -42,19 +42,13 @@ export class Furends extends Component {
 
     handleFormSubmit = (e) => {
         e && e.preventDefault();
-
-        // let friend = this.props.location.pathname.slice(8);
         let friend = this.state.location
         let doggo = this
-        // if (user) {
-        // console.log(user)
-        // User is signed in.
         db.collection("Dogs")
             // .where('dogName', '==', friend)
             .where('zipcode', '==', friend)
             .get()
             .then(function (querySnapshot) {
-                console.log(querySnapshot)
                 let data = [];
                 querySnapshot.forEach(function (doc) {
                     const dogData = {
@@ -63,7 +57,6 @@ export class Furends extends Component {
                     }
                     data.push(dogData);
                 })
-                console.log(data)
                 doggo.setState({
                     location: '',
                     dogData: data
@@ -100,9 +93,7 @@ export class Furends extends Component {
             marginTop: '100px',
         };
         const { users } = this.state;
-        //console.log({ users });
         const scrollContainerStyle = { width: "90%", maxHeight: "330px", marginLeft: '40px' };
-
         const containerStyle = {
             marginLeft: '20px',
             width: '50%',
@@ -150,7 +141,6 @@ export class Furends extends Component {
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
                             <div style={{ marginLeft: '75px' }}>
-                                {/* <SearchPage /> */}
                                 <div style={{ marginTop: '65px', marginLeft: '100px' }}>
                                     <MDBCol md="6" className='d-flex'>
                                         <MDBFormInline className="md-form" onSubmit={this.handleFormSubmit}>
@@ -163,26 +153,26 @@ export class Furends extends Component {
                             <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
                                 <MDBRow>
                                     {this.state.dogData && this.state.dogData.map(dog => {
-                                        return (
-
-                                            <MDBCol md='4' className='mt-1'>
-                                                <MDBView hover>
-                                                    <a href={`/user/${dog.dogId}`}>
-                                                        <img
-                                                            src={dog.avatar}
-                                                            className="img-fluid rounded-circle"
-                                                            alt="Dog Avatar"
-                                                            style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
-                                                        />
-                                                        <MDBMask className="flex-center flex-column" overlay="blue-strong">
-                                                            <p className="white-text"><strong>{dog.dogName}</strong></p>
-                                                            <p className="white-text"><strong>{dog.breed}</strong></p>
-                                                        </MDBMask>
-                                                    </a>
-                                                </MDBView>
-                                            </MDBCol>
-
-                                        )
+                                        {if (dog.dogId !== this.props.profile.id) {
+                                            return (
+                                                <MDBCol md='4' className='mt-1'>
+                                                    <MDBView hover>
+                                                        <a href={`/user/${dog.dogId}`}>
+                                                            <img
+                                                                src={dog.avatar ? dog.avatar: defaultDogImg}
+                                                                className="img-fluid rounded-circle"
+                                                                alt="Dog Avatar"
+                                                                style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                                            />
+                                                            <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                                                <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                                                <p className="white-text"><strong>{dog.breed}</strong></p>
+                                                            </MDBMask>
+                                                        </a>
+                                                    </MDBView>
+                                                </MDBCol>
+                                            )
+                                        }}
                                     })}
                                 </MDBRow>
                             </div>

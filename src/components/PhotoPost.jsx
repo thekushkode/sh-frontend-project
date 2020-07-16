@@ -1,30 +1,28 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFeed } from '../redux/actions';
+import firebase from '../firebase';
 
 moment().format()
 
 export default function PhotoPost(props) {
 
-  const feed = useSelector(state => state.feed)
-  const dispatch = useDispatch();
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+  const db = firebase.firestore();
 
-  function handleClick() {
-    // console.log('hello world')
-    let likes = parseInt(feed[3].Likes)
-    console.log(likes)
-    likes = likes + 1
-    console.log(likes)
-    dispatch(setFeed(likes))
-  }
+
+    function handleIncrement() {
+        db.collection('Feed').doc(props.data.docId).set({
+            Likes: props.data.Likes + 1,
+        }, {merge: true})
+    }
+  
 
   return (
     <div className="news">
       <div className="label">
         <img
-          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg"
+          src={props.data.avatar ? props.data.avatar : defaultDogImg}
           alt=""
           className="rounded-circle z-depth-1-half"
           style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
@@ -50,16 +48,14 @@ export default function PhotoPost(props) {
           />
         </div>
         <div className="feed-footer">
-          <a href="#!" className="like">
-            <MDBIcon icon="heart" onClick={() => handleClick()} />
+
+          <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
+            <MDBIcon icon="heart"/>
+
             <span> {props.data.Likes} </span>likes
-          </a>
+          </button>
         </div>
       </div>
     </div>
-    // <div>
-    //   <p>{props.data.Content}</p>
-    //   <p>{props.data.Sender}</p>
-    // </div>
   )
 }

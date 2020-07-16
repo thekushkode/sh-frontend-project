@@ -30,7 +30,9 @@ class UserProfile extends Component {
       user: '',
       dogData: [],
       postValue: '',
-      imgValue: ''
+      imgValue: '',
+      followUnfollow: true,
+      friends: this.props.profile.data.friends || []
     };
   }
 
@@ -96,14 +98,20 @@ class UserProfile extends Component {
             timestamp: new Date()
           }
           db.collection('Feed').add(newPost)
-            .then(doc => {
-              console.log(`${doc.id} created successfully`)
-            })
-            .catch(err => {
-              console.error(err)
-            })
+          .then(doc => {
+            console.log(`${doc.id} created successfully`)
+          })
+          .catch(err => {
+            console.error(err)
+          })
         })
-    }
+        .then(() => {
+          this.setState({
+            // followUnfollow: !this.state.followUnfollow,
+            friends: [...this.state.friends, dog]
+          })
+        })
+      }
   }
 
   removeFriend = (dog) => {
@@ -114,6 +122,13 @@ class UserProfile extends Component {
       return db.collection("Dogs").doc(this.props.profile.id)
         .update({
           friends: firebase.firestore.FieldValue.arrayRemove(dog)
+        })
+        .then(() => {
+          let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
+          this.setState({
+            // followUnfollow: !this.state.followUnfollow,
+            friends: filteredFriends
+          })
         })
     }
   }
@@ -161,11 +176,10 @@ class UserProfile extends Component {
                       <MDBCard className='profile-card text-center mb-4'>
                         <MDBAvatar
                           tag='img'
-                          alt='Rottweiler dog photo'
+                          alt='dog photo'
                           // width='20%'
-                          src={Ike}
+                          src={dog.avatar}
                           style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
-
                           className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
                         />
                         <MDBCardBody>
@@ -201,7 +215,8 @@ class UserProfile extends Component {
                           >
                             Request PlayDate
                           </MDBBtn>
-                          {this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ?
+                          {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
+                          {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
                             <MDBBtn
                               className='peach-gradient'
                               size='sm'
@@ -209,6 +224,7 @@ class UserProfile extends Component {
                               onClick={() => this.removeFriend(dog)}
                             >
                               Unfollow {dog.dogName}
+                              {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
                             </MDBBtn>
                             :
                             <MDBBtn
@@ -218,6 +234,7 @@ class UserProfile extends Component {
                               onClick={() => this.addFriend(dog)}
                             >
                               Follow {dog.dogName}
+                              {/* {this.state.followUnfollow ? <span>Follow {dog.dogName}</span> : <span>Unfollow {dog.dogName}</span>} */}
                             </MDBBtn>
                           }
                         </MDBCardBody>

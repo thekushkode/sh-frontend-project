@@ -28,8 +28,7 @@ import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
 import { connect } from 'react-redux'
-import { setFeed, unSetFeed } from '../redux/actions/index';
-
+import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
@@ -45,6 +44,7 @@ class DogProfile extends Component {
       allDogData: []
     };
   }
+
 
   componentDidMount() {
     const db = firebase.firestore();
@@ -99,6 +99,7 @@ class DogProfile extends Component {
         this.setState({
           dogData: dogData
         })
+        this.props.setProfile(dogData)
       })
   }
 
@@ -158,7 +159,7 @@ class DogProfile extends Component {
                       tag='img'
                       alt='Dog photo'
                       style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
-                      src={this.state.dogData.avatar}
+                      src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg }
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
 
                     //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
@@ -198,11 +199,11 @@ class DogProfile extends Component {
                     <MDBCardBody>
 
                       <MDBBtn
-                        className='rare-wind-gradient'
+                        className='purple-gradient'
 
                         rounded
                       >
-                        <Link style={{ textDecoration: 'none' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
                       </MDBBtn>
                       <MDBBtn
                         className='peach-gradient'
@@ -298,7 +299,7 @@ class DogProfile extends Component {
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={defaultDogImg}
+                                  src={dog.avatar ? dog.avatar: defaultDogImg}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
@@ -416,7 +417,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setFeed,
-  unSetFeed
+  unSetFeed,
+  setProfile,
+  clearProfile
 }
 
 export default connect(

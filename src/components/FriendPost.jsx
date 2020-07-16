@@ -29,7 +29,7 @@ export default function FriendPost(props) {
         </div>
         <div className="excerpt">
           <div className="brief">
-            <div>{props.data.Content}</div>
+            <div><a href={`/profile/${props.data.FriendID}`}>{props.data.FriendName}</a> and <a href={`/profile/${props.data.DogID}`}>{props.data.DogName}</a></div>
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
           </div>
           <div className="feed-footer">

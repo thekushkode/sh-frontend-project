@@ -5,7 +5,6 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBFileInput,
   MDBContainer,
   MDBAvatar,
   MDBBtn,
@@ -13,7 +12,6 @@ import {
   MDBSelectOption,
   MDBSelectOptions,
   MDBSelectInput,
-  Link
 } from 'mdbreact';
 import './EditProfile.css';
 import Dog from './images/avatar.png';
@@ -24,7 +22,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
-import UploadFile from './Upload';
 
 const db = firebase.firestore();
 
@@ -35,7 +32,6 @@ function NewProfile(props) {
   //grabs redux state
   const user = useSelector(state => state.user);
   const profile = useSelector(state => state.profile);
-  // const profile = useSelector(state => state.profile);
   const [dogId, setDogId] = useState('');
   const [ownerName, setOwnerName] = useState('');
   const [dogName, setDogName] = useState('');
@@ -53,47 +49,16 @@ function NewProfile(props) {
 
 
   useEffect(() => {
-    console.log(user.uid);
-    console.log(dogId)
     if (user.uid && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
-      //   .then(doc => {
-      //     console.log(doc.data)
-      //       let dog = null
-      //       if (!dog) {
-      //         setDogId(doc.id);
-      //         dog = doc.data();
-      //       }
-      //       if (dog) {
-      //         setDogName(dog.dogName);
-      //         setBreed(dog.breed);
-      //         setStreet(dog.street);
-      //         setCity(dog.city);
-      //         setUserState(dog.userState);
-      //         setZipcode(dog.zipcode);
-      //         setTemperament(dog.temperament);
-      //         setSize(dog.size);
-      //         setSpayNeut(dog.spayNeut);
-      //         setVaccines(dog.vaccines);
-      //         setBio(dog.bio);
-      //         setAvatar(dog.avatar)
-      //         setProfile(dog);
-      //         console.log(dog.avatar);
-      //         console.log(dog);
-      //       }
-      //   })
         .then(querySnapshot => {
-          console.log('howdy');
-          console.log(querySnapshot)
           let dog = null;
           querySnapshot.forEach(doc => {
             if (!dog) {
-              console.log('test 1')
               setDogId(doc.id);
               dog = doc.data();
             }
             if (dog) {
-              console.log('test 2')
               let userProfile = { data: doc.data(), id: doc.id }
               setDogName(dog.dogName);
               setOwnerName(dog.ownerName);
@@ -109,8 +74,6 @@ function NewProfile(props) {
               setBio(dog.bio);
               setAvatar(dog.avatar)
               dispatch(setProfile(userProfile));
-              console.log(dog.avatar);
-              console.log(dog);
             }
           })
         })
@@ -136,10 +99,8 @@ function NewProfile(props) {
         ownerId: user.uid
       })
       .then((querySnapshot) => {
-        console.log('test 2')
         let userProfile = { data: querySnapshot, id: querySnapshot.id }
         dispatch(setProfile(userProfile));
-        console.log(profile.id)
         history.push(`/profile/${querySnapshot.id}`);
       })
     } 
@@ -261,28 +222,6 @@ function NewProfile(props) {
                     console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />
-
-
-                  {/* 
-                  <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
-                      Add Photo
-                  </MDBBtn> 
-                  <MDBCardBody className='pt-0 mt-0'>
-                    <h3 className='mb-3 font-bold'>
-                      <strong>Ike</strong>
-                    </h3>
-                    <h6 className='font-bold cyan-text mb-4'>Breed: Rottweiler</h6>
-                    <p className='mt-4 text-muted'>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip consequat.
-                  </p>
-                    <MDBBtn color='info' size='sm' rounded>
-                      Follow
-                  </MDBBtn>
-                  </MDBCardBody>
-                  */}
                 </MDBCard>
               </MDBCol>
             </MDBRow>

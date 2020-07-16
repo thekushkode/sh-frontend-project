@@ -176,9 +176,10 @@ class UserProfile extends Component {
                       <MDBCard className='profile-card text-center mb-4'>
                         <MDBAvatar
                           tag='img'
-                          alt='Rottweiler dog photo'
+                          alt='dog photo'
                           // width='20%'
-                          src={Ike}
+                          src={dog.avatar}
+                          style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
                           className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
                         />
                         <MDBCardBody>

@@ -27,6 +27,7 @@ export default function SocialPage2() {
                     }
                     feed.push(feedData);
                 })
+                console.log(feed)
                 dispatch(setFeed(feed))
             });
     }, [])

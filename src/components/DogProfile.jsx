@@ -25,7 +25,7 @@ import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
-import { useDispatch, connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { setFeed, unSetFeed } from '../redux/actions/index';
 
 
@@ -45,20 +45,16 @@ class DogProfile extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    // let doggo = this;
     if (user) {
       if (this.props.match.params.dogId) {
-        console.log(this.props.match.params.dogId)
         db.collection("Dogs")
           .doc(this.props.match.params.dogId)
           .get()
           .then(doc => {
-            // let data = [];
             const dogData = {
               ...doc.data(),
               dogId: doc.id
             }
-            // data.push(dogData)
             this.setState({
               dogData: dogData,
               user: user
@@ -68,7 +64,6 @@ class DogProfile extends Component {
           .where('ownerId', '==', user.uid)
           .get()
           .then(querySnapshot => {
-            // console.log(querySnapshot)
             let data = [];
             querySnapshot.forEach(function (doc) {
               const dogData = {
@@ -77,8 +72,6 @@ class DogProfile extends Component {
               }
               data.push(dogData);
             })
-            console.log(data)
-
             this.setState({
               allDogData: data,
               user: user
@@ -87,31 +80,6 @@ class DogProfile extends Component {
       }
     }
   }
-
-  // componentDidUpdate() {
-  //   let user = firebase.auth().currentUser;
-  //   const db = firebase.firestore();
-  //   if (user) {
-  //     if (this.props.match.params.dogId) {
-  //       console.log(this.props.match.params.dogId)
-  //       db.collection("Dogs")
-  //         .doc(this.props.match.params.dogId)
-  //         .get()
-  //         .then(doc => {
-  //           // let data = [];
-  //           const dogData = {
-  //             ...doc.data(),
-  //             dogId: doc.id
-  //           }
-  //           // data.push(dogData)
-  //           this.setState({
-  //             dogData: dogData,
-  //             user: user
-  //           })
-  //         })
-  //     }
-  //   }
-  // }
 
   handleClick = (id) => () => {
     const db = firebase.firestore();
@@ -139,22 +107,17 @@ class DogProfile extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const db = firebase.firestore();
-    // const dispatch = useDispatch();
     let user = firebase.auth().currentUser;
-    console.log('submitted');
-    console.log(this.state.postValue);
-    console.log(user)
     const newPost = {
       Content: this.state.postValue,
       Likes: 0,
-      SenderName: user.displayName,
+      SenderName: this.props.profile.data.ownerName,
       SenderID: user.uid,
       Type: 'Post',
       timestamp: new Date()
     }
     db.collection('Feed').add(newPost)
       .then(doc => {
-        console.log(`${doc.id} created successfully`)
       })
       .catch(err => {
         console.error(err)
@@ -419,7 +382,8 @@ class DogProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    feed: state.feed
+    feed: state.feed,
+    profile: state.profile
   }
 }
 

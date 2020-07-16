@@ -20,7 +20,7 @@ import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux' 
+import { connect } from 'react-redux'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class UserProfile extends Component {
     let userID = user.uid
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)
-        .update({ 
+        .update({
           friends: firebase.firestore.FieldValue.arrayUnion(dog)
         })
         .then(() => {
@@ -103,7 +103,18 @@ class UserProfile extends Component {
               console.error(err)
             })
         })
+    }
+  }
 
+  removeFriend = (dog) => {
+    const db = firebase.firestore();
+    let user = firebase.auth().currentUser;
+    let userID = user.uid
+    if (userID) {
+      return db.collection("Dogs").doc(this.props.profile.id)
+        .update({
+          friends: firebase.firestore.FieldValue.arrayRemove(dog)
+        })
     }
   }
 
@@ -188,14 +199,25 @@ class UserProfile extends Component {
                           >
                             Request PlayDate
                           </MDBBtn>
-                          <MDBBtn
-                            className='peach-gradient'
-                            size='sm'
-                            rounded
-                            onClick={() => this.addFriend(dog)}
-                          >
-                            Follow {dog.dogName}
-                          </MDBBtn>
+                          {this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ?
+                            <MDBBtn
+                              className='peach-gradient'
+                              size='sm'
+                              rounded
+                              onClick={() => this.removeFriend(dog)}
+                            >
+                              Unfollow {dog.dogName}
+                            </MDBBtn>
+                            :
+                            <MDBBtn
+                              className='aqua-gradient'
+                              size='sm'
+                              rounded
+                              onClick={() => this.addFriend(dog)}
+                            >
+                              Follow {dog.dogName}
+                            </MDBBtn>
+                          }
                         </MDBCardBody>
                       </MDBCard>
                       <MDBCard className='mb-4'>
@@ -565,8 +587,8 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      user: state.user,
-      profile: state.profile
+    user: state.user,
+    profile: state.profile
   }
 }
 

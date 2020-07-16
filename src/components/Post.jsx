@@ -33,7 +33,7 @@ export default function Post(props) {
                 <div className='w-80'>
                     <div className="excerpt">
                         <div className="brief">
-                            <a href={`/profile/${props.data.DogID}`} className="name">
+                            <a href={`/user/${props.data.DogID}`} className="name">
                                 {props.data.SenderName}
                             </a> posted on their page
                         </div>

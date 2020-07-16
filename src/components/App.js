@@ -64,6 +64,7 @@ function App() {
 
         let userData = {}
         let userProfile = {}
+        // let userProfile = []
         db.collection("Users")
           .where("email", "==", user.email).limit(1).get()
           .then(function (querySnapshot) {
@@ -77,6 +78,8 @@ function App() {
               .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                   userProfile = { data: doc.data(), id: doc.id }
+                  // let dog = { data: doc.data(), id: doc.id }
+                  // userProfile.append(dog)
                 })
               }).then(res => {
                 dispatch(setProfile(userProfile));

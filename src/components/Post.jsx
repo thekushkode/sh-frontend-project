@@ -10,16 +10,16 @@ export default function Post(props) {
 
     return (
         <MDBJumbotron>
-            <div className='d-flex'>
+            <div className=''>
                 <div className='w-30'>
                     <img
                         src={Ike}
                         alt=""
                         className="rounded-circle z-depth-1-half"
-                        width='100'
+                        style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
                     />
                 </div>
-                <div className='w-80 ml-5'>
+                <div className='w-80'>
                     <div className="excerpt">
                         <div className="brief">
                             <a href="#!" className="name">

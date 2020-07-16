@@ -16,7 +16,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownToggle,
   MDBView,
-  MDBMask 
+  MDBMask
 } from 'mdbreact';
 import './extended.css';
 import Ike from './images/ike.png';
@@ -154,8 +154,7 @@ class DogProfile extends Component {
                     <MDBAvatar
                       tag='img'
                       alt='Dog photo'
-                      width='400'
-                      style={{ margin: '0 auto' }}
+                      style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
                       src={this.state.dogData.avatar}
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
 
@@ -299,6 +298,7 @@ class DogProfile extends Component {
                                   src={Ike}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
+                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                 />
                                 <MDBMask className="flex-center flex-column" overlay="blue-strong">
                                   <p className="white-text"><strong>{dog.dogName}</strong></p>

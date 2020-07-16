@@ -83,33 +83,6 @@ function EditProfile(props) {
             console.log(doc.id);
           }
         })
-      // .then(querySnapshot => {
-      //   // console.log(querySnapshot);
-      //   let dog = null;
-      //   querySnapshot.forEach(doc => {
-      //     if (!dog) {
-      //       setDogId(doc.id);
-      //       dog = doc.data();
-      //     }
-      //     if (dog) {
-      //       setDogName(dog.dogName);
-      //       setBreed(dog.breed);
-      //       setStreet(dog.street);
-      //       setCity(dog.city);
-      //       setUserState(dog.userState);
-      //       setZipcode(dog.zipcode);
-      //       setTemperament(dog.temperament);
-      //       setSize(dog.size);
-      //       setSpayNeut(dog.spayNeut);
-      //       setVaccines(dog.vaccines);
-      //       setBio(dog.bio);
-      //       setAvatar(dog.avatar)
-      //       setProfile(dog);
-      //       console.log(dog.avatar);
-      //       console.log(dog);
-      //     }
-      //   })
-      // })
     }
   })
 

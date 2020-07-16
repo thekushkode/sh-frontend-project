@@ -8,7 +8,12 @@ export default function FriendPost(props) {
     <MDBJumbotron>
       <div className="news">
         <div className="label">
-          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg" alt="" className="rounded-circle z-depth-1-half" />
+          <img
+            src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
+            alt=""
+            className="rounded-circle z-depth-1-half"
+            style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
+          />
         </div>
         <div className="excerpt">
           <div className="brief">

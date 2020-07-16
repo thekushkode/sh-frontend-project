@@ -258,7 +258,7 @@ function EditProfile(props) {
                     tag='img'
                     alt='Dog Profile Image'
                     src={(avatar ? avatar : Dog)}
-                    style={{ maxWidth: '200px', maxHeight: '200px', width: 'auto', height: 'auto', margin: '0 auto' }}
+                    style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 

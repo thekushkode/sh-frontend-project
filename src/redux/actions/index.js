@@ -1,4 +1,5 @@
 import { AUTHENTICATING, LOGGED_IN, LOGGED_OUT } from "../reducers/auth"
+import { INCREMENT_LIKES } from "../reducers/feed"
 
 export const setUser = (user) => {
     return {
@@ -61,3 +62,17 @@ export const unSetFeed = () => {
         type: 'UNSET_FEED'
     }
 }
+
+export const increment = (id) => {
+    return {
+        type: INCREMENT_LIKES,
+        id
+    }
+}
+
+// export const decrement = (num) => {
+//     return {
+//         type: 'DECREMENT',
+//         payload: num
+//     }
+// } 

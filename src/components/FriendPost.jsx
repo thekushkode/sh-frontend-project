@@ -1,9 +1,20 @@
 import React from 'react'
 import { MDBIcon, MDBJumbotron } from "mdbreact";
 import moment from 'moment';
+import firebase from '../firebase';
 moment().format()
 
 export default function FriendPost(props) {
+
+  const db = firebase.firestore();
+
+  function handleIncrement() {
+    db.collection('Feed').doc(props.data.docId).set({
+        Likes: props.data.Likes + 1,
+    }, {merge: true})
+
+}
+
   return (
     <MDBJumbotron>
       <div className="news">
@@ -16,10 +27,10 @@ export default function FriendPost(props) {
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
           </div>
           <div className="feed-footer">
-            <a href="#!" className="like">
+            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
               <MDBIcon icon="heart" />
               <span> {props.data.Likes} </span> likes
-            </a>
+            </button>
           </div>
         </div>
       </div>

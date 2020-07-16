@@ -28,8 +28,7 @@ import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
 import { connect } from 'react-redux'
-import { setFeed, unSetFeed } from '../redux/actions/index';
-
+import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 
 class DogProfile extends Component {
   constructor(props) {
@@ -43,6 +42,7 @@ class DogProfile extends Component {
       allDogData: []
     };
   }
+
 
   componentDidMount() {
     const db = firebase.firestore();
@@ -96,6 +96,7 @@ class DogProfile extends Component {
         this.setState({
           dogData: dogData
         })
+        this.props.setProfile(dogData)
       })
   }
 
@@ -413,7 +414,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setFeed,
-  unSetFeed
+  unSetFeed,
+  setProfile,
+  clearProfile
 }
 
 export default connect(

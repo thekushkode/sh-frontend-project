@@ -19,12 +19,8 @@ import {
   MDBMask
 } from 'mdbreact';
 import './extended.css';
-import Ike from './images/ike.png';
 import FooterPage from './Footer';
 import firebase from '../firebase';
-import ProfileFeed from './ProfileFeed';
-import ProfileUpload from './ProfileUpload';
-import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
 import { connect } from 'react-redux';
@@ -49,7 +45,6 @@ class DogProfile extends Component {
   }
 
   // we want this but for a class components
-  // const [feedImg, setFeedImg] = useState(defaultFeedImg);
 
   componentDidMount() {
     const db = firebase.firestore();
@@ -125,6 +120,7 @@ class DogProfile extends Component {
       Likes: 0,
       SenderName: this.props.profile.data.dogName,
       SenderID: user.uid,
+      DogID: this.props.profile.id,
       Type: 'Post',
       timestamp: new Date(),
       feedImgURL: this.state.feedImgURL
@@ -141,7 +137,6 @@ class DogProfile extends Component {
       feedImgURL: ''
       // imgValue: e.target.imgValue
     })
-    // dispatch(setFeed(newPost))
   }
 
   toggle = item => {
@@ -169,9 +164,6 @@ class DogProfile extends Component {
                       style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
                       src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
-
-                    //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
-
                     />
                     <MDBDropdown>
                       <MDBDropdownToggle caret rounded className="aqua-gradient">
@@ -205,29 +197,18 @@ class DogProfile extends Component {
                   </MDBCard>
                   <MDBCard className='mb-4'>
                     <MDBCardBody>
-
                       <MDBBtn
                         className='purple-gradient'
-
                         rounded
                       >
                         <Link style={{ textDecoration: 'none', color: 'white' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
                       </MDBBtn>
                       <MDBBtn
-                        className='peach-gradient'
-
-                        rounded
-                        href='#!'
-                      >
-                        Follow {this.state.dogData.dogName}
-                      </MDBBtn>
-                      <MDBBtn
                         className='blue-gradient'
-
                         rounded
                         href='/messages'
                       >
-                        Request PlayDate
+                        Check PlayDates
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>

@@ -6,21 +6,19 @@ import {
   MDBCard,
   MDBCardTitle,
   MDBCardBody,
-  MDBCardFooter,
   MDBIcon,
-  MDBBadge,
+  MDBView,
+  MDBMask,
   MDBAvatar,
   MDBBtn,
 } from 'mdbreact';
 import './extended.css';
-import Ike from './images/ike.png';
 import FooterPage from './Footer';
 import firebase from '../firebase';
-import ProfileFeed from './ProfileFeed';
-import ProfileUpload from './ProfileUpload';
-import GoOutside from './GoOutside';
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import SocialPage2 from './feed2';
+
+const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -92,9 +90,12 @@ class UserProfile extends Component {
         .then(() => {
           const newPost = {
             Avatar: this.props.profile.data.avatar,
-            Content: `${this.props.profile.data.dogName} and ${dog.dogName} are friends`,
             Likes: 0,
             SenderID: user.uid,
+            DogID: dog.dogID,
+            DogName: dog.dogName,
+            FriendID: this.props.profile.id,
+            FriendName: this.props.profile.data.dogName,
             Type: 'Friend',
             timestamp: new Date()
           }
@@ -108,7 +109,6 @@ class UserProfile extends Component {
         })
         .then(() => {
           this.setState({
-            // followUnfollow: !this.state.followUnfollow,
             friends: [...this.state.friends, dog]
           })
         })
@@ -127,7 +127,6 @@ class UserProfile extends Component {
         .then(() => {
           let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
           this.setState({
-            // followUnfollow: !this.state.followUnfollow,
             friends: filteredFriends
           })
         })
@@ -162,7 +161,6 @@ class UserProfile extends Component {
   };
 
   render() {
-    console.log('testing')
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
@@ -224,7 +222,7 @@ class UserProfile extends Component {
                               rounded
                               onClick={() => this.removeFriend(dog)}
                             >
-                              Unfollow {dog.dogName}
+                              Unfriend {dog.dogName}
                               {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
                             </MDBBtn>
                             :
@@ -234,7 +232,7 @@ class UserProfile extends Component {
                               rounded
                               onClick={() => this.addFriend(dog)}
                             >
-                              Follow {dog.dogName}
+                              Add {dog.dogName} as a friend
                               {/* {this.state.followUnfollow ? <span>Follow {dog.dogName}</span> : <span>Unfollow {dog.dogName}</span>} */}
                             </MDBBtn>
                           }
@@ -305,48 +303,31 @@ class UserProfile extends Component {
                       </MDBCard>
 
                       <MDBCard className='mb-4'>
-                        <MDBCardBody>
-                          <h5 className='text-center mb-4'>
-                            <strong>{dog.dogName}'s Friends </strong>
-                          </h5>
-                          <ul className='list-unstyled pt-4'>
-                            <li>
-                              <p>
-                                Questions{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  34
-                                </MDBBadge>
-                              </p>
-                            </li>
-                            <hr />
-                            <li>
-                              <p>
-                                Answers{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  17
-                                </MDBBadge>
-                              </p>
-                            </li>
-                            <hr />
-                            <li>
-                              <p>
-                                Submited projects{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  12
-                                </MDBBadge>
-                              </p>
-                            </li>
-                            <hr />
-                            <li>
-                              <p>
-                                Pull requests{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  3
-                                </MDBBadge>
-                              </p>
-                            </li>
-                          </ul>
-                        </MDBCardBody>
+                      <MDBCardBody>
+                      <h5 className='text-center mb-4'>
+                        <strong>{dog.dogName}'s Friends </strong>
+                      </h5>
+                      {dog.friends && dog.friends.map(dog => {
+                        return (
+                          <MDBCol md='4' className='mt-1'>
+                            <MDBView hover>
+                              <a href={`/user/${dog.dogID}`}>
+                                <img
+                                  src={dog.avatar ? dog.avatar : defaultDogImg}
+                                  className="img-fluid rounded-circle"
+                                  alt="Dog Avatar"
+                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                />
+                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                  <p className="white-text"><strong>{dog.breed}</strong></p>
+                                </MDBMask>
+                              </a>
+                            </MDBView>
+                          </MDBCol>
+                        )
+                      })}
+                    </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
                     <MDBCol lg='8' md='8' className='text-center'>
@@ -362,230 +343,7 @@ class UserProfile extends Component {
                       <MDBRow>
                         <MDBCol>
                           <div className='ml-5 mt-3'>
-                            {/* <ProfileFeed /> */}
-                            <MDBCard
-
-                              className="mb-5 px-5 pt-4 fluid"
-                              style={{ fontWeight: 300, maxWidth: 2000 }}
-                            >
-                              <MDBCardBody className="py-0">
-                                <MDBRow>
-                                  <div className="mdb-feed">
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Spot
-                                  </a> added you as a friend
-                                  <div className="date">1 hour ago</div>
-                                        </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>5 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Heidi
-                                  </a> added <a href="#!">2 new photos</a>
-                                          <div className="date">4 hours ago</div>
-                                        </div>
-                                        <div className="added-images">
-                                          <img
-                                            src="https://mdbootstrap.com/img/Photos/Others/images/71.jpg"
-                                            alt=""
-                                            className="z-depth-1 rounded mb-md-0 mb-2"
-                                          />
-                                          <img
-                                            src="https://mdbootstrap.com/img/Photos/Others/images/74.jpg"
-                                            alt=""
-                                            className="z-depth-1 rounded"
-                                          />
-                                        </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>18 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9)-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Herschel
-                                  </a> added you as a friend
-                                  <div href="#!" className="date">
-                                            7 hours ago
-                                  </div>
-                                        </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>11 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Wilder
-                                  </a> posted on her page
-                                <div className="date">2 days ago</div>
-                                        </div>
-                                        <div className="added-text">
-                                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                          Vero inventore, iste quas libero eius? Vitae sint neque
-                                          animi alias sunt dolor, accusantium ducimus, non placeat
-                                          voluptate.
-                                </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>7 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20)-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Kobe
-                                  </a> added
-                                  <a href="#!"> 2 new photos</a> of you
-                                  <div className="date">3 days ago</div>
-                                        </div>
-                                        <div className="added-images">
-                                          <img
-                                            src="https://mdbootstrap.com/img/Photos/Others/images/29.jpg"
-                                            alt=""
-                                            className="z-depth-1 rounded mb-md-0 mb-2"
-                                          />
-                                          <img
-                                            src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg"
-                                            alt=""
-                                            className="z-depth-1 rounded"
-                                          />
-                                        </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>53 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Spot
-                                  </a> added you as a friend
-                    <div className="date">1 hour ago</div>
-                                        </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>5 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="news">
-                                      <div className="label">
-                                        <img
-                                          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg"
-                                          alt=""
-                                          className="rounded-circle z-depth-1-half"
-                                        />
-                                      </div>
-                                      <div className="excerpt">
-                                        <div className="brief">
-                                          <a href="#!" className="name">
-                                            Heidi
-                                  </a> added <a href="#!">2 new photos</a>
-                                          <div className="date">4 hours ago</div>
-                                        </div>
-                                        <div className="added-images">
-                                          <img
-                                            src="https://mdbootstrap.com/img/Photos/Others/images/71.jpg"
-                                            alt=""
-                                            className="z-depth-1 rounded mb-md-0 mb-2"
-                                          />
-                                          <img
-                                            src="https://mdbootstrap.com/img/Photos/Others/images/74.jpg"
-                                            alt=""
-                                            className="z-depth-1 rounded"
-                                          />
-                                        </div>
-                                        <div className="feed-footer">
-                                          <a href="#!" className="like">
-                                            <MDBIcon icon="heart" />
-                                            <span>18 likes</span>
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </MDBRow>
-                              </MDBCardBody>
-                            </MDBCard>
+                            <SocialPage2 />
                           </div>
                         </MDBCol>
                       </MDBRow>

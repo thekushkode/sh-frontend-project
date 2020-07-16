@@ -159,7 +159,7 @@ class DogProfile extends Component {
                       tag='img'
                       alt='Dog photo'
                       style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
-                      src={this.state.dogData.avatar}
+                      src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg }
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
 
                     //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
@@ -299,7 +299,7 @@ class DogProfile extends Component {
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={defaultDogImg}
+                                  src={dog.avatar ? dog.avatar: defaultDogImg}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}

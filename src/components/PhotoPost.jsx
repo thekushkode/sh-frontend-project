@@ -10,6 +10,7 @@ export default function PhotoPost(props) {
 
   const feed = useSelector(state => state.feed)
   const dispatch = useDispatch();
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
   function handleClick() {
     // console.log('hello world')
@@ -24,7 +25,7 @@ export default function PhotoPost(props) {
     <div className="news">
       <div className="label">
         <img
-          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg"
+          src={props.data.avatar ? props.data.avatar : defaultDogImg}
           alt=""
           className="rounded-circle z-depth-1-half"
           style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}

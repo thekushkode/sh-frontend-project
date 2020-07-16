@@ -175,35 +175,35 @@ function EditProfile(props) {
                   <MDBCardBody>
                     <MDBRow>
                       <MDBCol md='4'>
-                        <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} />
+                        <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} required />
                       </MDBCol>
                       <MDBCol md='4'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dog Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} />
+                        <MDBInput type='text' name='dogname' value={dogName} label='Dog Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} required />
                       </MDBCol>
                       <MDBCol md='4'>
-                        <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} />
+                        <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} required />
                       </MDBCol>
                     </MDBRow>
                     <MDBRow>
                       <MDBCol md='12'>
-                        <MDBInput type='text' name='street' value={street} label='Address' onChange={(e) => { e.target.value && setStreet(e.target.value) }} />
+                        <MDBInput type='text' name='street' value={street} label='Address' onChange={(e) => { e.target.value && setStreet(e.target.value) }} required />
                       </MDBCol>
                     </MDBRow>
                     <MDBRow>
                       <MDBCol lg='4' md='12'>
-                        <MDBInput type='text' name='city' value={city} label='City' onChange={(e) => { setCity(e.target.value) }} />
+                        <MDBInput type='text' name='city' value={city} label='City' onChange={(e) => { setCity(e.target.value) }} required />
                       </MDBCol>
                       <MDBCol lg='4' md='6'>
-                        <MDBInput type='text' name='state' value={userState} label='State' onChange={(e) => { setUserState(e.target.value) }} />
+                        <MDBInput type='text' name='state' value={userState} label='State' onChange={(e) => { setUserState(e.target.value) }} required />
                       </MDBCol>
                       <MDBCol lg='4' md='6'>
-                        <MDBInput type='text' name='zipcode' value={zipcode} label='Postal code' onChange={(e) => { setZipcode(e.target.value) }} />
+                        <MDBInput type='text' name='zipcode' value={zipcode} label='Postal code' onChange={(e) => { setZipcode(e.target.value) }} required />
                       </MDBCol>
                     </MDBRow>
                     <MDBRow>
                       <MDBCol lg='3' md='6'>
                         <MDBSelect label='Temperament' getValue={(e) => setTemperament(e[0])} value={temperament}>
-                          <MDBSelectInput value={temperament} />
+                          <MDBSelectInput value={temperament} required />
                           <MDBSelectOptions>
                             <MDBSelectOption name='Friendly' value='Friendly'>Friendly</MDBSelectOption>
                             <MDBSelectOption name='Aggressive' value='Aggressive'>Aggressive</MDBSelectOption>
@@ -212,7 +212,7 @@ function EditProfile(props) {
                       </MDBCol>
                       <MDBCol lg='3' md='6'>
                         <MDBSelect label='Size' getValue={(e) => setSize(e[0])} value={size}>
-                          <MDBSelectInput value={size} />
+                          <MDBSelectInput value={size} required />
                           <MDBSelectOptions>
                             <MDBSelectOption name='Small' value='Small'>Small</MDBSelectOption>
                             <MDBSelectOption name='Medium' value='Medium'>Medium</MDBSelectOption>
@@ -223,7 +223,7 @@ function EditProfile(props) {
                       </MDBCol>
                       <MDBCol lg='3' md='6'>
                         <MDBSelect label='Spayed or Neutered?' getValue={(e) => setSpayNeut(e[0])} value={spayNeut}>
-                          <MDBSelectInput value={spayNeut} />
+                          <MDBSelectInput value={spayNeut} required />
                           <MDBSelectOptions>
                             <MDBSelectOption name='True' value='True'>True</MDBSelectOption>
                             <MDBSelectOption name='False' value='False'>False</MDBSelectOption>
@@ -232,7 +232,7 @@ function EditProfile(props) {
                       </MDBCol>
                       <MDBCol lg='3' md='6'>
                         <MDBSelect label='Has Vaccines' getValue={(e) => setVaccines(e[0])} value={vaccines}>
-                          <MDBSelectInput value={vaccines} />
+                          <MDBSelectInput value={vaccines} required />
                           <MDBSelectOptions>
                             <MDBSelectOption name='True' value='True'>True</MDBSelectOption>
                             <MDBSelectOption name='False' value='False'>False</MDBSelectOption>

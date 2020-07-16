@@ -199,11 +199,11 @@ class DogProfile extends Component {
                     <MDBCardBody>
 
                       <MDBBtn
-                        className='rare-wind-gradient'
+                        className='purple-gradient'
 
                         rounded
                       >
-                        <Link style={{ textDecoration: 'none' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
                       </MDBBtn>
                       <MDBBtn
                         className='peach-gradient'

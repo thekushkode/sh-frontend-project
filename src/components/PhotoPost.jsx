@@ -24,12 +24,13 @@ export default function PhotoPost(props) {
           src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg"
           alt=""
           className="rounded-circle z-depth-1-half"
+          style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
         />
       </div>
       <div className="excerpt">
         <div className="brief">
           <a href="#!" className="name">
-            {props.data.Sender}</a> added 
+            {props.data.Sender}</a> added
           <a href="#!"> 2 new photos</a>
           <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
         </div>
@@ -46,8 +47,10 @@ export default function PhotoPost(props) {
           />
         </div>
         <div className="feed-footer">
+
           <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
             <MDBIcon icon="heart"/>
+
             <span> {props.data.Likes} </span>likes
           </button>
         </div>

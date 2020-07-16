@@ -29,7 +29,9 @@ import UploadFile from './Upload';
 const db = firebase.firestore();
 
 function AddNewDog(props) {
-  
+
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+
   const dispatch = useDispatch();
   const history = useHistory();
   //grabs redux state
@@ -50,7 +52,7 @@ function AddNewDog(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState(defaultDogImg);
 
 
   useEffect(() => {
@@ -79,12 +81,12 @@ function AddNewDog(props) {
         bio,
         ownerId: user.uid
       })
-      .then((res) => {
-        console.log(res.id)
-        history.push(`/profile/${res.id}`)
-      })
+        .then((res) => {
+          console.log(res.id)
+          history.push(`/profile/${res.id}`)
+        })
+    }
   }
-}
 
   return (
     <div>
@@ -191,41 +193,21 @@ function AddNewDog(props) {
               </MDBCol>
               <MDBCol md='4' className='mb-r'>
                 <MDBCard className='profile-card'>
+
                   <MDBAvatar
                     tag='img'
-                    alt='Default Dog Profile Image'
-                    // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
-                    src={(avatar ? avatar : Dog)}
-                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
+                    alt='Dog Profile Image'
+                    src={(avatar ? avatar : defaultDogImg)}
+                    style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} onUpload={(imgRef) => {
+                  <InputPage value={avatar} imgId={dogId} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
-                    setAvatar(imgRef)
+                    setAvatar('');
+                    setTimeout(() => setAvatar(imgRef), 500);
                   }} />
 
-
-                  {/* 
-                  <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
-                      Add Photo
-                  </MDBBtn> 
-                  <MDBCardBody className='pt-0 mt-0'>
-                    <h3 className='mb-3 font-bold'>
-                      <strong>Ike</strong>
-                    </h3>
-                    <h6 className='font-bold cyan-text mb-4'>Breed: Rottweiler</h6>
-                    <p className='mt-4 text-muted'>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip consequat.
-                  </p>
-                    <MDBBtn color='info' size='sm' rounded>
-                      Follow
-                  </MDBBtn>
-                  </MDBCardBody>
-                  */}
                 </MDBCard>
               </MDBCol>
             </MDBRow>

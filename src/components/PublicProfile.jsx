@@ -20,7 +20,7 @@ import ProfileFeed from './ProfileFeed';
 import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux' 
+import { connect } from 'react-redux'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -30,7 +30,9 @@ class UserProfile extends Component {
       user: '',
       dogData: [],
       postValue: '',
-      imgValue: ''
+      imgValue: '',
+      followUnfollow: true,
+      friends: this.props.profile.data.friends || []
     };
   }
 
@@ -84,7 +86,7 @@ class UserProfile extends Component {
     let userID = user.uid
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)
-        .update({ 
+        .update({
           friends: firebase.firestore.FieldValue.arrayUnion(dog)
         })
         .then(() => {
@@ -96,14 +98,38 @@ class UserProfile extends Component {
             timestamp: new Date()
           }
           db.collection('Feed').add(newPost)
-            .then(doc => {
-              console.log(`${doc.id} created successfully`)
-            })
-            .catch(err => {
-              console.error(err)
-            })
+          .then(doc => {
+            console.log(`${doc.id} created successfully`)
+          })
+          .catch(err => {
+            console.error(err)
+          })
         })
+        .then(() => {
+          this.setState({
+            // followUnfollow: !this.state.followUnfollow,
+            friends: [...this.state.friends, dog]
+          })
+        })
+      }
+  }
 
+  removeFriend = (dog) => {
+    const db = firebase.firestore();
+    let user = firebase.auth().currentUser;
+    let userID = user.uid
+    if (userID) {
+      return db.collection("Dogs").doc(this.props.profile.id)
+        .update({
+          friends: firebase.firestore.FieldValue.arrayRemove(dog)
+        })
+        .then(() => {
+          let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
+          this.setState({
+            // followUnfollow: !this.state.followUnfollow,
+            friends: filteredFriends
+          })
+        })
     }
   }
 
@@ -188,14 +214,28 @@ class UserProfile extends Component {
                           >
                             Request PlayDate
                           </MDBBtn>
-                          <MDBBtn
-                            className='peach-gradient'
-                            size='sm'
-                            rounded
-                            onClick={() => this.addFriend(dog)}
-                          >
-                            Follow {dog.dogName}
-                          </MDBBtn>
+                          {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
+                          {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
+                            <MDBBtn
+                              className='peach-gradient'
+                              size='sm'
+                              rounded
+                              onClick={() => this.removeFriend(dog)}
+                            >
+                              Unfollow {dog.dogName}
+                              {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
+                            </MDBBtn>
+                            :
+                            <MDBBtn
+                              className='aqua-gradient'
+                              size='sm'
+                              rounded
+                              onClick={() => this.addFriend(dog)}
+                            >
+                              Follow {dog.dogName}
+                              {/* {this.state.followUnfollow ? <span>Follow {dog.dogName}</span> : <span>Unfollow {dog.dogName}</span>} */}
+                            </MDBBtn>
+                          }
                         </MDBCardBody>
                       </MDBCard>
                       <MDBCard className='mb-4'>
@@ -565,8 +605,8 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      user: state.user,
-      profile: state.profile
+    user: state.user,
+    profile: state.profile
   }
 }
 

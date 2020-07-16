@@ -64,6 +64,7 @@ function App() {
 
         let userData = {}
         let userProfile = {}
+        // let userProfile = []
         db.collection("Users")
           .where("email", "==", user.email).limit(1).get()
           .then(function (querySnapshot) {
@@ -77,6 +78,8 @@ function App() {
               .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                   userProfile = { data: doc.data(), id: doc.id }
+                  // let dog = { data: doc.data(), id: doc.id }
+                  // userProfile.append(dog)
                 })
               }).then(res => {
                 dispatch(setProfile(userProfile));
@@ -143,7 +146,7 @@ function App() {
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
-              <Route exact path='/login'><Redirect to="/profile/:dogId"/></Route>
+              <Route exact path='/login'><Redirect to="/feed"/></Route>
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
@@ -159,7 +162,7 @@ function App() {
     case AUTHENTICATING:
     default:
       return <div className='text-center'><LoadingPage /></div>
-//       return <Route exact path='/spin' component={SpinnerPage} />
+    //       return <Route exact path='/spin' component={SpinnerPage} />
   }
 }
 

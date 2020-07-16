@@ -36,6 +36,7 @@ function InputPage(props) {
 
         // let imgFileName = files[0].name.toLowerCase()
         let imgFileName = files[0].name
+        let fileType = imgFileName.substr(imgFileName.lastIndexOf('.') + 1);
 
         // Create a reference from an HTTPS URL
         // Note that in the URL, characters are URL escaped!
@@ -44,15 +45,16 @@ function InputPage(props) {
 
         // Create a root reference
         let storageRef = firebase.storage().ref();
-        let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgFileName + '?alt=media'
+        let imgId = props.imgId
+        let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + '?alt=media'
 
         // Create a reference to 'mountains.jpg'
-        let ref = storageRef.child('bentley.png');
+        let ref = storageRef.child(imgId + "." + fileType);
 
 
         // the function could also take snapshot as an input
         ref.put(fileObj).then(function (imgRef) {
-            imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgFileName + '?alt=media'
+            imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + '?alt=media'
             props.onUpload(imgRef);
             console.log('Uploaded a blob or file!');
             setLoading(false);

@@ -16,7 +16,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownToggle,
   MDBView,
-  MDBMask 
+  MDBMask
 } from 'mdbreact';
 import './extended.css';
 import Ike from './images/ike.png';
@@ -29,6 +29,8 @@ import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
 import { connect } from 'react-redux'
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
+
+const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
 class DogProfile extends Component {
   constructor(props) {
@@ -47,6 +49,7 @@ class DogProfile extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
+
     if (user) {
       if (this.props.match.params.dogId) {
         db.collection("Dogs")
@@ -114,7 +117,7 @@ class DogProfile extends Component {
     const newPost = {
       Content: this.state.postValue,
       Likes: 0,
-      SenderName: this.props.profile.data.ownerName,
+      SenderName: this.props.profile.data.dogName,
       SenderID: user.uid,
       Type: 'Post',
       timestamp: new Date()
@@ -155,8 +158,7 @@ class DogProfile extends Component {
                     <MDBAvatar
                       tag='img'
                       alt='Dog photo'
-                      width='400'
-                      style={{ margin: '0 auto' }}
+                      style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
                       src={this.state.dogData.avatar}
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
 
@@ -297,9 +299,10 @@ class DogProfile extends Component {
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={Ike}
+                                  src={defaultDogImg}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
+                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                 />
                                 <MDBMask className="flex-center flex-column" overlay="blue-strong">
                                   <p className="white-text"><strong>{dog.dogName}</strong></p>

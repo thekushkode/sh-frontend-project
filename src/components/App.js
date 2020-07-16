@@ -33,6 +33,7 @@ import UserProfile from './PublicProfile';
 import LoadingPage from './LoadingPage';
 import NewProfile from './NewProfile';
 import AddNewDog from './AddNewDog';
+import PublicFeed from './PublicFeed';
 
 function App() {
   let db = firebase.firestore();
@@ -141,7 +142,7 @@ function App() {
               <Route exact path='/petcare' component={DayCare} />
               <Route exact path='/vets' component={VetMap} />
               <Route exact path='/contact' component={ContactPage} />
-              <Route exact path='/feed' component={SocialPage2} />
+              <Route exact path='/feed' component={PublicFeed} />
               <Route exact path='/editprofile/:dogId' component={EditProfile} />
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />

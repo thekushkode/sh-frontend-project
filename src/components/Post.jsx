@@ -2,18 +2,18 @@ import React from 'react'
 import { MDBIcon, MDBJumbotron } from "mdbreact";
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import Ike from './images/ike.png';
 moment().format()
 
 export default function Post(props) {
     // const feed = useSelector(state => state.feed)
+    let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
     return (
         <MDBJumbotron>
             <div className=''>
                 <div className='w-30'>
                     <img
-                        src={Ike}
+                        src={props.data.avatar ? props.data.avatar : defaultDogImg}
                         alt=""
                         className="rounded-circle z-depth-1-half"
                         style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}

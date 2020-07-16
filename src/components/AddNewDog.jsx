@@ -30,6 +30,8 @@ const db = firebase.firestore();
 
 function AddNewDog(props) {
 
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+
   const dispatch = useDispatch();
   const history = useHistory();
   //grabs redux state
@@ -50,7 +52,7 @@ function AddNewDog(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState(defaultDogImg);
 
 
   useEffect(() => {
@@ -195,7 +197,7 @@ function AddNewDog(props) {
                   <MDBAvatar
                     tag='img'
                     alt='Dog Profile Image'
-                    src={(avatar ? avatar : Dog)}
+                    src={(avatar ? avatar : defaultDogImg)}
                     style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />

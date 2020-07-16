@@ -30,6 +30,8 @@ const db = firebase.firestore();
 
 function EditProfile(props) {
 
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+
   const history = useHistory();
   //grabs redux state
   const user = useSelector(state => state.user);
@@ -47,8 +49,8 @@ function EditProfile(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState('');
-  const [forceUpdate, setForceUpdate] = useState(0);
+  const [avatar, setAvatar] = useState(defaultDogImg);
+
 
   useEffect(() => {
     // console.log(user);
@@ -257,7 +259,7 @@ function EditProfile(props) {
                   <MDBAvatar
                     tag='img'
                     alt='Dog Profile Image'
-                    src={(avatar ? avatar : Dog)}
+                    src={(avatar ? avatar : defaultDogImg)}
                     style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />

@@ -31,6 +31,8 @@ import { connect } from 'react-redux'
 import { setFeed, unSetFeed } from '../redux/actions/index';
 
 
+const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+
 class DogProfile extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +49,7 @@ class DogProfile extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
+
     if (user) {
       if (this.props.match.params.dogId) {
         db.collection("Dogs")
@@ -113,7 +116,7 @@ class DogProfile extends Component {
     const newPost = {
       Content: this.state.postValue,
       Likes: 0,
-      SenderName: this.props.profile.data.ownerName,
+      SenderName: this.props.profile.data.dogName,
       SenderID: user.uid,
       Type: 'Post',
       timestamp: new Date()
@@ -295,7 +298,7 @@ class DogProfile extends Component {
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={Ike}
+                                  src={defaultDogImg}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}

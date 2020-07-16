@@ -27,10 +27,12 @@ import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+const defaultFeedImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/social-hound-logo-512.png?alt=media'
 
 class DogProfile extends Component {
   constructor(props) {
@@ -41,10 +43,13 @@ class DogProfile extends Component {
       dogData: [],
       postValue: '',
       imgValue: '',
-      allDogData: []
+      allDogData: [],
+      feedImgURL: ''
     };
   }
 
+  // we want this but for a class components
+  // const [feedImg, setFeedImg] = useState(defaultFeedImg);
 
   componentDidMount() {
     const db = firebase.firestore();
@@ -121,7 +126,8 @@ class DogProfile extends Component {
       SenderName: this.props.profile.data.dogName,
       SenderID: user.uid,
       Type: 'Post',
-      timestamp: new Date()
+      timestamp: new Date(),
+      feedImgURL: this.state.feedImgURL
     }
     db.collection('Feed').add(newPost)
       .then(doc => {
@@ -131,7 +137,8 @@ class DogProfile extends Component {
         console.error(err)
       })
     this.setState({
-      postValue: ''
+      postValue: '',
+      feedImgURL: ''
       // imgValue: e.target.imgValue
     })
     // dispatch(setFeed(newPost))
@@ -160,7 +167,7 @@ class DogProfile extends Component {
                       tag='img'
                       alt='Dog photo'
                       style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
-                      src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg }
+                      src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
 
                     //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
@@ -300,7 +307,7 @@ class DogProfile extends Component {
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={dog.avatar ? dog.avatar: defaultDogImg}
+                                  src={dog.avatar ? dog.avatar : defaultDogImg}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
@@ -340,7 +347,29 @@ class DogProfile extends Component {
                               name='post'
                               onChange={this.handleChange}
                             />
-                            <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} />
+
+
+
+
+                            {/* <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} /> */}
+                            <MDBAvatar
+                              tag='img'
+                              alt='Feed Image'
+                              src={(this.state.feedImgURL ? this.state.feedImgURL : defaultFeedImg)}
+                              style={{ maxWidth: '400px', maxHeight: '400px', margin: '0 auto', borderRadius: '5px' }}
+                              className='z-depth-1-half mb-4 mt-4'
+                            />
+
+                            <InputPage
+                              value={this.state.feedImgURL}
+                              imgId={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
+                              onUpload={(imgRef) => {
+                                console.log('uploaded', imgRef);
+                                // setFeedImg('');
+                                // setTimeout(() => setFeedImg(imgRef), 500);
+                                this.setState({feedImgURL: imgRef});
+                              }} />
+
                             <MDBBtn
                               type='submit'
                               className='btn btn-rounded blue-gradient'

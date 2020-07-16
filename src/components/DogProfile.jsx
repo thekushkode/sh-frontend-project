@@ -164,9 +164,6 @@ class DogProfile extends Component {
                       style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
                       src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
-
-                    //className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
-
                     />
                     <MDBDropdown>
                       <MDBDropdownToggle caret rounded className="aqua-gradient">
@@ -200,29 +197,18 @@ class DogProfile extends Component {
                   </MDBCard>
                   <MDBCard className='mb-4'>
                     <MDBCardBody>
-
                       <MDBBtn
                         className='purple-gradient'
-
                         rounded
                       >
                         <Link style={{ textDecoration: 'none', color: 'white' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
                       </MDBBtn>
                       <MDBBtn
-                        className='peach-gradient'
-
-                        rounded
-                        href='#!'
-                      >
-                        Follow {this.state.dogData.dogName}
-                      </MDBBtn>
-                      <MDBBtn
                         className='blue-gradient'
-
                         rounded
                         href='/messages'
                       >
-                        Request PlayDate
+                        Check PlayDates
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>

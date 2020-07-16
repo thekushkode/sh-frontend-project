@@ -7,7 +7,8 @@ import {
   MDBCardTitle,
   MDBCardBody,
   MDBIcon,
-  MDBBadge,
+  MDBView,
+  MDBMask,
   MDBAvatar,
   MDBBtn,
 } from 'mdbreact';
@@ -16,6 +17,8 @@ import FooterPage from './Footer';
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
+
+const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
 class UserProfile extends Component {
   constructor(props) {
@@ -219,7 +222,7 @@ class UserProfile extends Component {
                               rounded
                               onClick={() => this.removeFriend(dog)}
                             >
-                              Unfollow {dog.dogName}
+                              Unfriend {dog.dogName}
                               {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
                             </MDBBtn>
                             :
@@ -229,7 +232,7 @@ class UserProfile extends Component {
                               rounded
                               onClick={() => this.addFriend(dog)}
                             >
-                              Follow {dog.dogName}
+                              Add {dog.dogName} as a friend
                               {/* {this.state.followUnfollow ? <span>Follow {dog.dogName}</span> : <span>Unfollow {dog.dogName}</span>} */}
                             </MDBBtn>
                           }
@@ -300,48 +303,31 @@ class UserProfile extends Component {
                       </MDBCard>
 
                       <MDBCard className='mb-4'>
-                        <MDBCardBody>
-                          <h5 className='text-center mb-4'>
-                            <strong>{dog.dogName}'s Friends </strong>
-                          </h5>
-                          <ul className='list-unstyled pt-4'>
-                            <li>
-                              <p>
-                                Questions{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  34
-                                </MDBBadge>
-                              </p>
-                            </li>
-                            <hr />
-                            <li>
-                              <p>
-                                Answers{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  17
-                                </MDBBadge>
-                              </p>
-                            </li>
-                            <hr />
-                            <li>
-                              <p>
-                                Submited projects{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  12
-                                </MDBBadge>
-                              </p>
-                            </li>
-                            <hr />
-                            <li>
-                              <p>
-                                Pull requests{' '}
-                                <MDBBadge color='primary' className='float-right'>
-                                  3
-                                </MDBBadge>
-                              </p>
-                            </li>
-                          </ul>
-                        </MDBCardBody>
+                      <MDBCardBody>
+                      <h5 className='text-center mb-4'>
+                        <strong>{dog.dogName}'s Friends </strong>
+                      </h5>
+                      {dog.friends && dog.friends.map(dog => {
+                        return (
+                          <MDBCol md='4' className='mt-1'>
+                            <MDBView hover>
+                              <a href={`/user/${dog.dogID}`}>
+                                <img
+                                  src={dog.avatar ? dog.avatar : defaultDogImg}
+                                  className="img-fluid rounded-circle"
+                                  alt="Dog Avatar"
+                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                />
+                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                  <p className="white-text"><strong>{dog.breed}</strong></p>
+                                </MDBMask>
+                              </a>
+                            </MDBView>
+                          </MDBCol>
+                        )
+                      })}
+                    </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
                     <MDBCol lg='8' md='8' className='text-center'>

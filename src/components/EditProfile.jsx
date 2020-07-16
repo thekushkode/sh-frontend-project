@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import {
   MDBRow,
   MDBCol,
@@ -48,63 +48,66 @@ function EditProfile(props) {
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [forceUpdate, setForceUpdate] = useState(0);
 
   useEffect(() => {
     // console.log(user);
     if (user && !dogId) {
       db.collection("Dogs").doc(props.match.params.dogId).get()
         .then(doc => {
-            let dog = null
-            if (!dog) {
-              setDogId(doc.id);
-              dog = doc.data();
-            }
-            if (dog) {
-              setOwnerName(dog.ownerName);
-              setDogName(dog.dogName);
-              setBreed(dog.breed);
-              setStreet(dog.street);
-              setCity(dog.city);
-              setUserState(dog.userState);
-              setZipcode(dog.zipcode);
-              setTemperament(dog.temperament);
-              setSize(dog.size);
-              setSpayNeut(dog.spayNeut);
-              setVaccines(dog.vaccines);
-              setBio(dog.bio);
-              setAvatar(dog.avatar)
-              setProfile(dog);
-              console.log(dog.avatar);
-              console.log(dog);
-            }
+          let dog = null
+          if (!dog) {
+            setDogId(doc.id);
+            dog = doc.data();
+          }
+          if (dog) {
+            setDogId(doc.id);
+            setOwnerName(dog.ownerName);
+            setDogName(dog.dogName);
+            setBreed(dog.breed);
+            setStreet(dog.street);
+            setCity(dog.city);
+            setUserState(dog.userState);
+            setZipcode(dog.zipcode);
+            setTemperament(dog.temperament);
+            setSize(dog.size);
+            setSpayNeut(dog.spayNeut);
+            setVaccines(dog.vaccines);
+            setBio(dog.bio);
+            setAvatar(dog.avatar)
+            setProfile(dog);
+            console.log(dog.avatar);
+            console.log(dog);
+            console.log(doc.id);
+          }
         })
-        // .then(querySnapshot => {
-        //   // console.log(querySnapshot);
-        //   let dog = null;
-        //   querySnapshot.forEach(doc => {
-        //     if (!dog) {
-        //       setDogId(doc.id);
-        //       dog = doc.data();
-        //     }
-        //     if (dog) {
-        //       setDogName(dog.dogName);
-        //       setBreed(dog.breed);
-        //       setStreet(dog.street);
-        //       setCity(dog.city);
-        //       setUserState(dog.userState);
-        //       setZipcode(dog.zipcode);
-        //       setTemperament(dog.temperament);
-        //       setSize(dog.size);
-        //       setSpayNeut(dog.spayNeut);
-        //       setVaccines(dog.vaccines);
-        //       setBio(dog.bio);
-        //       setAvatar(dog.avatar)
-        //       setProfile(dog);
-        //       console.log(dog.avatar);
-        //       console.log(dog);
-        //     }
-        //   })
-        // })
+      // .then(querySnapshot => {
+      //   // console.log(querySnapshot);
+      //   let dog = null;
+      //   querySnapshot.forEach(doc => {
+      //     if (!dog) {
+      //       setDogId(doc.id);
+      //       dog = doc.data();
+      //     }
+      //     if (dog) {
+      //       setDogName(dog.dogName);
+      //       setBreed(dog.breed);
+      //       setStreet(dog.street);
+      //       setCity(dog.city);
+      //       setUserState(dog.userState);
+      //       setZipcode(dog.zipcode);
+      //       setTemperament(dog.temperament);
+      //       setSize(dog.size);
+      //       setSpayNeut(dog.spayNeut);
+      //       setVaccines(dog.vaccines);
+      //       setBio(dog.bio);
+      //       setAvatar(dog.avatar)
+      //       setProfile(dog);
+      //       console.log(dog.avatar);
+      //       console.log(dog);
+      //     }
+      //   })
+      // })
     }
   })
 
@@ -244,8 +247,8 @@ function EditProfile(props) {
                       </MDBCol>
                     </MDBRow>
                     {/* <MDBBtn color='info' rounded onClick={updateProfile}> */}
-                      <Link style={{ textDecoration: 'none' }} to={`/profile/${dogId}`}><MDBBtn color='info' rounded onClick={updateProfile}>save</MDBBtn></Link>
-                  {/* </MDBBtn> */}
+                    <Link style={{ textDecoration: 'none' }} to={`/profile/${dogId}`}><MDBBtn color='info' rounded onClick={updateProfile}>save</MDBBtn></Link>
+                    {/* </MDBBtn> */}
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -253,39 +256,18 @@ function EditProfile(props) {
                 <MDBCard className='profile-card'>
                   <MDBAvatar
                     tag='img'
-                    alt='Default Dog Profile Image'
-                    // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
+                    alt='Dog Profile Image'
                     src={(avatar ? avatar : Dog)}
-                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
+                    style={{ maxWidth: '200px', maxHeight: '200px', width: 'auto', height: 'auto', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} onUpload={(imgRef) => {
+                  <InputPage value={avatar} imgId={dogId} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
-                    setAvatar(imgRef)
+                    setAvatar('');
+                    setTimeout(() => setAvatar(imgRef), 500);
                   }} />
 
-
-                  {/* 
-                  <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
-                      Add Photo
-                  </MDBBtn> 
-                  <MDBCardBody className='pt-0 mt-0'>
-                    <h3 className='mb-3 font-bold'>
-                      <strong>Ike</strong>
-                    </h3>
-                    <h6 className='font-bold cyan-text mb-4'>Breed: Rottweiler</h6>
-                    <p className='mt-4 text-muted'>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip consequat.
-                  </p>
-                    <MDBBtn color='info' size='sm' rounded>
-                      Follow
-                  </MDBBtn>
-                  </MDBCardBody>
-                  */}
                 </MDBCard>
               </MDBCol>
             </MDBRow>

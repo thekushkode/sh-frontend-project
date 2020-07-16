@@ -19,7 +19,7 @@ import firebase from '../firebase';
 import FooterPage from './Footer';
 import FeaturesPage from './Features';
 import { Redirect } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 
@@ -87,8 +87,8 @@ function Home(props) {
                             <h6 className='mb-4'>
                                 Social Hound is the 1st social media platform made just for your pup. Use the sign-up form to get started and once signed-in, you'll be able to create your pup's profile, find friend's location and posts, set-up play dates, and search for places you and your pup can enjoy together! We hope you enjoy SocialHound and making new fur-ends!
                                 </h6>
-                            <MDBBtn outline color='white' href='/about'>
-                                Learn More
+                            <MDBBtn outline color='white'>
+                                <Link style={{ textDecoration: 'none', color: 'white' }}>Learn More</Link>
                                 </MDBBtn>
                         </MDBAnimation>
 
@@ -123,6 +123,7 @@ function Home(props) {
 
                                         <div className='text-center mt-4 black-text'>
                                             <MDBBtn color='indigo' onClick={newUser}>Sign Up</MDBBtn>
+                                            <h6 className='white-text'>Already have an account? <Link to='/login'>Sign In!</Link></h6>
                                             <hr className='hr-light' />
                                             <div className='text-center d-flex justify-content-center white-label'>
                                                 <a href='#!' className='p-2 m-2'>

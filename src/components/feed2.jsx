@@ -3,7 +3,7 @@ import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
 import FooterPage from "./Footer";
 import GoogleAd from "./GoogleAd";
 //import AdSense from 'react-adsense';
-import { setFeed, unSetFeed } from '../redux/actions/index';
+import { setFeed, unSetFeed, increment } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import Post from "./Post";
@@ -32,12 +32,13 @@ export default function SocialPage2() {
             });
     }, [])
 
+
     return (
         <div>
             <main>
                 <MDBRow>
                     <MDBCol>
-                        {feed && feed.map((item) => {
+                        {feed && feed.map((item, index) => {
                             console.log(item)
                             switch (item.Type) {
                                 case 'Post':

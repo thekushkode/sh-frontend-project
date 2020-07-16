@@ -1,12 +1,25 @@
 import React from 'react'
 import { MDBIcon, MDBJumbotron } from "mdbreact";
-import { useSelector } from 'react-redux';
 import moment from 'moment';
+import Ike from './images/ike.png';
+import firebase from '../firebase';
 moment().format()
 
 export default function Post(props) {
-    // const feed = useSelector(state => state.feed)
+
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+    //const dispatch = useDispatch();
+    const db = firebase.firestore();
+
+
+    function handleIncrement() {
+        db.collection('Feed').doc(props.data.docId).set({
+            Likes: props.data.Likes + 1,
+        }, {merge: true})
+        //dispatch(increment(props.data.docId));
+    }
+
+
 
     return (
         <MDBJumbotron>
@@ -31,10 +44,10 @@ export default function Post(props) {
                         </div>
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                         <div className="feed-footer">
-                            <a href="#!" className="like">
+                            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
                                 <MDBIcon icon="heart" />
                                 <span> {props.data.Likes} </span> likes
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

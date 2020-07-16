@@ -1,24 +1,21 @@
 import React from 'react'
 import { MDBIcon } from "mdbreact";
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFeed } from '../redux/actions';
+import firebase from '../firebase';
 
 moment().format()
 
 export default function PhotoPost(props) {
 
-  const feed = useSelector(state => state.feed)
-  const dispatch = useDispatch();
+  const db = firebase.firestore();
 
-  function handleClick() {
-    // console.log('hello world')
-    let likes = parseInt(feed[3].Likes)
-    console.log(likes)
-    likes = likes + 1
-    console.log(likes)
-    dispatch(setFeed(likes))
-  }
+
+    function handleIncrement() {
+        db.collection('Feed').doc(props.data.docId).set({
+            Likes: props.data.Likes + 1,
+        }, {merge: true})
+    }
+  
 
   return (
     <div className="news">
@@ -50,10 +47,12 @@ export default function PhotoPost(props) {
           />
         </div>
         <div className="feed-footer">
-          <a href="#!" className="like">
-            <MDBIcon icon="heart" onClick={() => handleClick()} />
+
+          <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
+            <MDBIcon icon="heart"/>
+
             <span> {props.data.Likes} </span>likes
-          </a>
+          </button>
         </div>
       </div>
     </div>

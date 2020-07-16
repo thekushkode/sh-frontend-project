@@ -37,7 +37,6 @@ export default function SocialPage2() {
             <main>
                 <MDBRow>
                     <MDBCol>
-
                         {feed && feed.map((item) => {
                             console.log(item)
                             switch (item.Type) {

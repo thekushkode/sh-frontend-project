@@ -15,6 +15,8 @@ import {
   MDBDropdownItem,
   MDBDropdownMenu,
   MDBDropdownToggle,
+  MDBView,
+  MDBMask 
 } from 'mdbreact';
 import './extended.css';
 import Ike from './images/ike.png';
@@ -118,6 +120,7 @@ class DogProfile extends Component {
     }
     db.collection('Feed').add(newPost)
       .then(doc => {
+        console.log(`${doc.id} created successfully`)
       })
       .catch(err => {
         console.error(err)
@@ -194,14 +197,14 @@ class DogProfile extends Component {
 
                       <MDBBtn
                         className='rare-wind-gradient'
-                        
+
                         rounded
                       >
                         <Link style={{ textDecoration: 'none' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
                       </MDBBtn>
                       <MDBBtn
                         className='peach-gradient'
-                        
+
                         rounded
                         href='#!'
                       >
@@ -209,7 +212,7 @@ class DogProfile extends Component {
                       </MDBBtn>
                       <MDBBtn
                         className='blue-gradient'
-                        
+
                         rounded
                         href='/messages'
                       >
@@ -286,7 +289,28 @@ class DogProfile extends Component {
                       <h5 className='text-center mb-4'>
                         <strong>{this.state.dogData.dogName}'s Friends </strong>
                       </h5>
-                      <ul className='list-unstyled pt-4'>
+                      {this.state.dogData.friends && this.state.dogData.friends.map(dog => {
+                        return (
+
+                          <MDBCol md='4' className='mt-1'>
+                            <MDBView hover>
+                              <a href={`/user/${dog.dogID}`}>
+                                <img
+                                  src={Ike}
+                                  className="img-fluid rounded-circle"
+                                  alt="Dog Avatar"
+                                />
+                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                  <p className="white-text"><strong>{dog.breed}</strong></p>
+                                </MDBMask>
+                              </a>
+                            </MDBView>
+                          </MDBCol>
+
+                        )
+                      })}
+                      {/* <ul className='list-unstyled pt-4'>
                         <li>
                           <p>
                             Questions{' '}
@@ -322,7 +346,7 @@ class DogProfile extends Component {
                         </MDBBadge>
                           </p>
                         </li>
-                      </ul>
+                      </ul> */}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>

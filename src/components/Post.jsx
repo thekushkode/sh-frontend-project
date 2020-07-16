@@ -40,10 +40,5 @@ export default function Post(props) {
                 </div>
             </div>
         </MDBJumbotron>
-
-        // <div>
-        //     <p>{props.data.Content}</p>
-        //     <p>{props.data.Sender}</p>
-        // </div>   
     )
 }

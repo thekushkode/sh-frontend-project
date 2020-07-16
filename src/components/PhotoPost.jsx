@@ -22,7 +22,7 @@ export default function PhotoPost(props) {
     <div className="news">
       <div className="label">
         <img
-          src={props.data.avatar ? props.data.avatar : defaultDogImg}
+          src={props.data.Avatar ? props.data.Avatar : defaultDogImg}
           alt=""
           className="rounded-circle z-depth-1-half"
           style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}

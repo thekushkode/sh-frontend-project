@@ -22,7 +22,7 @@ class NotLogged extends Component {
             this.setState({
                 redirect: true
             })
-            alert('You have been logged out!')
+            // alert('You have been logged out!')
         }).catch(function (error) {
             console.log(error);
             alert('No User Logged In.')

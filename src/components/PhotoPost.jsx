@@ -7,8 +7,6 @@ moment().format()
 
 export default function PhotoPost(props) {
 
-  const feed = useSelector(state => state.feed)
-  const dispatch = useDispatch();
   let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
   const db = firebase.firestore();
 

@@ -195,7 +195,6 @@ function AddNewDog(props) {
                   <MDBAvatar
                     tag='img'
                     alt='Dog Profile Image'
-                    // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
                     src={(avatar ? avatar : Dog)}
                     style={{ maxWidth: '200px', maxHeight: '200px', width: 'auto', height: 'auto', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
@@ -207,27 +206,6 @@ function AddNewDog(props) {
                     setTimeout(() => setAvatar(imgRef), 500);
                   }} />
 
-
-                  {/* 
-                  <MDBBtn className='aqua-gradient mb-3 mx-auto' size='sm' rounded>
-                      Add Photo
-                  </MDBBtn> 
-                  <MDBCardBody className='pt-0 mt-0'>
-                    <h3 className='mb-3 font-bold'>
-                      <strong>Ike</strong>
-                    </h3>
-                    <h6 className='font-bold cyan-text mb-4'>Breed: Rottweiler</h6>
-                    <p className='mt-4 text-muted'>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip consequat.
-                  </p>
-                    <MDBBtn color='info' size='sm' rounded>
-                      Follow
-                  </MDBBtn>
-                  </MDBCardBody>
-                  */}
                 </MDBCard>
               </MDBCol>
             </MDBRow>

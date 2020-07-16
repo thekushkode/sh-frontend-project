@@ -5,7 +5,6 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBFileInput,
   MDBContainer,
   MDBAvatar,
   MDBBtn,
@@ -13,7 +12,6 @@ import {
   MDBSelectOption,
   MDBSelectOptions,
   MDBSelectInput,
-  Link
 } from 'mdbreact';
 import './EditProfile.css';
 import Dog from './images/avatar.png';
@@ -24,20 +22,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
-import UploadFile from './Upload';
 
 const db = firebase.firestore();
 
 function AddNewDog(props) {
-
-  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
   const dispatch = useDispatch();
   const history = useHistory();
   //grabs redux state
   const user = useSelector(state => state.user);
   const profile = useSelector(state => state.profile);
-  // const profile = useSelector(state => state.profile);
   const [dogId, setDogId] = useState('');
   const [ownerName, setOwnerName] = useState('');
   const [ownerId, setOwnerId] = useState('');
@@ -52,11 +46,10 @@ function AddNewDog(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState(defaultDogImg);
+  const [avatar, setAvatar] = useState('');
 
 
   useEffect(() => {
-    // console.log(user);
     if (user && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
     }
@@ -64,7 +57,6 @@ function AddNewDog(props) {
 
   const updateProfile = (e) => {
     if (!dogId) {
-      // let user = firebase.auth().currentUser;
       db.collection('Dogs').add({
         dogName,
         ownerName,
@@ -82,7 +74,6 @@ function AddNewDog(props) {
         ownerId: user.uid
       })
         .then((res) => {
-          console.log(res.id)
           history.push(`/profile/${res.id}`)
         })
     }
@@ -184,8 +175,6 @@ function AddNewDog(props) {
                       </MDBCol>
                     </MDBRow>
                     <MDBBtn color='info' rounded onClick={updateProfile}>
-                      {console.log(profile.id)}
-                      {/* {console.log(state.profile.id)} */}
                         Save
                     </MDBBtn>
                   </MDBCardBody>
@@ -193,21 +182,19 @@ function AddNewDog(props) {
               </MDBCol>
               <MDBCol md='4' className='mb-r'>
                 <MDBCard className='profile-card'>
-
-                  <MDBAvatar
+                <MDBAvatar
                     tag='img'
-                    alt='Dog Profile Image'
-                    src={(avatar ? avatar : defaultDogImg)}
-                    style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
+                    alt='Default Dog Profile Image'
+                    // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
+                    src={(avatar ? avatar : Dog)}
+                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} imgId={dogId} onUpload={(imgRef) => {
+                  <InputPage value={avatar} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
-                    setAvatar('');
-                    setTimeout(() => setAvatar(imgRef), 500);
+                    setAvatar(imgRef)
                   }} />
-
                 </MDBCard>
               </MDBCol>
             </MDBRow>

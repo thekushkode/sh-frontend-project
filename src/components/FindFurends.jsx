@@ -75,55 +75,12 @@ export class Furends extends Component {
         this.handleFormSubmit()
     }
 
-
-    //     // db.collection("Dogs")
-    //     //     .get()
-    //     //     .then(querySnapshot => {
-    //     //         const data = querySnapshot.docs.map(doc => doc.data());
-    //     //         console.log(data);
-    //     //         this.setState({ users: data });
-    //     //     });
-    // }
-
-    // fetchPlaces = (mapProps, map) => {
-
-    //     // const { google } = mapProps;
-    //     // const service = new google.maps.places.PlacesService(map);
-    //     // const startPoint = new google.maps.LatLng(33.753746, -84.386330);
-
-    //     // var request = {
-    //     //     location: startPoint,
-    //     //     radius: '50000',
-    //     //     query: ['3669 School Street Atlanta, GA 30341'],
-    //     //     fields: ['name', 'geometry'],
-    // };
-
-    //     // service.textSearch(request, (results, status) => {
-    //     //     if (status === google.maps.places.PlacesServiceStatus.OK) {
-    //     //         this.setState({
-    //     //             users: results
-    //     //         })
-
-    //     //         map.setCenter(results[0].geometry.location);
-    //     //     }
-    //     // });
-    // }
-
     onMarkerClick = (props, marker, e) => {
-        console.log(props);
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
         });
-        // return (
-        //     < InfoWindow marker={this.state.activeMarker}
-        //         visible={this.state.showingInfoWindow} name={props.name} >
-        //         <div>
-        //             <h1>{this.state.selectedPlace.name}</h1>
-        //         </div>
-        //     </InfoWindow >
-        // )
     }
 
 
@@ -158,14 +115,6 @@ export class Furends extends Component {
                 <header>
                 </header>
                 <main>
-                    {/* <MDBRow>
-                        <MDBCol>
-
-                        </MDBCol>
-                        <MDBCol>
-
-                        </MDBCol>
-                    </MDBRow> */}
                     <div className='d-flex flex-row justify-content-between'>
                         <div style={{ width: '500px' }}>
                             <Map
@@ -179,7 +128,6 @@ export class Furends extends Component {
                             >
                                 {this.state.dogData.map((user, index, mapProps) => {
                                     let address = user.street + ' ' + user.city + ', ' + user.userState + ' ' + user.zipcode;
-                                    // console.log(address);
                                     return (
                                         <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
                                             onClick={this.onMarkerClick} />
@@ -213,11 +161,6 @@ export class Furends extends Component {
                                 </div>
                             </div>
                             <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
-                                {/* Have default Dogs show here. Based on zip or city */}
-                                {/* <DogSearch />
-                                <DogSearch />
-                                <DogSearch />
-                                <DogSearch /> */}
                                 <MDBRow>
                                     {this.state.dogData && this.state.dogData.map(dog => {
                                         return (

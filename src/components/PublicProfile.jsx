@@ -38,17 +38,15 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let dogID = this.props.match.params.dogId
-    console.log(dogID)
-    // let doggo = this
     if (user) {
-      // console.log(user)
-      // User is signed in.
       db.collection("Dogs")
         .doc(dogID)
         .get()
         .then(data => {
           let doggo = []
-          doggo.push(data.data())
+          let dogData = data.data()
+          dogData['dogID'] = dogID
+          doggo.push(dogData)
           this.setState({
             dogData: doggo
           })
@@ -61,8 +59,6 @@ class UserProfile extends Component {
     let user = firebase.auth().currentUser;
     let userID = user.uid
     let userName = user.displayName
-    console.log(userID)
-    console.log(dog.ownerId)
     if (userID) {
       return db.collection("Messages").doc()
         .set({
@@ -86,16 +82,26 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let userID = user.uid
-    let userName = user.displayName
-    console.log(userID)
-    console.log(dog.ownerId)
     if (userID) {
-      return db.collection("Dogs").doc('tyH4yBBzhshmbYQUmozv')
+      return db.collection("Dogs").doc(this.props.profile.id)
         .update({ 
-          // friends: [...friends, 'eSJ53k72HPGlftt4f43m']
+          friends: firebase.firestore.FieldValue.arrayUnion(dog)
         })
         .then(() => {
-          this.props.history.push('/messages')
+          const newPost = {
+            Content: `${this.props.profile.data.ownerName} and ${dog.dogName} are friends`,
+            Likes: 0,
+            SenderID: user.uid,
+            Type: 'Friend',
+            timestamp: new Date()
+          }
+          db.collection('Feed').add(newPost)
+            .then(doc => {
+              console.log(`${doc.id} created successfully`)
+            })
+            .catch(err => {
+              console.error(err)
+            })
         })
 
     }

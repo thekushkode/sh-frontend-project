@@ -15,6 +15,8 @@ import {
   MDBDropdownItem,
   MDBDropdownMenu,
   MDBDropdownToggle,
+  MDBView,
+  MDBMask 
 } from 'mdbreact';
 import './extended.css';
 import Ike from './images/ike.png';
@@ -25,7 +27,7 @@ import ProfileUpload from './ProfileUpload';
 import GoOutside from './GoOutside';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
-import { useDispatch, connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { setFeed, unSetFeed } from '../redux/actions/index';
 
 
@@ -45,20 +47,16 @@ class DogProfile extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    // let doggo = this;
     if (user) {
       if (this.props.match.params.dogId) {
-        console.log(this.props.match.params.dogId)
         db.collection("Dogs")
           .doc(this.props.match.params.dogId)
           .get()
           .then(doc => {
-            // let data = [];
             const dogData = {
               ...doc.data(),
               dogId: doc.id
             }
-            // data.push(dogData)
             this.setState({
               dogData: dogData,
               user: user
@@ -68,7 +66,6 @@ class DogProfile extends Component {
           .where('ownerId', '==', user.uid)
           .get()
           .then(querySnapshot => {
-            // console.log(querySnapshot)
             let data = [];
             querySnapshot.forEach(function (doc) {
               const dogData = {
@@ -77,8 +74,6 @@ class DogProfile extends Component {
               }
               data.push(dogData);
             })
-            console.log(data)
-
             this.setState({
               allDogData: data,
               user: user
@@ -87,31 +82,6 @@ class DogProfile extends Component {
       }
     }
   }
-
-  // componentDidUpdate() {
-  //   let user = firebase.auth().currentUser;
-  //   const db = firebase.firestore();
-  //   if (user) {
-  //     if (this.props.match.params.dogId) {
-  //       console.log(this.props.match.params.dogId)
-  //       db.collection("Dogs")
-  //         .doc(this.props.match.params.dogId)
-  //         .get()
-  //         .then(doc => {
-  //           // let data = [];
-  //           const dogData = {
-  //             ...doc.data(),
-  //             dogId: doc.id
-  //           }
-  //           // data.push(dogData)
-  //           this.setState({
-  //             dogData: dogData,
-  //             user: user
-  //           })
-  //         })
-  //     }
-  //   }
-  // }
 
   handleClick = (id) => () => {
     const db = firebase.firestore();
@@ -139,15 +109,11 @@ class DogProfile extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const db = firebase.firestore();
-    // const dispatch = useDispatch();
     let user = firebase.auth().currentUser;
-    console.log('submitted');
-    console.log(this.state.postValue);
-    console.log(user)
     const newPost = {
       Content: this.state.postValue,
       Likes: 0,
-      SenderName: user.displayName,
+      SenderName: this.props.profile.data.ownerName,
       SenderID: user.uid,
       Type: 'Post',
       timestamp: new Date()
@@ -231,14 +197,14 @@ class DogProfile extends Component {
 
                       <MDBBtn
                         className='rare-wind-gradient'
-                        
+
                         rounded
                       >
                         <Link style={{ textDecoration: 'none' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
                       </MDBBtn>
                       <MDBBtn
                         className='peach-gradient'
-                        
+
                         rounded
                         href='#!'
                       >
@@ -246,7 +212,7 @@ class DogProfile extends Component {
                       </MDBBtn>
                       <MDBBtn
                         className='blue-gradient'
-                        
+
                         rounded
                         href='/messages'
                       >
@@ -323,7 +289,28 @@ class DogProfile extends Component {
                       <h5 className='text-center mb-4'>
                         <strong>{this.state.dogData.dogName}'s Friends </strong>
                       </h5>
-                      <ul className='list-unstyled pt-4'>
+                      {this.state.dogData.friends && this.state.dogData.friends.map(dog => {
+                        return (
+
+                          <MDBCol md='4' className='mt-1'>
+                            <MDBView hover>
+                              <a href={`/user/${dog.dogID}`}>
+                                <img
+                                  src={Ike}
+                                  className="img-fluid rounded-circle"
+                                  alt="Dog Avatar"
+                                />
+                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                  <p className="white-text"><strong>{dog.breed}</strong></p>
+                                </MDBMask>
+                              </a>
+                            </MDBView>
+                          </MDBCol>
+
+                        )
+                      })}
+                      {/* <ul className='list-unstyled pt-4'>
                         <li>
                           <p>
                             Questions{' '}
@@ -359,7 +346,7 @@ class DogProfile extends Component {
                         </MDBBadge>
                           </p>
                         </li>
-                      </ul>
+                      </ul> */}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
@@ -419,7 +406,8 @@ class DogProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    feed: state.feed
+    feed: state.feed,
+    profile: state.profile
   }
 }
 

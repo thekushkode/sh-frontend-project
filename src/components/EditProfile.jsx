@@ -261,7 +261,6 @@ function EditProfile(props) {
                     src={(avatar ? avatar : Dog)}
                     style={{ maxWidth: '200px', maxHeight: '200px', width: 'auto', height: 'auto', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
-                    data-test={forceUpdate}
                   />
 
                   <InputPage value={avatar} imgId={dogId} onUpload={(imgRef) => {

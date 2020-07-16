@@ -29,7 +29,7 @@ import UploadFile from './Upload';
 const db = firebase.firestore();
 
 function AddNewDog(props) {
-  
+
   const dispatch = useDispatch();
   const history = useHistory();
   //grabs redux state
@@ -79,12 +79,12 @@ function AddNewDog(props) {
         bio,
         ownerId: user.uid
       })
-      .then((res) => {
-        console.log(res.id)
-        history.push(`/profile/${res.id}`)
-      })
+        .then((res) => {
+          console.log(res.id)
+          history.push(`/profile/${res.id}`)
+        })
+    }
   }
-}
 
   return (
     <div>
@@ -191,18 +191,20 @@ function AddNewDog(props) {
               </MDBCol>
               <MDBCol md='4' className='mb-r'>
                 <MDBCard className='profile-card'>
+
                   <MDBAvatar
                     tag='img'
-                    alt='Default Dog Profile Image'
+                    alt='Dog Profile Image'
                     // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
                     src={(avatar ? avatar : Dog)}
-                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
+                    style={{ maxWidth: '200px', maxHeight: '200px', width: 'auto', height: 'auto', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} onUpload={(imgRef) => {
+                  <InputPage value={avatar} imgId={dogId} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
-                    setAvatar(imgRef)
+                    setAvatar('');
+                    setTimeout(() => setAvatar(imgRef), 500);
                   }} />
 
 

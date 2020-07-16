@@ -16,6 +16,7 @@ import Ike from './images/ike.png';
 const db = firebase.firestore();
 
 //TRYING TO USE COMBO OF REDUX / FIREBASE (ONLY FB IF POSSIBLE) TO DISPLAY USERS ON MAP AND DISPLAY CURRENT USER ON SAME MAP.
+let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
 //need help with {connect}
 export class Furends extends Component {
@@ -158,7 +159,7 @@ export class Furends extends Component {
                                                     <MDBView hover>
                                                         <a href={`/user/${dog.dogId}`}>
                                                             <img
-                                                                src={Ike}
+                                                                src={dog.avatar ? dog.avatar: defaultDogImg}
                                                                 className="img-fluid rounded-circle"
                                                                 alt="Dog Avatar"
                                                             />

@@ -7,6 +7,7 @@ moment().format()
 
 export default function PhotoPost(props) {
 
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
   const db = firebase.firestore();
 
 
@@ -21,7 +22,7 @@ export default function PhotoPost(props) {
     <div className="news">
       <div className="label">
         <img
-          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg"
+          src={props.data.avatar ? props.data.avatar : defaultDogImg}
           alt=""
           className="rounded-circle z-depth-1-half"
           style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
@@ -56,9 +57,5 @@ export default function PhotoPost(props) {
         </div>
       </div>
     </div>
-    // <div>
-    //   <p>{props.data.Content}</p>
-    //   <p>{props.data.Sender}</p>
-    // </div>
   )
 }

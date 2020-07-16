@@ -153,26 +153,28 @@ export class Furends extends Component {
                             <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
                                 <MDBRow>
                                     {this.state.dogData && this.state.dogData.map(dog => {
-                                        {if (dog.dogId !== this.props.profile.id) {
-                                            return (
-                                                <MDBCol md='4' className='mt-1'>
-                                                    <MDBView hover>
-                                                        <a href={`/user/${dog.dogId}`}>
-                                                            <img
-                                                                src={dog.avatar ? dog.avatar: defaultDogImg}
-                                                                className="img-fluid rounded-circle"
-                                                                alt="Dog Avatar"
-                                                                style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
-                                                            />
-                                                            <MDBMask className="flex-center flex-column" overlay="blue-strong">
-                                                                <p className="white-text"><strong>{dog.dogName}</strong></p>
-                                                                <p className="white-text"><strong>{dog.breed}</strong></p>
-                                                            </MDBMask>
-                                                        </a>
-                                                    </MDBView>
-                                                </MDBCol>
-                                            )
-                                        }}
+                                        {
+                                            if (dog.dogId !== this.props.profile.id) {
+                                                return (
+                                                    <MDBCol md='4' className='mt-1'>
+                                                        <MDBView hover>
+                                                            <a href={`/user/${dog.dogId}`}>
+                                                                <img
+                                                                    src={dog.avatar ? dog.avatar : defaultDogImg}
+                                                                    className="img-fluid rounded-circle"
+                                                                    alt="Dog Avatar"
+                                                                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                                                />
+                                                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                                                    <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                                                    <p className="white-text"><strong>{dog.breed}</strong></p>
+                                                                </MDBMask>
+                                                            </a>
+                                                        </MDBView>
+                                                    </MDBCol>
+                                                )
+                                            }
+                                        }
                                     })}
                                 </MDBRow>
                             </div>

@@ -71,7 +71,7 @@ export class Furends extends Component {
             })
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         this.handleFormSubmit()
     }
 
@@ -169,9 +169,10 @@ export class Furends extends Component {
                                                 <MDBView hover>
                                                     <a href={`/user/${dog.dogId}`}>
                                                         <img
-                                                            src={Ike}
+                                                            src={dog.avatar}
                                                             className="img-fluid rounded-circle"
                                                             alt="Dog Avatar"
+                                                            style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                                         />
                                                         <MDBMask className="flex-center flex-column" overlay="blue-strong">
                                                             <p className="white-text"><strong>{dog.dogName}</strong></p>

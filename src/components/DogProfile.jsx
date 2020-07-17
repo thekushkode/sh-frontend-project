@@ -57,16 +57,14 @@ class DogProfile extends Component {
               ...doc.data(),
               dogId: doc.id
             }
-            let data = doc.data()
-            let id = doc.id
-            let profile = {
-              data: data,
-              id: id
-            }
             this.setState({
               dogData: dogData,
               user: user
             })
+            const profile = {
+              data: doc.data(),
+              id: this.props.match.params.dogId
+            }
             this.props.setProfile(profile)
           })
         db.collection("Dogs")
@@ -104,17 +102,10 @@ class DogProfile extends Component {
               ...doc.data(),
               dogId: doc.id
             }
-            let data = doc.data()
-            let id = doc.id
-            let profile = {
-              data: data,
-              id: id
-            }
             this.setState({
               dogData: dogData,
               user: user
             })
-            this.props.setProfile(profile)
           })
       }
     }

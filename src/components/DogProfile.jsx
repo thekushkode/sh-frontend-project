@@ -195,7 +195,7 @@ class DogProfile extends Component {
   render() {
 
     return (
-      <div>
+      <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>

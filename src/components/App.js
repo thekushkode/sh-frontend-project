@@ -3,14 +3,11 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
 import Chat from './Chat';
-import PExtended from './extended';
 import About from './About';
 import GMap from './GoOutside';
 import ContactPage from './Contact';
-import SocialPage2 from './feed2';
 import DayCare from './FindDaycare';
 import Furends from './FindFurends';
-import Friend from './Friend';
 import firebase from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, unSetUser, setProfile, clearProfile, authStart, loggedIn, loggedOut } from '../redux/actions';
@@ -59,13 +56,11 @@ function App() {
     dispatch(authStart())
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        // currUser = user;
         dispatch(setUser(user))
         let userID;
 
         let userData = {}
         let userProfile = {}
-        // let userProfile = []
         db.collection("Users")
           .where("email", "==", user.email).limit(1).get()
           .then(function (querySnapshot) {
@@ -79,8 +74,6 @@ function App() {
               .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                   userProfile = { data: doc.data(), id: doc.id }
-                  // let dog = { data: doc.data(), id: doc.id }
-                  // userProfile.append(dog)
                 })
               }).then(res => {
                 dispatch(setProfile(userProfile));
@@ -89,7 +82,6 @@ function App() {
               })
           })
       } else {
-        console.log('else app.js')
         dispatch(unSetUser());
         dispatch(clearProfile());
         dispatch(loggedOut());
@@ -121,7 +113,7 @@ function App() {
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
               <Route exact path='/load' component={LoadingPage} />
-              {/* <Route><Redirect to="/" /></Route> */}
+              <Route><Redirect to="/" /></Route>
             </Switch>
           </div>
         </Router>
@@ -163,7 +155,6 @@ function App() {
     case AUTHENTICATING:
     default:
       return <div className='text-center'><LoadingPage /></div>
-    //       return <Route exact path='/spin' component={SpinnerPage} />
   }
 }
 

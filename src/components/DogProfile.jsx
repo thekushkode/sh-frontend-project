@@ -6,9 +6,7 @@ import {
   MDBCard,
   MDBCardTitle,
   MDBCardBody,
-  MDBCardFooter,
   MDBIcon,
-  MDBBadge,
   MDBAvatar,
   MDBBtn,
   MDBDropdown,
@@ -16,7 +14,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownToggle,
   MDBView,
-  MDBMask
+  MDBMask, 
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
@@ -43,8 +41,6 @@ class DogProfile extends Component {
       feedImgURL: ''
     };
   }
-
-  // we want this but for a class components
 
   componentDidMount() {
     const db = firebase.firestore();
@@ -92,14 +88,20 @@ class DogProfile extends Component {
       .doc(id)
       .get()
       .then(doc => {
-        const dogData = {
-          ...doc.data(),
-          dogId: doc.id
-        }
-        this.setState({
-          dogData: dogData
-        })
-        this.props.setProfile(dogData)
+          const dogData = {
+            ...doc.data(),
+            dogId: doc.id
+          }
+          let data = doc.data()
+          let id = doc.id
+          let profile = {
+            data: data,
+            id: id
+          }
+          this.setState({
+            dogData: dogData
+          })
+          this.props.setProfile(profile)
       })
   }
 
@@ -114,16 +116,31 @@ class DogProfile extends Component {
     e.preventDefault();
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    const newPost = {
-      Avatar: this.props.profile.data.avatar,
-      Content: this.state.postValue,
-      Likes: 0,
-      SenderName: this.props.profile.data.dogName,
-      SenderID: user.uid,
-      DogID: this.props.profile.id,
-      Type: 'Post',
-      timestamp: new Date(),
-      feedImgURL: this.state.feedImgURL
+    let newPost
+    if (this.props.profile.avatar) {
+      newPost = {
+        Avatar: this.props.profile.avatar,
+        Content: this.state.postValue,
+        Likes: 0,
+        SenderName: this.props.profile.dogName,
+        SenderID: user.uid,
+        DogID: this.props.profile.dogId,
+        Type: 'Post',
+        timestamp: new Date(),
+        feedImgURL: this.state.feedImgURL
+      }
+    } else {
+      newPost = {
+        Avatar: this.props.profile.data.avatar,
+        Content: this.state.postValue,
+        Likes: 0,
+        SenderName: this.props.profile.data.dogName,
+        SenderID: user.uid,
+        DogID: this.props.profile.id,
+        Type: 'Post',
+        timestamp: new Date(),
+        feedImgURL: this.state.feedImgURL
+      }
     }
     db.collection('Feed').add(newPost)
       .then(doc => {
@@ -281,14 +298,44 @@ class DogProfile extends Component {
                       <h5 className='text-center mb-4'>
                         <strong>{this.state.dogData.dogName}'s Friends </strong>
                       </h5>
-                      {this.state.dogData.friends && this.state.dogData.friends.map(dog => {
+                      {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                         return (
 
-                          <MDBCol md='4' className='mt-1'>
+                          <MDBCol md='4' className='mt-1' key={index}>
+                            <MDBView hover>
+                              <Link to={`/user/${dog.dogID}`}>
+                                <img
+                                  src={dog.avatar}
+                                  className="img-fluid rounded-circle"
+                                  alt="Dog Avatar"
+                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                />
+                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                  <p className="white-text"><strong>{dog.breed}</strong></p>
+                                </MDBMask>
+                              </Link>
+                            </MDBView>
+                          </MDBCol>
+
+                        )
+                      })}
+                    </MDBCardBody>
+                  </MDBCard>
+
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody>
+                      <h5 className='text-center mb-4'>
+                        <strong>See more of {this.state.dogData.dogName} <span>📸</span></strong>
+                      </h5>
+                      {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
+                        return (
+
+                          <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={dog.avatar ? dog.avatar : defaultDogImg}
+                                  src={dog.avatar}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
@@ -300,9 +347,8 @@ class DogProfile extends Component {
                               </a>
                             </MDBView>
                           </MDBCol>
-
-                        )
-                      })}
+                          )
+                      })} */}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
@@ -328,9 +374,6 @@ class DogProfile extends Component {
                               name='post'
                               onChange={this.handleChange}
                             />
-
-
-
 
                             {/* <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} /> */}
                             <MDBAvatar

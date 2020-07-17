@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
-import FooterPage from "./Footer";
+import { MDBRow, MDBCol } from "mdbreact";
 import GoogleAd from "./GoogleAd";
 //import AdSense from 'react-adsense';
-import { setFeed, unSetFeed, increment } from '../redux/actions/index';
+import { setFeed } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import Post from "./Post";
@@ -27,7 +26,6 @@ export default function SocialPage2() {
                     }
                     feed.push(feedData);
                 })
-                console.log(feed)
                 dispatch(setFeed(feed))
             });
     }, [])
@@ -39,7 +37,6 @@ export default function SocialPage2() {
                 <MDBRow>
                     <MDBCol>
                         {feed && feed.map((item, index) => {
-                            console.log(item)
                             switch (item.Type) {
                                 case 'Post':
                                     return <Post data={item} />

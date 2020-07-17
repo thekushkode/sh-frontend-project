@@ -9,14 +9,12 @@ import {
   MDBInput,
   MDBIcon,
   MDBView,
-  MDBBtn
+  MDBBtn,
 } from 'mdbreact';
 import './Login.css';
+import { Link } from 'react-router-dom'
 import FooterPage from './Footer';
-import { connect } from 'react-redux';
 import firebase from '../firebase';
-
-
 
 class Login extends React.Component {
   constructor(props) {
@@ -27,7 +25,6 @@ class Login extends React.Component {
       password: '',
       user: ''
     };
-
   }
 
 

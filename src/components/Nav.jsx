@@ -6,8 +6,6 @@ import {
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { allReducers } from '../redux/reducers/index';
-// import { store } from '../index';
 
 
 class NavbarPage extends Component {

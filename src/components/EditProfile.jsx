@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MDBRow,
   MDBCol,
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBFileInput,
   MDBContainer,
   MDBAvatar,
   MDBBtn,
@@ -13,10 +12,10 @@ import {
   MDBSelectOption,
   MDBSelectOptions,
   MDBSelectInput,
-  Link
 } from 'mdbreact';
 import './EditProfile.css';
 import Dog from './images/avatar.png';
+import { Link } from 'react-router-dom'
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
 import firebase from '../firebase';
@@ -24,7 +23,6 @@ import { useSelector } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
-import UploadFile from './Upload';
 
 const db = firebase.firestore();
 
@@ -78,9 +76,6 @@ function EditProfile(props) {
             setBio(dog.bio);
             setAvatar(dog.avatar)
             setProfile(dog);
-            console.log(dog.avatar);
-            console.log(dog);
-            console.log(doc.id);
           }
         })
     }
@@ -88,7 +83,6 @@ function EditProfile(props) {
 
   const updateProfile = (e) => {
     if (!dogId) {
-      // let user = firebase.auth().currentUser;
       db.collection('Dogs').add({
         ownerName,
         dogName,
@@ -140,7 +134,6 @@ function EditProfile(props) {
                   <div className='admin-up d-flex justify-content-start'>
                     <div className='data'>
                       <h5 className='font-weight-bold dark-grey-text mt-2 ml-2'>
-                        {/* Dog's Profile -{' '} */}
                         <span className='text-muted'>Complete your profile</span>
                       </h5>
                     </div>
@@ -231,18 +224,17 @@ function EditProfile(props) {
                 <MDBCard className='profile-card'>
                   <MDBAvatar
                     tag='img'
-                    alt='Dog Profile Image'
-                    src={(avatar ? avatar : defaultDogImg)}
-                    style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
+                    alt='Default Dog Profile Image'
+                    // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
+                    src={(avatar ? avatar : Dog)}
+                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} imgId={dogId} onUpload={(imgRef) => {
+                  <InputPage value={avatar} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
-                    setAvatar('');
-                    setTimeout(() => setAvatar(imgRef), 500);
+                    setAvatar(imgRef)
                   }} />
-
                 </MDBCard>
               </MDBCol>
             </MDBRow>

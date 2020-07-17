@@ -39,7 +39,8 @@ class DogProfile extends Component {
       postValue: '',
       imgValue: '',
       allDogData: [],
-      feedImgURL: ''
+      feedImgURL: '',
+      hidden: true
     };
   }
 
@@ -202,8 +203,12 @@ class DogProfile extends Component {
                         <strong>{this.state.dogData.dogName}</strong>
                       </MDBCardTitle>
                       <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
+                      <h6>
+                        <strong>About Me</strong>
+                      </h6>
+                      <hr className='my-2'/>
                       <h5>
-                        Bio: {this.state.dogData.bio}
+                        {this.state.dogData.bio}
                       </h5>
                       <MDBBtn floating tag='a' className='blue-gradient'>
                         <MDBIcon fab icon='facebook' className='white-text' />
@@ -383,6 +388,8 @@ class DogProfile extends Component {
                               src={(this.state.feedImgURL ? this.state.feedImgURL : defaultFeedImg)}
                               style={{ maxWidth: '400px', maxHeight: '400px', margin: '0 auto', borderRadius: '5px' }}
                               className='z-depth-1-half mb-4 mt-4'
+                              // aria-hidden={(defaultFeedImg ? 'true' : 'false')}
+                              hidden
                             />
 
                             <InputPage
@@ -392,7 +399,7 @@ class DogProfile extends Component {
                                 console.log('uploaded', imgRef);
                                 // setFeedImg('');
                                 // setTimeout(() => setFeedImg(imgRef), 500);
-                                this.setState({feedImgURL: imgRef});
+                                this.setState({ feedImgURL: imgRef });
                               }} />
 
                             <MDBBtn

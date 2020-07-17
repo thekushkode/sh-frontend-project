@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
@@ -31,10 +31,13 @@ import LoadingPage from './LoadingPage';
 import NewProfile from './NewProfile';
 import AddNewDog from './AddNewDog';
 import PublicFeed from './PublicFeed';
+import Konami from 'react-konami-code';
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
+  const [url, setUrl] = useState('');
 
   ReactGA.initialize('UA-172377344-1');
   ReactGA.pageview(window.location.pathname + window.location.search);
@@ -89,6 +92,23 @@ function App() {
     });
   }, [])
 
+  function easterEgg() {
+    // alert('Hey, you typed the Konami Code!');
+    fetch('https://dog.ceo/api/breeds/image/random')
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        console.log(res.message)
+        let url = res.message;
+        console.log(url);
+        setUrl(url)
+        // this.setState({
+        //   data: res,
+        //   url: res.message
+        // })
+      })
+  }
+
   const authState = useSelector(state => state.auth);
 
   switch (authState) {
@@ -115,6 +135,15 @@ function App() {
               <Route exact path='/load' component={LoadingPage} />
               <Route><Redirect to="/" /></Route>
             </Switch>
+            <Konami action={easterEgg}>
+              <MDBContainer>
+                <MDBRow>
+                  <MDBCol md='12'>
+                    <img src={`${url}`} className='img-fluid rounded-circle' alt='random dog' />
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </Konami>
           </div>
         </Router>
       )
@@ -139,7 +168,7 @@ function App() {
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
-              <Route exact path='/login'><Redirect to="/feed"/></Route>
+              <Route exact path='/login'><Redirect to="/feed" /></Route>
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
@@ -148,6 +177,15 @@ function App() {
               <Route path='/newchat/' component={NewChat} />
               <Route><Redirect to="/newprofile" /></Route>
             </Switch>
+              <Konami action={easterEgg}>
+                <MDBContainer>
+                  <MDBRow>
+                    <MDBCol md='12'>
+                      <img src={`${url}`} className='img-fluid rounded-circle' alt='random dog' />
+                    </MDBCol>
+                  </MDBRow>
+                </MDBContainer>
+              </Konami>
           </div>
         </Router>
       )

@@ -21,6 +21,7 @@
     "react-geocode": "^0.2.1",
     "react-google-maps": "^9.4.5",
     "react-hooks": "^1.0.1",
+    "react-konami-code": "^2.0.0-beta.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",

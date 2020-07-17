@@ -39,7 +39,7 @@ function Home(props) {
                     email: email,
                 })
                     .then(doc => {
-                        props.history.push('/newprofile')
+                        history.push('/newprofile')
                     })
                     .catch(err => console.error(err))
 

@@ -120,11 +120,11 @@ function EditProfile(props) {
   }
 
   return (
-    <div>
+    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
       <header style={{ marginBottom: '120px' }}>
         <NavbarPage />
       </header>
-      <div id='profile-v1' className='mb-5' style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div id='profile-v1' className='mb-5'>
         <MDBContainer fluid className='mb-5'>
           <section className='section team-section mb-5'>
             <MDBRow center className='text-center'>

@@ -264,13 +264,14 @@ const Chat = () => {
                       }}>
                       <input
                         type='input'
-                        containerClass='chat-message-type'
+                        // containerClass='chat-message-type'
                         label='Type your message'
                         rows='1'
                         style={{
                           marginLeft: '40px',
                           marginTop: '8px',
-                          width: 450,
+                          minWidth: '350px',
+                          maxWidth: '450px',
                           height: 37,
                           borderRadius: "20px",
                           border: '2px solid #dddddd',

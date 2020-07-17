@@ -14,6 +14,7 @@ import {
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
+import { Link } from 'react-router-dom'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
@@ -312,9 +313,9 @@ class UserProfile extends Component {
                             return (
                               <MDBCol md='4' className='mt-1'>
                                 <MDBView hover>
-                                  <a href={`/user/${dog.dogID}`}>
+                                  <Link to={`/user/${dog.dogID}`}>
                                     <img
-                                      src={dog.avatar ? dog.avatar : defaultDogImg}
+                                      src={dog.avatar}
                                       className="img-fluid rounded-circle"
                                       alt="Dog Avatar"
                                       style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
@@ -323,7 +324,7 @@ class UserProfile extends Component {
                                       <p className="white-text"><strong>{dog.dogName}</strong></p>
                                       <p className="white-text"><strong>{dog.breed}</strong></p>
                                     </MDBMask>
-                                  </a>
+                                  </Link>
                                 </MDBView>
                               </MDBCol>
                             )

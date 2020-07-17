@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
-import FooterPage from "./Footer";
+import { MDBRow, MDBCol } from "mdbreact";
 import GoogleAd from "./GoogleAd";
 //import AdSense from 'react-adsense';
-import { setFeed, unSetFeed, increment } from '../redux/actions/index';
+import { setFeed } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import Post from "./Post";

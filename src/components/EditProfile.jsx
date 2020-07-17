@@ -12,10 +12,10 @@ import {
   MDBSelectOption,
   MDBSelectOptions,
   MDBSelectInput,
-  Link
 } from 'mdbreact';
 import './EditProfile.css';
 import Dog from './images/avatar.png';
+import { Link } from 'react-router-dom'
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
 import firebase from '../firebase';

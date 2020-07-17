@@ -9,9 +9,10 @@ import {
   MDBInput,
   MDBIcon,
   MDBView,
-  MDBBtn
+  MDBBtn,
 } from 'mdbreact';
 import './Login.css';
+import { Link } from 'react-router-dom'
 import FooterPage from './Footer';
 import firebase from '../firebase';
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron, Link } from "mdbreact";
+import { MDBIcon, MDBJumbotron } from "mdbreact";
+import { Link } from 'react-router-dom'
 import moment from 'moment';
 import firebase from '../firebase';
 moment().format()

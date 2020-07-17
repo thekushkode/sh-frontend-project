@@ -62,11 +62,14 @@ class NavbarPage extends Component {
                                         Discover
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
-                                        <MDBDropdownItem><Link to="/furends">Furends</Link></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/furends">Furends</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/outside">Go Outside</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/petcare">Boarding & Daycare</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/vets">Vets</MDBNavLink></MDBDropdownItem>
                                         {/* <MDBDropdownItem href="/furends">Furends</MDBDropdownItem> */}
-                                        <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
+                                        {/* <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
                                         <MDBDropdownItem href="/petcare">Boarding & Daycare</MDBDropdownItem>
-                                        <MDBDropdownItem href="/vets">PetCare</MDBDropdownItem>
+                                        <MDBDropdownItem href="/vets">PetCare</MDBDropdownItem> */}
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>

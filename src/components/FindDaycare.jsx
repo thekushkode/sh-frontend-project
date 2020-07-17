@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { MDBCol, MDBFormInline, MDBIcon, Button } from 'mdbreact';
 import { connect } from 'react-redux';
 import Geocode from 'react-geocode';

@@ -1,5 +1,4 @@
 import React from 'react';
-import NavbarPage from './Nav';
 import FooterPage from './Footer';
 
 const Privacy = () => {

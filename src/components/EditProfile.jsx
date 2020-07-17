@@ -14,7 +14,6 @@ import {
   MDBSelectInput,
 } from 'mdbreact';
 import './EditProfile.css';
-import Dog from './images/avatar.png';
 import { Link } from 'react-router-dom'
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
@@ -25,10 +24,10 @@ import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
 
 const db = firebase.firestore();
+const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
 function EditProfile(props) {
 
-  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
   const history = useHistory();
   //grabs redux state

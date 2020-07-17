@@ -16,13 +16,13 @@ export default function MessagesWindow() {
     const profile = useSelector(state => state.profile)
     let userNames;
     let friends;
-    // if (messages.data) {
-    //     console.log('messages.data')
-    //     userNames = messages.data.userNames.filter((name) => name !== user.data.displayName)
-    //     if (profile.data.friends) {
-    //         friends = profile.data.friends.map((name) => name)
-    //     }
-    // }
+    if (messages.data) {
+        console.log('messages.data')
+        userNames = messages.data.userNames.filter((name) => name !== user.data.displayName)
+        if (profile.data.friends) {
+            friends = profile.data.friends.map((name) => name)
+        }
+    }
 
 
 

@@ -18,6 +18,7 @@ import {
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
+import PrivateFeed from './PrivateFeed';
 import firebase from '../firebase';
 import { Link } from 'react-router-dom'
 import SocialPage2 from './feed2';
@@ -152,6 +153,7 @@ class DogProfile extends Component {
         Content: this.state.postValue,
         Likes: 0,
         SenderName: this.props.profile.dogName,
+        FriendID: this.props.profile.id,
         SenderID: user.uid,
         DogID: this.props.profile.dogId,
         Type: 'Post',
@@ -164,6 +166,7 @@ class DogProfile extends Component {
         Content: this.state.postValue,
         Likes: 0,
         SenderName: this.props.profile.data.dogName,
+        FriendID: this.props.profile.id,
         SenderID: user.uid,
         DogID: this.props.profile.id,
         Type: 'Post',
@@ -444,7 +447,8 @@ class DogProfile extends Component {
                   </MDBRow>
                   <MDBRow>
                     <MDBCol>
-                      <SocialPage2 />
+                      {/* <SocialPage2 /> */}
+                      <PrivateFeed location={this.props.location.pathname}/>
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

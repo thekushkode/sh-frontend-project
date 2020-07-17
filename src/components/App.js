@@ -34,6 +34,7 @@ import LoadingPage from './LoadingPage';
 import NewProfile from './NewProfile';
 import AddNewDog from './AddNewDog';
 import PublicFeed from './PublicFeed';
+import RandomDog from './RandomDog';
 
 function App() {
   let db = firebase.firestore();
@@ -154,6 +155,7 @@ function App() {
               <Route exact path='/add' component={AddNewDog} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
+              <Route path='/random' component={RandomDog} />
               <Route><Redirect to="/newprofile" /></Route>
             </Switch>
           </div>

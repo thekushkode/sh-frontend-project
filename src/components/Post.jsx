@@ -13,39 +13,39 @@ export default function Post(props) {
     function handleIncrement() {
         db.collection('Feed').doc(props.data.docId).set({
             Likes: props.data.Likes + 1,
-        }, {merge: true})
+        }, { merge: true })
     }
 
     return (
         <MDBJumbotron>
-            <div className=''>
-                <div className='w-30'>
+            <div className='news d-flex justify-content-center'>
+                <div className='label mt-2'>
                     <img
                         src={props.data.Avatar ? props.data.Avatar : defaultDogImg}
                         alt=""
                         className="rounded-circle z-depth-1-half"
-                        style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
+                        style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto' }}
                     />
                 </div>
-                <div className='w-80'>
-                    <div className="excerpt">
-                        <div className="brief">
-                            <Link to={`/user/${props.data.DogID}`} className="name">
-                                {props.data.SenderName}
-                            </Link> posted on their page
+
+                <div className="excerpt ml-4">
+                    <div className="brief">
+                        <Link to={`/user/${props.data.DogID}`} className="name">
+                            {props.data.SenderName}
+                        </Link> posted on their page
                         </div>
-                        <div className="added-text">
-                            {props.data.Content}
-                        </div>
-                        <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
-                        <div className="feed-footer">
-                            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
-                                <MDBIcon icon="heart" />
-                                <span> {props.data.Likes} </span> likes
+                    <div className="added-text my-2">
+                        <h6><strong>{props.data.Content}</strong></h6>
+                    </div>
+                    <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
+                    <div className="feed-footer">
+                        <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
+                            <MDBIcon icon="heart" />
+                            <span> {props.data.Likes} </span> likes
                             </button>
-                        </div>
                     </div>
                 </div>
+
             </div>
         </MDBJumbotron>
     )

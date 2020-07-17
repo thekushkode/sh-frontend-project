@@ -1,6 +1,6 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron, MDBLink } from "mdbreact";
-import { Link, withRouter } from 'react-router-dom'
+import { MDBIcon, MDBJumbotron, MDBLink, Button } from "mdbreact";
+import { Link, withRouter, useHistory } from 'react-router-dom'
 import moment from 'moment';
 import firebase from '../firebase';
 moment().format()
@@ -9,6 +9,7 @@ export default function Post(props) {
 
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
     const db = firebase.firestore();
+    let history = useHistory();
 
 
     function handleIncrement() {
@@ -16,6 +17,10 @@ export default function Post(props) {
             Likes: props.data.Likes + 1,
         }, {merge: true})
     }
+
+    // function handleClick() {
+    //     history.push(`/user/${props.data.DogID}`);
+    // }
 
 
 
@@ -33,9 +38,9 @@ export default function Post(props) {
                 <div className='w-80'>
                     <div className="excerpt">
                         <div className="brief">
-                            <a href={`/user/${props.data.DogID}`} className="name">
+                            <Link to={`/user/${props.data.DogID}`} className="name">
                                 {props.data.SenderName}
-                            </a> posted on their page
+                            </Link> posted on their page
                         </div>
                         <div className="added-text">
                             {props.data.Content}

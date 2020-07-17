@@ -201,7 +201,7 @@ class UserProfile extends Component {
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
-          <div id='profile-ex' className='mb-5 mt-4 mx-4'>
+          <div id='profile-ex' className='mb-5 mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
             {this.state.dogData.map((dog, index) => {
               return (
                 <MDBContainer fluid>

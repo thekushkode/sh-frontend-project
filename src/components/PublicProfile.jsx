@@ -53,16 +53,17 @@ class UserProfile extends Component {
           this.setState({
             dogData: doggo
           })
+          console.log(this.state.dogData)
         })
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     let dogID = this.props.match.params.dogId
-    if (prevProps.match.params.dogId !== dogID) {
+    console.log(prevState)
+    if (prevProps.match.params.dogId !== dogID || prevState.friends.length !== this.state.friends.length) {
       const db = firebase.firestore();
       let user = firebase.auth().currentUser;
-      console.log('tyler is the man')
       if (user) {
         db.collection("Dogs")
           .doc(dogID)
@@ -75,6 +76,7 @@ class UserProfile extends Component {
             this.setState({
               dogData: doggo
             })
+            console.log(this.state.dogData)
           })
       }
     }
@@ -146,20 +148,22 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let userID = user
+    let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
     console.log(dog)
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)
         .update({
-          friends: firebase.firestore.FieldValue.arrayRemove(dog)
+          // friends: firebase.firestore.FieldValue.arrayRemove(dog)
+          friends: filteredFriends
         })
         .then(() => {
-          let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
+          // let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
           this.setState({
             friends: filteredFriends
           })
-          console.log(this.props.profile.data.friends)
+          // console.log(this.props.profile.data.friends)
           this.props.profile.data.friends = this.state.friends;
-          console.log(this.props.profile.data.friends)
+          // console.log(this.props.profile.data.friends)
         })
     }
   }

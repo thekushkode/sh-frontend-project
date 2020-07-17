@@ -88,7 +88,6 @@ class DogProfile extends Component {
     if (prevProps.match.params.dogId !== dogID) {
       const db = firebase.firestore();
       let user = firebase.auth().currentUser;
-      console.log('tyler is the man')
       if (user) {
         db.collection("Dogs")
           .doc(this.props.match.params.dogId)

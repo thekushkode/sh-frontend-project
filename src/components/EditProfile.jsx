@@ -50,7 +50,7 @@ function EditProfile(props) {
 
 
   useEffect(() => {
-    // console.log(user);
+    // console.log(dogId);
     if (user && !dogId) {
       db.collection("Dogs").doc(props.match.params.dogId).get()
         .then(doc => {
@@ -76,6 +76,7 @@ function EditProfile(props) {
             setAvatar(dog.avatar)
             setProfile(dog);
           }
+          // console.log(dogId)
         })
     }
   })

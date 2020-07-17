@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MDBFileInput } from "mdbreact";
+import { useSelector } from 'react-redux';
 import firebase from '../firebase';
 import SpinnerPage from "./Spinner";
 
@@ -8,6 +9,8 @@ const db = firebase.firestore();
 
 function InputPage(props) {
     const [loading, setLoading] = useState(false)
+    const [dogId, setDogId] = useState('');
+    const profile = useSelector(state => state.profile);
 
 
     function imgUpload(files) {
@@ -45,7 +48,8 @@ function InputPage(props) {
 
         // Create a root reference
         let storageRef = firebase.storage().ref();
-        let imgId = props.imgId
+        let imgId = profile.id
+        console.log(profile.id)
         let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + '?alt=media'
 
         // Create a reference to 'mountains.jpg'

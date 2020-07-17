@@ -296,10 +296,10 @@ class DogProfile extends Component {
                       <h5 className='text-center mb-4'>
                         <strong>{this.state.dogData.dogName}'s Friends </strong>
                       </h5>
-                      {this.state.dogData.friends && this.state.dogData.friends.map(dog => {
+                      {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                         return (
 
-                          <MDBCol md='4' className='mt-1'>
+                          <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
@@ -343,9 +343,6 @@ class DogProfile extends Component {
                               name='post'
                               onChange={this.handleChange}
                             />
-
-
-
 
                             {/* <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} /> */}
                             <MDBAvatar

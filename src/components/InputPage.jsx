@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { MDBFileInput } from "mdbreact";
 import firebase from '../firebase';
 import SpinnerPage from "./Spinner";

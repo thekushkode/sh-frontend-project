@@ -13,54 +13,38 @@ import {
     MDBAnimation
 } from 'mdbreact';
 import './Home.css';
-import NavbarPage from './Nav';
 import firebase from '../firebase';
-//import { useSelector } from 'react-redux';
 import FooterPage from './Footer';
 import FeaturesPage from './Features';
-import { Redirect } from 'react-router-dom';
 import { useHistory, Link } from "react-router-dom";
-
-
-
 
 function Home(props) {
 
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [zipcode, setZipcode] = useState('');
-    //const [redirect, setRedirect] = useState('');
 
     const newUser = (e) => {
-        console.log('testing new user')
         // authentication
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(createdUser => {
-                // props.history.push('/newprofile');
-                console.log('created new user')
                 createdUser.user.updateProfile({
                     email: email
                 })
                 
                 const db = firebase.firestore();
-                console.log('updating user info', createdUser.user.uid)
                 history.push('/newprofile')
                 //create user in Users db
                 db.collection('Users').doc(createdUser.user.uid).set({
                     email: email,
                 })
                     .then(doc => {
-                        console.log(`this is the ${doc}`)
                         props.history.push('/newprofile')
                     })
                     .catch(err => console.error(err))
 
                 })
                 history.push('/newprofile')
-            // return <Redirect to='/newprofile' />
-
     }
 
     return (

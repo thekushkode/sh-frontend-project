@@ -8,8 +8,6 @@ import {
   MDBIcon,
   MDBView,
   MDBBtn,
-  MDBCardBody,
-  MDBInput,
 } from 'mdbreact';
 import Lightbox from 'react-image-lightbox';
 import './About.css';
@@ -164,13 +162,6 @@ class About extends React.Component {
                       className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  {/* <a href='!#'>
-                    <MDBIcon
-                      fab
-                      icon='twitter'
-                      className='p-2 m-2 fa-lg yt-ic'
-                    />
-                  </a> */}
                   <a href='https://github.com/jonathancox1'>
                     <MDBIcon
                       fab

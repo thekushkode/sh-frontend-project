@@ -1,24 +1,15 @@
-import React, { Component, useEffect } from 'react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import Dog from './images/smalldog.png';
-// import Geocode from 'react-geocode';
-import { connect, useDispatch, useSelector } from 'react-redux'; //could import connect?
-import { setUser, unSetUser, setProfile } from '../redux/actions';
+import React, { Component } from 'react';
+import { Map, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
+import { connect } from 'react-redux';
 import firebase from '../firebase';
 import AddressMarker from './AddressMarker';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBContainer, MDBScrollbar, MDBFormInline, Button, MDBCardTitle, MDBAvatar, MDBView, MDBMask } from "mdbreact";
-import SearchPage from './SearchBar';
-import DogSearch from './DogSearch';
+import { MDBRow, MDBCol, MDBFormInline, Button, MDBView, MDBMask } from "mdbreact";
 import './DogSearch.css';
-import Ike from './images/ike.png';
-
 
 const db = firebase.firestore();
 
-//TRYING TO USE COMBO OF REDUX / FIREBASE (ONLY FB IF POSSIBLE) TO DISPLAY USERS ON MAP AND DISPLAY CURRENT USER ON SAME MAP.
 let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
-//need help with {connect}
 export class Furends extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +36,6 @@ export class Furends extends Component {
         let friend = this.state.location
         let doggo = this
         db.collection("Dogs")
-            // .where('dogName', '==', friend)
             .where('zipcode', '==', friend)
             .get()
             .then(function (querySnapshot) {

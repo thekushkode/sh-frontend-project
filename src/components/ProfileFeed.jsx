@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
+import { MDBRow, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
 //import AdSense from 'react-adsense';
 
 const ProfileFeed = () => {

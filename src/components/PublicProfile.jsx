@@ -81,6 +81,7 @@ class UserProfile extends Component {
   addFriend = (dog) => {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
+    console.log(dog)
     let userID = user.uid
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)

@@ -13,10 +13,7 @@ import {
 } from 'mdbreact';
 import './Login.css';
 import FooterPage from './Footer';
-import { connect } from 'react-redux';
 import firebase from '../firebase';
-
-
 
 class Login extends React.Component {
   constructor(props) {
@@ -27,7 +24,6 @@ class Login extends React.Component {
       password: '',
       user: ''
     };
-
   }
 
 

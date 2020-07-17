@@ -27,7 +27,6 @@ export default function SocialPage2() {
                     }
                     feed.push(feedData);
                 })
-                console.log(feed)
                 dispatch(setFeed(feed))
             });
     }, [])
@@ -39,7 +38,6 @@ export default function SocialPage2() {
                 <MDBRow>
                     <MDBCol>
                         {feed && feed.map((item, index) => {
-                            console.log(item)
                             switch (item.Type) {
                                 case 'Post':
                                     return <Post data={item} />

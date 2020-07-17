@@ -18,8 +18,7 @@ import Dog from './images/avatar.png';
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
 import firebase from '../firebase';
-import { useSelector, useDispatch } from 'react-redux';
-import { setProfile } from '../redux/actions';
+import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
 
@@ -27,14 +26,11 @@ const db = firebase.firestore();
 
 function AddNewDog(props) {
 
-  const dispatch = useDispatch();
   const history = useHistory();
   //grabs redux state
   const user = useSelector(state => state.user);
-  const profile = useSelector(state => state.profile);
   const [dogId, setDogId] = useState('');
   const [ownerName, setOwnerName] = useState('');
-  const [ownerId, setOwnerId] = useState('');
   const [dogName, setDogName] = useState('');
   const [breed, setBreed] = useState('');
   const [street, setStreet] = useState('');

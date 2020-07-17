@@ -16,14 +16,3 @@ const allReducers = combineReducers({
 })
 
 export default allReducers;
-
-// export default (state = {}, action) => {
-//     return {
-//         user: userReducer,
-//         profile: profileReducer,
-//         messages: messagesReducer,
-//         auth: authReducer,
-//         feed: feedReducer,
-//         counter: counterReducer
-//     }
-// }

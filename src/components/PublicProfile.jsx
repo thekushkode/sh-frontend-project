@@ -11,14 +11,18 @@ import {
   MDBMask,
   MDBAvatar,
   MDBBtn,
+  MDBDatePickerV5,
   MDBLink
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
+import PrivateFeed from './PrivateFeed';
 import { Link } from 'react-router-dom'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
@@ -60,7 +64,7 @@ class UserProfile extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     let dogID = this.props.match.params.dogId
-    console.log(prevState)
+    // console.log(prevState)
     if (prevProps.match.params.dogId !== dogID || prevState.friends.length !== this.state.friends.length) {
       const db = firebase.firestore();
       let user = firebase.auth().currentUser;
@@ -76,7 +80,7 @@ class UserProfile extends Component {
             this.setState({
               dogData: doggo
             })
-            console.log(this.state.dogData)
+            // console.log(this.state.dogData)
           })
       }
     }
@@ -105,6 +109,13 @@ class UserProfile extends Component {
         })
     }
   }
+
+  // letsPlay = (dog) => {
+  //   this.render() 
+  //   return (
+  //     <Calendar />
+  //   )
+  // }
 
   addFriend = (dog) => {
     const db = firebase.firestore();
@@ -242,14 +253,19 @@ class UserProfile extends Component {
                           >
                             Chat
                           </MDBBtn>
-                          <MDBBtn
+                          <DatePicker />
+                          {/* <MDBBtn>
+                            <MDBDatePickerV5 theme="info" getValue={(e)=> console.log(e)} />
+                          </MDBBtn> */}
+                          {/* <MDBBtn
                             className='blue-gradient'
                             size='sm'
                             rounded
-                            href='/messages'
+                            // onClick={() => this.letsPlay(dog)}
                           >
-                            Request PlayDate
-                          </MDBBtn>
+                            Request PlayDate< br />
+                            <input type="date"></input>
+                          </MDBBtn> */}
                           {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
                           {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
                             <MDBBtn
@@ -411,7 +427,8 @@ class UserProfile extends Component {
                       <MDBRow>
                         <MDBCol>
                           <div className='ml-5 mt-3'>
-                            <SocialPage2 />
+                            {/* <SocialPage2 /> */}
+                            <PrivateFeed location={this.props.location.pathname}/>
                           </div>
                         </MDBCol>
                       </MDBRow>

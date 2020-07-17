@@ -63,7 +63,7 @@ class NavbarPage extends Component {
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
                                         <MDBDropdownItem><Link to="/furends">Furends</Link></MDBDropdownItem>
-                                        <MDBDropdownItem href="/furends">Furends</MDBDropdownItem>
+                                        {/* <MDBDropdownItem href="/furends">Furends</MDBDropdownItem> */}
                                         <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
                                         <MDBDropdownItem href="/petcare">Boarding & Daycare</MDBDropdownItem>
                                         <MDBDropdownItem href="/vets">PetCare</MDBDropdownItem>

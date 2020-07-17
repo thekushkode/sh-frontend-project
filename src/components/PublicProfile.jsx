@@ -15,7 +15,7 @@ import {
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
@@ -40,6 +40,7 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let dogID = this.props.match.params.dogId
+    console.log('tyler is the man')
     if (user) {
       db.collection("Dogs")
         .doc(dogID)
@@ -53,6 +54,29 @@ class UserProfile extends Component {
             dogData: doggo
           })
         })
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    let dogID = this.props.match.params.dogId
+    if (prevProps.match.params.dogId !== dogID) {
+      const db = firebase.firestore();
+      let user = firebase.auth().currentUser;
+      console.log('tyler is the man')
+      if (user) {
+        db.collection("Dogs")
+          .doc(dogID)
+          .get()
+          .then(data => {
+            let doggo = []
+            let dogData = data.data()
+            dogData['dogID'] = dogID
+            doggo.push(dogData)
+            this.setState({
+              dogData: doggo
+            })
+          })
+      }
     }
   }
 
@@ -113,6 +137,7 @@ class UserProfile extends Component {
           this.setState({
             friends: [...this.state.friends, dog]
           })
+          this.props.profile.data.friends = this.state.friends;
         })
     }
   }
@@ -120,7 +145,8 @@ class UserProfile extends Component {
   removeFriend = (dog) => {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let userID = user.uid
+    let userID = user
+    console.log(dog)
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)
         .update({
@@ -131,6 +157,9 @@ class UserProfile extends Component {
           this.setState({
             friends: filteredFriends
           })
+          console.log(this.props.profile.data.friends)
+          this.props.profile.data.friends = this.state.friends;
+          console.log(this.props.profile.data.friends)
         })
     }
   }
@@ -314,7 +343,7 @@ class UserProfile extends Component {
                             return (
                               <MDBCol md='4' className='mt-1'>
                                 <MDBView hover>
-                                  <a href={`/user/${dog.dogID}`}>
+                                  <Link to={`/user/${dog.dogID}`}>
                                     <img
                                       src={dog.avatar}
                                       className="img-fluid rounded-circle"
@@ -325,7 +354,7 @@ class UserProfile extends Component {
                                       <p className="white-text"><strong>{dog.dogName}</strong></p>
                                       <p className="white-text"><strong>{dog.breed}</strong></p>
                                     </MDBMask>
-                                  </a>
+                                  </Link>
                                 </MDBView>
                               </MDBCol>
                             )

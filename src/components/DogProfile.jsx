@@ -230,9 +230,6 @@ class DogProfile extends Component {
                         <strong>{this.state.dogData.dogName}</strong>
                       </MDBCardTitle>
                       <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
-                      <h6>
-                        <strong>About Me</strong>
-                      </h6>
                       <hr className='my-2' />
                       <h5>
                         {this.state.dogData.bio}
@@ -390,17 +387,17 @@ class DogProfile extends Component {
                 <MDBCol lg='8' md='8' className='text-center'>
                   <MDBRow>
                     <MDBCol>
-                      <div className='text-center mt-3'>
+                      {/* <div className='text-center mt-3'>
                         <h4>
                           <strong>{this.state.dogData.dogName}'s Feed</strong>
                         </h4>
-                      </div>
+                      </div> */}
                       <div style={{ marginTop: '20px', paddingLeft: '100px', paddingRight: '100px' }}>
                         <div className="form-group">
                           <form onSubmit={this.handleSubmit}>
-                            <label htmlFor="exampleFormControlTextarea1">
+                            {/* <label htmlFor="exampleFormControlTextarea1">
                               Write New Post:
-                          </label>
+                          </label> */}
                             <textarea
                               className="form-control"
                               id="exampleFormControlTextarea1"
@@ -408,6 +405,7 @@ class DogProfile extends Component {
                               value={this.state.postValue}
                               name='post'
                               onChange={this.handleChange}
+                              placeholder='Create new post...'
                             />
 
                             {/* <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} /> */}

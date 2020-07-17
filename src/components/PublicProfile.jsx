@@ -129,6 +129,7 @@ class UserProfile extends Component {
         .then(() => {
           const newPost = {
             Avatar: this.props.profile.data.avatar,
+            DogAvatar: dog.avatar,
             Likes: 0,
             SenderID: user.uid,
             DogID: dog.dogID,
@@ -414,7 +415,7 @@ class UserProfile extends Component {
                       </MDBCard>
                     </MDBCol>
                     <MDBCol lg='8' md='8' className='text-center'>
-                      <MDBRow>
+                      {/* <MDBRow>
                         <MDBCol>
                           <div className='text-center mt-3'>
                             <h4>
@@ -422,7 +423,7 @@ class UserProfile extends Component {
                             </h4>
                           </div>
                         </MDBCol>
-                      </MDBRow>
+                      </MDBRow> */}
                       <MDBRow>
                         <MDBCol>
                           <div className='ml-5 mt-3'>

@@ -135,7 +135,7 @@ const Chat = () => {
   });
 
   return (
-    <div>
+    <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
       <header style={{ marginBottom: '100px' }}>
       </header>
       <div id='chat' className='m-4'>

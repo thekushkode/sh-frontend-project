@@ -19,16 +19,22 @@ export default function FriendPost(props) {
 
   return (
     <MDBJumbotron>
-      <div className="news">
+      <div className="news d-flex justify-content-center">
         <div className="label">
           <img
             src={props.data.Avatar ? props.data.Avatar : defaultDogImg}
             alt=""
             className="rounded-circle z-depth-1-half"
-            style={{ width: '50px', height: '50px', objectFit: 'cover', margin: '0 auto' }}
+            style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto' }}
+          />
+          <img
+            src={props.data.DogAvatar ? props.data.DogAvatar : defaultDogImg}
+            alt=""
+            className="rounded-circle z-depth-1-half"
+            style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto', marginLeft: '-15px' }}
           />
         </div>
-        <div className="excerpt">
+        <div className="excerpt ml-4">
           <div className="brief">
             <div><Link to={`/user/${props.data.FriendID}`}>{props.data.FriendName}</Link> and <Link to={`/user/${props.data.DogID}`}>{props.data.DogName}</Link> are friends</div>
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>

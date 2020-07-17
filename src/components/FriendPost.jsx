@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron } from "mdbreact";
+import { MDBIcon, MDBJumbotron, MDBLink } from "mdbreact";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import firebase from '../firebase';
@@ -30,7 +30,7 @@ export default function FriendPost(props) {
         </div>
         <div className="excerpt">
           <div className="brief">
-            <div><Link to={`/user/${props.data.FriendID}`}>{props.data.FriendName}</Link> and <Link to={`/user/${props.data.DogID}`}>{props.data.DogName}</Link></div>
+            <div><a href={`/user/${props.data.FriendID}`}>{props.data.FriendName}</a> and <a href={`/user/${props.data.DogID}`}>{props.data.DogName}</a> are friends</div>
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
           </div>
           <div className="feed-footer">

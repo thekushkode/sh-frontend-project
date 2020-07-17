@@ -15,6 +15,7 @@ import {
   MDBDropdownToggle,
   MDBView,
   MDBMask, 
+  MDBLink
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
@@ -308,7 +309,7 @@ class DogProfile extends Component {
 
                           <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
-                              <Link to={`/user/${dog.dogID}`}>
+                              <a href={`/user/${dog.dogID}`}>
                                 <img
                                   src={dog.avatar}
                                   className="img-fluid rounded-circle"
@@ -319,7 +320,7 @@ class DogProfile extends Component {
                                   <p className="white-text"><strong>{dog.dogName}</strong></p>
                                   <p className="white-text"><strong>{dog.breed}</strong></p>
                                 </MDBMask>
-                              </Link>
+                              </a>
                             </MDBView>
                           </MDBCol>
 

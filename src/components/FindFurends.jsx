@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import { connect } from 'react-redux';
 import firebase from '../firebase';
+import { Link } from 'react-router-dom';
 import AddressMarker from './AddressMarker';
 import { MDBRow, MDBCol, MDBFormInline, Button, MDBView, MDBMask } from "mdbreact";
 import './DogSearch.css';
@@ -116,7 +117,7 @@ export class Furends extends Component {
                                 })}
                                 {this.state.dogData.map((user, index) => {
                                     return (
-                                        < InfoWindow marker={this.state.activeMarker} key={index}
+                                        <InfoWindow marker={this.state.activeMarker} key={index}
                                             visible={this.state.selectedPlace.id === index} name={user.name} >
                                             <div>
                                                 <h4>{user.dogName}</h4>
@@ -148,7 +149,7 @@ export class Furends extends Component {
                                                 return (
                                                     <MDBCol md='4' className='mt-1'>
                                                         <MDBView hover>
-                                                            <a href={`/user/${dog.dogId}`}>
+                                                            <Link to={`/user/${dog.dogId}`}>
                                                                 <img
                                                                     src={dog.avatar ? dog.avatar : defaultDogImg}
                                                                     className="img-fluid rounded-circle"
@@ -159,7 +160,7 @@ export class Furends extends Component {
                                                                     <p className="white-text"><strong>{dog.dogName}</strong></p>
                                                                     <p className="white-text"><strong>{dog.breed}</strong></p>
                                                                 </MDBMask>
-                                                            </a>
+                                                            </Link>
                                                         </MDBView>
                                                     </MDBCol>
                                                 )

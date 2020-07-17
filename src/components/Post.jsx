@@ -1,6 +1,6 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron } from "mdbreact";
-import { Link } from 'react-router-dom'
+import { MDBIcon, MDBJumbotron, MDBLink } from "mdbreact";
+import { Link, withRouter } from 'react-router-dom'
 import moment from 'moment';
 import firebase from '../firebase';
 moment().format()
@@ -33,9 +33,9 @@ export default function Post(props) {
                 <div className='w-80'>
                     <div className="excerpt">
                         <div className="brief">
-                            <Link to={`/user/${props.data.DogID}`} className="name">
+                            <a href={`/user/${props.data.DogID}`} className="name">
                                 {props.data.SenderName}
-                            </Link> posted on their page
+                            </a> posted on their page
                         </div>
                         <div className="added-text">
                             {props.data.Content}

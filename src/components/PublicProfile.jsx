@@ -250,7 +250,6 @@ class UserProfile extends Component {
                           >
                             Chat
                           </MDBBtn>
-                          <DatePicker />
                           <MDBBtn
                             className='blue-gradient'
                             size='sm'

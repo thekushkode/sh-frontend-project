@@ -2,9 +2,6 @@ import React from 'react';
 import {
     MDBMask,
     MDBRow,
-    MDBCol,
-    MDBIcon,
-    MDBBtn,
     MDBView,
     MDBContainer
 } from 'mdbreact';

@@ -114,16 +114,31 @@ class DogProfile extends Component {
     e.preventDefault();
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    const newPost = {
-      Avatar: this.props.profile.data.avatar,
-      Content: this.state.postValue,
-      Likes: 0,
-      SenderName: this.props.profile.data.dogName,
-      SenderID: user.uid,
-      DogID: this.props.profile.id,
-      Type: 'Post',
-      timestamp: new Date(),
-      feedImgURL: this.state.feedImgURL
+    let newPost
+    if (this.props.profile.avatar) {
+      newPost = {
+        Avatar: this.props.profile.avatar,
+        Content: this.state.postValue,
+        Likes: 0,
+        SenderName: this.props.profile.dogName,
+        SenderID: user.uid,
+        DogID: this.props.profile.dogId,
+        Type: 'Post',
+        timestamp: new Date(),
+        feedImgURL: this.state.feedImgURL
+      }
+    } else {
+      newPost = {
+        Avatar: this.props.profile.data.avatar,
+        Content: this.state.postValue,
+        Likes: 0,
+        SenderName: this.props.profile.data.dogName,
+        SenderID: user.uid,
+        DogID: this.props.profile.id,
+        Type: 'Post',
+        timestamp: new Date(),
+        feedImgURL: this.state.feedImgURL
+      }
     }
     db.collection('Feed').add(newPost)
       .then(doc => {

@@ -1,7 +1,6 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron } from "mdbreact";
+import { MDBIcon, MDBJumbotron, Link } from "mdbreact";
 import moment from 'moment';
-import Ike from './images/ike.png';
 import firebase from '../firebase';
 moment().format()
 
@@ -33,9 +32,9 @@ export default function Post(props) {
                 <div className='w-80'>
                     <div className="excerpt">
                         <div className="brief">
-                            <a href={`/user/${props.data.DogID}`} className="name">
+                            <Link to={`/user/${props.data.DogID}`} className="name">
                                 {props.data.SenderName}
-                            </a> posted on their page
+                            </Link> posted on their page
                         </div>
                         <div className="added-text">
                             {props.data.Content}

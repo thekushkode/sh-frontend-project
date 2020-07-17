@@ -1,21 +1,21 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron } from "mdbreact";
+import { MDBIcon, MDBJumbotron, Link } from "mdbreact";
 import moment from 'moment';
 import firebase from '../firebase';
 moment().format()
 
 export default function FriendPost(props) {
- let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
- 
+  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+
   const db = firebase.firestore();
 
   function handleIncrement() {
     db.collection('Feed').doc(props.data.docId).set({
-        Likes: props.data.Likes + 1,
-    }, {merge: true})
+      Likes: props.data.Likes + 1,
+    }, { merge: true })
 
-} 
-  
+  }
+
   return (
     <MDBJumbotron>
       <div className="news">
@@ -29,7 +29,7 @@ export default function FriendPost(props) {
         </div>
         <div className="excerpt">
           <div className="brief">
-            <div><a href={`/user/${props.data.FriendID}`}>{props.data.FriendName}</a> and <a href={`/user/${props.data.DogID}`}>{props.data.DogName}</a></div>
+            <div><Link to={`/user/${props.data.FriendID}`}>{props.data.FriendName}</Link> and <Link to={`/user/${props.data.DogID}`}>{props.data.DogName}</Link></div>
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
           </div>
           <div className="feed-footer">

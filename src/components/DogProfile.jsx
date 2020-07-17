@@ -6,9 +6,7 @@ import {
   MDBCard,
   MDBCardTitle,
   MDBCardBody,
-  MDBCardFooter,
   MDBIcon,
-  MDBBadge,
   MDBAvatar,
   MDBBtn,
   MDBDropdown,
@@ -92,14 +90,20 @@ class DogProfile extends Component {
       .doc(id)
       .get()
       .then(doc => {
-        const dogData = {
-          ...doc.data(),
-          dogId: doc.id
-        }
-        this.setState({
-          dogData: dogData
-        })
-        this.props.setProfile(dogData)
+          const dogData = {
+            ...doc.data(),
+            dogId: doc.id
+          }
+          let data = doc.data()
+          let id = doc.id
+          let profile = {
+            data: data,
+            id: id
+          }
+          this.setState({
+            dogData: dogData
+          })
+          this.props.setProfile(profile)
       })
   }
 
@@ -303,7 +307,7 @@ class DogProfile extends Component {
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={dog.avatar ? dog.avatar : defaultDogImg}
+                                  src={dog.avatar}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}

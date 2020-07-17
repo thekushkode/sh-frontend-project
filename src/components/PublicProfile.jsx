@@ -23,15 +23,15 @@ const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      submit: false,
-      user: '',
-      dogData: [],
-      postValue: '',
-      imgValue: '',
-      followUnfollow: true,
-      friends: this.props.profile.data.friends || []
-    };
+      this.state = {
+        submit: false,
+        user: '',
+        dogData: [],
+        postValue: '',
+        imgValue: '',
+        followUnfollow: true,
+        friends: this.props.profile.data.friends || []
+      };
   }
 
   componentDidMount() {
@@ -81,7 +81,6 @@ class UserProfile extends Component {
   addFriend = (dog) => {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    console.log(dog)
     let userID = user.uid
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)

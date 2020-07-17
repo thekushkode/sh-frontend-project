@@ -42,8 +42,6 @@ class DogProfile extends Component {
     };
   }
 
-  // we want this but for a class components
-
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
@@ -322,6 +320,35 @@ class DogProfile extends Component {
 
                         )
                       })}
+                    </MDBCardBody>
+                  </MDBCard>
+
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody>
+                      <h5 className='text-center mb-4'>
+                        <strong>See more of {this.state.dogData.dogName} <span>📸</span></strong>
+                      </h5>
+                      {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
+                        return (
+
+                          <MDBCol md='4' className='mt-1' key={index}>
+                            <MDBView hover>
+                              <a href={`/user/${dog.dogID}`}>
+                                <img
+                                  src={dog.avatar}
+                                  className="img-fluid rounded-circle"
+                                  alt="Dog Avatar"
+                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                />
+                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                  <p className="white-text"><strong>{dog.breed}</strong></p>
+                                </MDBMask>
+                              </a>
+                            </MDBView>
+                          </MDBCol>
+                          )
+                      })} */}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>

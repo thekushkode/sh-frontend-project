@@ -23,15 +23,15 @@ const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-        submit: false,
-        user: '',
-        dogData: [],
-        postValue: '',
-        imgValue: '',
-        followUnfollow: true,
-        friends: this.props.profile.data.friends || []
-      };
+    this.state = {
+      submit: false,
+      user: '',
+      dogData: [],
+      postValue: '',
+      imgValue: '',
+      followUnfollow: true,
+      friends: this.props.profile.data.friends || []
+    };
   }
 
   componentDidMount() {
@@ -238,6 +238,7 @@ class UserProfile extends Component {
                           }
                         </MDBCardBody>
                       </MDBCard>
+
                       <MDBCard className='mb-4'>
                         <MDBCardBody className='text-center'>
                           <h5>
@@ -303,17 +304,46 @@ class UserProfile extends Component {
                       </MDBCard>
 
                       <MDBCard className='mb-4'>
-                      <MDBCardBody>
-                      <h5 className='text-center mb-4'>
-                        <strong>{dog.dogName}'s Friends </strong>
-                      </h5>
-                      {dog.friends && dog.friends.map(dog => {
+                        <MDBCardBody>
+                          <h5 className='text-center mb-4'>
+                            <strong>{dog.dogName}'s Friends </strong>
+                          </h5>
+                          {dog.friends && dog.friends.map(dog => {
+                            return (
+                              <MDBCol md='4' className='mt-1'>
+                                <MDBView hover>
+                                  <a href={`/user/${dog.dogID}`}>
+                                    <img
+                                      src={dog.avatar ? dog.avatar : defaultDogImg}
+                                      className="img-fluid rounded-circle"
+                                      alt="Dog Avatar"
+                                      style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                    />
+                                    <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                      <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                      <p className="white-text"><strong>{dog.breed}</strong></p>
+                                    </MDBMask>
+                                  </a>
+                                </MDBView>
+                              </MDBCol>
+                            )
+                          })}
+                        </MDBCardBody>
+                      </MDBCard>
+
+                      <MDBCard className='mb-4'>
+                        <MDBCardBody>
+                          <h5 className='text-center mb-4'>
+                            <strong>See more of {dog.dogName} <span>📸</span></strong>
+                          </h5>
+                          {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                         return (
-                          <MDBCol md='4' className='mt-1'>
+
+                          <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
                               <a href={`/user/${dog.dogID}`}>
                                 <img
-                                  src={dog.avatar ? dog.avatar : defaultDogImg}
+                                  src={dog.avatar}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
@@ -324,10 +354,10 @@ class UserProfile extends Component {
                                 </MDBMask>
                               </a>
                             </MDBView>
-                          </MDBCol>
+                          </MDBCol> 
                         )
-                      })}
-                    </MDBCardBody>
+                      })} */}
+                        </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
                     <MDBCol lg='8' md='8' className='text-center'>

@@ -11,7 +11,6 @@ import {
   MDBMask,
   MDBAvatar,
   MDBBtn,
-  MDBDatePickerV5,
   MDBLink
 } from 'mdbreact';
 import './extended.css';
@@ -21,8 +20,6 @@ import { Link } from 'react-router-dom'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
@@ -254,10 +251,7 @@ class UserProfile extends Component {
                             Chat
                           </MDBBtn>
                           <DatePicker />
-                          {/* <MDBBtn>
-                            <MDBDatePickerV5 theme="info" getValue={(e)=> console.log(e)} />
-                          </MDBBtn> */}
-                          {/* <MDBBtn
+                          <MDBBtn
                             className='blue-gradient'
                             size='sm'
                             rounded
@@ -265,7 +259,7 @@ class UserProfile extends Component {
                           >
                             Request PlayDate< br />
                             <input type="date"></input>
-                          </MDBBtn> */}
+                          </MDBBtn>
                           {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
                           {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
                             <MDBBtn

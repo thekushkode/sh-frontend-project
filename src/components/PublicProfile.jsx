@@ -44,16 +44,22 @@ class UserProfile extends Component {
     if (user) {
       db.collection("Dogs")
         .doc(dogID)
-        .get()
-        .then(data => {
-          let doggo = []
-          let dogData = data.data()
-          dogData['dogID'] = dogID
-          doggo.push(dogData)
+        .then(doc => {
+          const dogData = {
+            ...doc.data(),
+            dogId: doc.id
+          }
+          let data = doc.data()
+          let id = doc.id
+          let profile = {
+            data: data,
+            id: id
+          }
           this.setState({
-            dogData: doggo
+            dogData: dogData,
+            user: user
           })
-          console.log(this.state.dogData)
+          this.props.setProfile(profile)
         })
     }
   }
@@ -68,15 +74,22 @@ class UserProfile extends Component {
         db.collection("Dogs")
           .doc(dogID)
           .get()
-          .then(data => {
-            let doggo = []
-            let dogData = data.data()
-            dogData['dogID'] = dogID
-            doggo.push(dogData)
+          .then(doc => {
+            const dogData = {
+              ...doc.data(),
+              dogId: doc.id
+            }
+            let data = doc.data()
+            let id = doc.id
+            let profile = {
+              data: data,
+              id: id
+            }
             this.setState({
-              dogData: doggo
+              dogData: dogData,
+              user: user
             })
-            console.log(this.state.dogData)
+            this.props.setProfile(profile)
           })
       }
     }

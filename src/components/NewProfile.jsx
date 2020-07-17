@@ -14,7 +14,6 @@ import {
   MDBSelectInput,
 } from 'mdbreact';
 import './EditProfile.css';
-import Dog from './images/avatar.png';
 import NavbarPage from './Nav';
 import FooterPage from "./Footer";
 import firebase from '../firebase';
@@ -24,6 +23,7 @@ import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
 
 const db = firebase.firestore();
+const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
 
 function NewProfile(props) {
   
@@ -45,7 +45,7 @@ function NewProfile(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState(defaultDogImg);
 
 
   useEffect(() => {
@@ -213,7 +213,7 @@ function NewProfile(props) {
                     tag='img'
                     alt='Default Dog Profile Image'
                     // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
-                    src={(avatar ? avatar : Dog)}
+                    src={(avatar ? avatar : defaultDogImg)}
                     style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
@@ -222,6 +222,7 @@ function NewProfile(props) {
                     console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />
+
                 </MDBCard>
               </MDBCol>
             </MDBRow>

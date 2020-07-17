@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer } from "mdbreact";
+import { MDBRow, MDBCol, MDBIcon, MDBBtn, MDBContainer } from "mdbreact";
 import FooterPage from "./Footer";
 import FormPage from './Form';
 

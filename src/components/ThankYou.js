@@ -6,15 +6,11 @@ import {
   MDBCard,
   MDBCardBody,
   MDBMask,
-  MDBInput,
   MDBIcon,
-  MDBView,
-  MDBBtn
+  MDBView
 } from 'mdbreact';
 import './Login.css';
 import FooterPage from './Footer';
-import { connect } from 'react-redux';
-import firebase from '../firebase';
 
 
 

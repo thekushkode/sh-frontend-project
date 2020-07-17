@@ -3,17 +3,11 @@
 
 import React, { useEffect } from 'react'
 import {
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBListGroup,
     MDBListGroupItem,
-    MDBBadge,
     MDBAvatar
 } from 'mdbreact';
 import { useDispatch, useSelector } from 'react-redux';
-import MessagesWindow from './MessagesWindow'
+//import MessagesWindow from './MessagesWindow'
 import { loadMessages } from '../../redux/actions/index.js'
 import firebase from '../../firebase';
 import moment from 'moment'
@@ -22,13 +16,13 @@ moment().format()
 
 
 export default function ChatListItem(props) {
-    const reduxMessages = useSelector(state => state.messages)
-    const user = useSelector(state => state.user)
+    //const reduxMessages = useSelector(state => state.messages)
+    //const user = useSelector(state => state.user)
     let dispatch = useDispatch();
     const db = firebase.firestore();
 
     // <visible> state variable, initialized to false
-    const [visible, setVisible] = React.useState(false);
+    //const [visible, setVisible] = React.useState(false);
 
     useEffect(() => {
         console.log(props.id.id)

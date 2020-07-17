@@ -1,6 +1,6 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron, MDBLink, Button } from "mdbreact";
-import { Link, withRouter, useHistory } from 'react-router-dom'
+import { MDBIcon, MDBJumbotron } from "mdbreact";
+import { Link, useHistory } from 'react-router-dom'
 import moment from 'moment';
 import firebase from '../firebase';
 moment().format()
@@ -9,7 +9,7 @@ export default function Post(props) {
 
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
     const db = firebase.firestore();
-    let history = useHistory();
+    //let history = useHistory();
 
 
     function handleIncrement() {

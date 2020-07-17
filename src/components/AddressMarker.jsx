@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Marker } from 'google-maps-react';
-import Dog from './images/smalldog.png';
 
 class AddressMarker extends Component {
     state = {

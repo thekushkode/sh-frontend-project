@@ -61,7 +61,11 @@ class DogProfile extends Component {
               dogData: dogData,
               user: user
             })
-            this.props.setProfile(dogData);
+            const profile = {
+              data: doc.data(),
+              id: this.props.match.params.dogId
+            }
+            this.props.setProfile(profile)
           })
         db.collection("Dogs")
           .where('ownerId', '==', user.uid)

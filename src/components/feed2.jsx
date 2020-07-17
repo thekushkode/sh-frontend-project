@@ -32,7 +32,7 @@ export default function SocialPage2() {
 
 
     return (
-        <div>
+        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
             <main>
                 <MDBRow>
                     <MDBCol>

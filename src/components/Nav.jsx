@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn
+    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn, MDBLink
 } from "mdbreact";
 import firebase from '../firebase';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -62,7 +62,8 @@ class NavbarPage extends Component {
                                         Discover
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
-                                        <MDBDropdownItem href="/furends">Find Furends</MDBDropdownItem>
+                                        {/* <MDBDropdownItem><MDBNavLink to="/furends">Furends</MDBNavLink></MDBDropdownItem> */}
+                                        <MDBDropdownItem href="/furends">Furends</MDBDropdownItem>
                                         <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
                                         <MDBDropdownItem href="/petcare">Boarding & Daycare</MDBDropdownItem>
                                         <MDBDropdownItem href="/vets">PetCare</MDBDropdownItem>

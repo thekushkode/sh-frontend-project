@@ -11,7 +11,6 @@ import {
   MDBMask,
   MDBAvatar,
   MDBBtn,
-  MDBDatePickerV5,
   MDBLink
 } from 'mdbreact';
 import './extended.css';

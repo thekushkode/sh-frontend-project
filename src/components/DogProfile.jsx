@@ -61,6 +61,7 @@ class DogProfile extends Component {
               dogData: dogData,
               user: user
             })
+            this.props.setProfile(dogData);
           })
         db.collection("Dogs")
           .where('ownerId', '==', user.uid)

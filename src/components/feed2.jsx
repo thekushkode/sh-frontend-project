@@ -16,7 +16,7 @@ export default function SocialPage2() {
     const feed = useSelector(state => state.feed)
 
     useEffect(() => {
-        db.collection('Feed').orderBy("timestamp", "desc").limit(10).onSnapshot(
+        db.collection('Feed').orderBy("timestamp", "desc").limit(20).onSnapshot(
             querySnapshot => {
                 let feed = [];
                 querySnapshot.forEach(function (doc) {
@@ -35,7 +35,7 @@ export default function SocialPage2() {
         <div>
             <main>
                 <MDBRow>
-                    <MDBCol>
+                    <MDBCol className='overflow-auto' style={{ height: '1100px' }}>
                         {feed && feed.map((item, index) => {
                             switch (item.Type) {
                                 case 'Post':

@@ -133,7 +133,7 @@ function App() {
               <Route exact path='/spin' component={SpinnerPage} />
               <Route exact path='/notify' component={Notification} />
               <Route exact path='/load' component={LoadingPage} />
-              <Route><Redirect to="/" /></Route>
+              {/* <Route><Redirect to="/" /></Route> */}
             </Switch>
             <Konami action={easterEgg}>
               <MDBContainer>

@@ -343,6 +343,7 @@ class UserProfile extends Component {
                           <h5 className='text-center mb-4'>
                             <strong>{dog.dogName}'s Friends </strong>
                           </h5>
+                          <MDBRow>
                           {dog.friends && dog.friends.map(dog => {
                             return (
                               <MDBCol md='4' className='mt-1'>
@@ -363,6 +364,7 @@ class UserProfile extends Component {
                               </MDBCol>
                             )
                           })}
+                          </MDBRow>
                         </MDBCardBody>
                       </MDBCard>
 

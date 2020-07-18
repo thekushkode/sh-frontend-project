@@ -96,7 +96,7 @@ class UserProfile extends Component {
           userNames: [userName, dog.ownerName],
           messages: [
             {
-              sender: `${userName}`,
+              sender: 'Social Hound',
               timeStamp: Date.now(),
               message: `${userName} wants to chat`
             }
@@ -210,7 +210,7 @@ class UserProfile extends Component {
       <div>
         <header style={{ marginBottom: '81px' }}>
         </header>
-        <main style={{ backgroundColor: '#e1f5fe'}}>
+        <main style={{ backgroundColor: '#e1f5fe' }}>
           <div id='profile-ex' className='mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
             {this.state.dogData.map((dog, index) => {
               return (
@@ -338,42 +338,43 @@ class UserProfile extends Component {
                           </MDBCardBody>
                         </MDBCard>
 
-                        <MDBCard className='mb-4'>
-                          <MDBCardBody>
-                            <h5 className='text-center mb-4'>
-                              <strong>{dog.dogName}'s Friends </strong>
-                            </h5>
-                            <MDBRow>
-                              {dog.friends && dog.friends.map(dog => {
-                                return (
-                                  <MDBCol md='4' className='mt-1'>
-                                    <MDBView hover>
-                                      <Link to={`/user/${dog.dogID}`}>
-                                        <img
-                                          src={dog.avatar}
-                                          className="img-fluid rounded-circle"
-                                          alt="Dog Avatar"
-                                          style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
-                                        />
-                                        <MDBMask className="flex-center flex-column" overlay="blue-strong">
-                                          <p className="white-text"><strong>{dog.dogName}</strong></p>
-                                          <p className="white-text"><strong>{dog.breed}</strong></p>
-                                        </MDBMask>
-                                      </Link>
-                                    </MDBView>
-                                  </MDBCol>
-                                )
-                              })}
-                            </MDBRow>
-                          </MDBCardBody>
-                        </MDBCard>
 
-                        <MDBCard className='mb-4'>
-                          <MDBCardBody>
-                            <h5 className='text-center mb-4'>
-                              <strong>See more of {dog.dogName} <span>📸</span></strong>
-                            </h5>
-                            {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
+                      <MDBCard className='mb-4'>
+                        <MDBCardBody>
+                          <h5 className='text-center mb-4'>
+                            <strong>{dog.dogName}'s Friends </strong>
+                          </h5>
+                          <MDBRow>
+                            {dog.friends && dog.friends.map(dog => {
+                              return (
+                                <MDBCol md='4' className='mt-1'>
+                                  <MDBView hover>
+                                    <Link to={`/user/${dog.dogID}`}>
+                                      <img
+                                        src={dog.avatar}
+                                        className="img-fluid rounded-circle"
+                                        alt="Dog Avatar"
+                                        style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                      />
+                                      <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                        <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                        <p className="white-text"><strong>{dog.breed}</strong></p>
+                                      </MDBMask>
+                                    </Link>
+                                  </MDBView>
+                                </MDBCol>
+                              )
+                            })}
+                          </MDBRow>
+                        </MDBCardBody>
+                      </MDBCard>
+
+                      <MDBCard className='mb-4'>
+                        <MDBCardBody>
+                          <h5 className='text-center mb-4'>
+                            <strong>See more of {dog.dogName} <span aria-label='camera emoji' role='img'>📸</span></strong>
+                          </h5>
+                          {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                         return (
 
                           <MDBCol md='4' className='mt-1' key={index}>

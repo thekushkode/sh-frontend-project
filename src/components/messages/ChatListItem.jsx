@@ -25,13 +25,13 @@ export default function ChatListItem(props) {
     //const [visible, setVisible] = React.useState(false);
 
     useEffect(() => {
-        console.log(props.id.id)
+        // console.log(props.id.id)
     }, [])
 
     function itemClicked() {
         db.collection('Messages').doc(props.id.id)
             .onSnapshot((querySnapshot) => {
-                console.log(querySnapshot.id)
+                // console.log(querySnapshot.id)
                 // dispatch(loadMessages({ querySnapshot }))
                 dispatch(loadMessages(
                     {
@@ -44,8 +44,8 @@ export default function ChatListItem(props) {
     }
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
-    console.log(messageData.userNames)
-    console.log(messageData)
+    // console.log(messageData.userNames)
+    // console.log(messageData)
 
     const arrOfMessageParticipantIds = [];
 

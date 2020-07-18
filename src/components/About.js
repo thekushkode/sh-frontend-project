@@ -120,18 +120,18 @@ class About extends React.Component {
                       className='p-2 m-2 fa-lg fb-ic'
                     />
                   </a>
-                  <a href='!#'>
-                    <MDBIcon
-                      fab
-                      icon='twitter'
-                      className='p-2 m-2 fa-lg tw-ic'
-                    />
-                  </a>
                   <a href='https://github.com/thekushkode'>
                     <MDBIcon
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg git-ic'
+                    />
+                  </a>
+                  <a href='!#'>
+                    <MDBIcon
+                      fab
+                      icon='twitter'
+                      className='p-2 m-2 fa-lg tw-ic'
                     />
                   </a>
                 </MDBCol>
@@ -191,7 +191,7 @@ class About extends React.Component {
                     Full-Stack Developer
                   </h6>
                   <p className='grey-text'>
-                    Full-Stack engineer and lover of rooftops.
+                    Builder of back-ends, lover of rooftops.
                   </p>
                   <a href='https://www.linkedin.com/in/grrtvnlw/'>
                     <MDBIcon

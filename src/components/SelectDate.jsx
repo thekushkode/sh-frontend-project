@@ -15,18 +15,20 @@ class SelectDate extends Component {
     render() {
         return (
             <MDBContainer>
+                <form>
                 <MDBBtn className='btn-rounded purple-gradient' onClick={this.toggle}>Request Playdate</MDBBtn>
                 <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
                     <MDBModalHeader toggle={this.toggle}><strong>Select Date</strong></MDBModalHeader>
                     <MDBModalBody>
                         {/* <MDBDatePickerV5 theme="info" getValue={(e) => console.log(e)} /> */}
-                        <input type='date'></input>
+                            <input type='date' value='party'></input>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn className='btn-rounded' color="danger" onClick={this.toggle}>Close</MDBBtn>
-                        <MDBBtn className='btn-rounded' color="info">Request Date</MDBBtn>
+                        <MDBBtn className='btn-rounded' color="info" type='submit' >Request Date</MDBBtn>
                     </MDBModalFooter>
                 </MDBModal>
+                </form>
             </MDBContainer>
         );
     }

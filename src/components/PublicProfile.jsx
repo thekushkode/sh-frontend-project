@@ -439,19 +439,9 @@ render() {
                     </MDBCard>
                   </MDBCol>
                   <MDBCol lg='8' md='8' className='text-center'>
-                    {/* <MDBRow>
-                        <MDBCol>
-                          <div className='text-center mt-3'>
-                            <h4>
-                              <strong>{dog.dogName}'s Feed</strong>
-                            </h4>
-                          </div>
-                        </MDBCol>
-                      </MDBRow> */}
                     <MDBRow>
                       <MDBCol>
                         <div className='ml-5 mt-3'>
-                          {/* <SocialPage2 /> */}
                           <PrivateFeed location={this.props.location.pathname} />
                         </div>
                       </MDBCol>

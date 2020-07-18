@@ -4,6 +4,8 @@ import SingleMessage from './SingleMessage'
 import firebase from '../../firebase';
 import '../Chat.css';
 import { css } from 'glamor';
+import { MDBBtn, MDBIcon } from 'mdbreact';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 
 
@@ -60,37 +62,38 @@ export default function MessagesWindow() {
     return (
         <div>
             <div className="row">
-                <div className="col justify-content-start">
+                {/* <div className="col justify-content-start">
                     {userNames && userNames.map((name, index) => {
                         return (
                             <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
                         )
                     })}
-                </div>
-                <div className="col justify-content-end">
+                </div> */}
+                <div className="col">
                     {userNames &&
-                        <>
-                            <button onClick={() => selectUser()}>+</button> add a user to this conversation</>}
+                        <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>}
                 </div>
             </div>
-            <ul>
-                {messages.data && messages.data.messages.map((item) => {
-                    let styles;
-                    if (item.sender === 'Social Hound') {
-                        styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                    }
-                    else if (item.sender === profile.data.ownerName) {
-                        // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
-                        styles = ['end', '', 'text-white', 'rgb(0,153,255)']
-                    } else {
-                        // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
-                        styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
-                    }
-                    return (
-                        <SingleMessage formatting={styles} content={item} />
-                    )
-                })}
-            </ul>
+            <ScrollToBottom>
+                <ul style={{ height: '300px', overflow: "scroll" }}>
+                    {messages.data && messages.data.messages.map((item) => {
+                        let styles;
+                        if (item.sender === 'Social Hound') {
+                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                        }
+                        else if (item.sender === profile.data.ownerName) {
+                            // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
+                            styles = ['end', '', 'text-white', 'rgb(0,153,255)']
+                        } else {
+                            // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
+                            styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
+                        }
+                        return (
+                            <SingleMessage formatting={styles} content={item} />
+                        )
+                    })}
+                </ul>
+            </ScrollToBottom>
         </div>
     )
 }

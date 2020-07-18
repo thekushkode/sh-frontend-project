@@ -70,6 +70,13 @@ export const increment = (id) => {
     }
 }
 
+export const setPrivateFeed = (feed) => {
+    return {
+        type: 'SET_PRIVATE_FEED',
+        payload: feed
+    }
+}
+
 // export const decrement = (num) => {
 //     return {
 //         type: 'DECREMENT',

@@ -290,7 +290,7 @@ render() {
                         >
                           Chat
                           </MDBBtn>
-                        <SelectDate />
+                        <SelectDate dog={dog} />
                         {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
                         {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
                           <MDBBtn

@@ -18,7 +18,7 @@ export default function MessagesWindow() {
     let friends;
     if (messages.data) {
         console.log('messages.data')
-        userNames = messages.data.userNames.filter((name) => name !== user.data.displayName)
+        userNames = messages.data.userNames.filter((name) => name !== profile.data.ownerName)
         if (profile.data.friends) {
             friends = profile.data.friends.map((name) => name)
         }
@@ -40,6 +40,7 @@ export default function MessagesWindow() {
         db.collection('Dogs').doc(chosenFriend).get()
             .then(res => {
                 let dogProfile = res.data()
+                console.log(dogProfile)
                 db.collection("Messages").doc(messages.id)
                     .update({
                         members: [...messages.data.members, dogProfile.ownerId],
@@ -78,7 +79,7 @@ export default function MessagesWindow() {
                     if (item.sender === 'Social Hound') {
                         styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
                     }
-                    else if (item.sender === user.data.displayName) {
+                    else if (item.sender === profile.data.ownerName) {
                         // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
                         styles = ['end', '', 'text-white', 'rgb(0,153,255)']
                     } else {

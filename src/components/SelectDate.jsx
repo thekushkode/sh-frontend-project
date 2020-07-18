@@ -21,7 +21,7 @@ class SelectDate extends Component {
                     <MDBModalHeader toggle={this.toggle}><strong>Select Date</strong></MDBModalHeader>
                     <MDBModalBody>
                         {/* <MDBDatePickerV5 theme="info" getValue={(e) => console.log(e)} /> */}
-                            <input type='date' value='party'></input>
+                        <input type='date'></input>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn className='btn-rounded' color="danger" onClick={this.toggle}>Close</MDBBtn>

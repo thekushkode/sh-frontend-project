@@ -16,7 +16,7 @@ moment().format()
 
 
 export default function ChatListItem(props) {
-    //const reduxMessages = useSelector(state => state.messages)
+    const reduxMessages = useSelector(state => state.messages)
     //const user = useSelector(state => state.user)
     let dispatch = useDispatch();
     const db = firebase.firestore();
@@ -24,12 +24,14 @@ export default function ChatListItem(props) {
     // <visible> state variable, initialized to false
     //const [visible, setVisible] = React.useState(false);
 
-    useEffect(() => {
-        // console.log(props.id.id)
-    }, [])
+    // useEffect(() => {
+    //     itemClicked(reduxMessages.id)
+    // }, [])
 
-    function itemClicked() {
-        db.collection('Messages').doc(props.id.id)
+    function itemClicked(val) {
+        console.log(val)
+        // console.log(props.id)
+        db.collection('Messages').doc(val)
             .onSnapshot((querySnapshot) => {
                 // console.log(querySnapshot.id)
                 // dispatch(loadMessages({ querySnapshot }))
@@ -52,7 +54,7 @@ export default function ChatListItem(props) {
     // let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
 
     return (
-        <MDBListGroupItem hover onClick={itemClicked}>
+        <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
             <div className='mr-3 float-left' style={{ position: 'relative' }}>
                 <MDBAvatar
                     // User Profile Photo - this should match the profile link for the message recipient in FireBase
@@ -93,6 +95,8 @@ export default function ChatListItem(props) {
                         )
                     })}
                 </span>
+                {console.log(messageData.messages)}
+                {console.log(messageData.messages[lastMessage])}
                 <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
             </div>
             <p className='text-truncate' style={{ textAlign: "left" }}>

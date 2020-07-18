@@ -45,23 +45,10 @@ class NotLogged extends Component {
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem>
-                                <MDBDropdown>
-                                    <MDBDropdownToggle nav caret>
-                                        Discover
-                                    </MDBDropdownToggle>
-                                    <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
-                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/outside">Go Outside</MDBNavLink></MDBDropdownItem>
-                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/petcare">Boarding & Daycare</MDBNavLink></MDBDropdownItem>
-                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/vets">Vets</MDBNavLink></MDBDropdownItem>
-                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/adopt">Adopt</MDBNavLink></MDBDropdownItem>
-                                    </MDBDropdownMenu>
-                                </MDBDropdown>
+                                <MDBNavLink to='/about'>About</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to='/contact'>Contact</MDBNavLink>
-                            </MDBNavItem>
-                            <MDBNavItem>
-                                <MDBNavLink to='/about'>About</MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>

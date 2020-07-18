@@ -37,21 +37,23 @@ export default function PrivateFeed(props) {
                 <MDBRow>
                     <MDBCol>
                         {feed && feed.map((item, index) => {
-                          {if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
-                            {console.log(props.location.slice(props.location.length - 20, props.location.length))}
-                            {console.log(item.FriendID)}
-                            switch (item.Type) {
-                                case 'Post' :
-                                    return <Post data={item} />
-                                case 'Friend':
-                                    return <FriendPost data={item} />
-                                case 'Photo':
-                                    return <PhotoPost data={item} />
-                                default:
-                                    break;
+
+                            if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
+                                { console.log(props.location.slice(props.location.length - 20, props.location.length)) }
+                                { console.log(item.FriendID) }
+                                switch (item.Type) {
+                                    case 'Post':
+                                        return <Post data={item} />
+                                    case 'Friend':
+                                        return <FriendPost data={item} />
+                                    case 'Photo':
+                                        return <PhotoPost data={item} />
+                                    default:
+                                        break;
+                                }
                             }
-                          }
-                          }})}
+
+                        })}
                     </MDBCol>
                 </MDBRow>
             </main>

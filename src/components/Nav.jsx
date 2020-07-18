@@ -74,10 +74,10 @@ class NavbarPage extends Component {
                                 <MDBNavLink to='/messages'>Messages</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to='/contact'>Contact</MDBNavLink>
+                                <MDBNavLink to='/about'>About</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to='/about'>About</MDBNavLink>
+                                <MDBNavLink to='/contact'>Contact</MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>

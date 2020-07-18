@@ -17,6 +17,7 @@ import Logan from './images/logan.gif';
 import Gerrit from './images/gerrit.gif';
 import Dogs from './images/sh-dogplay.gif'
 import FooterPage from './Footer';
+import { Link } from 'react-router-dom'
 
 const images = [
   'https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(132).jpg',
@@ -73,13 +74,12 @@ class About extends React.Component {
                       </a>
                     </h1>
                     <MDBBtn color='light-blue' size='lg' href='/contact'>
-                      Contact
+                      <Link to='/contact' className='white-text'>Contact</Link>
                     </MDBBtn>
                     <MDBBtn color='indigo' size='lg' href='/'>
-                      Sign{' '}
-                      <a href='!#' className='white-text font-weight-bold'>
-                        UP
-                      </a>
+                      <Link to='/' className='white-text font-weight-bold'>
+                      Sign Up!
+                      </Link>
                     </MDBBtn>
                   </MDBCol>
                 </MDBRow>
@@ -266,104 +266,31 @@ class About extends React.Component {
           <section id='products' className='text-center'>
             <h1 className='text-center my-5 h1'>We Enhance The Dog Experience</h1>
             <p className='text-center mb-5 w-responsive mx-auto lead grey-text'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
+              Dogs are without questions "man's best friend". That's why at SocialHound,  dogs come first.
             </p>
             <MDBRow>
               <div className='col-md-4 mb-4'>
-                <MDBIcon icon='area-chart pink-text' size='4x' />
+                <MDBIcon icon='spa pink-text' size='4x' />
                 <h4 className='font-weight-bold my-4'>Wellness</h4>
                 <p className='grey-text'>
                   An intentional health and wellness plan can help your dog live his/her longest and healthiest. SocialHound makes it easier to plan for grooming, wellness-checks, and socialization in an effort to prevent major health and lifestyle complications.
                 </p>
               </div>
               <div className='col-md-4 mb-4'>
-                <MDBIcon icon='pencil cyan-text' size='4x' />
+                <MDBIcon icon='desktop cyan-text' size='4x' />
                 <h4 className='font-weight-bold my-4'>Connectedness</h4>
                 <p className='grey-text'>
                   A social pup is a happy pup! Social Hound encourages the promotion of positive dog and human demeanor. We encourage best practices for public interaction and make it as easy as possible to make pup-connections.
                 </p>
               </div>
               <div className='col-md-4 mb-4'>
-                <MDBIcon icon='laptop indigo-text' size='4x' />
+                <MDBIcon icon='brain indigo-text' size='4x' />
                 <h4 className='font-weight-bold my-4'>Development</h4>
                 <p className='grey-text'>
                   Social Hound is dedicated to your dog's social development. As a part of this commitment,the developers of Social Hound are devoted to creating and serving content that is most helpful to creating connections and promoting healthy choices for your pet.
                 </p>
               </div>
             </MDBRow>
-          </section>
-
-          <hr className='my-5' />
-
-          <section id='work'>
-            <h1 className='text-center my-5 h1'>Our work</h1>
-            <p className='text-center mb-5 w-responsive mx-auto'>
-              Social Hound was born out of love for our Pups. Our love for them is what drives the love for our work.
-            </p>
-
-            <div className='mdb-lightbox'>
-              <MDBRow>
-                <MDBCol md='4'>
-                  <figure>
-                    <img
-                      src={smallImages[0]}
-                      alt='The pretty one talks'
-                      className='img-fluid'
-                      onClick={() =>
-                        this.setState({ photoIndex: 0, isOpen: true })
-                      }
-                    />
-                  </figure>
-                </MDBCol>
-                <MDBCol md='4'>
-                  <figure>
-                    <img
-                      src={smallImages[1]}
-                      alt='Our office looks like school'
-                      className='img-fluid'
-                      onClick={() =>
-                        this.setState({ photoIndex: 1, isOpen: true })
-                      }
-                    />
-                  </figure>
-                </MDBCol>
-                <MDBCol md='4'>
-                  <figure>
-                    <img
-                      src={smallImages[2]}
-                      alt='Best gear does not equal best devs'
-                      className='img-fluid'
-                      onClick={() =>
-                        this.setState({ photoIndex: 2, isOpen: true })
-                      }
-                    />
-                  </figure>
-                </MDBCol>
-              </MDBRow>
-            </div>
-            {isOpen && (
-              <Lightbox
-                mainSrc={images[photoIndex]}
-                nextSrc={images[(photoIndex + 1) % images.length]}
-                prevSrc={
-                  images[(photoIndex + images.length - 1) % images.length]
-                }
-                imageTitle={photoIndex + 1 + '/' + images.length}
-                onCloseRequest={() => this.setState({ isOpen: false })}
-                onMovePrevRequest={() =>
-                  this.setState({
-                    photoIndex: (photoIndex + images.length - 1) % images.length
-                  })
-                }
-                onMoveNextRequest={() =>
-                  this.setState({
-                    photoIndex: (photoIndex + 1) % images.length
-                  })
-                }
-              />
-            )}
           </section>
 
         </MDBContainer>

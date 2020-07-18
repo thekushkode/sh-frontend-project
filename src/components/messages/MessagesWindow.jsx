@@ -43,13 +43,13 @@ export default function MessagesWindow() {
                 console.log(dogProfile)
                 db.collection("Messages").doc(messages.id)
                     .update({
-                        members: [...messages.data.members, dogProfile.ownerId],
-                        userNames: [...messages.data.userNames, dogProfile.dogName],  // should change to dog owners username once username is saved in dogs profile
+                        members: [...messages.data.members, profile.data.ownerId],
+                        userNames: [...messages.data.userNames, profile.data.ownerName],  // should change to dog owners username once username is saved in dogs profile
                         messages: [...messages.data.messages,
                         {
                             sender: 'Social Hound',
                             timeStamp: Date.now(),
-                            message: `${dogProfile.dogName} has been added to the chat`  // should change to dog owners username once username is saved in dogs profile
+                            message: `${profile.data.ownerName} has been added to the chat`  // should change to dog owners username once username is saved in dogs profile
                         }
                         ]
                     })

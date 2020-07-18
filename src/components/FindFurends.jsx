@@ -56,7 +56,26 @@ export class Furends extends Component {
     }
 
     componentDidMount() {
-        this.handleFormSubmit()
+        // this.handleFormSubmit()
+        let friend = this.props.profile.data.city;
+        let doggo = this
+        db.collection("Dogs")
+            .where('city', '==', friend)
+            .get()
+            .then(function (querySnapshot) {
+                let data = [];
+                querySnapshot.forEach(function (doc) {
+                    const dogData = {
+                        ...doc.data(),
+                        dogId: doc.id
+                    }
+                    data.push(dogData);
+                })
+                doggo.setState({
+                    location: '',
+                    dogData: data
+                })
+            })
     }
 
     onMarkerClick = (props, marker, e) => {

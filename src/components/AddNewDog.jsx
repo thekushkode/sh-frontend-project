@@ -24,6 +24,13 @@ import InputPage from './InputPage';
 const db = firebase.firestore();
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
+function randomString(length) {
+  return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
+const id = randomString(20)
+console.log(id) 
+
 function AddNewDog(props) {
 
   const history = useHistory();
@@ -53,7 +60,7 @@ function AddNewDog(props) {
 
   const updateProfile = (e) => {
     if (!dogId) {
-      db.collection('Dogs').add({
+      db.collection('Dogs').doc(id).set({
         dogName,
         ownerName,
         breed,
@@ -70,7 +77,7 @@ function AddNewDog(props) {
         ownerId: user.uid
       })
         .then((res) => {
-          history.push(`/profile/${res.id}`)
+          history.push(`/profile/${id}`)
         })
     }
   }
@@ -187,7 +194,7 @@ function AddNewDog(props) {
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} onUpload={(imgRef) => {
+                  <InputPage value={avatar} id={id} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />

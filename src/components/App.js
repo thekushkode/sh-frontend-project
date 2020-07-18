@@ -33,6 +33,7 @@ import AddNewDog from './AddNewDog';
 import PublicFeed from './PublicFeed';
 import Konami from 'react-konami-code';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import Adopt from './Adopt';
 
 function App() {
   let db = firebase.firestore();
@@ -125,6 +126,7 @@ function App() {
               <Route exact path='/outside' component={GMap} />
               <Route exact path='/petcare' component={DayCare} />
               <Route exact path='/vets' component={VetMap} />
+              <Route exact path='/adopt' component={Adopt} />
               <Route exact path='/contact' component={ContactPage} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
@@ -162,6 +164,7 @@ function App() {
               <Route exact path='/furends' component={Furends} />
               <Route exact path='/petcare' component={DayCare} />
               <Route exact path='/vets' component={VetMap} />
+              <Route exact path='/adopt' component={Adopt} />
               <Route exact path='/contact' component={ContactPage} />
               <Route exact path='/feed' component={PublicFeed} />
               <Route exact path='/editprofile/:dogId' component={EditProfile} />

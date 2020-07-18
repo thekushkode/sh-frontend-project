@@ -13,7 +13,7 @@ const FeaturesPage = () => {
             </p>
 
             <MDBRow>
-                <MDBCol lg="5" className="text-center text-lg-left">
+                <MDBCol lg="5" className="text-center text-lg-left mb-3">
                     <img
                         className="img-fluid"
                         src={CoolDog}

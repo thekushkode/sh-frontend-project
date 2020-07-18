@@ -143,7 +143,7 @@ const Chat = () => {
         <MDBContainer fluid>
           <MDBRow>
             <MDBCol lg='4'>
-              <MDBInput type='text' icon='search' label='Search Messages' containerClass="text-left" />
+              <MDBInput type='text' icon='search' label='Search Your Messages' containerClass="text-left" />
               <MDBListGroup>
                 {messages && messages.map((item) => <>{item}</>)}
                 <a href='#!'>
@@ -187,12 +187,13 @@ const Chat = () => {
               </MDBListGroup>
             </MDBCol>
 
-            <MDBCol lg='8' className='mt-lg-0 mt-5'>
+
+            <MDBCol lg='8' className='mt-lg-0 border-left border-info'>
               {/* <div className='border border-dark py-4'> */}
-              <div className='py-4'>
-                <ScrollToBottom className={ROOT_CSS} style={{ overflowX: "hidden" }}>
-                  <MessagesWindow style={{ overflowX: "hidden" }} />
-                </ScrollToBottom>
+              <div className='py-5'>
+
+                <MessagesWindow />
+
                 {/* <div className='text-center'>
                   <small>16 July, 23:54</small>
                 </div>
@@ -258,7 +259,7 @@ const Chat = () => {
 
               <div className='row'>
                 <div className='col-md-12'>
-                  <div className='d-flex flex-row'>
+                  <div className='d-flex flex-row position-static' style={{ marginLeft: '50px', marginBottom: 'auto' }}>
                     <form onSubmit={(e) => submitMessage(e)}
                       style={{
                         display: 'flex',
@@ -281,9 +282,9 @@ const Chat = () => {
                         onChange={(e) => changeInput(e.target.value)}
                       // onKeyPress={(e) => enterKey(e.target)}
                       />
-                      <div className=''>
+                      <div>
                         <button
-                          className='btn btn-primary btn-md rounded-pill waves-effect waves-light'
+                          className='btn blue-gradient btn-md rounded-pill waves-effect waves-light'
                           htmlType='submit'
                           style={{
                             display: 'flex',
@@ -291,7 +292,7 @@ const Chat = () => {
                           onClick={(e) => submitMessage(e)}
                         >
                           Send
-                      </button>
+                        </button>
                       </div>
                     </form>
 

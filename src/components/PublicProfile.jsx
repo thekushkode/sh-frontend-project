@@ -411,7 +411,6 @@ class UserProfile extends Component {
                         <MDBRow>
                           <MDBCol>
                             <div className='ml-5 mt-3'>
-                              {/* <SocialPage2 /> */}
                               <PrivateFeed location={this.props.location.pathname} />
                             </div>
                           </MDBCol>

@@ -1,20 +1,22 @@
 import React from 'react'
 import SocialPage2 from './feed2'
+import { MDBRow, MDBCol, MDBContainer } from 'mdbreact';
 
 export default function PublicFeed() {
     return (
         <div>
-            <header style={{ marginBottom: '100px' }}>
+            <header style={{ marginBottom: '80px' }}>
 
             </header>
-            <main className='d-flex'>
-                <div style={{ width: '50%' }}>
+            <main style={{ display: 'flex',backgroundColor: '#e1f5fe' }}>
+                <div md='6' style={{ width: '50%', marginTop: '10px', marginLeft: '10px' }}>
                     <SocialPage2 />
                 </div>
-                <div style={{ width: '50%' }}>
+                <div md='6' style={{ width: '50%' }}>
                     <h1>AdSense</h1>
                 </div>
-            </main>
-        </div>
+
+            </main >
+        </div >
     )
 }

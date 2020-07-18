@@ -380,7 +380,7 @@ class UserProfile extends Component {
                       <MDBCard className='mb-4'>
                         <MDBCardBody>
                           <h5 className='text-center mb-4'>
-                            <strong>See more of {dog.dogName} <span>📸</span></strong>
+                            <strong>See more of {dog.dogName} <span aria-label='camera emoji' role='img'>📸</span></strong>
                           </h5>
                           {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                         return (

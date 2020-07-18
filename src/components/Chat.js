@@ -81,6 +81,7 @@ const Chat = () => {
   }
 
   function submitMessage(e) {
+    console.log('in submit message')
     e.preventDefault()
     // console.log(...reduxMessages)
     let allNewMessages = [...reduxMessages.data.messages,
@@ -287,7 +288,7 @@ const Chat = () => {
                           style={{
                             display: 'flex',
                           }}
-                        onClick={(e) => submitMessage(e)}
+                          onClick={(e) => submitMessage(e)}
                         >
                           Send
                       </button>

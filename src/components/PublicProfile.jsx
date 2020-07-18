@@ -21,8 +21,16 @@ import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
 import SelectDate from './SelectDate';
+import { loadMessages } from '../redux/actions' 
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
+
+function randomString(length) {
+  return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
+const id = randomString(20)
+console.log(id) 
 
 class UserProfile extends Component {
   constructor(props) {
@@ -90,8 +98,9 @@ class UserProfile extends Component {
     let userID = user.uid
     let userName = this.props.profile.data.ownerName
     if (userID) {
-      return db.collection("Messages").doc()
-        .set({
+      const newReduxMessage = {
+        id: id,
+        data: {
           members: [userID, dog.ownerId],
           userNames: [userName, dog.ownerName],
           messages: [
@@ -101,8 +110,23 @@ class UserProfile extends Component {
               message: `${userName} wants to chat`
             }
           ]
-        })
+        }
+      }
+      const newMessage = {
+          members: [userID, dog.ownerId],
+          userNames: [userName, dog.ownerName],
+          messages: [
+            {
+              sender: 'Social Hound',
+              timeStamp: Date.now(),
+              message: `${userName} wants to chat`
+            }
+          ]
+        }
+      return db.collection("Messages").doc(id)
+        .set(newMessage)
         .then(() => {
+          this.props.loadMessages(newReduxMessage)
           this.props.history.push('/messages')
         })
     }
@@ -433,12 +457,16 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-          user: state.user,
-    profile: state.profile
+      user: state.user,
+      profile: state.profile
   }
+}
+
+const mapDispatchToProps = {
+  loadMessages
 }
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(UserProfile)

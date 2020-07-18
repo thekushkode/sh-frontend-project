@@ -231,7 +231,7 @@ function EditProfile(props) {
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} onUpload={(imgRef) => {
+                  <InputPage value={avatar} id={dogId} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />

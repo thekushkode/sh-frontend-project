@@ -25,6 +25,13 @@ import InputPage from './InputPage';
 const db = firebase.firestore();
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
 
+function randomString(length) {
+  return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
+const id = randomString(20)
+console.log(id) 
+
 function NewProfile(props) {
   
   const dispatch = useDispatch();
@@ -46,8 +53,8 @@ function NewProfile(props) {
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
   const [avatar, setAvatar] = useState(defaultDogImg);
-
-
+  
+  
   useEffect(() => {
     if (user.uid && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
@@ -55,11 +62,11 @@ function NewProfile(props) {
           let dog = null;
           querySnapshot.forEach(doc => {
             if (!dog) {
-              setDogId(doc.id);
+              setDogId(id);
               dog = doc.data();
             }
             if (dog) {
-              let userProfile = { data: doc.data(), id: doc.id }
+              let userProfile = { data: doc.data(), id: id }
               setDogName(dog.dogName);
               setOwnerName(dog.ownerName);
               setBreed(dog.breed);
@@ -82,7 +89,7 @@ function NewProfile(props) {
 
   const updateProfile = (e) => {
     if (!dogId) {
-      db.collection('Dogs').add({
+      db.collection('Dogs').doc(id).set({
         dogName,
         ownerName,
         breed,
@@ -99,9 +106,9 @@ function NewProfile(props) {
         ownerId: user.uid
       })
       .then((querySnapshot) => {
-        let userProfile = { data: querySnapshot, id: querySnapshot.id }
+        let userProfile = { data: querySnapshot, id: id }
         dispatch(setProfile(userProfile));
-        history.push(`/profile/${querySnapshot.id}`);
+        history.push(`/profile/${id}`);
       })
     } 
   }
@@ -218,7 +225,7 @@ function NewProfile(props) {
                     className='rounded-circle z-depth-1-half mb-4 mt-4'
                   />
 
-                  <InputPage value={avatar} onUpload={(imgRef) => {
+                  <InputPage value={avatar} id={id} onUpload={(imgRef) => {
                     console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />

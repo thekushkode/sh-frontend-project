@@ -199,9 +199,9 @@ class DogProfile extends Component {
 
     return (
       <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-        <header style={{ marginBottom: '100px' }}>
+        <header style={{ marginBottom: '80px' }}>
         </header>
-        <main>
+        <main style={{ backgroundColor: '#e1f5fe'}}>
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
             <MDBContainer fluid>
               <MDBRow>
@@ -215,7 +215,7 @@ class DogProfile extends Component {
                       className='rounded-circle z-depth-1-half mb-4 mt-3'
                     />
                     <MDBDropdown>
-                      <MDBDropdownToggle caret rounded className="aqua-gradient">
+                      <MDBDropdownToggle caret className="aqua-gradient btn-rounded">
                         Select Dog
                       </MDBDropdownToggle>
                       <MDBDropdownMenu basic >

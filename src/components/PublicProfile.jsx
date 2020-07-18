@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import SocialPage2 from './feed2';
+import SelectDate from './SelectDate';
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
 
@@ -207,10 +208,10 @@ class UserProfile extends Component {
   render() {
     return (
       <div>
-        <header style={{ marginBottom: '100px' }}>
+        <header style={{ marginBottom: '81px' }}>
         </header>
-        <main>
-          <div id='profile-ex' className='mb-5 mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
+        <main style={{ backgroundColor: '#e1f5fe'}}>
+          <div id='profile-ex' className='mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
             {this.state.dogData.map((dog, index) => {
               return (
                 <MDBContainer fluid>
@@ -233,10 +234,10 @@ class UserProfile extends Component {
                           <h5>
                             {dog.bio}
                           </h5>
-                          <MDBBtn floating tag='a' className='morpheus-den-gradient'>
+                          <MDBBtn floating tag='a' className='blue-gradient'>
                             <MDBIcon fab icon='facebook' className='white-text' />
                           </MDBBtn>
-                          <MDBBtn floating tag='a' className='young-passion-gradient'>
+                          <MDBBtn floating tag='a' className='purple-gradient'>
                             <MDBIcon fab icon='instagram' className='white-text' />
                           </MDBBtn>
                           <p className='card-text mt-3'>
@@ -244,43 +245,29 @@ class UserProfile extends Component {
                           </p>
                           <MDBBtn
                             className='peach-gradient'
-                            size='sm'
                             rounded
                             onClick={() => this.letsChat(dog)}
                           >
                             Chat
                           </MDBBtn>
-                          <MDBBtn
-                            className='blue-gradient'
-                            size='sm'
-                            rounded
-                          // onClick={() => this.letsPlay(dog)}
-                          >
-                            <form>
-                              <label for="party">Request Playdate:</label>
-                              <input type="date" name="party" />
-                              <button type="submit" onClick={() => this.letsPlay(dog)}>Submit</button>
-                            </form>
-                          </MDBBtn>
-                            {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
-                            {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
-                              <MDBBtn
-                                className='peach-gradient'
-                                size='sm'
-                                rounded
-                                onClick={() => this.removeFriend(dog)}
-                              >
-                                Unfriend {dog.dogName}
-                                {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
-                              </MDBBtn>
-                              :
-                              <MDBBtn
-                                className='aqua-gradient'
-                                size='sm'
-                                rounded
-                                onClick={() => this.addFriend(dog)}
-                              >
-                                Add {dog.dogName} as a friend
+                          <SelectDate />
+                          {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
+                          {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
+                            <MDBBtn
+                              className='blue-gradient'
+                              rounded
+                              onClick={() => this.removeFriend(dog)}
+                            >
+                              Unfriend {dog.dogName}
+                              {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
+                            </MDBBtn>
+                            :
+                            <MDBBtn
+                              className='aqua-gradient'
+                              rounded
+                              onClick={() => this.addFriend(dog)}
+                            >
+                              Add {dog.dogName} as a friend
                               {/* {this.state.followUnfollow ? <span>Follow {dog.dogName}</span> : <span>Unfollow {dog.dogName}</span>} */}
                               </MDBBtn>
                             }

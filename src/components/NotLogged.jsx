@@ -50,9 +50,10 @@ class NotLogged extends Component {
                                         Discover
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
-                                        <MDBDropdownItem href="/outside">Go Outside</MDBDropdownItem>
-                                        <MDBDropdownItem href="/petcare">Boarding & Daycare</MDBDropdownItem>
-                                        <MDBDropdownItem href="/vets">PetCare</MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/outside">Go Outside</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/petcare">Boarding & Daycare</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/vets">Vets</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/adopt">Adopt</MDBNavLink></MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>

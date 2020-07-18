@@ -81,8 +81,9 @@ const Chat = () => {
   }
 
   function submitMessage(e) {
-    console.log(...reduxMessages)
+    console.log('in submit message')
     e.preventDefault()
+    // console.log(...reduxMessages)
     let allNewMessages = [...reduxMessages.data.messages,
     {
       message: chatInput,
@@ -284,11 +285,10 @@ const Chat = () => {
                         <button
                           className='btn btn-primary btn-md rounded-pill waves-effect waves-light'
                           htmlType='submit'
-                          href="#!"
                           style={{
                             display: 'flex',
                           }}
-                        // onClick={(e) => submitMessage(e)}
+                          onClick={(e) => submitMessage(e)}
                         >
                           Send
                       </button>

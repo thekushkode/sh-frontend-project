@@ -42,13 +42,13 @@ export default function MessagesWindow() {
                 let dogProfile = res.data()
                 db.collection("Messages").doc(messages.id)
                     .update({
-                        members: [...messages.data.members, dogProfile.ownerId],
-                        userNames: [...messages.data.userNames, dogProfile.dogName],  // should change to dog owners username once username is saved in dogs profile
+                        members: [...messages.data.members, profile.data.ownerId],
+                        userNames: [...messages.data.userNames, profile.data.ownerName],  // should change to dog owners username once username is saved in dogs profile
                         messages: [...messages.data.messages,
                         {
                             sender: 'Social Hound',
                             timeStamp: Date.now(),
-                            message: `${dogProfile.dogName} has been added to the chat`  // should change to dog owners username once username is saved in dogs profile
+                            message: `${profile.data.ownerName} has been added to the chat`  // should change to dog owners username once username is saved in dogs profile
                         }
                         ]
                     })
@@ -78,7 +78,7 @@ export default function MessagesWindow() {
                     if (item.sender === 'Social Hound') {
                         styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
                     }
-                    else if (item.sender === user.data.displayName) {
+                    else if (item.sender === profile.data.ownerName) {
                         // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
                         styles = ['end', '', 'text-white', 'rgb(0,153,255)']
                     } else {

@@ -87,7 +87,7 @@ const Chat = () => {
     {
       message: chatInput,
       timeStamp: Date.now(),
-      sender: user.data.displayName
+      sender: profile.data.ownerName
     }]
     db.collection('Messages').doc(reduxMessages.id).update({
       'messages': allNewMessages

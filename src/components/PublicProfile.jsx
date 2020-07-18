@@ -88,7 +88,7 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let userID = user.uid
-    let userName = user.displayName
+    let userName = this.props.profile.data.ownerName
     if (userID) {
       return db.collection("Messages").doc()
         .set({
@@ -96,7 +96,7 @@ class UserProfile extends Component {
           userNames: [userName, dog.dogName],
           messages: [
             {
-              sender: `${userName}`,
+              sender: 'Social Hound',
               timeStamp: Date.now(),
               message: `${userName} wants to chat`
             }
@@ -210,7 +210,7 @@ class UserProfile extends Component {
       <div>
         <header style={{ marginBottom: '81px' }}>
         </header>
-        <main style={{ backgroundColor: '#e1f5fe'}}>
+        <main style={{ backgroundColor: '#e1f5fe' }}>
           <div id='profile-ex' className='mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
             {this.state.dogData.map((dog, index) => {
               return (
@@ -353,26 +353,26 @@ class UserProfile extends Component {
                             <strong>{dog.dogName}'s Friends </strong>
                           </h5>
                           <MDBRow>
-                          {dog.friends && dog.friends.map(dog => {
-                            return (
-                              <MDBCol md='4' className='mt-1'>
-                                <MDBView hover>
-                                  <Link to={`/user/${dog.dogID}`}>
-                                    <img
-                                      src={dog.avatar}
-                                      className="img-fluid rounded-circle"
-                                      alt="Dog Avatar"
-                                      style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
-                                    />
-                                    <MDBMask className="flex-center flex-column" overlay="blue-strong">
-                                      <p className="white-text"><strong>{dog.dogName}</strong></p>
-                                      <p className="white-text"><strong>{dog.breed}</strong></p>
-                                    </MDBMask>
-                                  </Link>
-                                </MDBView>
-                              </MDBCol>
-                            )
-                          })}
+                            {dog.friends && dog.friends.map(dog => {
+                              return (
+                                <MDBCol md='4' className='mt-1'>
+                                  <MDBView hover>
+                                    <Link to={`/user/${dog.dogID}`}>
+                                      <img
+                                        src={dog.avatar}
+                                        className="img-fluid rounded-circle"
+                                        alt="Dog Avatar"
+                                        style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                      />
+                                      <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                        <p className="white-text"><strong>{dog.dogName}</strong></p>
+                                        <p className="white-text"><strong>{dog.breed}</strong></p>
+                                      </MDBMask>
+                                    </Link>
+                                  </MDBView>
+                                </MDBCol>
+                              )
+                            })}
                           </MDBRow>
                         </MDBCardBody>
                       </MDBCard>
@@ -420,7 +420,7 @@ class UserProfile extends Component {
                         <MDBCol>
                           <div className='ml-5 mt-3'>
                             {/* <SocialPage2 /> */}
-                            <PrivateFeed location={this.props.location.pathname}/>
+                            <PrivateFeed location={this.props.location.pathname} />
                           </div>
                         </MDBCol>
                       </MDBRow>

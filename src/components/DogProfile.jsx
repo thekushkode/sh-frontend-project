@@ -258,7 +258,14 @@ class DogProfile extends Component {
                         rounded
                         href='/messages'
                       >
-                        Check PlayDates
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/furends'>Find Furends</Link>
+                      </MDBBtn>
+                      <MDBBtn
+                        className='peach-gradient'
+                        rounded
+                        href='/messages'
+                      >
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/messages'>Messages</Link>
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
@@ -395,7 +402,7 @@ class DogProfile extends Component {
                           <strong>{this.state.dogData.dogName}'s Feed</strong>
                         </h4>
                       </div> */}
-                      <div style={{ marginTop: '20px', paddingLeft: '100px', paddingRight: '100px' }}>
+                      <div style={{ marginTop: '20px', paddingLeft: '10px', paddingRight: '10px' }}>
                         <div className="form-group">
                           <form onSubmit={this.handleSubmit}>
                             {/* <label htmlFor="exampleFormControlTextarea1">
@@ -448,7 +455,7 @@ class DogProfile extends Component {
                   <MDBRow>
                     <MDBCol>
                       {/* <SocialPage2 /> */}
-                      <PrivateFeed location={this.props.location.pathname}/>
+                      <PrivateFeed location={this.props.location.pathname} hidden/>
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

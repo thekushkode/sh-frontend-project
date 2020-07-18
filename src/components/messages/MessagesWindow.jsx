@@ -16,13 +16,13 @@ export default function MessagesWindow() {
     const profile = useSelector(state => state.profile)
     let userNames;
     let friends;
-    // if (messages.data) {
-    //     console.log('messages.data')
-    //     userNames = messages.data.userNames.filter((name) => name !== user.data.displayName)
-    //     if (profile.data.friends) {
-    //         friends = profile.data.friends.map((name) => name)
-    //     }
-    // }
+    if (messages.data) {
+        console.log('messages.data')
+        userNames = messages.data.userNames.filter((name) => name !== profile.data.ownerName)
+        if (profile.data.friends) {
+            friends = profile.data.friends.map((name) => name)
+        }
+    }
 
 
 
@@ -40,6 +40,7 @@ export default function MessagesWindow() {
         db.collection('Dogs').doc(chosenFriend).get()
             .then(res => {
                 let dogProfile = res.data()
+                console.log(dogProfile)
                 db.collection("Messages").doc(messages.id)
                     .update({
                         members: [...messages.data.members, profile.data.ownerId],

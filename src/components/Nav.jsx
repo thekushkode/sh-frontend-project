@@ -51,7 +51,7 @@ class NavbarPage extends Component {
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem>
-                                <MDBNavLink to="/feed">My Feed</MDBNavLink>
+                                <MDBNavLink to="/feed">Feed</MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to={`/profile/${this.props.profile.id}`}>Profile</MDBNavLink>

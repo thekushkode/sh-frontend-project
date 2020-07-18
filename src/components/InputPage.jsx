@@ -48,8 +48,10 @@ function InputPage(props) {
 
         // Create a root reference
         let storageRef = firebase.storage().ref();
-        let imgId = profile.id
-        console.log(profile.id)
+
+        let imgId = profile.id;
+        // console.log(profile.id)
+
         let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + '?alt=media'
 
         // Create a reference to 'mountains.jpg'

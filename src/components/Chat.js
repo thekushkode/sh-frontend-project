@@ -58,7 +58,7 @@ const Chat = () => {
         .onSnapshot((querySnapshot) => {
           let dataArray = []
           querySnapshot.forEach(function (doc) {
-            console.log(doc.id, doc.data())
+            // console.log(doc.id, doc.data())
             dataArray.push({ id: doc.id, data: doc.data() })
           })
           setAllMessages(dataArray)
@@ -81,7 +81,7 @@ const Chat = () => {
   }
 
   function submitMessage(e) {
-    console.log(e)
+    console.log(...reduxMessages)
     e.preventDefault()
     let allNewMessages = [...reduxMessages.data.messages,
     {
@@ -120,7 +120,7 @@ const Chat = () => {
 
 
 
-  console.log(allMessages)
+  // console.log(allMessages)
   const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>

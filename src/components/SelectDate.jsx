@@ -86,7 +86,7 @@ class SelectDate extends Component {
                         const newMessage = {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
-                            message: `PlayDate with ${userName} on ${moment().format(this.state.date)}`,
+                            message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(id)

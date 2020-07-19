@@ -9,19 +9,24 @@ export default function ConfirmDate({ content }) {
 
 
     const db = firebase.firestore();
-    const [confirmedDate, setConfirmed] = React.useState(true)
+    const [confirmedDate, setConfirmed] = React.useState('')
 
     useEffect(() => {
         let userID = user.uid
-        db.collection('PlayDates').doc(content.playDate)
-            .get().then((doc) => {
-                if (doc.data()) {
-                    if (doc.data().userID === false) {
-                        setConfirmed(false)
+        if (userID) {
+            db.collection('PlayDates').doc(content.playDate)
+                .get().then((doc) => {
+                    if (doc.data()) {
+                        console.log(doc.data())
+                        if (doc.data()[userID] === false) {
+                            setConfirmed(false)
+                        } else {
+                            setConfirmed(true)
+                        }
                     }
                 }
-            }
-            )
+                )
+        }
     }, [])
 
 

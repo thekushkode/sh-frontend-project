@@ -39,8 +39,7 @@ export default function PrivateFeed(props) {
         <div>
             <main>
                 <MDBRow>
-                    <MDBCol>
-
+                    <MDBCol className='overflow-auto' style={{ height: '1600px' }}>
                         {privateFeed && privateFeed.map((item, index) => {
 
                             // if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
@@ -57,7 +56,6 @@ export default function PrivateFeed(props) {
                                     break;
                             }
                         }
-
                         )}
 
                     </MDBCol>

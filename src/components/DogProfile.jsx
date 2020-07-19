@@ -394,28 +394,26 @@ class DogProfile extends Component {
                   <MDBCard className='mb-4'>
                     <MDBCardBody>
                       <h5 className='text-center mb-4'>
-                        <strong>See more of {this.state.dogData.dogName} <span>📸</span></strong>
+                        <strong>See photos of {this.state.dogData.dogName} <span>📸</span></strong>
                       </h5>
-                      {this.state.dogData.photos && this.state.dogData.photos.map((photo, index) => {
-                        return (
-                          <MDBCol md='4' className='mt-1' key={index}>
-                            <MDBView hover>
-                              <Link>
-                                <img
-                                  src={photo}
-                                  className="img-fluid rounded-circle"
-                                  alt="Dog Avatar"
-                                  style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
-                                />
-                                {/* <MDBMask className="flex-center flex-column" overlay="blue-strong">
-                                  <p className="white-text"><strong>{dog.dogName}</strong></p>
-                                  <p className="white-text"><strong>{dog.breed}</strong></p>
-                                </MDBMask> */}
-                              </Link>
-                            </MDBView>
-                          </MDBCol>
+                      <MDBRow>
+                        {this.state.dogData.photos && this.state.dogData.photos.map((photo, index) => {
+                          return (
+                            <MDBCol md='4' className='mt-1' key={index}>
+                              <MDBView hover>
+                                <Link>
+                                  <img
+                                    src={photo}
+                                    className="img-fluid rounded-circle"
+                                    alt="Dog Avatar"
+                                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                  />
+                                </Link>
+                              </MDBView>
+                            </MDBCol>
                           )
-                      })}
+                        })}
+                      </MDBRow>
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>

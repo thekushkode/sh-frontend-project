@@ -477,7 +477,9 @@ class DogProfile extends Component {
                   </MDBRow>
                   <MDBRow>
                     <MDBCol>
+
                       <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
+
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

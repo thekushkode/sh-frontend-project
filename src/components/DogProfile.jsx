@@ -40,7 +40,8 @@ class DogProfile extends Component {
       imgValue: '',
       allDogData: [],
       feedImgURL: '',
-      hidden: true
+      hidden: true,
+      // photos: this.props.profile.data.photos ? this.props.profile.data.photos : []
     };
   }
 
@@ -196,6 +197,20 @@ class DogProfile extends Component {
     return db.collection("Dogs").doc(this.props.profile.id)
       .update({
         photos: firebase.firestore.FieldValue.arrayUnion(this.state.feedImgURL)
+      })
+      .then(() => {
+        // this.setState({
+        //   photos: [...this.state.photos, this.state.feedImgURL]
+        // })
+        if (this.props.profile.data.photos) {
+          this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
+        } else {
+          this.props.profile.data.photos = [this.state.feedImgURL]
+        }
+        this.setState({
+          feedImgURL: ''
+        })
+        // this.props.profile.data.photos = this.state.photos;
       })
   }
 
@@ -385,7 +400,7 @@ class DogProfile extends Component {
                         return (
                           <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
-                              <Link to={`/user/${photo.dogID}`}>
+                              <Link>
                                 <img
                                   src={photo}
                                   className="img-fluid rounded-circle"

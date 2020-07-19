@@ -411,27 +411,26 @@ render() {
                         <h5 className='text-center mb-4'>
                           <strong>See more of {dog.dogName} <span aria-label='camera emoji' role='img'>📸</span></strong>
                         </h5>
-                        {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
+                        {dog.photos && dog.photos.map((photo, index) => {
                         return (
-
                           <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
-                              <a href={`/user/${dog.dogID}`}>
+                              <Link>
                                 <img
-                                  src={dog.avatar}
+                                  src={photo}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                 />
-                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                {/* <MDBMask className="flex-center flex-column" overlay="blue-strong">
                                   <p className="white-text"><strong>{dog.dogName}</strong></p>
                                   <p className="white-text"><strong>{dog.breed}</strong></p>
-                                </MDBMask>
-                              </a>
+                                </MDBMask> */}
+                              </Link>
                             </MDBView>
-                          </MDBCol> 
-                        )
-                      })} */}
+                          </MDBCol>
+                          )
+                      })}
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>

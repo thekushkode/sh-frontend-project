@@ -5,13 +5,6 @@ import firebase from '../firebase';
 import SpinnerPage from "./Spinner";
 
 const db = firebase.firestore();
-function randomString(length) {
-    return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
-}
-
-const id = randomString(20)
-console.log(id)
-
 
 function InputPage(props) {
     const [loading, setLoading] = useState(false)
@@ -54,7 +47,7 @@ function InputPage(props) {
 
         // Create a root reference
         let storageRef = firebase.storage().ref();
-        let imgId = id;
+        let imgId = props.id;
         let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + "?alt=media"
 
         // Create a reference to 'mountains.jpg'

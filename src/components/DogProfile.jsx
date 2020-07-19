@@ -25,6 +25,7 @@ import SocialPage2 from './feed2';
 import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
+import PlayDates from './PlayDates';
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 const defaultFeedImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/social-hound-logo-512.png?alt=media'
@@ -41,6 +42,7 @@ class DogProfile extends Component {
       allDogData: [],
       feedImgURL: '',
       hidden: true,
+      playDates: false
       // photos: this.props.profile.data.photos ? this.props.profile.data.photos : []
     };
   }
@@ -188,7 +190,6 @@ class DogProfile extends Component {
     this.setState({
       postValue: '',
       feedImgURL: ''
-      // imgValue: e.target.imgValue
     })
   }
 
@@ -199,9 +200,6 @@ class DogProfile extends Component {
         photos: firebase.firestore.FieldValue.arrayUnion(this.state.feedImgURL)
       })
       .then(() => {
-        // this.setState({
-        //   photos: [...this.state.photos, this.state.feedImgURL]
-        // })
         if (this.props.profile.data.photos) {
           this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
         } else {
@@ -210,8 +208,13 @@ class DogProfile extends Component {
         this.setState({
           feedImgURL: ''
         })
-        // this.props.profile.data.photos = this.state.photos;
       })
+  }
+
+  showPlayDates = () => {
+    this.setState({
+      playDates: !this.state.playDates
+    })
   }
 
   toggle = item => {
@@ -282,16 +285,21 @@ class DogProfile extends Component {
                       <MDBBtn
                         className='blue-gradient'
                         rounded
-                        href='/messages'
                       >
                         <Link style={{ textDecoration: 'none', color: 'white' }} to='/furends'>Find Furends</Link>
                       </MDBBtn>
                       <MDBBtn
                         className='peach-gradient'
                         rounded
-                        href='/messages'
                       >
                         <Link style={{ textDecoration: 'none', color: 'white' }} to='/messages'>Messages</Link>
+                      </MDBBtn>
+                      <MDBBtn
+                        className='aqua-gradient'
+                        rounded
+                        onClick={this.showPlayDates}
+                      >
+                        {this.state.playDates ? <span>My Feed</span> : <span>Playdates</span>}
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>
@@ -475,9 +483,11 @@ class DogProfile extends Component {
                   </MDBRow>
                   <MDBRow>
                     <MDBCol>
-
-                      <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
-
+                      {this.state.playDates ?
+                        <PlayDates id={this.state.user.uid} />
+                        :
+                        <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
+                        }
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

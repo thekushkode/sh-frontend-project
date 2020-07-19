@@ -31,7 +31,7 @@ export default function Post(props) {
                             <div className="brief">
                                 <Link to={`/user/${props.data.DogID}`} className="name">
                                     {props.data.SenderName}
-                                </Link> posted on their page
+                                </Link> posted a new photo
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@ export default function Post(props) {
                             <h6><strong>{props.data.Content}</strong></h6>
                             {<img src={props.data.feedImgURL} style={{ maxHeight: '300px', maxWidth: '200px' }} />}
                             <div className="feed-footer">
-                                <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
+                                <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
                                     <MDBIcon icon="heart" />
                                     <span> {props.data.Likes} </span> likes
                             </button>
@@ -72,7 +72,7 @@ export default function Post(props) {
                         </div>
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                         <div className="feed-footer">
-                            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
+                            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
                                 <MDBIcon icon="heart" />
                                 <span> {props.data.Likes} </span> likes
                             </button>

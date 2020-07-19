@@ -43,7 +43,7 @@ export default function ConfirmDate({ content }) {
     }
     return (
         <div>
-            {confirmedDate === false && <button onClick={() => confirmDate()}>Confirm Date</button>}
+            {!confirmedDate && <button className='aqua-gradient btn-rounded'onClick={() => confirmDate()}>Confirm Date</button>}
         </div>
     )
 }

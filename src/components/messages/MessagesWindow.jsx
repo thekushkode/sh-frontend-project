@@ -68,16 +68,19 @@ export default function MessagesWindow() {
 
 
     return (
-        <div>
-            <div className="row">
-                <div className="col justify-content-start">
+        <>
+            {/* <ScrollToBottom> */}
+            <MDBRow className='d-flex justify-content-center align-items-center'>
+                <MDBCol>
                     {userNames && userNames.map((name, index) => {
                         return (
-                            <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
+                            <h5>
+                                Chatting with:&nbsp;<strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
+                            </h5>
                         )
                     })}
-                </div>
-                <div className="col">
+                  </MDBCol>
+                <MDBCol>
                     {friends &&
                         <MDBDropdown>
                             <MDBDropdownToggle caret onClick={() => selectUser()}>Add Friend To Chat</MDBDropdownToggle>
@@ -92,10 +95,11 @@ export default function MessagesWindow() {
                             </MDBDropdownMenu>
                         </MDBDropdown>}
                     {/* // <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>} */}
-                </div>
-            </div>
-            <ScrollToBottom>
-                <ul style={{ height: '300px', overflow: "scroll" }}>
+                </MDBCol>
+<!--             <ScrollToBottom> -->
+            </MDBRow>
+            <div className="border border-info p-4 white">
+                <ul style={{ height: '315px', overflow: "scroll" }}>
                     {messages.data && messages.data.messages.map((item) => {
                         let styles;
                         let button;
@@ -118,7 +122,9 @@ export default function MessagesWindow() {
                         )
                     })}
                 </ul>
-            </ScrollToBottom>
-        </div>
+            </div>
+
+            {/* </ScrollToBottom> */}
+        </>
     )
 }

@@ -3,11 +3,13 @@ import { MDBFileInput } from "mdbreact";
 import { useSelector } from 'react-redux';
 import firebase from '../firebase';
 import SpinnerPage from "./Spinner";
+import { useHistory } from "react-router-dom";
 
 const db = firebase.firestore();
 
 function InputPage(props) {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
     const [dogId, setDogId] = useState('');
     const profile = useSelector(state => state.profile);
 
@@ -37,6 +39,9 @@ function InputPage(props) {
         // var gsReference = storage.refFromURL('gs://sh-frontend-8f893.appspot.com/gerrit.gif')
 
         // let imgFileName = files[0].name.toLowerCase()
+        if (files[0] == undefined) {
+            history.push(`/profile/${profile.id}`)
+        }
         let imgFileName = files[0].name
         let fileType = imgFileName.substr(imgFileName.lastIndexOf('.') + 1);
 

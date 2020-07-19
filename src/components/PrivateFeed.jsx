@@ -38,24 +38,23 @@ export default function PrivateFeed(props) {
         <div>
             <main>
                 <MDBRow>
-                    <MDBCol>
+                    <MDBCol className='overflow-auto' style={{ height: '1600px' }}>
                         {privateFeed && privateFeed.map((item, index) => {
 
                             // if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
                             //     { console.log(props.location.slice(props.location.length - 20, props.location.length)) }
                             //     { console.log(item.FriendID) }
-                                switch (item.Type) {
-                                    case 'Post':
-                                        return <Post data={item} key={index} />
-                                    case 'Friend':
-                                        return <FriendPost data={item} key={index} />
-                                    case 'Photo':
-                                        return <PhotoPost data={item} key={index} />
-                                    default:
-                                        break;
-                                }
+                            switch (item.Type) {
+                                case 'Post':
+                                    return <Post data={item} key={index} />
+                                case 'Friend':
+                                    return <FriendPost data={item} key={index} />
+                                case 'Photo':
+                                    return <PhotoPost data={item} key={index} />
+                                default:
+                                    break;
                             }
-
+                        }
                         )}
                     </MDBCol>
                 </MDBRow>

@@ -201,7 +201,7 @@ class DogProfile extends Component {
       <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
         <header style={{ marginBottom: '80px' }}>
         </header>
-        <main style={{ backgroundColor: '#e1f5fe'}}>
+        <main style={{ backgroundColor: '#e1f5fe' }}>
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
             <MDBContainer fluid>
               <MDBRow>
@@ -452,7 +452,9 @@ class DogProfile extends Component {
                   </MDBRow>
                   <MDBRow>
                     <MDBCol>
-                      <PrivateFeed location={this.props.location.pathname} key={window.location.pathname}/>
+
+                      <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
+
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

@@ -69,7 +69,7 @@ function InputPage(props) {
 
     return (
         <>
-            <MDBFileInput {...props} type='file' getValue={imgUpload} />
+            <MDBFileInput multiple {...props} type='file' getValue={imgUpload} />
             {loading && <SpinnerPage />}
         </>
     );

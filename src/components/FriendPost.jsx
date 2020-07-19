@@ -40,7 +40,7 @@ export default function FriendPost(props) {
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
           </div>
           <div className="feed-footer">
-            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
+            <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
               <MDBIcon icon="heart" />
               <span> {props.data.Likes} </span> likes
             </button>

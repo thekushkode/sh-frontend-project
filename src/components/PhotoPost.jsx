@@ -48,10 +48,8 @@ export default function PhotoPost(props) {
           />
         </div>
         <div className="feed-footer">
-
           <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
             <MDBIcon icon="heart"/>
-
             <span> {props.data.Likes} </span>likes
           </button>
         </div>

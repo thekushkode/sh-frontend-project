@@ -125,6 +125,8 @@ class SelectDate extends Component {
         db.collection('PlayDates').add({
             members: [userID, dog.ownerId],
             userNames: [userName, dog.ownerName],
+            [userID]: true,
+            [dog.ownerId]: false,
             date: this.state.date,
             createdAt: Date.now(),
             confirmed: false,

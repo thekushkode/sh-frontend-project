@@ -5,6 +5,12 @@ import firebase from '../firebase';
 import SpinnerPage from "./Spinner";
 
 const db = firebase.firestore();
+function randomString(length) {
+    return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
+const id = randomString(20)
+console.log(id)
 
 
 function InputPage(props) {
@@ -48,8 +54,8 @@ function InputPage(props) {
 
         // Create a root reference
         let storageRef = firebase.storage().ref();
-        let imgId = props.id;
-        let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + ".jpg?alt=media"
+        let imgId = id;
+        let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + "?alt=media"
 
         // Create a reference to 'mountains.jpg'
         let ref = storageRef.child(imgId + "." + fileType);
@@ -57,7 +63,7 @@ function InputPage(props) {
 
         // the function could also take snapshot as an input
         ref.put(fileObj).then(function (imgRef) {
-            imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + ".jpg?alt=media"
+            imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + "?alt=media"
             props.onUpload(imgRef);
             console.log('Uploaded a blob or file!');
             setLoading(false);

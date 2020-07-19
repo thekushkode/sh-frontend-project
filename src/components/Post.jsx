@@ -36,6 +36,8 @@ export default function Post(props) {
                         </div>
                     <div className="added-text my-2">
                         <h6><strong>{props.data.Content}</strong></h6>
+                        {console.log(props.data.feedImageURL)}
+                        {props.data.feedImageURL && <h6><img src={props.data.feedImageURL} /></h6>}
                     </div>
                     <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                     <div className="feed-footer">

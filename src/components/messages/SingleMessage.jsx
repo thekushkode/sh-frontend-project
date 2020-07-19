@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import moment from 'moment'
 import { css } from 'glamor';
+import ConfirmDate from './ConfirmDate';
+import ReactHtmlParser from 'react-html-parser'
 moment().format()
 
 const recipientBackground = css({
@@ -28,6 +30,9 @@ const yourBackground = css({
 
 
 export default function SingleMessage(props) {
+
+
+
     return (
         <>
             {/* every timestamp appears above each message */}
@@ -48,8 +53,12 @@ export default function SingleMessage(props) {
                     </div> */}
                     {/* message content should get left and right aligned based on you vs recipient */}
 
+
+
                     <div className={`row p-2 m-0 justify-content-${props.formatting[0]}`}>
-                        {props.content.message}
+                        {ReactHtmlParser(props.content.message)}
+                        {/* button rendered only on playdate request */}
+                        {props.content.playDate && <ConfirmDate content={props.content} />}
                     </div>
                 </div>
             </div >

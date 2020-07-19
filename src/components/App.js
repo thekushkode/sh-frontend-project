@@ -34,7 +34,6 @@ import PublicFeed from './PublicFeed';
 import Konami from 'react-konami-code';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import Adopt from './Adopt';
-import DMChat from './DMChat';
 
 function App() {
   let db = firebase.firestore();
@@ -179,7 +178,6 @@ function App() {
               <Route exact path='/add' component={AddNewDog} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
-              <Route path='/test' component={DMChat} />
               <Route><Redirect to="/newprofile" /></Route>
             </Switch>
               <Konami action={easterEgg}>

@@ -4,7 +4,7 @@ import SingleMessage from './SingleMessage'
 import firebase from '../../firebase';
 import '../Chat.css';
 import { css } from 'glamor';
-import { MDBBtn, MDBIcon, MDBCol, MDBRow } from 'mdbreact';
+import { MDBBtn, MDBIcon, MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 
@@ -16,8 +16,10 @@ export default function MessagesWindow() {
     const messages = useSelector(state => state.messages)
     const user = useSelector(state => state.user)
     const profile = useSelector(state => state.profile)
+    const [availableFriends, setAvailableFriends] = React.useState('')
     let userNames;
     let friends;
+    let selectableFriends;
     if (messages.data) {
         console.log('messages.data')
         userNames = messages.data.userNames.filter((name) => name !== profile.data.ownerName)
@@ -30,32 +32,38 @@ export default function MessagesWindow() {
 
     function selectUser() {
         console.log(friends);
-        // create dropdown or other method for choosing between your friends
-        // filter out any friends that are already included in conversation
-        // check if user has friends array, some users do not
-        let selectableFriends = friends && friends.filter((friend) => friend !== messages.data.members)
-        // save the clicked value to the variable chosenFriend
-        let chosenFriend = 'b2GTIs6T5zEjHQMvrtiF'
-        // get chosenFriends dog profile to access their userName and unique ID
-        // .then add them to the current conversation
-        // generate a stock message sent from socialhound
+        if (friends) {
+            friends = profile.data.friends.map((name) => name)
+            // create dropdown or other method for choosing between your friends
+            // filter out any friends that are already included in conversation
+            // check if user has friends array, some users do not
+            selectableFriends = friends && friends.filter((friend) => messages.data.members.includes(friend.ownerId))
+            console.log(selectableFriends)
+            setAvailableFriends(selectableFriends)
+            // save the clicked value to the variable chosenFriend
+        }
+    }
+
+    function addFriend(chosenFriend) {
+        console.log(chosenFriend)
         db.collection('Dogs').doc(chosenFriend).get()
-            .then(res => {
-                let dogProfile = res.data()
-                console.log(dogProfile)
+            .then((doc) => {
+                let dogProfile = doc.data()
+                console.log(doc.data())
                 db.collection("Messages").doc(messages.id)
                     .update({
-                        members: [...messages.data.members, profile.data.ownerId],
-                        userNames: [...messages.data.userNames, profile.data.ownerName],  // should change to dog owners username once username is saved in dogs profile
+                        members: [...messages.data.members, dogProfile.ownerId],
+                        userNames: [...messages.data.userNames, dogProfile.ownerName],
                         messages: [...messages.data.messages,
                         {
                             sender: 'Social Hound',
                             timeStamp: Date.now(),
-                            message: `${profile.data.ownerName} has been added to the chat`  // should change to dog owners username once username is saved in dogs profile
+                            message: `${dogProfile.ownerName} has been added to the chat`
                         }
                         ]
                     })
             })
+
     }
 
 
@@ -71,13 +79,25 @@ export default function MessagesWindow() {
                             </h5>
                         )
                     })}
-                </MDBCol>
+                  </MDBCol>
                 <MDBCol>
-                    {userNames &&
-                        <MDBBtn className='btn-rounded purple-gradient mr-auto' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>}
+                    {friends &&
+                        <MDBDropdown>
+                            <MDBDropdownToggle caret onClick={() => selectUser()}>Add Friend To Chat</MDBDropdownToggle>
+                            <MDBDropdownMenu basic >
+                                {availableFriends && availableFriends.map((friend) => {
+                                    return (
+                                        <MDBDropdownItem onClick={() => addFriend(friend.dogID)}>
+                                            {friend.dogName}
+                                        </MDBDropdownItem>
+                                    )
+                                })}
+                            </MDBDropdownMenu>
+                        </MDBDropdown>}
+                    {/* // <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>} */}
                 </MDBCol>
+                {/*<ScrollToBottom>*/}
             </MDBRow>
-
             <div className="border border-info p-4 white">
                 <ul style={{ height: '315px', overflow: "scroll" }}>
                     {messages.data && messages.data.messages.map((item) => {

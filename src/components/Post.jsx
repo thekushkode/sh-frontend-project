@@ -37,7 +37,7 @@ export default function Post(props) {
                         </div>
                         <div className="added-text my-2 m-auto col-8 align-items-center">
                             <h6><strong>{props.data.Content}</strong></h6>
-                            {<img src={props.data.feedImgURL} style={{ maxHeight: '300px', maxWidth: '200px' }} />}
+                            {<img src={props.data.feedImgURL} style={{ width: '350px', borderRadius: '25px' }} />}
                             <div className="feed-footer">
                                 <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
                                     <MDBIcon icon="heart" />

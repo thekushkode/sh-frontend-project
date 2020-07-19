@@ -4,7 +4,7 @@ import SingleMessage from './SingleMessage'
 import firebase from '../../firebase';
 import '../Chat.css';
 import { css } from 'glamor';
-import { MDBBtn, MDBIcon } from 'mdbreact';
+import { MDBBtn, MDBIcon, MDBCol, MDBRow } from 'mdbreact';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 
@@ -60,22 +60,26 @@ export default function MessagesWindow() {
 
 
     return (
-        <div>
-            <div className="row">
-                <div className="col justify-content-start">
+        <>
+            {/* <ScrollToBottom> */}
+            <MDBRow className='d-flex justify-content-center align-items-center'>
+                <MDBCol>
                     {userNames && userNames.map((name, index) => {
                         return (
-                            <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
+                            <h5>
+                                Chatting with:&nbsp;<strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
+                            </h5>
                         )
                     })}
-                </div>
-                <div className="col">
+                </MDBCol>
+                <MDBCol>
                     {userNames &&
-                        <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>}
-                </div>
-            </div>
-            <ScrollToBottom>
-                <ul style={{ height: '300px', overflow: "scroll" }}>
+                        <MDBBtn className='btn-rounded purple-gradient mr-auto' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>}
+                </MDBCol>
+            </MDBRow>
+
+            <div className="border border-info p-4 white">
+                <ul style={{ height: '315px', overflow: "scroll" }}>
                     {messages.data && messages.data.messages.map((item) => {
                         let styles;
                         let button;
@@ -98,7 +102,9 @@ export default function MessagesWindow() {
                         )
                     })}
                 </ul>
-            </ScrollToBottom>
-        </div>
+            </div>
+
+            {/* </ScrollToBottom> */}
+        </>
     )
 }

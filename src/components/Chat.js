@@ -186,80 +186,13 @@ const Chat = () => {
                 </a>
               </MDBListGroup>
             </MDBCol>
+            <MDBCol lg='8' className='mt-lg-0 mt-5'>
 
-
-            <MDBCol lg='8' className='mt-lg-0 border-left border-info'>
-              {/* <div className='border border-dark py-4'> */}
-              <div className='py-5'>
-
-                <MessagesWindow />
-
-                {/* <div className='text-center'>
-                  <small>16 July, 23:54</small>
-                </div>
-                <div className='d-flex justify-content-end'>
-                  <p className='primary-color rounded p-3 text-white w-75 '>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Molestiae modi exercitationem dignissimos repellat, voluptas
-                    iure quod aliquid voluptatem perspiciatis quidem sit eos, cum
-                    fugit voluptatibus quos laboriosam sed tenetur voluptate!
-                </p>
-                </div>
-
-                <div className='text-center'>
-                  <small>16 July, 23:55</small>
-                </div>
-                <div className='d-flex justify-content-start media'>
-                  <MDBAvatar
-                    src='https://mdbootstrap.com/img/Photos/Avatars/adach.jpg'
-                    alt='User mugshot'
-                    tag='img'
-                    className='float-left mr-3'
-                  />
-
-                  <p className='grey lighten-3 rounded p-3 w-75'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Molestiae modi exercitationem dignissimos repellat, voluptas
-                    iure quod aliquid voluptatem perspiciatis quidem sit eos, cum
-                    fugit voluptatibus quos laboriosam sed tenetur voluptate!
-                </p>
-                </div>
-
-                <div className='text-center'>
-                  <small>16 July, 23:56</small>
-                </div>
-                <div className='d-flex justify-content-start media'>
-                  <MDBAvatar
-                    src='https://mdbootstrap.com/img/Photos/Avatars/adach.jpg'
-                    alt='User mugshot'
-                    tag='img'
-                    className='float-left mr-3'
-                  />
-                  <p className='grey lighten-3 rounded p-3 w-75'>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Molestiae modi exercitationem dignissimos repellat, voluptas
-                    iure quod aliquid voluptatem perspiciatis quidem sit eos, cum
-                    fugit voluptatibus quos laboriosam sed tenetur voluptate!
-                </p>
-                </div>
-
-                <div className='text-center'>
-                  <small>16 July, 23:54</small>
-                </div>
-                <div className='d-flex justify-content-end'>
-                  <p className='primary-color rounded p-3 text-white w-75 '>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Molestiae modi exercitationem dignissimos repellat, voluptas
-                    iure quod aliquid voluptatem perspiciatis quidem sit eos, cum
-                    fugit voluptatibus quos laboriosam sed tenetur voluptate!
-                </p>
-                </div> */}
-
-              </div>
-
+              <MessagesWindow />
+              
               <div className='row'>
                 <div className='col-md-12'>
-                  <div className='d-flex flex-row position-static' style={{ marginLeft: '50px', marginBottom: 'auto' }}>
+                  <div className='d-flex flex-row'>
                     <form onSubmit={(e) => submitMessage(e)}
                       style={{
                         display: 'flex',

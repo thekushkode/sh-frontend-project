@@ -102,8 +102,6 @@ class NavbarPage extends Component {
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        <MDBDropdownItem href="/editprofile">Settings</MDBDropdownItem>
-                                        <MDBDropdownItem href={'/profile'}>Profile</MDBDropdownItem>
                                         <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem>
                                         <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>

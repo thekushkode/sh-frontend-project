@@ -99,15 +99,15 @@ export class Furends extends Component {
     render() {
         const mapStyles = {
             width: '100%',
-            height: '90%',
+            height: '100%',
             marginTop: '100px',
         };
         const { users } = this.state;
         const scrollContainerStyle = { width: "90%", maxHeight: "330px", marginLeft: '40px' };
         const containerStyle = {
-            marginLeft: '20px',
-            width: '50%',
-            height: '90%',
+            width: '100%',
+            height: '100%',
+            marginLeft: '20px'
         }
 
 
@@ -116,42 +116,44 @@ export class Furends extends Component {
                 <header>
                 </header>
                 <main>
-                    <div className='d-flex flex-row justify-content-between'>
-                        <div style={{ width: '500px' }}>
-                            <Map
-                                containerStyle={containerStyle}
-                                google={this.props.google}
-                                onClick={this.onMapClicked}
-                                onReady={this.fetchPlaces}
-                                zoom={10}
-                                style={mapStyles}
-                                initialCenter={{ lat: 33.753746, lng: -84.386330 }}
-                            >
-                                {this.state.dogData.map((user, index, mapProps) => {
-                                    let address = user.street + ' ' + user.city + ', ' + user.userState + ' ' + user.zipcode;
-                                    return (
-                                        <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
-                                            onClick={this.onMarkerClick} />
-                                    )
-                                })}
-                                {this.state.dogData.map((user, index) => {
-                                    return (
-                                        <InfoWindow marker={this.state.activeMarker} key={index}
-                                            visible={this.state.selectedPlace.id === index} name={user.name} >
-                                            <div>
-                                                <h4>{user.dogName}</h4>
-                                                <p>{user.breed}</p>
-                                                <p>{user.temperament}</p>
-                                            </div>
-                                        </InfoWindow >
+                    <MDBRow>
+                        <MDBCol md='6'>
+                            <div>
+                                <Map
+                                    containerStyle={containerStyle}
+                                    google={this.props.google}
+                                    onClick={this.onMapClicked}
+                                    onReady={this.fetchPlaces}
+                                    zoom={10}
+                                    style={mapStyles}
+                                    initialCenter={{ lat: 33.753746, lng: -84.386330 }}
+                                >
+                                    {this.state.dogData.map((user, index, mapProps) => {
+                                        let address = user.street + ' ' + user.city + ', ' + user.userState + ' ' + user.zipcode;
+                                        return (
+                                            <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
+                                                onClick={this.onMarkerClick} />
+                                        )
+                                    })}
+                                    {this.state.dogData.map((user, index) => {
+                                        return (
+                                            <InfoWindow marker={this.state.activeMarker} key={index}
+                                                visible={this.state.selectedPlace.id === index} name={user.name} >
+                                                <div>
+                                                    <h4>{user.dogName}</h4>
+                                                    <p>{user.breed}</p>
+                                                    <p>{user.temperament}</p>
+                                                </div>
+                                            </InfoWindow >
 
-                                    )
-                                })}
-                            </Map>
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
-                            <div style={{ marginLeft: '75px' }}>
-                                <div style={{ marginTop: '65px', marginLeft: '100px' }}>
+                                        )
+                                    })}
+                                </Map>
+                            </div>
+                        </MDBCol>
+                        <MDBCol md='6' style={{ display: 'flex', flexDirection: 'column' }}>
+                            <div>
+                                <div style={{ marginTop: '65px', marginLeft: '20px' }}>
                                     <MDBCol md="6" className='d-flex'>
                                         <MDBFormInline className="md-form" onSubmit={this.handleFormSubmit}>
                                             <input className="form-control form-control-sm ml-3" type="text" placeholder="Search" aria-label="Search" value={this.state.location} onChange={this.handleChange} />
@@ -160,7 +162,7 @@ export class Furends extends Component {
                                     </MDBCol>
                                 </div>
                             </div>
-                            <div className='scrollbar scrollbar-primary' style={scrollContainerStyle}>
+                            <div className='scrollbar scrollbar-info' style={scrollContainerStyle}>
                                 <MDBRow>
                                     {this.state.dogData && this.state.dogData.map(dog => {
 
@@ -188,8 +190,8 @@ export class Furends extends Component {
                                     })}
                                 </MDBRow>
                             </div>
-                        </div>
-                    </div>
+                        </MDBCol>
+                    </MDBRow>
                 </main>
             </div>
         );

@@ -4,7 +4,7 @@ import SingleMessage from './SingleMessage'
 import firebase from '../../firebase';
 import '../Chat.css';
 import { css } from 'glamor';
-import { MDBBtn, MDBIcon, MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle } from 'mdbreact';
+import { MDBBtn, MDBIcon, MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 

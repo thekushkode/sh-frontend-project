@@ -18,7 +18,7 @@ export default function PrivateFeed(props) {
 
     useEffect(() => {
         console.log(id)
-        db.collection('Feed').where('FriendID', '==', `${id}`).orderBy("timestamp", "desc").limit(10).onSnapshot(
+        db.collection('Feed').where('DogID', '==', `${id}`).orderBy("timestamp", "desc").limit(10).onSnapshot(
             querySnapshot => {
                 let privateArray = [];
                 querySnapshot.forEach(function (doc) {

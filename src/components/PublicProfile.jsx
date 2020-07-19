@@ -199,7 +199,6 @@ removeFriend = (dog) => {
   let user = firebase.auth().currentUser;
   let userID = user
   let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
-  console.log(dog)
   if (userID) {
     return db.collection("Dogs").doc(this.props.profile.id)
       .update({
@@ -211,9 +210,7 @@ removeFriend = (dog) => {
         this.setState({
           friends: filteredFriends
         })
-        // console.log(this.props.profile.data.friends)
         this.props.profile.data.friends = this.state.friends;
-        // console.log(this.props.profile.data.friends)
       })
   }
 }
@@ -442,7 +439,7 @@ render() {
                     <MDBRow>
                       <MDBCol>
                         <div className='ml-5 mt-3'>
-                          <PrivateFeed location={this.props.location.pathname} />
+                          <PrivateFeed location={this.props.location.pathname} key={window.location.pathname}/>
                         </div>
                       </MDBCol>
                     </MDBRow>

@@ -44,6 +44,7 @@ export default function ChatListItem(props) {
             })
         dispatch(loadMessages(props.id));
     }
+    console.log(props);
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
     // console.log(messageData.userNames)
@@ -54,54 +55,36 @@ export default function ChatListItem(props) {
     // let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
 
     return (
-        <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
-            <div className='mr-3 float-left' style={{ position: 'relative' }}>
-                <MDBAvatar
-                    // User Profile Photo - this should match the profile link for the message recipient in FireBase
-                    // src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + arrOfMessageParticipantIds[1] + '?alt=media'
-                    src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/jon.gif?alt=media'
-                    alt='User Profile'
-                    tag='img'
-                    // className='float-left'
-                    style={{ position: 'absolute', border: '3px solid #dddddd', zIndex: '4' }}
-                />
-                <MDBAvatar
-                    // User Profile Photo - this should match the profile link for the message recipient in FireBase
-                    src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/logan.gif?alt=media'
-                    alt='User Profile'
-                    tag='img'
-                    // className='float-left'
-                    style={{ position: 'absolute', marginLeft: '8px', marginTop: '-4px', border: '3px solid #dddddd', zIndex: '3' }}
-                />
-                <MDBAvatar
-                    // User Profile Photo - this should match the profile link for the message recipient in FireBase
-                    src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/gerrit.gif?alt=media'
-                    alt='User Profile'
-                    tag='img'
-                    // className='float-left'
-                    style={{ position: 'absolute', marginLeft: '16px', marginTop: '-8px', border: '3px solid #dddddd', zIndex: '2' }}
-                />
-            </div>
-            <div className='d-flex justify-content-between mb-1'>
-                <span className='mb-1'>
-                    {/* {userNames.map((name, index) => {
-                        return (
-                            <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
-                        )
-                    })} */}
-                    {messageData.userNames && messageData.userNames.map((name, index) => {
-                        return (
-                            <strong style={{ textAlign: "left" }}>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong>
-                        )
-                    })}
-                </span>
-                {console.log(messageData.messages)}
-                {console.log(messageData.messages[lastMessage])}
-                <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
-            </div>
-            <p className='text-truncate' style={{ textAlign: "left" }}>
-                {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}
-            </p>
-        </MDBListGroupItem >
+
+        <>
+            {messageData.userNames && messageData.userNames.map((name, index) => {
+                return (
+                    <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
+
+                        <MDBAvatar
+                            // User Profile Photo - this should match the profile link for the message recipient in FireBase
+                            // src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + arrOfMessageParticipantIds[1] + '?alt=media'
+                            src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/jon.gif?alt=media'
+                            alt='User Profile'
+                            tag='img'
+                            className='float-left mr-3'
+                        />
+
+                        <div className='d-flex justify-content-between mb-1'>
+                            <span className='mb-1'>
+                                <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong>
+                                {console.log(messageData.messages)}
+                                {console.log(messageData.messages[lastMessage])}
+                            </span>
+                            <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
+                        </div>
+                        <p className='text-truncate' style={{ textAlign: "left" }}>
+                            {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}
+                        </p>
+                    </MDBListGroupItem >
+                )
+            })}
+        </>
+
     )
 }

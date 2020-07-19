@@ -11,7 +11,7 @@ const FooterPage = () => {
                         <p>
                             The World's First Social Network for Dogs!
                         </p>
-                        <MDBContainer>
+                        <MDBContainer className='text-left'>
                             <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' size="lg" tag="a" floating social="fb">
                                 <MDBIcon fab icon="facebook-f" />
                             </MDBBtn>
@@ -23,7 +23,7 @@ const FooterPage = () => {
                             </MDBBtn>
                         </MDBContainer>
                     </MDBCol>
-                    <MDBCol md="6">
+                    <MDBCol md="6" className='text-right pr-2'>
                         <ul>
                             <li className="list-unstyled">
                                 <a href="/about">About</a>

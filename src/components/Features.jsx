@@ -50,7 +50,7 @@ const FeaturesPage = () => {
                         <MDBCol xl="10" md="11" size="10">
                             <h5 className="font-weight-bold mb-3">Discover</h5>
                             <p className="grey-text">
-                                A whole new world is at the tip of your paws. Find anything you and your dog need with our easy to access Discover tool. Search for dogs in your area, find dogparks, boarding locations, and vets in an instant!
+                                A whole new world is at the tip of your paws. Find anything you and your dog need with our easy to access Discover tool. Search for dogs in your area, find dogparks, boarding locations, vets, and adoption locations in an instant!
                             </p>
                         </MDBCol>
                     </MDBRow>

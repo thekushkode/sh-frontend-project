@@ -62,13 +62,13 @@ export default function MessagesWindow() {
     return (
         <div>
             <div className="row">
-                {/* <div className="col justify-content-start">
+                <div className="col justify-content-start">
                     {userNames && userNames.map((name, index) => {
                         return (
                             <strong>{name}{index < (userNames.length - 1) ? ', ' : null}</strong>
                         )
                     })}
-                </div> */}
+                </div>
                 <div className="col">
                     {userNames &&
                         <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>}

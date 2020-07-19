@@ -447,15 +447,12 @@ class DogProfile extends Component {
                             </MDBBtn>
                           </form>
                         </div>
-                        {/* <div className='d-flex justify-content-around'>
-                        </div> */}
                       </div>
                     </MDBCol>
                   </MDBRow>
                   <MDBRow>
                     <MDBCol>
-                      {/* <SocialPage2 /> */}
-                      <PrivateFeed location={this.props.location.pathname} hidden/>
+                      <PrivateFeed location={this.props.location.pathname} key={window.location.pathname}/>
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

@@ -2,7 +2,9 @@ import React from 'react'
 import { MDBIcon, MDBJumbotron } from "mdbreact";
 import { Link } from 'react-router-dom'
 import moment from 'moment';
+import ModalImage from "react-modal-image";
 import firebase from '../firebase';
+import { Modal } from 'antd';
 moment().format()
 
 export default function Post(props) {
@@ -37,7 +39,7 @@ export default function Post(props) {
                         </div>
                         <div className="added-text my-2 m-auto col-8 align-items-center">
                             <h6><strong>{props.data.Content}</strong></h6>
-                            {<img src={props.data.feedImgURL} style={{ maxHeight: '300px', maxWidth: '200px' }} />}
+                            {<ModalImage small={props.data.feedImgURL} large={props.data.feedImgURL} style={{ width: '350px', borderRadius: '25px' }} />}
                             <div className="feed-footer">
                                 <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
                                     <MDBIcon icon="heart" />

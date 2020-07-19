@@ -19,7 +19,7 @@ import PrivateFeed from './PrivateFeed';
 import { Link } from 'react-router-dom'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
-import SocialPage2 from './feed2';
+import ModalImage from "react-modal-image";
 import SelectDate from './SelectDate';
 import { loadMessages } from '../redux/actions'
 
@@ -416,8 +416,9 @@ class UserProfile extends Component {
                                 <MDBCol md='4' className='mt-1' key={index}>
                                   <MDBView hover>
                                     <Link>
-                                      <img
-                                        src={photo}
+                                      <ModalImage
+                                        small={photo}
+                                        large={photo}
                                         className="img-fluid rounded-circle"
                                         alt="Dog Avatar"
                                         style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}

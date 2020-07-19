@@ -1,4 +1,4 @@
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/sh-1.jpg' width=500 />
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/sh-1.jpg' width=500 />
 
 # SocialHound<br>The Social Network for Your Dog!
 
@@ -6,15 +6,18 @@ Social Hound is the 1st social media platform made just for your pup. Use the si
 
 # Contributors
 Robert Kushner IV
+Gerrit Van Leeuwen
+Jonathan Cox
+Logan Blackstad
 
 # Video Walkthrough
 
 Watch our video to see how the app works!
 
-![GIF image of site demo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/demo.gif)
+![GIF image of site demo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/demo.gif)
 
 ## Summary
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/4points-sh.PNG' width=200 />
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/4points-sh.PNG' width='500' />
 
 SocialHound is a true social media platform for your dog (and you!). Once signed in, you'll be able to create a profile, search for friends in your area, schedule play dates, and message your 'furends'.
 
@@ -24,7 +27,7 @@ Post your photos, videos and memories to your feed so your friends can view, lik
 
 ## Built With
 
-<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/builtwith.jpg' width='200' /> 
+<img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/builtwith.jpg' width='800' /> 
 React | Redux | JS | HTML | CSS | Firebase | Google API | Love
 
 

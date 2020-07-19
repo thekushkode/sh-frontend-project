@@ -58,7 +58,10 @@ class About extends React.Component {
           <MDBView
             src={Dogs}
             fixed
-            style={{ height: '70vh' }}
+            style={{ backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+              minHeight: '70vh' }}
           >
             <MDBMask
               overlay='stylish-light'
@@ -116,7 +119,7 @@ class About extends React.Component {
                   <a href='https://github.com/thekushkode'>
                     <MDBIcon
                       fab
-                      icon='instagram'
+                      icon='linkedin'
                       className='p-2 m-2 fa-lg fb-ic'
                     />
                   </a>
@@ -167,6 +170,13 @@ class About extends React.Component {
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg git-ic'
+                    />
+                  </a>
+                  <a href='https://github.com/jonathancox1'>
+                    <MDBIcon
+                      fab
+                      icon='twitter'
+                      className='p-2 m-2 fa-lg tw-ic'
                     />
                   </a>
                 </MDBCol>
@@ -239,20 +249,20 @@ class About extends React.Component {
                     <MDBIcon
                       fab
                       icon='linkedin'
-                      className='p-2 m-2 fa-lg li-ic'
+                      className='p-2 m-2 fa-lg tw-ic'
                     />
                   </a>
-                  {/* <a href='!#'>
-                    <MDBIcon
-                      fab
-                      icon='twitter'
-                      className='p-2 m-2 fa-lg li-ic'
-                    />
-                  </a> */}
-                  <a href='https://github.com/loganblackstad'>
+                  <a href='!#'>
                     <MDBIcon
                       fab
                       icon='github'
+                      className='p-2 m-2 fa-lg li-ic'
+                    />
+                  </a>
+                  <a href='https://github.com/loganblackstad'>
+                    <MDBIcon
+                      fab
+                      icon='twitter'
                       className='p-2 m-2 fa-lg email-ic'
                     />
                   </a>

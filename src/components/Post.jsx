@@ -19,25 +19,25 @@ export default function Post(props) {
     if (props.data.feedImgURL) {
         return (
             <MDBJumbotron>
-                <div className='news d-flex justify-content-center'>
-                    <div className="excerpt ml-4 d-flex justify-content-between align-items-center">
-                    <div className='label mt-2'>
-                        <img
-                            src={props.data.Avatar ? props.data.Avatar : defaultDogImg}
-                            alt=""
-                            className="rounded-circle z-depth-1-half"
-                            style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto' }}
-                        />
-                    </div>
-                        <div className="brief">
-                            <Link to={`/user/${props.data.DogID}`} className="name">
-                                {props.data.SenderName}
-                            </Link> posted on their page
+                <div className='news'>
+                    <div className="excerpt ml-4 d-flex justify-content-between">
+                        <div className='label m-auto align-items-start h-100 mt-0 col-4'>
+                            <img
+                                src={props.data.Avatar ? props.data.Avatar : defaultDogImg}
+                                alt=""
+                                className="rounded-circle z-depth-1-half"
+                                style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto' }}
+                            />
+                            <div className="brief">
+                                <Link to={`/user/${props.data.DogID}`} className="name">
+                                    {props.data.SenderName}
+                                </Link> posted on their page
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
+                            </div>
                         </div>
-                        <div className="added-text my-2">
+                        <div className="added-text my-2 m-auto col-8 align-items-center">
                             <h6><strong>{props.data.Content}</strong></h6>
-                            {<img src={props.data.feedImgURL} style={{ width: '200px' }} />}
+                            {<img src={props.data.feedImgURL} style={{ maxHeight: '300px', maxWidth: '200px' }} />}
                             <div className="feed-footer">
                                 <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like">
                                     <MDBIcon icon="heart" />

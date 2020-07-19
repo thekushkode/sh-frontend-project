@@ -31,12 +31,15 @@ class SelectDate extends Component {
         });
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
+
+
+
+    createPlayDate = (date) => {
         let userID = this.props.user.uid
         let userName = this.props.profile.data.ownerName
         let dog = this.props.dog
         if (userID) {
+
             let usersArray = []
             db.collection("Messages").where("members", "array-contains", userID).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -56,9 +59,10 @@ class SelectDate extends Component {
                 .then((filteredArray) => {
                     if (filteredArray.length > 0) {
                         const newMessage = {
-                            sender: 'Social Hound',
+                            sender: 'PlayDate Request',
                             timeStamp: Date.now(),
-                            message: `${userName} wants to play on ${moment().format(this.state.date)}`
+                            message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
+                            playDate: date
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
                             .update({
@@ -80,9 +84,10 @@ class SelectDate extends Component {
                             })
                     } else {
                         const newMessage = {
-                            sender: 'Social Hound',
+                            sender: 'PlayDate Request',
                             timeStamp: Date.now(),
-                            message: `${userName} wants to play on ${moment().format(this.state.date)}`
+                            message: `PlayDate with ${userName} on ${moment().format(this.state.date)}`,
+                            playDate: date,
                         }
                         db.collection("Messages").doc(id)
                             .set({
@@ -108,6 +113,31 @@ class SelectDate extends Component {
                 })
         }
     }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        let playDateRef;
+        let userID = this.props.user.uid
+        let userName = this.props.profile.data.ownerName
+        let dog = this.props.dog
+        let doggo = this
+
+        db.collection('PlayDates').add({
+            members: [userID, dog.ownerId],
+            userNames: [userName, dog.ownerName],
+            date: this.state.date,
+            createdAt: Date.now(),
+            confirmed: false,
+            location: null,
+            feedback: null,
+        })
+            .then(function (docRef) {
+                playDateRef = docRef.id
+                console.log(playDateRef);
+                doggo.createPlayDate(playDateRef)
+            })
+    }
+
 
     handleChange = (e) => {
         this.setState({

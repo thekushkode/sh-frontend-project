@@ -96,7 +96,7 @@ export default function MessagesWindow() {
                         </MDBDropdown>}
                     {/* // <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>} */}
                 </MDBCol>
-<!--             <ScrollToBottom> -->
+                {/*<ScrollToBottom>*/}
             </MDBRow>
             <div className="border border-info p-4 white">
                 <ul style={{ height: '315px', overflow: "scroll" }}>

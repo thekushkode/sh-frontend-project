@@ -9,6 +9,7 @@ import Post from "./Post";
 import FriendPost from "./FriendPost";
 import PhotoPost from "./PhotoPost";
 
+
 export default function PrivateFeed(props) {
 
     const db = firebase.firestore();
@@ -56,6 +57,7 @@ export default function PrivateFeed(props) {
                             }
                         }
                         )}
+
                     </MDBCol>
                 </MDBRow>
             </main>

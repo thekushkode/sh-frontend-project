@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import firebase from '../../firebase';
 
 
 
 export default function ConfirmDate({ content }) {
+    const user = useSelector(state => state.user)
 
 
     const db = firebase.firestore();
-    const [confirmedDate, setConfirmed] = React.useState(false)
+    const [confirmedDate, setConfirmed] = React.useState(true)
 
     useEffect(() => {
+        let userID = user.uid
         db.collection('PlayDates').doc(content.playDate)
             .get().then((doc) => {
                 if (doc.data()) {
-                    setConfirmed(doc.data().confirmed)
+                    if (doc.data().userID === false) {
+                        setConfirmed(false)
+                    }
                 }
             }
             )
@@ -26,6 +31,7 @@ export default function ConfirmDate({ content }) {
         db.collection('PlayDates').doc(content.playDate)
             .update({
                 confirmed: true,
+                [user.uid]: true,
             })
         setConfirmed(true)
 

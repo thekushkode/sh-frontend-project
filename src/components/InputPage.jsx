@@ -6,7 +6,6 @@ import SpinnerPage from "./Spinner";
 
 const db = firebase.firestore();
 
-
 function InputPage(props) {
     const [loading, setLoading] = useState(false)
     const [dogId, setDogId] = useState('');
@@ -49,7 +48,7 @@ function InputPage(props) {
         // Create a root reference
         let storageRef = firebase.storage().ref();
         let imgId = props.id;
-        let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + ".jpg?alt=media"
+        let imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + "?alt=media"
 
         // Create a reference to 'mountains.jpg'
         let ref = storageRef.child(imgId + "." + fileType);
@@ -57,7 +56,7 @@ function InputPage(props) {
 
         // the function could also take snapshot as an input
         ref.put(fileObj).then(function (imgRef) {
-            imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + ".jpg?alt=media"
+            imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + "?alt=media"
             props.onUpload(imgRef);
             console.log('Uploaded a blob or file!');
             setLoading(false);

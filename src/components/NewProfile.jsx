@@ -30,7 +30,8 @@ function randomString(length) {
 }
 
 const id = randomString(20)
-console.log(id) 
+// const id = db.collection('Dogs').doc()
+// console.log(id) 
 
 function NewProfile(props) {
   

@@ -40,7 +40,8 @@ class DogProfile extends Component {
       imgValue: '',
       allDogData: [],
       feedImgURL: '',
-      hidden: true
+      hidden: true,
+      // photos: this.props.profile.data.photos ? this.props.profile.data.photos : []
     };
   }
 
@@ -174,6 +175,9 @@ class DogProfile extends Component {
         feedImgURL: this.state.feedImgURL
       }
     }
+    if (this.state.feedImgURL) {
+      this.addPhoto()
+    }
     db.collection('Feed').add(newPost)
       .then(doc => {
         console.log(`${doc.id} created successfully`)
@@ -186,6 +190,28 @@ class DogProfile extends Component {
       feedImgURL: ''
       // imgValue: e.target.imgValue
     })
+  }
+
+  addPhoto = () => {
+    const db = firebase.firestore();
+    return db.collection("Dogs").doc(this.props.profile.id)
+      .update({
+        photos: firebase.firestore.FieldValue.arrayUnion(this.state.feedImgURL)
+      })
+      .then(() => {
+        // this.setState({
+        //   photos: [...this.state.photos, this.state.feedImgURL]
+        // })
+        if (this.props.profile.data.photos) {
+          this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
+        } else {
+          this.props.profile.data.photos = [this.state.feedImgURL]
+        }
+        this.setState({
+          feedImgURL: ''
+        })
+        // this.props.profile.data.photos = this.state.photos;
+      })
   }
 
   toggle = item => {
@@ -201,7 +227,7 @@ class DogProfile extends Component {
       <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
         <header style={{ marginBottom: '80px' }}>
         </header>
-        <main style={{ backgroundColor: '#e1f5fe'}}>
+        <main style={{ backgroundColor: '#e1f5fe' }}>
           <div id='profile-ex' className='mb-5 mt-4 mx-4'>
             <MDBContainer fluid>
               <MDBRow>
@@ -370,27 +396,26 @@ class DogProfile extends Component {
                       <h5 className='text-center mb-4'>
                         <strong>See more of {this.state.dogData.dogName} <span>📸</span></strong>
                       </h5>
-                      {/* {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
+                      {this.state.dogData.photos && this.state.dogData.photos.map((photo, index) => {
                         return (
-
                           <MDBCol md='4' className='mt-1' key={index}>
                             <MDBView hover>
-                              <a href={`/user/${dog.dogID}`}>
+                              <Link>
                                 <img
-                                  src={dog.avatar}
+                                  src={photo}
                                   className="img-fluid rounded-circle"
                                   alt="Dog Avatar"
                                   style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                 />
-                                <MDBMask className="flex-center flex-column" overlay="blue-strong">
+                                {/* <MDBMask className="flex-center flex-column" overlay="blue-strong">
                                   <p className="white-text"><strong>{dog.dogName}</strong></p>
                                   <p className="white-text"><strong>{dog.breed}</strong></p>
-                                </MDBMask>
-                              </a>
+                                </MDBMask> */}
+                              </Link>
                             </MDBView>
                           </MDBCol>
                           )
-                      })} */}
+                      })}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
@@ -431,7 +456,7 @@ class DogProfile extends Component {
 
                             <InputPage
                               value={this.state.feedImgURL}
-                              imgId={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
+                              id={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
                               onUpload={(imgRef) => {
                                 console.log('uploaded', imgRef);
                                 // setFeedImg('');
@@ -452,7 +477,7 @@ class DogProfile extends Component {
                   </MDBRow>
                   <MDBRow>
                     <MDBCol>
-                      <PrivateFeed location={this.props.location.pathname} key={window.location.pathname}/>
+                      <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

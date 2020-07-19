@@ -21,7 +21,7 @@ import FooterPage from './Footer';
 import PrivateFeed from './PrivateFeed';
 import firebase from '../firebase';
 import { Link } from 'react-router-dom'
-import SocialPage2 from './feed2';
+import ModalImage from "react-modal-image";
 import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
@@ -410,11 +410,12 @@ class DogProfile extends Component {
                             <MDBCol md='4' className='mt-1' key={index}>
                               <MDBView hover>
                                 <Link>
-                                  <img
-                                    src={photo}
+                                  <ModalImage
+                                    small={photo}
+                                    large={photo}
                                     className="img-fluid rounded-circle"
                                     alt="Dog Avatar"
-                                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+                                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto', backgroundColor: 'green' }}
                                   />
                                 </Link>
                               </MDBView>

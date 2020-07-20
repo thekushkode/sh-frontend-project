@@ -53,6 +53,7 @@ class SelectDate extends Component {
                     let filteredArray = usersArray.filter((message) => {
                         return message.data.members.length <= 2 && message.data.members.includes(`${dog.ownerId}`)
                     })
+                    console.log(filteredArray)
                     return filteredArray
                 })
                 .then((filteredArray) => {
@@ -61,7 +62,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            playDate: date
+                            playDate: date,
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
                             .update({
@@ -73,7 +74,9 @@ class SelectDate extends Component {
                                     data: {
                                         members: [userID, dog.ownerId],
                                         userNames: [userName, dog.ownerName],
-                                        messages: [...filteredArray[0].data.messages, newMessage]
+                                        messages: [...filteredArray[0].data.messages, newMessage],
+                                        senderAvatar: this.props.profile.data.avatar,
+                                        receiverAvatar: dog.avatar
                                     }
                                 }
                                 this.props.loadMessages(newReduxMessage)
@@ -92,7 +95,9 @@ class SelectDate extends Component {
                             .set({
                                 members: [userID, dog.ownerId],
                                 userNames: [userName, dog.ownerName],
-                                messages: [newMessage]
+                                messages: [newMessage],
+                                senderAvatar: this.props.profile.data.avatar,
+                                receiverAvatar: dog.avatar
                             })
                             .then(() => {
                                 const newReduxMessage = {
@@ -100,7 +105,9 @@ class SelectDate extends Component {
                                     data: {
                                         members: [userID, dog.ownerId],
                                         userNames: [userName, dog.ownerName],
-                                        messages: [newMessage]
+                                        messages: [newMessage],
+                                        senderAvatar: this.props.profile.data.avatar,
+                                        receiverAvatar: dog.avatar
                                     }
                                 }
                                 this.props.loadMessages(newReduxMessage)

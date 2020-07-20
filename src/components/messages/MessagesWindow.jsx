@@ -5,10 +5,6 @@ import firebase from '../../firebase';
 import '../Chat.css';
 import { MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
 
-
-
-
-
 export default function MessagesWindow() {
     const db = firebase.firestore();
     const messages = useSelector(state => state.messages)
@@ -19,7 +15,6 @@ export default function MessagesWindow() {
     let friends;
     let selectableFriends;
     if (messages.data) {
-        // console.log('messages.data')
         userNames = messages.data.userNames.filter((name) => name !== profile.data.ownerName)
         if (profile.data.friends) {
             friends = profile.data.friends.map((name) => name)

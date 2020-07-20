@@ -109,7 +109,7 @@ const Chat = () => {
 
 
 
-  // {console.log(allMessages)}
+  {console.log(allMessages)}
   const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>

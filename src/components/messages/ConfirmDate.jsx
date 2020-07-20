@@ -18,7 +18,6 @@ export default function ConfirmDate({ content }) {
             db.collection('PlayDates').doc(content.playDate)
                 .get().then((doc) => {
                     if (doc.data()) {
-                        console.log(doc.data())
                         if (doc.data()[userID] === false) {
                             setConfirmed(false)
                         } else {

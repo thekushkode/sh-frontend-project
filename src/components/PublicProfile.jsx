@@ -276,14 +276,20 @@ class UserProfile extends Component {
                           <h5>
                             {dog.bio}
                           </h5>
-                          <MDBBtn floating tag='a' href={dog.facebook} target='_blank' className='blue-gradient'>
-                            <MDBIcon fab icon='facebook' className='white-text'>
-                            </MDBIcon>
-                          </MDBBtn>
-                          <MDBBtn floating tag='a' href={dog.instagram} target='_blank' className='purple-gradient'>
-                            <MDBIcon fab icon='instagram' className='white-text'>
-                            </MDBIcon>
-                          </MDBBtn>
+                          {dog.facebook ? 
+                      <MDBBtn floating tag='a' href={dog.facebook} target='_blank' className='blue-gradient'>
+                        <MDBIcon fab icon='facebook' className='white-text'>
+                        </MDBIcon>
+                      </MDBBtn>
+                      : null}
+                      {dog.instagram ? 
+                      <MDBBtn floating tag='a' href={dog.instagram} target='_blank' className='purple-gradient'>
+                        <MDBIcon fab icon='instagram' className='white-text'>
+                        </MDBIcon>
+                      </MDBBtn>
+                      :
+                      null
+                      }
                         </MDBCardBody>
                       </MDBCard>
                       <MDBCard className='mb-4'>

@@ -35,35 +35,27 @@ export default function ChatListItem(props) {
     }
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
-
-    // const arrOfMessageParticipantIds = [];
+    let them = messageData.userNames.filter((name) => name !== profile.data.ownerName)
 
     return (
         <>
-            {messageData.userNames && messageData.userNames.map((name, index) => {
-                return (
-                    <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
-                        {/* {console.log(`${name}`)} */}
-                        <MDBAvatar
-                            src={messageData.senderAvatar === profile.data.avatar ? messageData.receiverAvatar : messageData.senderAvatar}
-                            alt='User Profile'
-                            tag='img'
-                            className='float-left mr-3'
-                        />
-
-                        <div className='d-flex justify-content-between mb-1'>
-                            <span className='mb-1'>
-                                <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong>
-                            </span>
-                            <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
-                        </div>
-                        <p className='text-truncate' style={{ textAlign: "left" }}>
-                            {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}
-                        </p>
-                    </MDBListGroupItem >
-                )
-            })}
+            <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
+                <MDBAvatar
+                    src={messageData.senderAvatar === profile.data.avatar ? messageData.receiverAvatar : messageData.senderAvatar}
+                    alt='User Profile'
+                    tag='img'
+                    className='float-left mr-3'
+                />
+                <div className='d-flex justify-content-between mb-1'>
+                    <span className='mb-1'>
+                        <strong>{them}</strong>
+                    </span>
+                    <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
+                </div>
+                <p className='text-truncate' style={{ textAlign: "left" }}>
+                    {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}
+                </p>
+            </MDBListGroupItem >
         </>
-
     )
 }

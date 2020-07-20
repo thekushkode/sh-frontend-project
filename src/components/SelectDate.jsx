@@ -4,6 +4,7 @@ import { loadMessages } from '../redux/actions'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser'
 import moment from 'moment'
 moment().format()
 
@@ -61,7 +62,8 @@ class SelectDate extends Component {
                         const newMessage = {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
-                            message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
+                            // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
+                            message: `${this.props.profile.data.dogName} has a PlayDate setup with &nbsp <a href="/user/${dog.dogID}">${dog.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
@@ -88,7 +90,8 @@ class SelectDate extends Component {
                         const newMessage = {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
-                            message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
+                            // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
+                            message: `${this.props.profile.data.dogName} has a PlayDate setup with &nbsp <a href="/user/${dog.dogID}">${dog.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(id)

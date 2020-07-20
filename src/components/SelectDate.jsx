@@ -63,7 +63,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            message: `${this.props.profile.data.dogName} has a PlayDate setup with &nbsp <a href="/user/${dog.dogID}">${dog.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
+                            message: `${dog.dogName} has a PlayDate setup with &nbsp <a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
@@ -91,7 +91,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            message: `${this.props.profile.data.dogName} has a PlayDate setup with &nbsp <a href="/user/${dog.dogID}">${dog.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
+                            message: `${dog.dogName} has a PlayDate setup with &nbsp <a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(id)

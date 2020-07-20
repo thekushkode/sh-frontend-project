@@ -140,8 +140,8 @@ const Chat = () => {
 
               <MessagesWindow />
 
-              <div className='row'>
-                <div className='col-md-12'>
+              <MDBRow>
+                <MDBCol>
                   <div className='d-flex flex-row'>
                     <form onSubmit={(e) => submitMessage(e)}
                       style={{
@@ -150,13 +150,11 @@ const Chat = () => {
                       <input
                         type='input'
                         // containerClass='chat-message-type'
-                        label='Type your message'
+                        placeholder='Type your message'
                         rows='1'
                         style={{
-                          marginLeft: '40px',
                           marginTop: '8px',
-                          minWidth: '350px',
-                          maxWidth: '450px',
+                          width: '50vw',
                           height: 37,
                           borderRadius: "20px",
                           border: '2px solid #dddddd',
@@ -178,11 +176,9 @@ const Chat = () => {
                         </button>
                       </div>
                     </form>
-
                   </div>
-                </div>
-
-              </div>
+                </MDBCol>
+              </MDBRow>
             </MDBCol>
           </MDBRow>
         </MDBContainer>

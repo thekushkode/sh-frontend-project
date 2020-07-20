@@ -12,14 +12,14 @@ const FooterPage = () => {
                             The World's First Social Network for Dogs!
                         </p>
                         <MDBContainer className='text-left'>
-                            <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' size="lg" tag="a" floating social="fb">
-                                <MDBIcon fab icon="facebook-f" />
+                            <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' size="lg" tag="a" floating social="fb">
+                                <MDBIcon fab icon="facebook-f" target='_blank' />
                             </MDBBtn>
-                            <MDBBtn href='https://twitter.com/socialhoundco' size="lg" tag="a" floating social="tw">
-                                <MDBIcon fab icon="twitter" />
+                            <MDBBtn href='https://twitter.com/socialhoundco' target='_blank' size="lg" tag="a" floating social="tw">
+                                <MDBIcon fab icon="twitter" target='_blank' />
                             </MDBBtn>
-                            <MDBBtn href='https://www.instagram.com/socialhound.co/' size="lg" tag="a" floating social="ins">
-                                <MDBIcon fab icon="instagram" />
+                            <MDBBtn href='https://www.instagram.com/socialhound.co.beta/' target='_blank' size="lg" tag="a" floating social="ins">
+                                <MDBIcon fab icon="instagram" target='_blank' />
                             </MDBBtn>
                         </MDBContainer>
                     </MDBCol>

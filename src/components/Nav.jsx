@@ -27,7 +27,7 @@ class NavbarPage extends Component {
             this.setState({
                 redirect: true
             })
-            alert('You have been logged out!')
+            // alert('You have been logged out!')
         }).catch(function (error) {
             console.log(error);
             alert('No User Logged In.')
@@ -82,17 +82,17 @@ class NavbarPage extends Component {
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>
-                                <MDBBtn href='https://twitter.com/socialhoundco' tag="a" color='white' size='sm' floating social="tw">
+                                <MDBBtn href='https://twitter.com/socialhoundco' target='_blank' tag="a" color='white' size='sm' floating social="tw">
                                     <MDBIcon fab icon="twitter" />
                                 </MDBBtn>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBBtn href='https://www.instagram.com/socialhound.co/' size="sm" tag="a" floating social="ins">
+                                <MDBBtn href='https://www.instagram.com/socialhound.co.beta/' target='_blank' size="sm" tag="a" floating social="ins">
                                     <MDBIcon fab icon="instagram" />
                                 </MDBBtn>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' size="sm" tag="a" floating social="fb">
+                                <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' size="sm" tag="a" floating social="fb">
                                     <MDBIcon fab icon="facebook-f" />
                                 </MDBBtn>
                             </MDBNavItem>

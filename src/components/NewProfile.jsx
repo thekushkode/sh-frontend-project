@@ -21,6 +21,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
+import { FormWithConstraints } from 'react-form-with-constraints'
+
+// const {FormWithConstraints,
+// FieldFeedbacks,
+// FieldFeedback
+// } = ReactFormWithConstraints;
 
 const db = firebase.firestore();
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
@@ -34,7 +40,7 @@ const id = randomString(20)
 // console.log(id) 
 
 function NewProfile(props) {
-  
+
   const dispatch = useDispatch();
   const history = useHistory();
   //grabs redux state
@@ -53,9 +59,11 @@ function NewProfile(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
+  const [facebook, setFacebook] = useState('');
+  const [instagram, setInstagram] = useState('');
   const [avatar, setAvatar] = useState(defaultDogImg);
-  
-  
+
+
   useEffect(() => {
     if (user.uid && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
@@ -81,15 +89,20 @@ function NewProfile(props) {
               setVaccines(dog.vaccines);
               setBio(dog.bio);
               setAvatar(dog.avatar)
+              setFacebook(dog.facebook ? dog.facebook : null)
+              setInstagram(dog.instagram ? dog.instagram : null)
               dispatch(setProfile(userProfile));
             }
           })
         })
     }
-  }, )
+  })
 
   const updateProfile = (e) => {
+    e.preventDefault()
+    console.log('clicked!')
     if (!dogId) {
+      console.log('hi')
       db.collection('Dogs').doc(id).set({
         dogName,
         ownerName,
@@ -104,14 +117,17 @@ function NewProfile(props) {
         vaccines,
         avatar,
         bio,
+        // facebook,
+        // instagram,
         ownerId: user.uid
       })
-      .then((querySnapshot) => {
-        let userProfile = { data: querySnapshot, id: id }
-        dispatch(setProfile(userProfile));
-        history.push(`/profile/${id}`);
-      })
-    } 
+        .then((querySnapshot) => {
+          let userProfile = { data: querySnapshot, id: id }
+          dispatch(setProfile(userProfile));
+          console.log('hello world')
+          history.push(`/profile/${id}`);
+        })
+    }
   }
 
   return (
@@ -134,84 +150,101 @@ function NewProfile(props) {
                     </div>
                   </div>
                   <MDBCardBody>
-                    <MDBRow>
-                      <MDBCol md='4'>
-                        <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} required />
-                      </MDBCol>
-                      <MDBCol md='4'>
-                        <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} required />
-                      </MDBCol>
-                      <MDBCol md='4'>
-                        <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} required />
-                      </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                      <MDBCol md='12'>
-                        <MDBInput type='text' name='street' value={street} label='Address' onChange={(e) => { e.target.value && setStreet(e.target.value) }} required />
-                      </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                      <MDBCol lg='4' md='12'>
-                        <MDBInput type='text' name='city' value={city} label='City' onChange={(e) => { setCity(e.target.value) }} required />
-                      </MDBCol>
-                      <MDBCol lg='4' md='6'>
-                        <MDBInput type='text' name='state' value={userState} label='State' onChange={(e) => { setUserState(e.target.value) }} required />
-                      </MDBCol>
-                      <MDBCol lg='4' md='6'>
-                        <MDBInput type='text' name='zipcode' value={zipcode} label='Postal code' onChange={(e) => { setZipcode(e.target.value) }} required />
-                      </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                      <MDBCol lg='3' md='6'>
-                        <MDBSelect label='Temperament' getValue={(e) => setTemperament(e[0])} value={temperament}>
-                          <MDBSelectInput value={temperament} required />
-                          <MDBSelectOptions>
-                            <MDBSelectOption name='Friendly' value='Friendly'>Friendly</MDBSelectOption>
-                            <MDBSelectOption name='Aggressive' value='Aggressive'>Aggressive</MDBSelectOption>
-                          </MDBSelectOptions>
-                        </MDBSelect>
-                      </MDBCol>
-                      <MDBCol lg='3' md='6'>
-                        <MDBSelect label='Size' getValue={(e) => setSize(e[0])} value={size}>
-                          <MDBSelectInput value={size} required />
-                          <MDBSelectOptions>
-                            <MDBSelectOption name='Small' value='Small'>Small</MDBSelectOption>
-                            <MDBSelectOption name='Medium' value='Medium'>Medium</MDBSelectOption>
-                            <MDBSelectOption name='Large' value='Large'>Large</MDBSelectOption>
-                            <MDBSelectOption name='X-Large' value='X-Large'>X-Large</MDBSelectOption>
-                          </MDBSelectOptions>
-                        </MDBSelect>
-                      </MDBCol>
-                      <MDBCol lg='3' md='6'>
-                        <MDBSelect label='Spayed or Neutered?' getValue={(e) => setSpayNeut(e[0])} value={spayNeut}>
-                          <MDBSelectInput value={spayNeut} required />
-                          <MDBSelectOptions>
-                            <MDBSelectOption name='True' value='True'>True</MDBSelectOption>
-                            <MDBSelectOption name='False' value='False'>False</MDBSelectOption>
-                          </MDBSelectOptions>
-                        </MDBSelect>
-                      </MDBCol>
-                      <MDBCol lg='3' md='6'>
-                        <MDBSelect label='Has Vaccines' getValue={(e) => setVaccines(e[0])} value={vaccines}>
-                          <MDBSelectInput value={vaccines} required />
-                          <MDBSelectOptions>
-                            <MDBSelectOption name='True' value='True'>True</MDBSelectOption>
-                            <MDBSelectOption name='False' value='False'>False</MDBSelectOption>
-                          </MDBSelectOptions>
-                        </MDBSelect>
-                      </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                      <MDBCol md='12' className='about-text'>
-                        <h4 className='text-muted text-left my-4'>
-                          <strong>Bio</strong>
-                        </h4>
-                        <MDBInput type='textarea' value={bio} label="Tell about your dog!" onChange={(e) => { setBio(e.target.value) }} required />
-                      </MDBCol>
-                    </MDBRow>
-                    <MDBBtn color='info' rounded onClick={updateProfile}>
-                      Save
+                    <form onSubmit={updateProfile}>
+                      <MDBRow>
+                        <MDBCol md='4'>
+                          <MDBInput type='text' name='ownername' className="form-control" value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} required />
+                        </MDBCol>
+                        <MDBCol md='4'>
+                          <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} required />
+                        </MDBCol>
+                        <MDBCol md='4'>
+                          <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} required />
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol md='12'>
+                          <MDBInput type='text' name='street' value={street} label='Address' onChange={(e) => { e.target.value && setStreet(e.target.value) }} />
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol lg='4' md='12'>
+                          <MDBInput type='text' name='city' value={city} label='City' onChange={(e) => { setCity(e.target.value) }} required />
+                        </MDBCol>
+                        <MDBCol lg='4' md='6'>
+                          <MDBInput type='text' name='state' value={userState} label='State' onChange={(e) => { setUserState(e.target.value) }} required />
+                        </MDBCol>
+                        <MDBCol lg='4' md='6'>
+                          <MDBInput type='text' name='zipcode' value={zipcode} label='Postal code' onChange={(e) => { setZipcode(e.target.value) }} required />
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol lg='3' md='6'>
+                          <MDBSelect label='Temperament' getValue={(e) => setTemperament(e[0])} value={temperament}>
+                            <MDBSelectInput value={temperament} required />
+                            <MDBSelectOptions>
+                              <MDBSelectOption name='Friendly' value='Friendly'>Friendly</MDBSelectOption>
+                              <MDBSelectOption name='Aggressive' value='Aggressive'>Aggressive</MDBSelectOption>
+                            </MDBSelectOptions>
+                          </MDBSelect>
+                        </MDBCol>
+                        <MDBCol lg='3' md='6'>
+                          <MDBSelect label='Size' getValue={(e) => setSize(e[0])} value={size}>
+                            <MDBSelectInput value={size} required />
+                            <MDBSelectOptions>
+                              <MDBSelectOption name='Small' value='Small'>Small</MDBSelectOption>
+                              <MDBSelectOption name='Medium' value='Medium'>Medium</MDBSelectOption>
+                              <MDBSelectOption name='Large' value='Large'>Large</MDBSelectOption>
+                              <MDBSelectOption name='X-Large' value='X-Large'>X-Large</MDBSelectOption>
+                            </MDBSelectOptions>
+                          </MDBSelect>
+                        </MDBCol>
+                        <MDBCol lg='3' md='6'>
+                          <MDBSelect label='Spayed or Neutered?' getValue={(e) => setSpayNeut(e[0])} value={spayNeut}>
+                            <MDBSelectInput value={spayNeut} required />
+                            <MDBSelectOptions>
+                              <MDBSelectOption name='True' value='True'>True</MDBSelectOption>
+                              <MDBSelectOption name='False' value='False'>False</MDBSelectOption>
+                            </MDBSelectOptions>
+                          </MDBSelect>
+                        </MDBCol>
+                        <MDBCol lg='3' md='6'>
+                          <MDBSelect label='Has Vaccines' getValue={(e) => setVaccines(e[0])} value={vaccines}>
+                            <MDBSelectInput value={vaccines} required />
+                            <MDBSelectOptions>
+                              <MDBSelectOption name='True' value='True'>True</MDBSelectOption>
+                              <MDBSelectOption name='False' value='False'>False</MDBSelectOption>
+                            </MDBSelectOptions>
+                          </MDBSelect>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol md='12' className='about-text'>
+                          <h5 className='text-muted text-left my-4'>
+                            <strong>Bio</strong>
+                          </h5>
+                          <MDBInput type='textarea' value={bio} label="Tell about your dog!" onChange={(e) => { setBio(e.target.value) }} required />
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol md='12' className='about-text'>
+                          <h5 className='text-muted text-left my-4'>
+                            <strong>Social Media</strong>
+                          </h5>
+                          <MDBRow className='mt-0 pt-0'>
+                            <MDBCol md='6' className='mt-0 pt-0'>
+                              <MDBInput type='text' value={instagram} label="Want to link your dog's Instagram?" onChange={(e) => { setInstagram(e.target.value) }} />
+                            </MDBCol>
+                            <MDBCol md='6'>
+                              <MDBInput type='text' value={facebook} label="Or Facebook?" onChange={(e) => { setFacebook(e.target.value) }} />
+                            </MDBCol>
+                          </MDBRow>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBBtn color='info' type='submit' rounded >
+                        Save
                     </MDBBtn>
+                    </form>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>

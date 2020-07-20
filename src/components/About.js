@@ -116,21 +116,21 @@ class About extends React.Component {
                   <p className='grey-text'>
                     Serial entrepreneur and dog enthusiast.
                   </p>
-                  <a href='https://github.com/thekushkode'>
+                  <a href='https://github.com/thekushkode' target='_blank'>
                     <MDBIcon
                       fab
                       icon='linkedin'
                       className='p-2 m-2 fa-lg fb-ic'
                     />
                   </a>
-                  <a href='https://github.com/thekushkode'>
+                  <a href='https://github.com/thekushkode' target='_blank'>
                     <MDBIcon
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg git-ic'
                     />
                   </a>
-                  <a href='!#'>
+                  <a href='!#' target='_blank'>
                     <MDBIcon
                       fab
                       icon='twitter'
@@ -158,21 +158,21 @@ class About extends React.Component {
                   <p className='grey-text'>
                     Coffee Enthusiast and Full-Stack guru.
                   </p>
-                  <a href='https://www.linkedin.com/in/jonathancox11/'>
+                  <a href='https://www.linkedin.com/in/jonathancox11/' target='_blank'>
                     <MDBIcon
                       fab
                       icon='linkedin'
                       className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  <a href='https://github.com/jonathancox1'>
+                  <a href='https://github.com/jonathancox1' target='_blank'>
                     <MDBIcon
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg git-ic'
                     />
                   </a>
-                  <a href='https://github.com/jonathancox1'>
+                  <a href='https://github.com/jonathancox1' target='_blank'>
                     <MDBIcon
                       fab
                       icon='twitter'
@@ -203,21 +203,21 @@ class About extends React.Component {
                   <p className='grey-text'>
                     Builder of back-ends, lover of rooftops.
                   </p>
-                  <a href='https://www.linkedin.com/in/grrtvnlw/'>
+                  <a href='https://www.linkedin.com/in/grrtvnlw/' target='_blank'>
                     <MDBIcon
                       fab
                       icon='linkedin'
                       className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  <a href='https://github.com/grrtvnlw'>
+                  <a href='https://github.com/grrtvnlw' target='_blank'>
                     <MDBIcon
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg git-ic'
                     />
                   </a>
-                  <a href='https://twitter.com/grrtvnlw'>
+                  <a href='https://twitter.com/grrtvnlw' target='_blank'>
                     <MDBIcon
                       fab
                       icon='twitter'
@@ -245,21 +245,21 @@ class About extends React.Component {
                   <p className='grey-text'>
                     Dog and Music Lover. Tinker-er.
                   </p>
-                  <a href='https://www.linkedin.com/in/loganblackstad/'>
+                  <a href='https://www.linkedin.com/in/loganblackstad/' target='_blank'>
                     <MDBIcon
                       fab
                       icon='linkedin'
                       className='p-2 m-2 fa-lg tw-ic'
                     />
                   </a>
-                  <a href='!#'>
+                  <a href='https://github.com/loganblackstad' target='_blank'>
                     <MDBIcon
                       fab
                       icon='github'
                       className='p-2 m-2 fa-lg li-ic'
                     />
                   </a>
-                  <a href='https://github.com/loganblackstad'>
+                  <a href='https://github.com/loganblackstad' target='_blank'>
                     <MDBIcon
                       fab
                       icon='twitter'

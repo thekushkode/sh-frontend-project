@@ -109,7 +109,7 @@ const Chat = () => {
 
 
 
-  {console.log(allMessages)}
+  // {console.log(allMessages)}
   const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
@@ -134,50 +134,14 @@ const Chat = () => {
               <MDBInput type='text' icon='search' label='Search Your Messages' containerClass="text-left" />
               <MDBListGroup>
                 {messages && messages.map((item) => <>{item}</>)}
-                <a href='#!'>
-                  <MDBListGroupItem hover>
-                    <MDBAvatar
-                      src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default.jpg?alt=media'
-                      alt='User Profile - Logan'
-                      tag='img'
-                      className='float-left mr-3'
-                    />
-                    <div className='d-flex justify-content-between mb-1 '>
-                      <span className='mb-1'>
-                        <strong>Gerrit</strong>
-                      </span>
-                      <small>Jul 13</small>
-                    </div>
-                    <p className='text-truncate' style={{ textAlign: "left" }}>
-                      Hey, I see that you too are a dog dad!  Do you think that your dog and my dog would want to ...
-                  </p>
-                  </MDBListGroupItem>
-                </a>
-                <a href='#!'>
-                  <MDBListGroupItem hover style={{ background: 'none', backgroundColor: 'none', borderColor: 'rgba(0,0,0,0.125) !important', border: '1px rgba(0,0,0,0.125) !important', color: '#495057' }}>
-                    <MDBAvatar
-                      src={imgRef}
-                      alt='User Profile - Logan'
-                      tag='img'
-                      className='float-left mr-3'
-                    />
-                    <div className='d-flex justify-content-between mb-1'>
-                      <span className='mb-1'>
-                        <strong>Rob</strong>
-                      </span>
-                      <small>Jul 10</small>
-                    </div>
-                    <p className='text-truncate' style={{ textAlign: "left" }}>
-                      Yo Bro!  I've got a friendly Rottweiler...
-                  </p>
-                  </MDBListGroupItem>
-                </a>
+
+
               </MDBListGroup>
             </MDBCol>
             <MDBCol lg='8' className='mt-lg-0 mt-5'>
 
               <MessagesWindow />
-              
+
               <div className='row'>
                 <div className='col-md-12'>
                   <div className='d-flex flex-row'>

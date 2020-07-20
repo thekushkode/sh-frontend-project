@@ -96,31 +96,31 @@ export default function MessagesWindow() {
                 </MDBCol>
             </MDBRow>
 
-                <div className="border border-info p-2 white">
-                    <ul style={{ height: '315px', overflow: "scroll" }}>
-                        {messages.data && messages.data.messages.map((item) => {
-                            let styles;
-                            let button;
-                            if (item.sender === 'Social Hound') {
-                                styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                            }
-                            else if (item.sender === 'PlayDate Request') {
-                                styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                                button = ['Confirm PlayDate']
-                            }
-                            else if (item.sender === profile.data.ownerName) {
-                                // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
-                                styles = ['end', '', 'text-white', 'rgb(0,153,255)']
-                            } else {
-                                // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
-                                styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
-                            }
-                            return (
-                                <SingleMessage formatting={styles} content={item} button={button} />
-                            )
-                        })}
-                    </ul>
-                </div>
+            <div className="border border-info p-2 white">
+                <ul style={{ height: '315px', overflow: "scroll" }}>
+                    {messages.data && messages.data.messages.map((item) => {
+                        let styles;
+                        let button;
+                        if (item.sender === 'Social Hound') {
+                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                        }
+                        else if (item.sender === 'PlayDate Request') {
+                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                            button = ['Confirm PlayDate']
+                        }
+                        else if (item.sender === profile.data.ownerName) {
+                            // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
+                            styles = ['end', '', 'text-white', 'rgb(0,153,255)']
+                        } else {
+                            // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
+                            styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
+                        }
+                        return (
+                            <SingleMessage formatting={styles} content={item} button={button} />
+                        )
+                    })}
+                </ul>
+            </div>
         </>
     )
 }

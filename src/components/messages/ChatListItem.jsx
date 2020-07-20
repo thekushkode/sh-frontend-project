@@ -48,22 +48,18 @@ export default function ChatListItem(props) {
     console.log(props);
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
-    // console.log(messageData.userNames)
-    // console.log(messageData)
 
     const arrOfMessageParticipantIds = [];
-
-    // let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
 
     {console.log(messageData)}
     return (
         <>
-            {messageData.userNames && messageData.userNames.map((name, index) => {
-                // {let imgURL = messageData.messages[0].senderAvatar }
+            {messageData.userNames && messageData.userNames.filter(user => {
+                return user !== profile.data.ownerName
+            }).map((name, index) => {
                 return (
                     <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
                         {console.log(`${name}`)}
-                        {/* {console.log(`https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/${arrOfMessageParticipantIds[1]}?alt=media`)} */}
                         <MDBAvatar
                             // User Profile Photo - this should match the profile link for the message recipient in FireBase
                             src={messageData.senderAvatar === profile.data.avatar ? messageData.receiverAvatar : messageData.senderAvatar}
@@ -75,7 +71,8 @@ export default function ChatListItem(props) {
 
                         <div className='d-flex justify-content-between mb-1'>
                             <span className='mb-1'>
-                                <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong>
+                                {/* <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong> */}
+                                <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ' ' : null}</strong>
                                 {console.log(messageData.messages)}
                                 {console.log(messageData.messages[lastMessage])}
                             </span>

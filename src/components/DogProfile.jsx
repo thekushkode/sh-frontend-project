@@ -410,7 +410,7 @@ class DogProfile extends Component {
                   <MDBCard className='mb-4'>
                     <MDBCardBody>
                       <h5 className='text-center mb-4'>
-                        <strong>See photos of {this.state.dogData.dogName} <span role='img' aria-label='camera'>📸</span></strong>
+                        <strong>{this.state.dogData.dogName}</strong>
                       </h5>
                       <MDBRow>
                         {this.state.dogData.photos && this.state.dogData.photos.map((photo, index) => {

@@ -10,8 +10,7 @@ import {
   MDBView,
   MDBMask,
   MDBAvatar,
-  MDBBtn,
-  MDBLink
+  MDBBtn
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
@@ -30,7 +29,6 @@ function randomString(length) {
 }
 
 const id = randomString(20)
-// console.log(id)
 
 class UserProfile extends Component {
   constructor(props) {
@@ -62,14 +60,12 @@ class UserProfile extends Component {
           this.setState({
             dogData: doggo
           })
-          // console.log(this.state.dogData)
         })
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     let dogID = this.props.match.params.dogId
-    // console.log(prevState)
     if (prevProps.match.params.dogId !== dogID || prevState.friends.length !== this.state.friends.length) {
       const db = firebase.firestore();
       let user = firebase.auth().currentUser;
@@ -85,7 +81,6 @@ class UserProfile extends Component {
             this.setState({
               dogData: doggo
             })
-            // console.log(this.state.dogData)
           })
       }
     }
@@ -110,7 +105,6 @@ class UserProfile extends Component {
           let filteredArray = usersArray.filter((message) => {
             return message.data.members.length <= 2 && message.data.members.includes(`${dog.ownerId}`)
           })
-          // console.log(filteredArray)
           return filteredArray
         })
         .then((filteredArray) => {
@@ -121,7 +115,8 @@ class UserProfile extends Component {
                 members: [userID, dog.ownerId],
                 userNames: [userName, dog.ownerName],
                 messages: [...filteredArray[0].data.messages],
-                senderAvatar: this.props.profile.data.avatar
+                senderAvatar: this.props.profile.data.avatar,
+                receiverAvatar: dog.avatar
               }
             }
             this.props.loadMessages(newReduxMessage)
@@ -131,14 +126,16 @@ class UserProfile extends Component {
               sender: 'Social Hound',
               timeStamp: Date.now(),
               message: `${userName} wants to chat`,
-              senderAvatar: dog.avatar
+              senderAvatar: this.props.profile.data.avatar,
+              receiverAvatar: dog.avatar
             }
             db.collection("Messages").doc(id)
               .set({
                 members: [userID, dog.ownerId],
                 userNames: [userName, dog.ownerName],
                 messages: [newMessage],
-                senderAvatar: dog.avatar
+                senderAvatar: this.props.profile.data.avatar,
+                receiverAvatar: dog.avatar
               })
               .then(() => {
                 const newReduxMessage = {
@@ -147,7 +144,8 @@ class UserProfile extends Component {
                     members: [userID, dog.ownerId],
                     userNames: [userName, dog.ownerName],
                     messages: [newMessage],
-                    senderAvatar: dog.avatar
+                    senderAvatar: this.props.profile.data.avatar,
+                    receiverAvatar: dog.avatar
                   }
                 }
                 this.props.loadMessages(newReduxMessage)
@@ -205,11 +203,9 @@ class UserProfile extends Component {
     if (userID) {
       return db.collection("Dogs").doc(this.props.profile.id)
         .update({
-          // friends: firebase.firestore.FieldValue.arrayRemove(dog)
           friends: filteredFriends
         })
         .then(() => {
-          // let filteredFriends = this.state.friends.filter(friend => friend.dogID !== dog.dogID)
           this.setState({
             friends: filteredFriends
           })
@@ -301,7 +297,6 @@ class UserProfile extends Component {
                             Chat
                           </MDBBtn>
                           <SelectDate dog={dog} />
-                          {/* {this.props.profile.data.friends && this.props.profile.data.friends.find(friend => friend.dogID === dog.dogID) ? */}
                           {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
                             <MDBBtn
                               className='blue-gradient'
@@ -309,7 +304,6 @@ class UserProfile extends Component {
                               onClick={() => this.removeFriend(dog)}
                             >
                               Unfriend {dog.dogName}
-                              {/* {this.state.followUnfollow ? <span>Unfollow {dog.dogName}</span> : <span>Follow {dog.dogName}</span>} */}
                             </MDBBtn>
                             :
                             <MDBBtn
@@ -318,7 +312,6 @@ class UserProfile extends Component {
                               onClick={() => this.addFriend(dog)}
                             >
                               Add {dog.dogName} as a friend
-                              {/* {this.state.followUnfollow ? <span>Follow {dog.dogName}</span> : <span>Unfollow {dog.dogName}</span>} */}
                             </MDBBtn>
                           }
                         </MDBCardBody>

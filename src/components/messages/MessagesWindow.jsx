@@ -20,7 +20,7 @@ export default function MessagesWindow() {
     let friends;
     let selectableFriends;
     if (messages.data) {
-        console.log('messages.data')
+        // console.log('messages.data')
         userNames = messages.data.userNames.filter((name) => name !== profile.data.ownerName)
         if (profile.data.friends) {
             friends = profile.data.friends.map((name) => name)
@@ -30,25 +30,25 @@ export default function MessagesWindow() {
 
 
     function selectUser() {
-        console.log(friends);
+        // console.log(friends);
         if (friends) {
             friends = profile.data.friends.map((name) => name)
             // create dropdown or other method for choosing between your friends
             // filter out any friends that are already included in conversation
             // check if user has friends array, some users do not
             selectableFriends = friends && friends.filter((friend) => messages.data.members.includes(friend.ownerId))
-            console.log(selectableFriends)
+            // console.log(selectableFriends)
             setAvailableFriends(selectableFriends)
             // save the clicked value to the variable chosenFriend
         }
     }
 
     function addFriend(chosenFriend) {
-        console.log(chosenFriend)
+        // console.log(chosenFriend)
         db.collection('Dogs').doc(chosenFriend).get()
             .then((doc) => {
                 let dogProfile = doc.data()
-                console.log(doc.data())
+                // console.log(doc.data())
                 db.collection("Messages").doc(messages.id)
                     .update({
                         members: [...messages.data.members, dogProfile.ownerId],

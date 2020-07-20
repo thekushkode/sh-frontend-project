@@ -29,7 +29,7 @@ function randomString(length) {
 }
 
 const id = randomString(20)
-console.log(id)
+// console.log(id)
 
 function AddNewDog(props) {
 
@@ -217,7 +217,7 @@ function AddNewDog(props) {
                   />
 
                   <InputPage value={avatar} id={id} onUpload={(imgRef) => {
-                    console.log('uploaded', imgRef)
+                    // console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />
                 </MDBCard>

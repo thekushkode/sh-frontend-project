@@ -42,7 +42,7 @@ class AddressMarker extends Component {
 
 
     render() {
-        console.log(this.state.dogData)
+        // console.log(this.state.dogData)
         if (this.state.dogData) {
             return (
                 <Marker {...this.props} position={this.state.dogData[0].geometry.location} />

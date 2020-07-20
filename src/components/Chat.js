@@ -63,8 +63,8 @@ const Chat = () => {
     } else {
       alert('not enter')
     }
-    console.log(target)
-    console.log(target.charCode)
+    // console.log(target)
+    // console.log(target.charCode)
   }
 
   function submitMessage(e) {

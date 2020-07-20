@@ -98,15 +98,11 @@ function App() {
     fetch('https://dog.ceo/api/breeds/image/random')
       .then(res => res.json())
       .then(res => {
-        console.log(res)
-        console.log(res.message)
+        // console.log(res)
+        // console.log(res.message)
         let url = res.message;
-        console.log(url);
+        // console.log(url);
         setUrl(url)
-        // this.setState({
-        //   data: res,
-        //   url: res.message
-        // })
       })
   }
 
@@ -180,15 +176,15 @@ function App() {
               <Route path='/newchat/' component={NewChat} />
               <Route><Redirect to="/newprofile" /></Route>
             </Switch>
-              <Konami action={easterEgg}>
-                <MDBContainer>
-                  <MDBRow>
-                    <MDBCol md='12'>
-                      <img src={`${url}`} className='img-fluid rounded-circle' alt='random dog' />
-                    </MDBCol>
-                  </MDBRow>
-                </MDBContainer>
-              </Konami>
+            <Konami action={easterEgg}>
+              <MDBContainer>
+                <MDBRow>
+                  <MDBCol md='12'>
+                    <img src={`${url}`} className='img-fluid rounded-circle' alt='random dog' />
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </Konami>
           </div>
         </Router>
       )

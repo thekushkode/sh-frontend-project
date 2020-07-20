@@ -123,7 +123,7 @@ function EditProfile(props) {
         facebook,
         instagram,
       }, { merge: true })
-      console.log(avatar);
+      // console.log(avatar);
     }
     history.push(`/profile/${props.match.params.dogId}`);
   }
@@ -223,20 +223,20 @@ function EditProfile(props) {
                       </MDBCol>
                     </MDBRow>
                     <MDBRow>
-                        <MDBCol md='12' className='about-text'>
-                          <h5 className='text-muted text-left my-4'>
-                            <strong>Connect:</strong> <small>Add social account URLs below!</small>
-                          </h5>
-                          <MDBRow className='mt-0 pt-0'>
-                            <MDBCol md='6' className='mt-0 pt-0'>
-                              <MDBInput type='text' value={instagram} label="Instagram" onChange={(e) => { setInstagram(e.target.value) }} />
-                            </MDBCol>
-                            <MDBCol md='6'>
-                              <MDBInput type='text' value={facebook} label="Facebook" onChange={(e) => { setFacebook(e.target.value) }} />
-                            </MDBCol>
-                          </MDBRow>
-                        </MDBCol>
-                      </MDBRow>
+                      <MDBCol md='12' className='about-text'>
+                        <h5 className='text-muted text-left my-4'>
+                          <strong>Connect:</strong> <small>Add social account URLs below!</small>
+                        </h5>
+                        <MDBRow className='mt-0 pt-0'>
+                          <MDBCol md='6' className='mt-0 pt-0'>
+                            <MDBInput type='text' value={instagram} label="Instagram" onChange={(e) => { setInstagram(e.target.value) }} />
+                          </MDBCol>
+                          <MDBCol md='6'>
+                            <MDBInput type='text' value={facebook} label="Facebook" onChange={(e) => { setFacebook(e.target.value) }} />
+                          </MDBCol>
+                        </MDBRow>
+                      </MDBCol>
+                    </MDBRow>
                     {/* <MDBBtn color='info' rounded onClick={updateProfile}> */}
                     <Link style={{ textDecoration: 'none' }} to={`/profile/${dogId}`}><MDBBtn color='info' rounded onClick={updateProfile}>save</MDBBtn></Link>
                     {/* </MDBBtn> */}
@@ -255,7 +255,7 @@ function EditProfile(props) {
                   />
 
                   <InputPage value={avatar} id={dogId} onUpload={(imgRef) => {
-                    console.log('uploaded', imgRef)
+                    // console.log('uploaded', imgRef)
                     setAvatar(imgRef)
                   }} />
                 </MDBCard>

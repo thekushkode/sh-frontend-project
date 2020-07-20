@@ -57,7 +57,7 @@ class PExtended extends Component {
             }
             data.push(dogData);
           })
-          console.log(data)
+          // console.log(data)
           doggo.setState({
             dogData: data,
             user: user
@@ -67,19 +67,19 @@ class PExtended extends Component {
   }
 
   handleChange = (e) => {
-    console.log('changed');
+    // console.log('changed');
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
     })
-    console.log(this.state.postValue);
-    console.log(this.state.imgValue);
+    // console.log(this.state.postValue);
+    // console.log(this.state.imgValue);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted');
-    console.log(e.target.postValue);
+    // console.log('submitted');
+    // console.log(e.target.postValue);
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
@@ -87,31 +87,19 @@ class PExtended extends Component {
   }
 
   toggle = item => {
-    console.log(item);
+    // console.log(item);
     this.setState({
       [item]: !this.state[item]
     });
   };
 
   render() {
-    console.log('testing')
+    // console.log('testing')
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
-          {/* <div id='profile-ex' className='mb-5 mt-4 mx-4'>
-            <div>
-              {this.state.dogData.length >= 1 && <h3>Select your doggo, {this.state.user.displayName}</h3>}
-              <ul>
-                {this.state.dogData.map((dog, index) => {
-                  return (
-                    <li><Link to={`/profile/${dog.dogId}`} key={index}>{dog.dogName}</Link></li>
-                  )
-                })
-                }
-              </ul>
-            </div> */}
 
           <MDBContainer fluid>
             <MDBRow>

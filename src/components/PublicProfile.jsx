@@ -30,7 +30,7 @@ function randomString(length) {
 }
 
 const id = randomString(20)
-console.log(id)
+// console.log(id)
 
 class UserProfile extends Component {
   constructor(props) {
@@ -50,7 +50,6 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let dogID = this.props.match.params.dogId
-    console.log('tyler is the man')
     if (user) {
       db.collection("Dogs")
         .doc(dogID)
@@ -63,7 +62,7 @@ class UserProfile extends Component {
           this.setState({
             dogData: doggo
           })
-          console.log(this.state.dogData)
+          // console.log(this.state.dogData)
         })
     }
   }
@@ -111,7 +110,7 @@ class UserProfile extends Component {
           let filteredArray = usersArray.filter((message) => {
             return message.data.members.length <= 2 && message.data.members.includes(`${dog.ownerId}`)
           })
-          console.log(filteredArray)
+          // console.log(filteredArray)
           return filteredArray
         })
         .then((filteredArray) => {
@@ -183,7 +182,7 @@ class UserProfile extends Component {
           }
           db.collection('Feed').add(newPost)
             .then(doc => {
-              console.log(`${doc.id} created successfully`)
+              // console.log(`${doc.id} created successfully`)
             })
             .catch(err => {
               console.error(err)
@@ -220,19 +219,19 @@ class UserProfile extends Component {
   }
 
   handleChange = (e) => {
-    console.log('changed');
+    // console.log('changed');
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
     })
-    console.log(this.state.postValue);
-    console.log(this.state.imgValue);
+    // console.log(this.state.postValue);
+    // console.log(this.state.imgValue);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted');
-    console.log(e.target.postValue);
+    // console.log('submitted');
+    // console.log(e.target.postValue);
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
@@ -240,7 +239,7 @@ class UserProfile extends Component {
   }
 
   toggle = item => {
-    console.log(item);
+    // console.log(item);
     this.setState({
       [item]: !this.state[item]
     });

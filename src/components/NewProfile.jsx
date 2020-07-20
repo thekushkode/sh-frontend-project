@@ -21,14 +21,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
-<<<<<<< HEAD
-=======
-
-// const {FormWithConstraints,
-// FieldFeedbacks,
-// FieldFeedback
-// } = ReactFormWithConstraints;
->>>>>>> master
 
 const db = firebase.firestore();
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
@@ -264,26 +256,6 @@ function NewProfile(props) {
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
-<<<<<<< HEAD
-              <MDBCol md='4' className='mb-r'>
-                <MDBCard className='profile-card'>
-                  <MDBAvatar
-                    tag='img'
-                    alt='Default Dog Profile Image'
-                    src={(avatar ? avatar : defaultDogImg)}
-                    style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
-                    className='rounded-circle z-depth-1-half mb-4 mt-4'
-                  />
-
-                  <InputPage value={avatar} id={id} onUpload={(imgRef) => {
-                    console.log('uploaded', imgRef)
-                    setAvatar(imgRef)
-                  }} />
-
-                </MDBCard>
-              </MDBCol>
-=======
->>>>>>> master
             </MDBRow>
           </section>
         </MDBContainer>

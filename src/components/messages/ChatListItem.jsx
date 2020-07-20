@@ -18,7 +18,7 @@ moment().format()
 
 export default function ChatListItem(props) {
     const reduxMessages = useSelector(state => state.messages)
-    //const user = useSelector(state => state.user)
+    const profile = useSelector(state => state.profile)
     let dispatch = useDispatch();
     const db = firebase.firestore();
 
@@ -66,7 +66,7 @@ export default function ChatListItem(props) {
                         {/* {console.log(`https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/${arrOfMessageParticipantIds[1]}?alt=media`)} */}
                         <MDBAvatar
                             // User Profile Photo - this should match the profile link for the message recipient in FireBase
-                            src={messageData.senderAvatar}
+                            src={messageData.senderAvatar === profile.data.avatar ? messageData.receiverAvatar : messageData.senderAvatar}
                             // src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/5rhZ4tsqyYFHTE2q3Qua.jpg?alt=media'
                             alt='User Profile'
                             tag='img'

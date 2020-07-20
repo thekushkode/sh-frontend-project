@@ -6,7 +6,7 @@ const FeaturesPage = () => {
     return (
         <section className="my-5">
             <h2 className="h1-responsive font-weight-bold text-center my-5">
-                Why is SocialHound so great?!
+                Why Is SocialHound So Great?!
             </h2>
             <p className="lead grey-text w-responsive text-center mx-auto mb-5">
                 Thanks for visiting SocialHound. Finally, dogs have a place to network, socialize, and flourish! See some of our features below or explore through the nav links above!
@@ -28,7 +28,7 @@ const FeaturesPage = () => {
                         <MDBCol xl="10" md="11" size="10">
                             <h5 className="font-weight-bold mb-3">Social</h5>
                             <p className="grey-text">
-                                Set up your pup's personal profile page, search for friends, share your photos, videos, and memories with your furends! Looking to branch out? Use our 'Find Furends' tool to locate other pups in your area!
+                                Set up your pup's personal profile page & share your photos and memories on your feed! Looking to branch out? Use our 'Find Furends' tool to locate other pups in your area!
                             </p>
                         </MDBCol>
                     </MDBRow>
@@ -50,7 +50,7 @@ const FeaturesPage = () => {
                         <MDBCol xl="10" md="11" size="10">
                             <h5 className="font-weight-bold mb-3">Discover</h5>
                             <p className="grey-text">
-                                A whole new world is at the tip of your paws. Find anything you and your dog need with our easy to access Discover tool. Search for dogs in your area, find dogparks, boarding locations, vets, and adoption locations in an instant!
+                                A whole new world is at the tip of your paws. Find anything you and your dog need with our easy to access Discover tool. Search for dogs in your area, find dog parks, boarding facilities, vets, and adoption locations in an instant!
                             </p>
                         </MDBCol>
                     </MDBRow>
@@ -61,7 +61,7 @@ const FeaturesPage = () => {
                         <MDBCol xl="10" md="11" size="10">
                             <h5 className="font-weight-bold mb-3">Flourish</h5>
                             <p className="grey-text">
-                                Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other dogs and animals gives many more opportunities to explore with your pup outside of your yard!
+                                Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other pups gives you and your pup many more opportunities for fun and adventures!
                             </p>
                         </MDBCol>
                     </MDBRow>

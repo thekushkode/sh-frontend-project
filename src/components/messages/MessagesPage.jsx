@@ -9,7 +9,6 @@ export default function MessagesPage() {
     // <allMessages> state variable, initialized to an empty object {}
     // <stuff> state variable, initialized to an empty string ''
     const [allMessages, setAllMessages] = React.useState({});
-    const [stuff, setStuff] = React.useState('');
     
     const db = firebase.firestore();
 

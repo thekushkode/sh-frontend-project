@@ -32,13 +32,14 @@ import NewProfile from './NewProfile';
 import AddNewDog from './AddNewDog';
 import PublicFeed from './PublicFeed';
 import Konami from 'react-konami-code';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn } from "mdbreact";
 import Adopt from './Adopt';
 
 function App() {
   let db = firebase.firestore();
   const dispatch = useDispatch();
   const [url, setUrl] = useState('');
+  const [modal, setModal] = useState(false);
 
   ReactGA.initialize('UA-172377344-1');
   ReactGA.pageview(window.location.pathname + window.location.search);
@@ -103,11 +104,16 @@ function App() {
         let url = res.message;
         console.log(url);
         setUrl(url)
+        setModal(true)
         // this.setState({
         //   data: res,
         //   url: res.message
         // })
       })
+  }
+
+  function toggle() {
+    setModal(!modal)
   }
 
   const authState = useSelector(state => state.auth);
@@ -139,11 +145,15 @@ function App() {
             </Switch>
             <Konami action={easterEgg}>
               <MDBContainer>
-                <MDBRow>
-                  <MDBCol md='12'>
-                    <img src={`${url}`} className='img-fluid rounded-circle' alt='random dog' />
-                  </MDBCol>
-                </MDBRow>
+                <MDBModal isOpen={modal} toggle={toggle}>
+                  <MDBModalHeader className='text-white aqua-gradient' toggle={toggle}>Look- A Dog!</MDBModalHeader>
+                  <MDBModalBody>
+                    <img src={`${url}`} className='img-fluid' alt='random dog' />
+                  </MDBModalBody>
+                  <MDBModalFooter>
+                    <MDBBtn className='btn-rounded purple-gradient' onClick={toggle}>Close</MDBBtn>
+                  </MDBModalFooter>
+                </MDBModal>
               </MDBContainer>
             </Konami>
           </div>
@@ -180,17 +190,21 @@ function App() {
               <Route path='/newchat/' component={NewChat} />
               <Route><Redirect to="/newprofile" /></Route>
             </Switch>
-              <Konami action={easterEgg}>
-                <MDBContainer>
-                  <MDBRow>
-                    <MDBCol md='12'>
-                      <img src={`${url}`} className='img-fluid rounded-circle' alt='random dog' />
-                    </MDBCol>
-                  </MDBRow>
-                </MDBContainer>
-              </Konami>
+            <Konami action={easterEgg} style={{}}>
+              <MDBContainer>
+                <MDBModal isOpen={modal} toggle={toggle}>
+                  <MDBModalHeader className='text-white aqua-gradient' toggle={toggle}>Look- A Dog!</MDBModalHeader>
+                  <MDBModalBody>
+                    <img src={`${url}`} className='img-fluid' alt='random dog' />
+                  </MDBModalBody>
+                  <MDBModalFooter>
+                    <MDBBtn className='btn-rounded purple-gradient' onClick={toggle}>Close</MDBBtn>
+                  </MDBModalFooter>
+                </MDBModal>
+              </MDBContainer>
+            </Konami>
           </div>
-        </Router>
+        </Router >
       )
     case UNINITIALIZED:
     case AUTHENTICATING:

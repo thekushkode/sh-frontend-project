@@ -113,24 +113,24 @@ function Home(props) {
                                             <div className='text-center mt-4 black-text'>
                                                 <MDBBtn color='indigo' type='submit'>Sign Up</MDBBtn>
                                                 <h6 className='white-text'>Already have an account? <Link to='/login'>Sign In!</Link></h6>
-                                                <h6 className='white-text'>By Signing Up You Agree To Our <Link to='/terms'>Terms of Service</Link></h6>
+                                                <p style={{ fontSize: '10px'}} className='white-text'>Upon signup you accept SocialHound's <Link to='/terms'>Terms of Service</Link> & <Link to='/privacy'>Privacy</Link> statements.</p>
                                                 <hr className='hr-light' />
                                                 <div className='text-center d-flex justify-content-center white-label'>
-                                                    <a href='https://twitter.com/socialhoundco' target='_blank' className='p-2 m-2'>
+                                                    <a href='https://twitter.com/socialhoundco' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
                                                         <MDBIcon
                                                             fab
                                                             icon='twitter'
                                                             className='white-text'
                                                         />
                                                     </a>
-                                                    <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' className='p-2 m-2'>
+                                                    <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
                                                         <MDBIcon
                                                             fab
                                                             icon='facebook'
                                                             className='white-text'
                                                         />
                                                     </a>
-                                                    <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank' className='p-2 m-2'>
+                                                    <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
                                                         <MDBIcon
                                                             fab
                                                             icon='instagram'

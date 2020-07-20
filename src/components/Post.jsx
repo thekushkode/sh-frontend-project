@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import moment from 'moment';
 import ModalImage from "react-modal-image";
 import firebase from '../firebase';
-import { Modal } from 'antd';
 import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
 moment().format()
 
@@ -12,9 +11,7 @@ export default function Post(props) {
 
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
     const db = firebase.firestore();
-
-    console.log(props);
-    console.log(props.data);
+    
     function handleIncrement() {
         db.collection('Feed').doc(props.data.docId).set({
             Likes: props.data.Likes + 1,

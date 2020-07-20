@@ -56,7 +56,6 @@ export class Furends extends Component {
     }
 
     componentDidMount() {
-        // this.handleFormSubmit()
         let friend = this.props.profile.data.city;
         let doggo = this
         db.collection("Dogs")
@@ -102,7 +101,7 @@ export class Furends extends Component {
             height: '100%',
             marginTop: '10px',
         };
-        const { users } = this.state;
+        // const { users } = this.state;
         const scrollContainerStyle = { width: "100%", maxHeight: "110px" };
         const containerStyle = {
             width: '100%',

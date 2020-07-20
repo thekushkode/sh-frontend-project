@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import {
-    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn
-} from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn } from "mdbreact";
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -27,7 +24,6 @@ class NavbarPage extends Component {
             this.setState({
                 redirect: true
             })
-            // alert('You have been logged out!')
         }).catch(function (error) {
             // console.log(error);
             alert('No User Logged In.')
@@ -36,13 +32,10 @@ class NavbarPage extends Component {
 
     render() {
 
-
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
 
-        // console.log(this.props.profile.id)
-        // console.log(this.props.profile.data.ownerName)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
@@ -104,7 +97,6 @@ class NavbarPage extends Component {
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        {/* <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem> */}
                                         <div style={{ marginLeft: '8px' }}>
                                             <p>logged in as:</p>
                                             <p style={{ marginTop: "-15px" }}><b>{this.props.profile.data.ownerName}</b></p>

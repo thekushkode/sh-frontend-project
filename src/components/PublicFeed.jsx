@@ -14,7 +14,6 @@ export default function PublicFeed() {
                 <div md='6' style={{ width: '50%' }}>
                     <h1>AdSense</h1>
                 </div>
-
             </main >
         </div >
     )

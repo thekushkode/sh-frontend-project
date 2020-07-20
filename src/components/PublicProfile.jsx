@@ -22,7 +22,7 @@ import ModalImage from "react-modal-image";
 import SelectDate from './SelectDate';
 import { loadMessages } from '../redux/actions'
 
-const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
+// const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
 
 function randomString(length) {
   return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
@@ -214,32 +214,32 @@ class UserProfile extends Component {
     }
   }
 
-  handleChange = (e) => {
-    // console.log('changed');
-    this.setState({
-      postValue: e.target.postValue,
-      imgValue: e.target.imgValue
-    })
-    // console.log(this.state.postValue);
-    // console.log(this.state.imgValue);
-  }
+  // handleChange = (e) => {
+  //   console.log('changed');
+  //   this.setState({
+  //     postValue: e.target.postValue,
+  //     imgValue: e.target.imgValue
+  //   })
+  //   console.log(this.state.postValue);
+  //   console.log(this.state.imgValue);
+  // }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log('submitted');
-    // console.log(e.target.postValue);
-    this.setState({
-      postValue: e.target.postValue,
-      imgValue: e.target.imgValue
-    });
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('submitted');
+  //   console.log(e.target.postValue);
+  //   this.setState({
+  //     postValue: e.target.postValue,
+  //     imgValue: e.target.imgValue
+  //   });
+  // }
 
-  toggle = item => {
-    // console.log(item);
-    this.setState({
-      [item]: !this.state[item]
-    });
-  };
+  // toggle = item => {
+  //   console.log(item);
+  //   this.setState({
+  //     [item]: !this.state[item]
+  //   });
+  // };
 
   render() {
     return (
@@ -257,7 +257,6 @@ class UserProfile extends Component {
                         <MDBAvatar
                           tag='img'
                           alt='dog photo'
-                          // width='20%'
                           src={dog.avatar}
                           style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
                           className='rounded-circle z-depth-1-half mb-4 d-flex justify-content-center align-items-center'
@@ -316,15 +315,12 @@ class UserProfile extends Component {
                           }
                         </MDBCardBody>
                       </MDBCard>
-
                       <MDBCard className='mb-4'>
                         <MDBCardBody className='text-center'>
                           <h5>
                             <strong>{dog.dogName}'s Badges</strong>
                           </h5>
-
                           <hr className='my-3' />
-
                           {dog.spayNeut &&
                             <MDBBtn
                               color='light-blue'

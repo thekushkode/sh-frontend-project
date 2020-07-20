@@ -42,13 +42,10 @@ class PExtended extends Component {
     let user = firebase.auth().currentUser;
     let doggo = this
     if (user) {
-      // console.log(user)
-      // User is signed in.
       db.collection("Dogs")
         .where('ownerId', '==', user.uid)
         .get()
         .then(function (querySnapshot) {
-          // console.log(querySnapshot)
           let data = [];
           querySnapshot.forEach(function (doc) {
             const dogData = {
@@ -57,7 +54,10 @@ class PExtended extends Component {
             }
             data.push(dogData);
           })
+<<<<<<< HEAD
+=======
           // console.log(data)
+>>>>>>> master
           doggo.setState({
             dogData: data,
             user: user
@@ -67,19 +67,28 @@ class PExtended extends Component {
   }
 
   handleChange = (e) => {
+<<<<<<< HEAD
+=======
     // console.log('changed');
+>>>>>>> master
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
     })
+<<<<<<< HEAD
+=======
     // console.log(this.state.postValue);
     // console.log(this.state.imgValue);
+>>>>>>> master
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
+=======
     // console.log('submitted');
     // console.log(e.target.postValue);
+>>>>>>> master
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
@@ -87,20 +96,29 @@ class PExtended extends Component {
   }
 
   toggle = item => {
+<<<<<<< HEAD
+=======
     // console.log(item);
+>>>>>>> master
     this.setState({
       [item]: !this.state[item]
     });
   };
 
   render() {
+<<<<<<< HEAD
+=======
     // console.log('testing')
+>>>>>>> master
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
           <MDBContainer fluid>
             <MDBRow>
               <MDBCol lg='4' md='4'>
@@ -108,7 +126,6 @@ class PExtended extends Component {
                   <MDBAvatar
                     tag='img'
                     alt='Rottweiler dog photo'
-                    // width='20%'
                     src={Ike}
                     className='rounded-circle z-depth-1-half mb-4 h-50 w-100 d-flex justify-content-center align-items-center'
                   />

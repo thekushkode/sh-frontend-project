@@ -3,8 +3,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBInput } from 'mdbreac
 
 const FormPage = () => {
 
-
-
     return (
         <MDBContainer>
             <MDBRow>

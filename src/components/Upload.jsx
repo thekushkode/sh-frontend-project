@@ -1,6 +1,7 @@
 import React from 'react'
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+
 function UploadFile() {
   const props = {
     name: 'file',
@@ -19,14 +20,16 @@ function UploadFile() {
       }
     },
   };
+
   return (
     <div>
       <Upload {...props}>
         <Button>
           <UploadOutlined /> Click to Upload
                 </Button>
-      </Upload>,
+      </Upload>
     </div>
   )
 }
+
 export default UploadFile;

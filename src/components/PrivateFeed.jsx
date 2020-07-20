@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { MDBRow, MDBCol } from "mdbreact";
-import GoogleAd from "./GoogleAd";
-//import AdSense from 'react-adsense';
 import { setPrivateFeed } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
@@ -18,7 +16,6 @@ export default function PrivateFeed(props) {
     const id = props.location.slice(props.location.length - 20)
 
     useEffect(() => {
-        console.log(id)
         db.collection('Feed').where('DogID', '==', `${id}`).orderBy("timestamp", "desc").limit(10).onSnapshot(
             querySnapshot => {
                 let privateArray = [];
@@ -29,7 +26,6 @@ export default function PrivateFeed(props) {
                     }
                     privateArray.push(feedData);
                 })
-                console.log(privateArray)
                 dispatch(setPrivateFeed(privateArray))
             });
     }, [])
@@ -41,10 +37,6 @@ export default function PrivateFeed(props) {
                 <MDBRow>
                     <MDBCol className='overflow-auto' style={{ height: '1600px' }}>
                         {privateFeed && privateFeed.map((item, index) => {
-
-                            // if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
-                            //     { console.log(props.location.slice(props.location.length - 20, props.location.length)) }
-                            //     { console.log(item.FriendID) }
                             switch (item.Type) {
                                 case 'Post':
                                     return <Post data={item} key={index} />
@@ -57,7 +49,6 @@ export default function PrivateFeed(props) {
                             }
                         }
                         )}
-
                     </MDBCol>
                 </MDBRow>
             </main>

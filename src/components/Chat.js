@@ -40,19 +40,6 @@ const Chat = () => {
 
   useEffect(() => {
     if (user) {
-      // db.collection("Messages")
-      //   .where("members", "array-contains", user.id)
-      //   .get()
-      //   .then(function (querySnapshot) {
-      //     let dataArray = []
-      //     querySnapshot.forEach(function (doc) {
-      //       console.log(doc.id, doc.data())
-      //       dataArray.push({ id: doc.id, data: doc.data() })
-      //     })
-      //     setAllMessages(dataArray)
-      //   })
-
-
       db.collection('Messages')
         .where('members', 'array-contains', user.uid)
         .onSnapshot((querySnapshot) => {
@@ -88,7 +75,8 @@ const Chat = () => {
     {
       message: chatInput,
       timeStamp: Date.now(),
-      sender: profile.data.ownerName
+      sender: profile.data.ownerName,
+      senderAvatar: profile.data.avatar
     }]
     db.collection('Messages').doc(reduxMessages.id).update({
       'messages': allNewMessages
@@ -121,7 +109,7 @@ const Chat = () => {
 
 
 
-  // console.log(allMessages)
+  {console.log(allMessages)}
   const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>

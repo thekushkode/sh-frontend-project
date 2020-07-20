@@ -115,8 +115,8 @@ function NewProfile(props) {
         vaccines,
         avatar,
         bio,
-        // facebook,
-        // instagram,
+        facebook,
+        instagram,
         ownerId: user.uid
       })
         .then((querySnapshot) => {
@@ -226,14 +226,14 @@ function NewProfile(props) {
                       <MDBRow>
                         <MDBCol md='12' className='about-text'>
                           <h5 className='text-muted text-left my-4'>
-                            <strong>Social Media</strong>
+                            <strong>Connect:</strong> <small>Add social account URLs below!</small>
                           </h5>
                           <MDBRow className='mt-0 pt-0'>
                             <MDBCol md='6' className='mt-0 pt-0'>
-                              <MDBInput type='text' value={instagram} label="Want to link your dog's Instagram?" onChange={(e) => { setInstagram(e.target.value) }} />
+                              <MDBInput type='text' value={instagram} label="Instagram" onChange={(e) => { setInstagram(e.target.value) }} />
                             </MDBCol>
                             <MDBCol md='6'>
-                              <MDBInput type='text' value={facebook} label="Or Facebook?" onChange={(e) => { setFacebook(e.target.value) }} />
+                              <MDBInput type='text' value={facebook} label="Facebook" onChange={(e) => { setFacebook(e.target.value) }} />
                             </MDBCol>
                           </MDBRow>
                         </MDBCol>

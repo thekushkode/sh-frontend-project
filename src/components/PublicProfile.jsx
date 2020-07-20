@@ -121,7 +121,8 @@ class UserProfile extends Component {
               data: {
                 members: [userID, dog.ownerId],
                 userNames: [userName, dog.ownerName],
-                messages: [...filteredArray[0].data.messages]
+                messages: [...filteredArray[0].data.messages],
+                senderAvatar: this.props.profile.data.avatar
               }
             }
             this.props.loadMessages(newReduxMessage)
@@ -130,13 +131,15 @@ class UserProfile extends Component {
             const newMessage = {
               sender: 'Social Hound',
               timeStamp: Date.now(),
-              message: `${userName} wants to chat`
+              message: `${userName} wants to chat`,
+              senderAvatar: dog.avatar
             }
             db.collection("Messages").doc(id)
               .set({
                 members: [userID, dog.ownerId],
                 userNames: [userName, dog.ownerName],
-                messages: [newMessage]
+                messages: [newMessage],
+                senderAvatar: dog.avatar
               })
               .then(() => {
                 const newReduxMessage = {
@@ -144,7 +147,8 @@ class UserProfile extends Component {
                   data: {
                     members: [userID, dog.ownerId],
                     userNames: [userName, dog.ownerName],
-                    messages: [newMessage]
+                    messages: [newMessage],
+                    senderAvatar: dog.avatar
                   }
                 }
                 this.props.loadMessages(newReduxMessage)
@@ -272,11 +276,13 @@ class UserProfile extends Component {
                           <h5>
                             {dog.bio}
                           </h5>
-                          <MDBBtn floating tag='a' className='blue-gradient'>
-                            <MDBIcon fab icon='facebook' className='white-text' />
+                          <MDBBtn floating tag='a' href={dog.facebook} target='_blank' className='blue-gradient'>
+                            <MDBIcon fab icon='facebook' className='white-text'>
+                            </MDBIcon>
                           </MDBBtn>
-                          <MDBBtn floating tag='a' className='purple-gradient'>
-                            <MDBIcon fab icon='instagram' className='white-text' />
+                          <MDBBtn floating tag='a' href={dog.instagram} target='_blank' className='purple-gradient'>
+                            <MDBIcon fab icon='instagram' className='white-text'>
+                            </MDBIcon>
                           </MDBBtn>
                         </MDBCardBody>
                       </MDBCard>

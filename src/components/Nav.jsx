@@ -96,15 +96,26 @@ class NavbarPage extends Component {
                                     <MDBDropdownToggle nav caret className='mt-2'>
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
-                                    <MDBDropdownMenu className="dropdown-default">
-                                        <div style={{ marginLeft: '8px' }}>
-                                            <p>logged in as:</p>
-                                            <p style={{ marginTop: "-15px" }}><b>{this.props.profile.data.ownerName}</b></p>
-                                        </div>
-                                        <hr />
-                                        <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
-                                        <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
-                                    </MDBDropdownMenu>
+                                    {this.props.profile.data ?
+                                        <MDBDropdownMenu className="dropdown-default">
+                                            <div style={{ marginLeft: '8px' }}>
+                                                <p>logged in as:</p>
+                                                <p style={{ marginTop: "-15px" }}><b>{this.props.profile.data.ownerName}</b></p>
+                                            </div>
+                                            <hr />
+                                            <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
+                                            <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
+                                        </MDBDropdownMenu>
+                                        :
+                                        <MDBDropdownMenu className="dropdown-default">
+                                            <div style={{ marginLeft: '8px' }}>
+                                                <p>logged in as:</p>
+                                            </div>
+                                            <hr />
+                                            <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
+                                            <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
+                                        </MDBDropdownMenu>
+                                    }
                                 </MDBDropdown>
                             </MDBNavItem>
                         </MDBNavbarNav>

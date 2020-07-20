@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import {
-    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn
-} from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn } from "mdbreact";
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 
@@ -22,7 +19,7 @@ class LoggedNav extends Component {
             this.setState({
                 redirect: true
             })
-            alert('You have been logged out!')
+            // alert('You have been logged out!')
         }).catch(function (error) {
             console.log(error);
             alert('No User Logged In.')
@@ -91,7 +88,6 @@ class LoggedNav extends Component {
                                     <MDBDropdownMenu className="dropdown-default">
                                         <MDBDropdownItem>signed in as:</MDBDropdownItem>
                                         <MDBDropdownItem>[blank]</MDBDropdownItem>
-                                        {/* <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem> */}
                                         <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>

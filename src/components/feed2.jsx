@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { MDBRow, MDBCol } from "mdbreact";
-import GoogleAd from "./GoogleAd";
-//import AdSense from 'react-adsense';
 import { setFeed } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';

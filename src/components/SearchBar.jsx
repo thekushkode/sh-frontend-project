@@ -3,7 +3,6 @@ import { MDBCol, MDBFormInline, MDBIcon } from 'mdbreact';
 const SearchPage = () => {
   return (
     <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
-      {/* <h1>Hello World</h1> */}
     <MDBCol md="6">
       <MDBFormInline className="md-form">
         <MDBIcon icon="search" />

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MDBRow, MDBCol, MDBJumbotron } from "mdbreact";
-import GoogleAd from "./GoogleAd";
-//import AdSense from 'react-adsense';
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import moment from 'moment';
 moment().format();
@@ -10,7 +8,7 @@ moment().format();
 export default function PlayDates(props) {
 
   const db = firebase.firestore();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [playDate, setPlayDate] = useState([])
 
   useEffect(() => {

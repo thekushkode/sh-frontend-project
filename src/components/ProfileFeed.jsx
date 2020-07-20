@@ -1,12 +1,9 @@
 import React from "react";
 import { MDBRow, MDBCard, MDBCardBody, MDBIcon } from "mdbreact";
-//import AdSense from 'react-adsense';
 
 const ProfileFeed = () => {
-    //for header if needed : style={{ marginBottom: '100px' }}
     return (
             <MDBCard
-
                 className="mb-5 px-5 pt-4 fluid"
                 style={{ fontWeight: 300, maxWidth: 2000 }}
             >

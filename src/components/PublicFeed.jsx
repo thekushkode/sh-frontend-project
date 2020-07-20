@@ -1,6 +1,5 @@
 import React from 'react'
 import SocialPage2 from './feed2'
-import { MDBRow, MDBCol, MDBContainer } from 'mdbreact';
 
 export default function PublicFeed() {
     return (
@@ -15,7 +14,6 @@ export default function PublicFeed() {
                 <div md='6' style={{ width: '50%' }}>
                     <h1>AdSense</h1>
                 </div>
-
             </main >
         </div >
     )

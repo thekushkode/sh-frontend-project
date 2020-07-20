@@ -6,12 +6,6 @@
     min-height: 100vh;
 }
 
-/* #classicformpage .gradient {
-    background: -webkit-linear-gradient( 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
-    background: -webkit-gradient( linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%));
-    background: linear-gradient( 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
-} */
-
 #classicformpage .card {
     background-color: rgba(0, 188, 212, 0.2);
 }
@@ -23,16 +17,6 @@
 #classicformpage .navbar {
     transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
-
-/* #classicformpage .top-nav-collapse {
-    background: #424f95 !important;
-} */
-
-/* @media (max-width: 768px) {
-    #classicformpage .navbar:not(.top-nav-collapse) {
-        background: #424f95 !important;
-    }
-} */
 
 #classicformpage label {
     color: #fff !important;

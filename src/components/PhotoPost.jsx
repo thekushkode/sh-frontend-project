@@ -7,9 +7,8 @@ moment().format()
 
 export default function PhotoPost(props) {
 
-  let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
+  const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
   const db = firebase.firestore();
-
 
     function handleIncrement() {
         db.collection('Feed').doc(props.data.docId).set({

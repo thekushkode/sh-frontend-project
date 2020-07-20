@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBDatePickerV5, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { loadMessages } from '../redux/actions'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
@@ -53,7 +53,6 @@ class SelectDate extends Component {
                     let filteredArray = usersArray.filter((message) => {
                         return message.data.members.length <= 2 && message.data.members.includes(`${dog.ownerId}`)
                     })
-                    console.log(filteredArray)
                     return filteredArray
                 })
                 .then((filteredArray) => {
@@ -135,7 +134,6 @@ class SelectDate extends Component {
         })
             .then(function (docRef) {
                 playDateRef = docRef.id
-                console.log(playDateRef);
                 doggo.createPlayDate(playDateRef)
             })
     }

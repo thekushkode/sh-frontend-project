@@ -107,12 +107,9 @@ const Chat = () => {
   // Note that in the URL, characters are URL escaped!
   // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
 
-
-
-  {console.log(allMessages)}
-  const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
+  const messages = allMessages && allMessages.map((item) => {
     return (
-      <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
+      <ChatListItem id={item} />
     )
   })
 

@@ -132,7 +132,7 @@ const Chat = () => {
           <MDBRow>
             <MDBCol lg='4'>
               <MDBInput type='text' icon='search' label='Search Your Messages' containerClass="text-left" />
-              <MDBListGroup style={{ height: '70vh', overflow: "scroll" }}>
+              <MDBListGroup style={{ maxHeight: '70vh', overflow: "scroll", margin: 'auto' }}>
                 {messages && messages.map((item) => <>{item}</>)}
               </MDBListGroup>
             </MDBCol>

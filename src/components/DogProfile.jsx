@@ -266,11 +266,13 @@ class DogProfile extends Component {
                       <h5>
                         {this.state.dogData.bio}
                       </h5>
-                      <MDBBtn floating tag='a' className='blue-gradient'>
-                        <MDBIcon fab icon='facebook' className='white-text' />
+                      <MDBBtn floating tag='a' href={this.state.dogData.facebook} target='_blank' className='blue-gradient'>
+                        <MDBIcon fab icon='facebook' className='white-text'>
+                        </MDBIcon>
                       </MDBBtn>
-                      <MDBBtn floating tag='a' className='purple-gradient'>
-                        <MDBIcon fab icon='instagram' className='white-text' />
+                      <MDBBtn floating tag='a' href={this.state.dogData.instagram} target='_blank' className='purple-gradient'>
+                        <MDBIcon fab icon='instagram' className='white-text'>
+                        </MDBIcon>
                       </MDBBtn>
                     </MDBCardBody>
                   </MDBCard>

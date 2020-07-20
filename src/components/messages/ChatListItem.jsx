@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadMessages } from '../../redux/actions/index.js'
 import firebase from '../../firebase';
 import moment from 'moment'
+import { message } from 'antd';
 moment().format()
 
 
@@ -54,17 +55,19 @@ export default function ChatListItem(props) {
 
     // let userNames = messageData.userNames.filter((name) => name !== user.data.displayName)
 
+    {console.log(messageData)}
     return (
-
         <>
             {messageData.userNames && messageData.userNames.map((name, index) => {
+                // {let imgURL = messageData.messages[0].senderAvatar }
                 return (
                     <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
-
+                        {console.log(`${name}`)}
+                        {/* {console.log(`https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/${arrOfMessageParticipantIds[1]}?alt=media`)} */}
                         <MDBAvatar
                             // User Profile Photo - this should match the profile link for the message recipient in FireBase
-                            // src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + arrOfMessageParticipantIds[1] + '?alt=media'
-                            src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/jon.gif?alt=media'
+                            src={messageData.senderAvatar}
+                            // src='https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/5rhZ4tsqyYFHTE2q3Qua.jpg?alt=media'
                             alt='User Profile'
                             tag='img'
                             className='float-left mr-3'

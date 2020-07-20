@@ -46,6 +46,8 @@ function EditProfile(props) {
   const [spayNeut, setSpayNeut] = useState('');
   const [vaccines, setVaccines] = useState('');
   const [bio, setBio] = useState('');
+  const [facebook, setFacebook] = useState('');
+  const [instagram, setInstagram] = useState('');
   const [avatar, setAvatar] = useState(defaultDogImg);
 
 
@@ -73,6 +75,8 @@ function EditProfile(props) {
             setSpayNeut(dog.spayNeut);
             setVaccines(dog.vaccines);
             setBio(dog.bio);
+            setFacebook(dog.facebook ? dog.facebook : null)
+            setInstagram(dog.instagram ? dog.instagram : null)
             setAvatar(dog.avatar)
             setProfile(dog);
           }
@@ -97,6 +101,8 @@ function EditProfile(props) {
         vaccines,
         avatar,
         bio,
+        facebook,
+        instagram,
         ownerId: user.uid
       })
     } else {
@@ -113,7 +119,9 @@ function EditProfile(props) {
         spayNeut,
         vaccines,
         avatar,
-        bio
+        bio,
+        facebook,
+        instagram,
       }, { merge: true })
       console.log(avatar);
     }
@@ -214,6 +222,21 @@ function EditProfile(props) {
                         <MDBInput type='textarea' value={bio} label="Tell about your dog!" onChange={(e) => { setBio(e.target.value) }} />
                       </MDBCol>
                     </MDBRow>
+                    <MDBRow>
+                        <MDBCol md='12' className='about-text'>
+                          <h5 className='text-muted text-left my-4'>
+                            <strong>Connect:</strong> <small>Add social account URLs below!</small>
+                          </h5>
+                          <MDBRow className='mt-0 pt-0'>
+                            <MDBCol md='6' className='mt-0 pt-0'>
+                              <MDBInput type='text' value={instagram} label="Instagram" onChange={(e) => { setInstagram(e.target.value) }} />
+                            </MDBCol>
+                            <MDBCol md='6'>
+                              <MDBInput type='text' value={facebook} label="Facebook" onChange={(e) => { setFacebook(e.target.value) }} />
+                            </MDBCol>
+                          </MDBRow>
+                        </MDBCol>
+                      </MDBRow>
                     {/* <MDBBtn color='info' rounded onClick={updateProfile}> */}
                     <Link style={{ textDecoration: 'none' }} to={`/profile/${dogId}`}><MDBBtn color='info' rounded onClick={updateProfile}>save</MDBBtn></Link>
                     {/* </MDBBtn> */}

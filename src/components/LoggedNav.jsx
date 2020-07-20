@@ -89,7 +89,9 @@ class LoggedNav extends Component {
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem>
+                                        <MDBDropdownItem>signed in as:</MDBDropdownItem>
+                                        <MDBDropdownItem>[blank]</MDBDropdownItem>
+                                        {/* <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem> */}
                                         <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>

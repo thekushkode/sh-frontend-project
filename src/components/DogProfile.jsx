@@ -26,6 +26,18 @@ import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 import PlayDates from './PlayDates';
+// import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
+{/* <MDBContainer>
+  <FacebookShareButton>
+    <FacebookIcon />
+  </FacebookShareButton>
+  <TwitterShareButton>
+    <TwitterIcon />
+  </TwitterShareButton>
+  <EmailShareButton>
+    <EmailIcon />
+  </EmailShareButton>
+</MDBContainer> */}
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 const defaultFeedImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/social-hound-logo-512.png?alt=media'
@@ -404,7 +416,7 @@ class DogProfile extends Component {
                   <MDBCard className='mb-4'>
                     <MDBCardBody>
                       <h5 className='text-center mb-4'>
-                        <strong>See photos of {this.state.dogData.dogName} <span>📸</span></strong>
+                        <strong>See photos of {this.state.dogData.dogName} <span role='img' aria-label='camera'>📸</span></strong>
                       </h5>
                       <MDBRow>
                         {this.state.dogData.photos && this.state.dogData.photos.map((photo, index) => {
@@ -490,7 +502,7 @@ class DogProfile extends Component {
                         <PlayDates id={this.state.user.uid} />
                         :
                         <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
-                        }
+                      }
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>

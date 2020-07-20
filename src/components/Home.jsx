@@ -98,9 +98,6 @@ function Home(props) {
                                                 onChange={(e) => { setEmail(e.target.value) }}
                                                 required
                                             />
-                                            <small id="emailHelp" className="form-text">
-                                                We'll never share your email with anyone else.
-                                        </small>
                                             <MDBInput
                                                 className='white-text form-control'
                                                 iconClass='white-text'
@@ -116,6 +113,7 @@ function Home(props) {
                                             <div className='text-center mt-4 black-text'>
                                                 <MDBBtn color='indigo' type='submit'>Sign Up</MDBBtn>
                                                 <h6 className='white-text'>Already have an account? <Link to='/login'>Sign In!</Link></h6>
+                                                <h6 className='white-text'>By Signing Up You Agree To Our <Link to='/terms'>Terms of Service</Link></h6>
                                                 <hr className='hr-light' />
                                                 <div className='text-center d-flex justify-content-center white-label'>
                                                     <a href='https://twitter.com/socialhoundco' target='_blank' className='p-2 m-2'>

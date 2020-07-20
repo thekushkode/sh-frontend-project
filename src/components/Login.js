@@ -69,37 +69,38 @@ class Login extends React.Component {
                           Login
                         </h3>
                       </div>
-                      <MDBInput
-                        type='email'
-                        name='email'
-                        label='Email'
-                        icon='envelope'
-                        iconClass='white-text'
-                        containerClass="text-left"
-                        className='white-text'
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                      />
-                      <small id="emailHelp" className="form-text">
-                        We'll never share your email with anyone else.
-                      </small>
-                      <MDBInput
-                        type='password'
-                        name='password'
-                        label='Password'
-                        icon='lock'
-                        iconClass='white-text'
-                        containerClass="text-left"
-                        className='white-text'
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                      />
-                      <div className='text-center mt-3 black-text'>
-                        <MDBBtn className='blue-gradient' size='lg' onClick={this.userSignIn}>
-                          Sign In
+                      <form onClick={this.userSignIn}>
+                        <MDBInput
+                          type='email'
+                          name='email'
+                          label='Email'
+                          icon='envelope'
+                          iconClass='white-text'
+                          containerClass="text-left"
+                          className='white-text'
+                          value={this.state.email}
+                          onChange={this.handleChange}
+                          required
+                        />
+                        <MDBInput
+                          type='password'
+                          name='password'
+                          label='Password'
+                          icon='lock'
+                          iconClass='white-text'
+                          containerClass="text-left"
+                          className='white-text'
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                          required
+                        />
+                        <div className='text-center mt-3 black-text'>
+                          <MDBBtn className='blue-gradient' size='lg' type='submit'>
+                            Sign In
                         </MDBBtn>
-                        <hr />
-                      </div>
+                          <hr />
+                        </div>
+                      </form>
                       <div className='inline-ul text-center d-flex justify-content-center'>
                         <a href='https://twitter.com/socialhoundco' target='_blank'>
                           <MDBIcon

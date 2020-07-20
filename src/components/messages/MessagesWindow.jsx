@@ -5,7 +5,6 @@ import firebase from '../../firebase';
 import '../Chat.css';
 import { css } from 'glamor';
 import { MDBBtn, MDBIcon, MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 
 
@@ -69,7 +68,6 @@ export default function MessagesWindow() {
 
     return (
         <>
-            {/* <ScrollToBottom> */}
             <MDBRow className='d-flex justify-content-center align-items-center'>
                 <MDBCol>
                     {userNames && userNames.map((name, index) => {
@@ -79,11 +77,11 @@ export default function MessagesWindow() {
                             </h5>
                         )
                     })}
-                  </MDBCol>
+                </MDBCol>
                 <MDBCol>
                     {friends &&
                         <MDBDropdown>
-                            <MDBDropdownToggle caret onClick={() => selectUser()}>Add Friend To Chat</MDBDropdownToggle>
+                            <MDBDropdownToggle className='purple-gradient btn-rounded' caret onClick={() => selectUser()}>Add Friend To Chat</MDBDropdownToggle>
                             <MDBDropdownMenu basic >
                                 {availableFriends && availableFriends.map((friend) => {
                                     return (
@@ -96,35 +94,33 @@ export default function MessagesWindow() {
                         </MDBDropdown>}
                     {/* // <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>} */}
                 </MDBCol>
-                {/*<ScrollToBottom>*/}
             </MDBRow>
-            <div className="border border-info p-4 white">
-                <ul style={{ height: '315px', overflow: "scroll" }}>
-                    {messages.data && messages.data.messages.map((item) => {
-                        let styles;
-                        let button;
-                        if (item.sender === 'Social Hound') {
-                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                        }
-                        else if (item.sender === 'PlayDate Request') {
-                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                            button = ['Confirm PlayDate']
-                        }
-                        else if (item.sender === profile.data.ownerName) {
-                            // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
-                            styles = ['end', '', 'text-white', 'rgb(0,153,255)']
-                        } else {
-                            // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
-                            styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
-                        }
-                        return (
-                            <SingleMessage formatting={styles} content={item} button={button} />
-                        )
-                    })}
-                </ul>
-            </div>
 
-            {/* </ScrollToBottom> */}
+                <div className="border border-info p-2 white">
+                    <ul style={{ height: '315px', overflow: "scroll" }}>
+                        {messages.data && messages.data.messages.map((item) => {
+                            let styles;
+                            let button;
+                            if (item.sender === 'Social Hound') {
+                                styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                            }
+                            else if (item.sender === 'PlayDate Request') {
+                                styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                                button = ['Confirm PlayDate']
+                            }
+                            else if (item.sender === profile.data.ownerName) {
+                                // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
+                                styles = ['end', '', 'text-white', 'rgb(0,153,255)']
+                            } else {
+                                // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
+                                styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
+                            }
+                            return (
+                                <SingleMessage formatting={styles} content={item} button={button} />
+                            )
+                        })}
+                    </ul>
+                </div>
         </>
     )
 }

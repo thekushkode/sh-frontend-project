@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron, MDBLink } from "mdbreact";
+import { MDBIcon, MDBJumbotron } from "mdbreact";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import firebase from '../firebase';
@@ -14,6 +14,10 @@ export default function FriendPost(props) {
     db.collection('Feed').doc(props.data.docId).set({
       Likes: props.data.Likes + 1,
     }, { merge: true })
+<<<<<<< HEAD
+=======
+    // console.log(props.data)
+>>>>>>> master
   }
 
   return (

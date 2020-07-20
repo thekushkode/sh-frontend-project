@@ -21,7 +21,7 @@ class LoggedNav extends Component {
             })
             // alert('You have been logged out!')
         }).catch(function (error) {
-            console.log(error);
+            // console.log(error);
             alert('No User Logged In.')
         });
     }

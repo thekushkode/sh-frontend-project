@@ -21,6 +21,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setProfile } from '../redux/actions';
 import { useHistory } from "react-router-dom";
 import InputPage from './InputPage';
+<<<<<<< HEAD
+=======
+
+// const {FormWithConstraints,
+// FieldFeedbacks,
+// FieldFeedback
+// } = ReactFormWithConstraints;
+>>>>>>> master
 
 const db = firebase.firestore();
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
@@ -128,7 +136,7 @@ function NewProfile(props) {
         <MDBContainer fluid className='mb-5'>
           <section className='section team-section mb-5'>
             <MDBRow center className='text-center'>
-              <MDBCol md='8' className='mb-r'>
+              <MDBCol md='12' className='mb-r'>
                 <MDBCard cascade className='cascading-admin-card user-card'>
                   <div className='admin-up d-flex justify-content-start'>
                     <div className='data'>
@@ -141,10 +149,10 @@ function NewProfile(props) {
                     <form onSubmit={updateProfile}>
                       <MDBRow>
                         <MDBCol md='4'>
-                          <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} required />
+                          <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { setOwnerName(e.target.value) }}} required />
                         </MDBCol>
                         <MDBCol md='4'>
-                          <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} required />
+                          <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { setDogName(e.target.value) }}} required />
                         </MDBCol>
                         <MDBCol md='4'>
                           <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} required />
@@ -211,7 +219,7 @@ function NewProfile(props) {
                           <h5 className='text-muted text-left my-4'>
                             <strong>Bio</strong>
                           </h5>
-                          <MDBInput type='textarea' value={bio} label="Tell about your dog!" onChange={(e) => { setBio(e.target.value) }} required />
+                          <MDBInput type='textarea' value={bio} label="Tell us about your dog!" onChange={(e) => { setBio(e.target.value) }} required />
                         </MDBCol>
                       </MDBRow>
                       <MDBRow>
@@ -229,13 +237,34 @@ function NewProfile(props) {
                           </MDBRow>
                         </MDBCol>
                       </MDBRow>
-                      <MDBBtn color='info' type='submit' rounded >
+                      <MDBRow>
+                        <MDBCol md='12' className='mb-r'>
+                          <MDBCard className='profile-card'>
+                            <MDBAvatar
+                              tag='img'
+                              alt='Default Dog Profile Image'
+                              // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
+                              src={(avatar ? avatar : defaultDogImg)}
+                              style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
+                              className='rounded-circle z-depth-1-half mt-1'
+                            />
+
+                            <InputPage value={avatar} id={id} onUpload={(imgRef) => {
+                              console.log('uploaded', imgRef)
+                              setAvatar(imgRef)
+                            }} />
+
+                          </MDBCard>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBBtn className='blue-gradient btn-rounded mt-1' type='submit' rounded >
                         Save
                     </MDBBtn>
                     </form>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
+<<<<<<< HEAD
               <MDBCol md='4' className='mb-r'>
                 <MDBCard className='profile-card'>
                   <MDBAvatar
@@ -253,6 +282,8 @@ function NewProfile(props) {
 
                 </MDBCard>
               </MDBCol>
+=======
+>>>>>>> master
             </MDBRow>
           </section>
         </MDBContainer>

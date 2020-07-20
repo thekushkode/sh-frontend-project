@@ -53,6 +53,10 @@ class SelectDate extends Component {
                     let filteredArray = usersArray.filter((message) => {
                         return message.data.members.length <= 2 && message.data.members.includes(`${dog.ownerId}`)
                     })
+<<<<<<< HEAD
+=======
+                    // console.log(filteredArray)
+>>>>>>> master
                     return filteredArray
                 })
                 .then((filteredArray) => {
@@ -134,6 +138,10 @@ class SelectDate extends Component {
         })
             .then(function (docRef) {
                 playDateRef = docRef.id
+<<<<<<< HEAD
+=======
+                // console.log(playDateRef);
+>>>>>>> master
                 doggo.createPlayDate(playDateRef)
             })
     }

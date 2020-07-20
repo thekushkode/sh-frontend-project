@@ -52,6 +52,7 @@
 //         });
 //     }
 
+<<<<<<< HEAD
 //     onMarkerClick = (props, marker, e) => {
 //         console.log(props);
 //         this.setState({
@@ -68,6 +69,24 @@
 //             </InfoWindow >
 //         )
 //     }
+=======
+    onMarkerClick = (props, marker, e) => {
+        // console.log(props);
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
+        return (
+            < InfoWindow marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow} name={props.name} >
+                <div>
+                    <h1>{this.state.selectedPlace.name}</h1>
+                </div>
+            </InfoWindow >
+        )
+    }
+>>>>>>> master
 
 
 //     onMapClicked = (props) => {

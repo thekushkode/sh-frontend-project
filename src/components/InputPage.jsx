@@ -18,6 +18,14 @@ function InputPage(props) {
 
         setLoading(true);
 
+<<<<<<< HEAD
+=======
+        // FileList { 0: File, length: 1 }
+        // 0: File { name: "bentley.PNG", lastModified: 1594648700779, lastModifiedDate: Mon Jul 13 2020 09: 58: 20 GMT - 0400(Eastern Daylight Time), webkitRelativePath: "", size: 1179597, … }
+        // length: 1
+
+
+>>>>>>> master
         let fileObj = files[0];
         
         // Create a reference with an initial file path and name
@@ -45,6 +53,10 @@ function InputPage(props) {
         ref.put(fileObj).then(function (imgRef) {
             imgRef = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/' + imgId + "." + fileType + "?alt=media"
             props.onUpload(imgRef);
+<<<<<<< HEAD
+=======
+            // console.log('Uploaded a blob or file!');
+>>>>>>> master
             setLoading(false);
         });
     }

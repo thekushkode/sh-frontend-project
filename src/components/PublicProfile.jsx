@@ -180,7 +180,7 @@ class UserProfile extends Component {
           }
           db.collection('Feed').add(newPost)
             .then(doc => {
-              console.log(`${doc.id} created successfully`)
+              // console.log(`${doc.id} created successfully`)
             })
             .catch(err => {
               console.error(err)
@@ -214,6 +214,7 @@ class UserProfile extends Component {
     }
   }
 
+<<<<<<< HEAD
   // handleChange = (e) => {
   //   console.log('changed');
   //   this.setState({
@@ -240,6 +241,34 @@ class UserProfile extends Component {
   //     [item]: !this.state[item]
   //   });
   // };
+=======
+  handleChange = (e) => {
+    // console.log('changed');
+    this.setState({
+      postValue: e.target.postValue,
+      imgValue: e.target.imgValue
+    })
+    // console.log(this.state.postValue);
+    // console.log(this.state.imgValue);
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log('submitted');
+    // console.log(e.target.postValue);
+    this.setState({
+      postValue: e.target.postValue,
+      imgValue: e.target.imgValue
+    });
+  }
+
+  toggle = item => {
+    // console.log(item);
+    this.setState({
+      [item]: !this.state[item]
+    });
+  };
+>>>>>>> master
 
   render() {
     return (

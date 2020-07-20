@@ -132,7 +132,7 @@ export class Furends extends Component {
 
                                         if (dog.dogId !== this.props.profile.id) {
                                             return (
-                                                <MDBCol md='4' className='mt-1'>
+                                                <MDBCol sm='3' md='2' className='mt-1'>
                                                     <MDBView hover>
                                                         <Link to={`/user/${dog.dogId}`}>
                                                             <img

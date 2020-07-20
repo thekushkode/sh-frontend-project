@@ -25,7 +25,7 @@ class NavbarPage extends Component {
                 redirect: true
             })
         }).catch(function (error) {
-            console.log(error);
+            // console.log(error);
             alert('No User Logged In.')
         });
     }

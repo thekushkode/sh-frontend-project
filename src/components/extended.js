@@ -54,6 +54,10 @@ class PExtended extends Component {
             }
             data.push(dogData);
           })
+<<<<<<< HEAD
+=======
+          // console.log(data)
+>>>>>>> master
           doggo.setState({
             dogData: data,
             user: user
@@ -63,14 +67,28 @@ class PExtended extends Component {
   }
 
   handleChange = (e) => {
+<<<<<<< HEAD
+=======
+    // console.log('changed');
+>>>>>>> master
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
     })
+<<<<<<< HEAD
+=======
+    // console.log(this.state.postValue);
+    // console.log(this.state.imgValue);
+>>>>>>> master
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
+=======
+    // console.log('submitted');
+    // console.log(e.target.postValue);
+>>>>>>> master
     this.setState({
       postValue: e.target.postValue,
       imgValue: e.target.imgValue
@@ -78,17 +96,29 @@ class PExtended extends Component {
   }
 
   toggle = item => {
+<<<<<<< HEAD
+=======
+    // console.log(item);
+>>>>>>> master
     this.setState({
       [item]: !this.state[item]
     });
   };
 
   render() {
+<<<<<<< HEAD
+=======
+    // console.log('testing')
+>>>>>>> master
     return (
       <div>
         <header style={{ marginBottom: '100px' }}>
         </header>
         <main>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
           <MDBContainer fluid>
             <MDBRow>
               <MDBCol lg='4' md='4'>

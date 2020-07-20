@@ -408,7 +408,7 @@ class UserProfile extends Component {
                       <MDBCard className='mb-4'>
                         <MDBCardBody>
                           <h5 className='text-center mb-4'>
-                            <strong>See photos of {dog.dogName} <span aria-label='camera emoji' role='img'>📸</span></strong>
+                            <strong>{dog.dogName}'s Photos</strong>
                           </h5>
                           <MDBRow>
                             {dog.photos && dog.photos.map((photo, index) => {

@@ -8,6 +8,7 @@ import {
 } from 'mdbreact';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadMessages } from '../../redux/actions/index.js'
+import ReactHtmlParser from 'react-html-parser'
 import firebase from '../../firebase';
 import moment from 'moment'
 moment().format()
@@ -39,12 +40,10 @@ export default function ChatListItem(props) {
 
     return (
         <>
-            {messageData.userNames && messageData.userNames.filter(user => {
-                return user !== profile.data.ownerName
-            }).map((name, index) => {
+            {messageData.userNames && messageData.userNames.map((name, index) => {
                 return (
                     <MDBListGroupItem hover onClick={() => itemClicked(props.id.id)}>
-                        {console.log(`${name}`)}
+                        {/* {console.log(`${name}`)} */}
                         <MDBAvatar
                             src={messageData.senderAvatar === profile.data.avatar ? messageData.receiverAvatar : messageData.senderAvatar}
                             alt='User Profile'
@@ -54,7 +53,7 @@ export default function ChatListItem(props) {
 
                         <div className='d-flex justify-content-between mb-1'>
                             <span className='mb-1'>
-                                <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ' ' : null}</strong>
+                                <strong>{name ? name : <i>null</i>}{index < (messageData.userNames.length - 1) ? ', ' : null}</strong>
                             </span>
                             <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
                         </div>

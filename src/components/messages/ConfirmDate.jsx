@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import firebase from '../../firebase';
+import { MDBBtn } from 'mdbreact';
 
 
 
@@ -43,7 +44,7 @@ export default function ConfirmDate({ content }) {
     }
     return (
         <div>
-            {!confirmedDate && <button className='aqua-gradient btn-rounded'onClick={() => confirmDate()}>Confirm Date</button>}
+            {!confirmedDate && <MDBBtn size='sm' className='blue-gradient btn-rounded' onClick={() => confirmDate()}>Confirm Date</MDBBtn>}
         </div>
     )
 }

@@ -33,6 +33,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-scroll-to-bottom": "^3.0.0",
+    "react-share": "^4.2.1",
     "redux": "^4.0.5",
     "rgpl": "^1.0.2"
   },

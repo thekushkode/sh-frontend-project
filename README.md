@@ -19,11 +19,22 @@ Watch our video to see how the app works!
 ## Summary
 <img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/4points-sh.PNG' width='500' />
 
-SocialHound is a true social media platform for your dog (and you!). Once signed in, you'll be able to create a profile, search for friends in your area, schedule play dates, and message your 'furends'.
+SocialHound is a true social media platform for your dog (and you!). Once signed in, you'll have access to the following features:
 
-Use our custom map tools to find dog parks, view boarding & daycare locations and locate vets in your area! There is also a map for finding new friends. View SocialHound pups in you area and schedule a date in the click of a button. Search by breed, size, and temperament.
+- Create 1 or more dog profiles- all associated with your account.
 
-Post your photos, videos and memories to your feed so your friends can view, like and comment on your dogs content! Post directly to your other pages on Twitter and Facebook! 
+- Post memories and photos to your feed. Share them on your other social accounts!
+
+- Add Friends!
+
+- Add Photos!
+
+- Search for Friends & Request Playdates
+
+- DM Your friends!
+
+- Use our custom map tools to find dog parks, view boarding & daycare facilities, locate vets in your area and find pet adoption locations! There is also a map for finding new friends!
+
 
 ## Built With
 

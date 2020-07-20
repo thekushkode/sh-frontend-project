@@ -53,10 +53,6 @@ class SelectDate extends Component {
                     let filteredArray = usersArray.filter((message) => {
                         return message.data.members.length <= 2 && message.data.members.includes(`${dog.ownerId}`)
                     })
-<<<<<<< HEAD
-=======
-                    // console.log(filteredArray)
->>>>>>> master
                     return filteredArray
                 })
                 .then((filteredArray) => {
@@ -138,10 +134,6 @@ class SelectDate extends Component {
         })
             .then(function (docRef) {
                 playDateRef = docRef.id
-<<<<<<< HEAD
-=======
-                // console.log(playDateRef);
->>>>>>> master
                 doggo.createPlayDate(playDateRef)
             })
     }
@@ -161,7 +153,6 @@ class SelectDate extends Component {
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
                         <MDBModalHeader toggle={this.toggle}><strong>Select Date</strong></MDBModalHeader>
                         <MDBModalBody>
-                            {/* <MDBDatePickerV5 theme="info" getValue={(e) => console.log(e)} /> */}
                             <input type='date' name='party' onChange={this.handleChange}></input>
                         </MDBModalBody>
                         <MDBModalFooter>

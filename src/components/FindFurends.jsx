@@ -100,58 +100,23 @@ export class Furends extends Component {
         const mapStyles = {
             width: '100%',
             height: '100%',
-            marginTop: '100px',
+            marginTop: '10px',
         };
         const { users } = this.state;
-        const scrollContainerStyle = { width: "90%", maxHeight: "330px", marginLeft: '40px' };
+        const scrollContainerStyle = { width: "100%", maxHeight: "110px" };
         const containerStyle = {
             width: '100%',
-            height: '100%',
-            marginLeft: '20px'
+            marginLeft: '0'
         }
 
 
         return (
             <div>
-                <header>
+                <header style={{ marginBottom: '15px' }}>
                 </header>
                 <main>
                     <MDBRow>
-                        <MDBCol md='6'>
-                            <div>
-                                <Map
-                                    containerStyle={containerStyle}
-                                    google={this.props.google}
-                                    onClick={this.onMapClicked}
-                                    onReady={this.fetchPlaces}
-                                    zoom={10}
-                                    style={mapStyles}
-                                    initialCenter={{ lat: 33.753746, lng: -84.386330 }}
-                                >
-                                    {this.state.dogData.map((user, index, mapProps) => {
-                                        let address = user.street + ' ' + user.city + ', ' + user.userState + ' ' + user.zipcode;
-                                        return (
-                                            <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
-                                                onClick={this.onMarkerClick} />
-                                        )
-                                    })}
-                                    {this.state.dogData.map((user, index) => {
-                                        return (
-                                            <InfoWindow marker={this.state.activeMarker} key={index}
-                                                visible={this.state.selectedPlace.id === index} name={user.name} >
-                                                <div>
-                                                    <h4>{user.dogName}</h4>
-                                                    <p>{user.breed}</p>
-                                                    <p>{user.temperament}</p>
-                                                </div>
-                                            </InfoWindow >
-
-                                        )
-                                    })}
-                                </Map>
-                            </div>
-                        </MDBCol>
-                        <MDBCol md='6' style={{ display: 'flex', flexDirection: 'column' }}>
+                        <MDBCol md='12' style={{ display: 'flex', flexDirection: 'column' }}>
                             <div>
                                 <div style={{ marginTop: '65px', marginLeft: '20px' }}>
                                     <MDBCol md="6" className='d-flex'>
@@ -189,6 +154,40 @@ export class Furends extends Component {
 
                                     })}
                                 </MDBRow>
+                            </div>
+                        </MDBCol>
+                        <MDBCol md='12'>
+                            <div style={{ height: '500px', width: '100%', display: 'flex', justifyContent: 'center', padding: '0', marginTop: '10px'}}>
+                                <Map
+                                    containerStyle={containerStyle}
+                                    google={this.props.google}
+                                    onClick={this.onMapClicked}
+                                    onReady={this.fetchPlaces}
+                                    zoom={10}
+                                    style={mapStyles}
+                                    initialCenter={{ lat: 33.753746, lng: -84.386330 }}
+                                >
+                                    {this.state.dogData.map((user, index, mapProps) => {
+                                        let address = user.street + ' ' + user.city + ', ' + user.userState + ' ' + user.zipcode;
+                                        return (
+                                            <AddressMarker google={this.props.google} key={index} id={index} address={address} name={user.name}
+                                                onClick={this.onMarkerClick} />
+                                        )
+                                    })}
+                                    {this.state.dogData.map((user, index) => {
+                                        return (
+                                            <InfoWindow marker={this.state.activeMarker} key={index}
+                                                visible={this.state.selectedPlace.id === index} name={user.name} >
+                                                <div>
+                                                    <h4>{user.dogName}</h4>
+                                                    <p>{user.breed}</p>
+                                                    <p>{user.temperament}</p>
+                                                </div>
+                                            </InfoWindow >
+
+                                        )
+                                    })}
+                                </Map>
                             </div>
                         </MDBCol>
                     </MDBRow>

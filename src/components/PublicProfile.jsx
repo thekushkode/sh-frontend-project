@@ -10,8 +10,7 @@ import {
   MDBView,
   MDBMask,
   MDBAvatar,
-  MDBBtn,
-  MDBLink
+  MDBBtn
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';

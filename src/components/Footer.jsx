@@ -23,7 +23,7 @@ const FooterPage = () => {
                             </MDBBtn>
                         </MDBContainer>
                     </MDBCol>
-                    <MDBCol md="6" className='text-right pr-2'>
+                    <MDBCol md="6" className='text-right pr-4'>
                         <ul>
                             <li className="list-unstyled">
                                 <a href="/about">About</a>
@@ -42,8 +42,9 @@ const FooterPage = () => {
                 </MDBRow>
             </MDBContainer>
             <div className="footer-copyright text-center py-3">
-                <MDBContainer fluid>
+                <MDBContainer fluid className='d-flex justify-content-between'>
                     &copy; {new Date().getFullYear()} Copyright: SocialHound
+                    <p>Powered by: <a href='https://www.goatwebdesigns.com' target='_blank' rel="noopener noreferrer">Goat Web Design</a></p>
                 </MDBContainer>
             </div>
         </MDBFooter>

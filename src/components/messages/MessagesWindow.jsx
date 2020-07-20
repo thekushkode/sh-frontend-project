@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import SingleMessage from './SingleMessage'
 import firebase from '../../firebase';
 import '../Chat.css';
-import { css } from 'glamor';
-import { MDBBtn, MDBIcon, MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
+import { MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
 
 
 
@@ -97,7 +96,7 @@ export default function MessagesWindow() {
             </MDBRow>
 
                 <div className="border border-info p-2 white">
-                    <ul style={{ height: '315px', overflow: "scroll" }}>
+                    <ul style={{ height: '60vh', overflow: "scroll" }}>
                         {messages.data && messages.data.messages.map((item) => {
                             let styles;
                             let button;

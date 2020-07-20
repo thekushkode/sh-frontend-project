@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import moment from 'moment'
 import { css } from 'glamor';
 import ConfirmDate from './ConfirmDate';
 import ReactHtmlParser from 'react-html-parser'
 moment().format()
 
-const recipientBackground = css({
-    backgroundColor: 'rgb(240, 240, 240)',
-    borderRadius: '10px',
-    textAlign: "left"
-});
+// const recipientBackground = css({
+//     backgroundColor: 'rgb(240, 240, 240)',
+//     borderRadius: '10px',
+//     textAlign: "left"
+// });
 
-const yourBackground = css({
-    backgroundColor: 'rgb(0,153,255)',
-    borderRadius: '10px',
-    textAlign: "right"
-});
+// const yourBackground = css({
+//     backgroundColor: 'rgb(0,153,255)',
+//     borderRadius: '10px',
+//     textAlign: "right"
+// });
 
 // style={{ textAlign: "left" }}
 

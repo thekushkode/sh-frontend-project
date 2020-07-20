@@ -102,7 +102,7 @@ class Login extends React.Component {
                         </div>
                       </form>
                       <div className='inline-ul text-center d-flex justify-content-center'>
-                        <a href='https://twitter.com/socialhoundco' target='_blank'>
+                        <a href='https://twitter.com/socialhoundco' target='_blank' rel="noopener noreferrer">
                           <MDBIcon
                             fab
                             icon='twitter'
@@ -110,7 +110,7 @@ class Login extends React.Component {
                             className='p-2 m-2  white-text'
                           />
                         </a>
-                        <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank'>
+                        <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' rel="noopener noreferrer">
                           <MDBIcon
                             fab
                             icon='facebook-f'
@@ -118,7 +118,7 @@ class Login extends React.Component {
                             className='p-2 m-2 white-text'
                           />{' '}
                         </a>
-                        <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank'>
+                        <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank' rel="noopener noreferrer">
                           <MDBIcon
                             fab
                             icon='instagram'

@@ -26,18 +26,7 @@ import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 import PlayDates from './PlayDates';
-// import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
-{/* <MDBContainer>
-  <FacebookShareButton>
-    <FacebookIcon />
-  </FacebookShareButton>
-  <TwitterShareButton>
-    <TwitterIcon />
-  </TwitterShareButton>
-  <EmailShareButton>
-    <EmailIcon />
-  </EmailShareButton>
-</MDBContainer> */}
+
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 const defaultFeedImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/social-hound-logo-512.png?alt=media'

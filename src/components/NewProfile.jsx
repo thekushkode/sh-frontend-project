@@ -100,9 +100,7 @@ function NewProfile(props) {
 
   const updateProfile = (e) => {
     e.preventDefault()
-    console.log('clicked!')
     if (!dogId) {
-      console.log('hi')
       db.collection('Dogs').doc(id).set({
         dogName,
         ownerName,
@@ -124,7 +122,6 @@ function NewProfile(props) {
         .then((querySnapshot) => {
           let userProfile = { data: querySnapshot, id: id }
           dispatch(setProfile(userProfile));
-          console.log('hello world')
           history.push(`/profile/${id}`);
         })
     }
@@ -153,7 +150,7 @@ function NewProfile(props) {
                     <form onSubmit={updateProfile}>
                       <MDBRow>
                         <MDBCol md='4'>
-                          <MDBInput type='text' name='ownername' className="form-control" value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} required />
+                          <MDBInput type='text' name='ownername' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { { setOwnerName(e.target.value) } } }} required />
                         </MDBCol>
                         <MDBCol md='4'>
                           <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { { setDogName(e.target.value) } } }} required />

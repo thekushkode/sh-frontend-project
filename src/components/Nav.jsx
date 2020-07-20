@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 class NavbarPage extends Component {
     constructor(props) {
         super(props)
-        
+
         this.state = {
             isOpen: false,
             redirect: false
@@ -36,11 +36,13 @@ class NavbarPage extends Component {
 
     render() {
 
+
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
 
         // console.log(this.props.profile.id)
+        // console.log(this.props.profile.data.ownerName)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
@@ -102,7 +104,12 @@ class NavbarPage extends Component {
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem>
+                                        {/* <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem> */}
+                                        <div style={{ marginLeft: '8px' }}>
+                                            <p>logged in as:</p>
+                                            <p style={{ marginTop: "-15px" }}><b>{this.props.profile.data.ownerName}</b></p>
+                                        </div>
+                                        <hr />
                                         <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>
@@ -110,8 +117,8 @@ class NavbarPage extends Component {
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>
-                </MDBContainer>
-            </MDBNavbar>
+                </MDBContainer >
+            </MDBNavbar >
         );
     }
 }

@@ -243,7 +243,7 @@ function EditProfile(props) {
                                 alt='Default Dog Profile Image'
                                 // src={(avatar ? URL.createObjectURL(avatar) : Dog)}
                                 src={(avatar ? avatar : defaultDogImg)}
-                                style={{ maxWidth: '300px', maxHeight: '300px', margin: '0 auto' }}
+                                style={{ maxWidth: '300px', maxHeight: '300px', objectFit: 'cover', margin: '0 auto' }}
                                 className='rounded-circle z-depth-1-half mt-1
                                 '
                               />

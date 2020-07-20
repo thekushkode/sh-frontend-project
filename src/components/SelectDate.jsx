@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBDatePickerV5, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { loadMessages } from '../redux/actions'
 import firebase from '../firebase';
 import { connect } from 'react-redux'

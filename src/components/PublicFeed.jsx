@@ -1,6 +1,5 @@
 import React from 'react'
 import SocialPage2 from './feed2'
-import { MDBRow, MDBCol, MDBContainer } from 'mdbreact';
 
 export default function PublicFeed() {
     return (

@@ -46,7 +46,6 @@ export default function ChatListItem(props) {
                     tag='img'
                     className='float-left mr-3'
                 />
-
                 <div className='d-flex justify-content-between mb-1'>
                     <span className='mb-1'>
                         <strong>{them}</strong>

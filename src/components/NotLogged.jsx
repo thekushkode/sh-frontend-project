@@ -75,7 +75,7 @@ class NotLogged extends Component {
                                     <MDBDropdownMenu className="dropdown-default">
                                         <MDBDropdownItem href="/">Sign-up</MDBDropdownItem>
                                         <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem>
-                                        <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
+                                        {/* <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem> */}
                                         <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>

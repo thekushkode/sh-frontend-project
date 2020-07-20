@@ -20,7 +20,7 @@ class DetailedInfo extends Component {
         };
 
         service.getDetails(request, (results, status) => {
-            console.log(results)
+            // console.log(results)
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 this.setState({
                     places: results

@@ -99,16 +99,13 @@ function App() {
     fetch('https://dog.ceo/api/breeds/image/random')
       .then(res => res.json())
       .then(res => {
-        console.log(res)
-        console.log(res.message)
+        // console.log(res)
+        // console.log(res.message)
         let url = res.message;
-        console.log(url);
+        // console.log(url);
         setUrl(url)
         setModal(true)
-        // this.setState({
-        //   data: res,
-        //   url: res.message
-        // })
+
       })
   }
 

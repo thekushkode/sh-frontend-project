@@ -183,7 +183,7 @@ class DogProfile extends Component {
     }
     db.collection('Feed').add(newPost)
       .then(doc => {
-        console.log(`${doc.id} created successfully`)
+        // console.log(`${doc.id} created successfully`)
       })
       .catch(err => {
         console.error(err)
@@ -219,7 +219,7 @@ class DogProfile extends Component {
   }
 
   toggle = item => {
-    console.log(item);
+    // console.log(item);
     this.setState({
       [item]: !this.state[item]
     });
@@ -267,19 +267,19 @@ class DogProfile extends Component {
                       <h5>
                         {this.state.dogData.bio}
                       </h5>
-                      {this.state.dogData.facebook ? 
-                      <MDBBtn floating tag='a' href={this.state.dogData.facebook} target='_blank' className='blue-gradient'>
-                        <MDBIcon fab icon='facebook' className='white-text'>
-                        </MDBIcon>
-                      </MDBBtn>
-                      : null}
-                      {this.state.dogData.instagram ? 
-                      <MDBBtn floating tag='a' href={this.state.dogData.instagram} target='_blank' className='purple-gradient'>
-                        <MDBIcon fab icon='instagram' className='white-text'>
-                        </MDBIcon>
-                      </MDBBtn>
-                      :
-                      null
+                      {this.state.dogData.facebook ?
+                        <MDBBtn floating tag='a' href={this.state.dogData.facebook} target='_blank' className='blue-gradient'>
+                          <MDBIcon fab icon='facebook' className='white-text'>
+                          </MDBIcon>
+                        </MDBBtn>
+                        : null}
+                      {this.state.dogData.instagram ?
+                        <MDBBtn floating tag='a' href={this.state.dogData.instagram} target='_blank' className='purple-gradient'>
+                          <MDBIcon fab icon='instagram' className='white-text'>
+                          </MDBIcon>
+                        </MDBBtn>
+                        :
+                        null
                       }
                     </MDBCardBody>
                   </MDBCard>
@@ -474,7 +474,7 @@ class DogProfile extends Component {
                               value={this.state.feedImgURL}
                               id={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
                               onUpload={(imgRef) => {
-                                console.log('uploaded', imgRef);
+                                // console.log('uploaded', imgRef);
                                 // setFeedImg('');
                                 // setTimeout(() => setFeedImg(imgRef), 500);
                                 this.setState({ feedImgURL: imgRef });

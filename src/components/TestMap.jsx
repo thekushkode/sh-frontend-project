@@ -55,7 +55,7 @@ export class TestMap extends Component {
     }
 
     onMarkerClick = (props, marker, e) => {
-        console.log(props);
+        // console.log(props);
         this.setState({
             selectedPlace: props,
             activeMarker: marker,

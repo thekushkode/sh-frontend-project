@@ -123,7 +123,7 @@ function EditProfile(props) {
         facebook,
         instagram,
       }, { merge: true })
-      console.log(avatar);
+      // console.log(avatar);
     }
     history.push(`/profile/${props.match.params.dogId}`);
   }

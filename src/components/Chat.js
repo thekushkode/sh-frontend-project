@@ -63,8 +63,8 @@ const Chat = () => {
     } else {
       alert('not enter')
     }
-    console.log(target)
-    console.log(target.charCode)
+    // console.log(target)
+    // console.log(target.charCode)
   }
 
   function submitMessage(e) {
@@ -109,7 +109,7 @@ const Chat = () => {
 
 
 
-  {console.log(allMessages)}
+  // {console.log(allMessages)}
   const messages = allMessages && Object.keys(allMessages).length && allMessages.map((item) => {
     return (
       <ChatListItem id={item} messages={allMessages[item]}></ChatListItem>
@@ -139,7 +139,7 @@ const Chat = () => {
             <MDBCol lg='8' className='mt-lg-0 mt-5'>
 
               <MessagesWindow />
-              
+
               <div className='row'>
                 <div className='col-md-12'>
                   <div className='d-flex flex-row'>

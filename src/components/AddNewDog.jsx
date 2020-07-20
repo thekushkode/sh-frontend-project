@@ -29,7 +29,7 @@ function randomString(length) {
 }
 
 const id = randomString(20)
-console.log(id)
+// console.log(id)
 
 function AddNewDog(props) {
 

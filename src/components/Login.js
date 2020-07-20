@@ -76,9 +76,13 @@ class Login extends React.Component {
                         icon='envelope'
                         iconClass='white-text'
                         containerClass="text-left"
+                        className='white-text'
                         value={this.state.email}
                         onChange={this.handleChange}
                       />
+                      <small id="emailHelp" className="form-text">
+                        We'll never share your email with anyone else.
+                      </small>
                       <MDBInput
                         type='password'
                         name='password'
@@ -86,6 +90,7 @@ class Login extends React.Component {
                         icon='lock'
                         iconClass='white-text'
                         containerClass="text-left"
+                        className='white-text'
                         value={this.state.password}
                         onChange={this.handleChange}
                       />
@@ -96,7 +101,7 @@ class Login extends React.Component {
                         <hr />
                       </div>
                       <div className='inline-ul text-center d-flex justify-content-center'>
-                        <a href='https://twitter.com/socialhoundco'>
+                        <a href='https://twitter.com/socialhoundco' target='_blank'>
                           <MDBIcon
                             fab
                             icon='twitter'
@@ -104,7 +109,7 @@ class Login extends React.Component {
                             className='p-2 m-2  white-text'
                           />
                         </a>
-                        <a href='https://www.facebook.com/SocialHound-110112560760116'>
+                        <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank'>
                           <MDBIcon
                             fab
                             icon='facebook-f'
@@ -112,7 +117,7 @@ class Login extends React.Component {
                             className='p-2 m-2 white-text'
                           />{' '}
                         </a>
-                        <a href='https://www.instagram.com/socialhound.co/'>
+                        <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank'>
                           <MDBIcon
                             fab
                             icon='instagram'

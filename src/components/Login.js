@@ -194,7 +194,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='classic-form-page' id='login'>
+      <div className='classic-form-page mt-4' id='login'>
         <MDBView>
           <MDBMask
             className='d-flex justify-content-center align-items-center'

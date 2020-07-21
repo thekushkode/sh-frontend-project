@@ -277,7 +277,7 @@ class UserProfile extends Component {
                       </MDBBtn>
                       : null}
                       {dog.instagram ? 
-                      <MDBBtn floating tag='a' href={dog.instagram} target='_blank' className='purple-gradient'>
+                      <MDBBtn floating tag='a' href={`https://www.instagram.com/${dog.instagram}`} target='_blank' className='purple-gradient'>
                         <MDBIcon fab icon='instagram' className='white-text'>
                         </MDBIcon>
                       </MDBBtn>

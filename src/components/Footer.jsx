@@ -3,7 +3,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBBtn, MDBIcon } from "mdbrea
 
 const FooterPage = () => {
     return (
-        <MDBFooter color="aqua-gradient" className="font-small pt-4 mt-4">
+        <MDBFooter color="aqua-gradient" className="font-small pt-4">
             <MDBContainer fluid className="text-center text-md-left">
                 <MDBRow>
                     <MDBCol md="6">
@@ -11,7 +11,7 @@ const FooterPage = () => {
                         <p>
                             The World's First Social Network for Dogs!
                         </p>
-                        <MDBContainer className='text-left'>
+                        <MDBContainer className='text-center text-md-left'>
                             <MDBBtn href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' size="lg" tag="a" floating social="fb">
                                 <MDBIcon fab icon="facebook-f" target='_blank' />
                             </MDBBtn>
@@ -23,7 +23,7 @@ const FooterPage = () => {
                             </MDBBtn>
                         </MDBContainer>
                     </MDBCol>
-                    <MDBCol md="6" className='text-right pr-4'>
+                    <MDBCol md="6" className='pr-5 text-md-right'>
                         <ul>
                             <li className="list-unstyled">
                                 <a href="/about">About</a>

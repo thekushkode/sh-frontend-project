@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn } from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn } from "mdbreact";
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 
@@ -69,9 +69,9 @@ class NotLogged extends Component {
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu className="dropdown-default">
-                                        <MDBDropdownItem href="/">Sign-up</MDBDropdownItem>
-                                        <MDBDropdownItem href="/login">Sign-in</MDBDropdownItem>
-                                        <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink to='/' className='black-text'>Sign-up</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink to='/login' className='black-text'>Sign-in</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink to='/contact' className='black-text'>Get Help</MDBNavLink></MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>

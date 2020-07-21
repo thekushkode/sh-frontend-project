@@ -104,7 +104,7 @@ class NavbarPage extends Component {
                                             </div>
                                             <hr />
                                             <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
-                                            <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
+                                            <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to='/contact'>Get Help</MDBNavLink></MDBDropdownItem>
                                         </MDBDropdownMenu>
                                         :
                                         <MDBDropdownMenu className="dropdown-default">
@@ -113,7 +113,7 @@ class NavbarPage extends Component {
                                             </div>
                                             <hr />
                                             <MDBDropdownItem onClick={this.signOut}>Sign-out</MDBDropdownItem>
-                                            <MDBDropdownItem href="/contact">Get Help</MDBDropdownItem>
+                                            <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to='/contact'>Get Help</MDBNavLink></MDBDropdownItem>
                                         </MDBDropdownMenu>
                                     }
                                 </MDBDropdown>

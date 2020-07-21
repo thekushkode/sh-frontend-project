@@ -182,12 +182,12 @@ class DogProfile extends Component {
       this.addPhoto()
     }
     db.collection('Feed').add(newPost)
-      .then(doc => {
-        // console.log(`${doc.id} created successfully`)
-      })
-      .catch(err => {
-        console.error(err)
-      })
+      // .then(doc => {
+      //   // console.log(`${doc.id} created successfully`)
+      // })
+      // .catch(err => {
+      //   console.error(err)
+      // })
     this.setState({
       postValue: '',
       feedImgURL: ''

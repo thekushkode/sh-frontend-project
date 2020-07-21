@@ -1,5 +1,6 @@
 import React from 'react'
 import MessagesWindow from './MessagesWindow';
+import { Link } from 'react-router-dom';
 
 export default function Conversation({ messages }) {
 

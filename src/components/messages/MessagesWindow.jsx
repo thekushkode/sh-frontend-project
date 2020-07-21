@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import SingleMessage from './SingleMessage'
 import firebase from '../../firebase';
+import { Link } from 'react-router-dom';
 import '../Chat.css';
 import { MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBRow, MDBCol } from 'mdbreact';
 

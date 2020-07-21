@@ -4,8 +4,8 @@ import { loadMessages } from '../redux/actions'
 import firebase from '../firebase';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import ReactHtmlParser from 'react-html-parser'
-import moment from 'moment'
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 moment().format()
 
 const db = firebase.firestore();
@@ -63,7 +63,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            message: `${dog.dogName} has a PlayDate setup with &nbsp <a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
+                            message: `A PlayDate has been setup between&nbsp<a href="/user/${dog.dogId}" target='_blank'>${dog.dogName}</a>&nbspand&nbsp<a href="/user/${this.props.profile.id}" target="_blank">${this.props.profile.data.dogName}</a>&nbsp on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
@@ -91,7 +91,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            message: `${dog.dogName} has a PlayDate setup with &nbsp <a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp on ${moment().format(this.state.date)}`,
+                            message: `A PlayDate has been setup between&nbsp<a href="/user/${dog.dogId}" target='_blank'>${dog.dogName}</a>&nbspand&nbsp<a href="/user/${this.props.profile.id}" target="_blank">${this.props.profile.data.dogName}</a>&nbsp on ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(id)

@@ -1,17 +1,4 @@
 const initialState = null
-//{
-//     dogName: '',
-//     breed: '',
-//     street: '',
-//     city: '',
-//     userState: '',
-//     zipcode: '',
-//     temperament: '',
-//     size: '',
-//     spayNeut: '',
-//     vaccines: '',
-//     bio: ''
-// };
 
 function profileReducer(state = initialState, action) {
     switch (action.type) {

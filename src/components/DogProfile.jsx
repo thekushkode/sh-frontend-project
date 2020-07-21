@@ -193,10 +193,9 @@ class DogProfile extends Component {
     // .catch(err => {
     //   console.error(err)
     // })
-    // this.setState({
-    //   postValue: '',
-    //   feedImgURL: ''
-    // })
+    this.setState({
+      postValue: ''
+    })
   }
 
   addPhoto = () => {

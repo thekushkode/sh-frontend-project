@@ -86,7 +86,8 @@ class DogProfile extends Component {
             })
             this.setState({
               allDogData: data,
-              user: user
+              user: user,
+              photos: data[0].photos
             })
           })
       }

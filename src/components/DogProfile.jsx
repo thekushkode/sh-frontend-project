@@ -64,7 +64,7 @@ class DogProfile extends Component {
             }
             this.setState({
               dogData: dogData,
-              user: user,
+              user: user
             })
             const profile = {
               data: doc.data(),

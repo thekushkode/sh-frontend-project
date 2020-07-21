@@ -185,7 +185,7 @@ function App() {
               <Route exact path='/add' component={AddNewDog} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
-              <Route><Redirect to="/newprofile" /></Route>
+              <Redirect to="/" />
             </Switch>
             <Konami action={easterEgg} style={{}}>
               <MDBContainer>

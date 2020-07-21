@@ -19,11 +19,11 @@ class NotLogged extends Component {
             this.setState({
                 redirect: true
             })
+            this.props.history.push('/')
         }).catch(function (error) {
             console.log(error);
             alert('No User Logged In.')
         });
-        return <Redirect to='/' />
     }
 
     render() {

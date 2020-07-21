@@ -296,7 +296,7 @@ class DogProfile extends Component {
                         </MDBBtn>
                         : null}
                       {this.state.dogData.instagram ?
-                        <MDBBtn floating tag='a' href={this.state.dogData.instagram} target='_blank' className='purple-gradient'>
+                        <MDBBtn floating tag='a' href={`https://www.instagram.com/${this.state.dogData.instagram}`} target='_blank' className='purple-gradient'>
                           <MDBIcon fab icon='instagram' className='white-text'>
                           </MDBIcon>
                         </MDBBtn>
@@ -446,7 +446,7 @@ class DogProfile extends Component {
                                     large={photo}
                                     className="img-fluid rounded-circle"
                                     alt="Dog Avatar"
-                                    style={{ width: '100px', height: '100px', borderRadius: '5px', margin: '0 auto', backgroundColor: 'green' }}
+                                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                   />
                                 </Link>
                               </MDBView>

@@ -190,10 +190,10 @@ function AddNewDog(props) {
                           </h5>
                           <MDBRow className='mt-0 pt-0'>
                             <MDBCol md='6' className='mt-0 pt-0'>
-                              <MDBInput type='text' value={instagram} label="Instagram" onChange={(e) => { setInstagram(e.target.value) }} />
+                              <MDBInput type='text' value={instagram} label="Instagram Username (ex. yellowlab_official)" onChange={(e) => { setInstagram(e.target.value) }} />
                             </MDBCol>
                             <MDBCol md='6'>
-                              <MDBInput type='text' value={facebook} label="Facebook" onChange={(e) => { setFacebook(e.target.value) }} />
+                              <MDBInput type='text' value={facebook} label="Facebook URL" onChange={(e) => { setFacebook(e.target.value) }} />
                             </MDBCol>
                           </MDBRow>
                         </MDBCol>

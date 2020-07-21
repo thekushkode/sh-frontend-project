@@ -121,7 +121,7 @@ function EditProfile(props) {
         avatar,
         bio,
         facebook,
-        instagram,
+        instagram
       }, { merge: true })
       // console.log(avatar);
     }
@@ -225,14 +225,14 @@ function EditProfile(props) {
                     <MDBRow>
                       <MDBCol md='12' className='about-text'>
                         <h5 className='text-muted text-left my-4'>
-                          <strong>Connect:</strong> <small>Add social account URLs below!</small>
+                          <strong>Social:</strong> <small>Add social account URLs below!</small>
                         </h5>
-                        <MDBRow className='mt-0 pt-0'>
-                          <MDBCol md='6' className='mt-0 pt-0'>
-                            <MDBInput type='text' value={instagram} label="Instagram" onChange={(e) => { setInstagram(e.target.value) }} />
+                        <MDBRow>
+                          <MDBCol md='6'>
+                            <MDBInput type='text' value={instagram} label="Instagram Username (ex. yellowlab_official)" onChange={(e) => { setInstagram(e.target.value) }} />
                           </MDBCol>
-                          <MDBCol md='6' className='mt-0 pt-0'>
-                            <MDBInput type='text' value={facebook} label="Facebook" onChange={(e) => { setFacebook(e.target.value) }} />
+                          <MDBCol md='6'>
+                            <MDBInput type='text' value={facebook} label="Facebook URL" onChange={(e) => { setFacebook(e.target.value) }} />
                           </MDBCol>
                         </MDBRow>
                         <MDBRow className='mb-2'>

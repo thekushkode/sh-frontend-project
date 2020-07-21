@@ -30,25 +30,21 @@ export default function SocialPage2() {
 
 
     return (
-        <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
-            <main>
-                <MDBRow>
-                    <MDBCol className='overflow-auto' style={{ height: '1100px' }}>
-                        {feed && feed.map((item, index) => {
-                            switch (item.Type) {
-                                case 'Post':
-                                    return <Post data={item} />
-                                case 'Friend':
-                                    return <FriendPost data={item} />
-                                case 'Photo':
-                                    return <PhotoPost data={item} />
-                                default:
-                                    break;
-                            }
-                        })}
-                    </MDBCol>
-                </MDBRow>
-            </main>
-        </div>
+
+        <MDBCol md='8' className='overflow-auto' style={{ height: '1000px' }}>
+            {feed && feed.map((item, index) => {
+                switch (item.Type) {
+                    case 'Post':
+                        return <Post data={item} />
+                    case 'Friend':
+                        return <FriendPost data={item} />
+                    case 'Photo':
+                        return <PhotoPost data={item} />
+                    default:
+                        break;
+                }
+            })}
+        </MDBCol>
+
     )
 }

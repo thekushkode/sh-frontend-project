@@ -29,7 +29,7 @@ function randomString(length) {
   return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
-let id = randomString(20)
+const id = randomString(20)
 
 function NewProfile(props) {
 
@@ -59,34 +59,34 @@ function NewProfile(props) {
   useEffect(() => {
     if (user.uid && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
-        .then(querySnapshot => {
-          let dog = null;
-          querySnapshot.forEach(doc => {
-            if (!dog) {
-              setDogId(id);
-              dog = doc.data();
-            }
-            if (dog) {
-              let userProfile = { data: doc.data(), id: id }
-              setDogName(dog.dogName);
-              setOwnerName(dog.ownerName);
-              setBreed(dog.breed);
-              setStreet(dog.street);
-              setCity(dog.city);
-              setUserState(dog.userState);
-              setZipcode(dog.zipcode);
-              setTemperament(dog.temperament);
-              setSize(dog.size);
-              setSpayNeut(dog.spayNeut);
-              setVaccines(dog.vaccines);
-              setBio(dog.bio);
-              setAvatar(dog.avatar)
-              setFacebook(dog.facebook ? dog.facebook : null)
-              setInstagram(dog.instagram ? dog.instagram : null)
-              dispatch(setProfile(userProfile));
-            }
-          })
-        })
+        // .then(querySnapshot => {
+        //   let dog = null;
+        //   querySnapshot.forEach(doc => {
+        //     if (!dog) {
+        //       setDogId(id);
+        //       dog = doc.data();
+        //     }
+        //     if (dog) {
+        //       let userProfile = { data: doc.data(), id: id }
+        //       setDogName(dog.dogName);
+        //       setOwnerName(dog.ownerName);
+        //       setBreed(dog.breed);
+        //       setStreet(dog.street);
+        //       setCity(dog.city);
+        //       setUserState(dog.userState);
+        //       setZipcode(dog.zipcode);
+        //       setTemperament(dog.temperament);
+        //       setSize(dog.size);
+        //       setSpayNeut(dog.spayNeut);
+        //       setVaccines(dog.vaccines);
+        //       setBio(dog.bio);
+        //       setAvatar(dog.avatar)
+        //       setFacebook(dog.facebook ? dog.facebook : null)
+        //       setInstagram(dog.instagram ? dog.instagram : null)
+        //       dispatch(setProfile(userProfile));
+        //     }
+        //   })
+        // })
     }
   })
 

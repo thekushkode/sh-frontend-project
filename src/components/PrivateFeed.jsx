@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { MDBRow, MDBCol } from "mdbreact";
-import { setPrivateFeed } from '../redux/actions/index';
+import { setFeed } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import Post from "./Post";

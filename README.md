@@ -5,10 +5,10 @@
 Social Hound is the 1st social media platform made just for your pup. Use the sign-up form to get started and once signed-in, you'll be able to create your pup's profile, find friend's location and posts, set-up play dates, and search for places you and your pup can enjoy together!<br  /><br  />Socialization is one of the most important things you can do for your dog. Dogs are social by nature and exposure to other dogs and animals gives many more opportunities to explore with your pup outside of your yard. We hope you enjoy SocialHound and making new fur-ends!
 
 # Contributors
-Robert Kushner IV
-Gerrit Van Leeuwen
-Jonathan Cox
-Logan Blackstad
+- Robert Kushner IV
+- Gerrit Van Leeuwen
+- Jonathan Cox
+- Logan Blackstad
 
 # Video Walkthrough
 
@@ -42,8 +42,7 @@ SocialHound is a true social media platform for your dog (and you!). Once signed
 React | Redux | JS | HTML | CSS | Firebase | Google API | Love
 
 
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

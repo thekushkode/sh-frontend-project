@@ -43,8 +43,8 @@ class DogProfile extends Component {
       allDogData: [],
       feedImgURL: '',
       hidden: true,
-      playDates: false
-      // photos: this.props.profile.data.photos ? this.props.profile.data.photos : []
+      playDates: false,
+      photos: []
     };
   }
 
@@ -71,6 +71,9 @@ class DogProfile extends Component {
               id: this.props.match.params.dogId
             }
             this.props.setProfile(profile)
+            this.setState({
+              photos: this.props.profile.data.photos
+            })
           })
         db.collection("Dogs")
           .where('ownerId', '==', user.uid)
@@ -86,7 +89,8 @@ class DogProfile extends Component {
             })
             this.setState({
               allDogData: data,
-              user: user
+              user: user,
+              photos: this.props.profile.data.photos
             })
           })
       }
@@ -109,7 +113,8 @@ class DogProfile extends Component {
             }
             this.setState({
               dogData: dogData,
-              user: user
+              user: user,
+              photos: this.props.profile.data.photos
             })
           })
       }
@@ -182,15 +187,14 @@ class DogProfile extends Component {
       this.addPhoto()
     }
     db.collection('Feed').add(newPost)
-      .then(doc => {
-        // console.log(`${doc.id} created successfully`)
-      })
-      .catch(err => {
-        console.error(err)
-      })
+    // .then(doc => {
+    //   // console.log(`${doc.id} created successfully`)
+    // })
+    // .catch(err => {
+    //   console.error(err)
+    // })
     this.setState({
-      postValue: '',
-      feedImgURL: ''
+      postValue: ''
     })
   }
 
@@ -200,14 +204,33 @@ class DogProfile extends Component {
       .update({
         photos: firebase.firestore.FieldValue.arrayUnion(this.state.feedImgURL)
       })
+      // .then(() => {
+      //   if (this.props.profile.data.photos) {
+      //     this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
+      //   } else {
+      //     this.props.profile.data.photos = [this.state.feedImgURL]
+      //   }
+      //   this.setState({
+      //     feedImgURL: '',
+      //     photos: [...this.state.photos, this.props.profile.data.photos]
+      //   })
+      // })
       .then(() => {
-        if (this.props.profile.data.photos) {
-          this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
+        const newImg = this.state.feedImgURL
+        if (this.state.photos) {
+          this.setState({
+            photos: [...this.state.photos, this.state.feedImgURL],
+          })
         } else {
-          this.props.profile.data.photos = [this.state.feedImgURL]
+          this.setState({
+            photos: [this.state.feedImgURL]
+          })
         }
+      })
+      .then(() => {
         this.setState({
-          feedImgURL: ''
+          feedImgURL: '',
+          postValue: ''
         })
       })
   }
@@ -413,7 +436,7 @@ class DogProfile extends Component {
                         <strong>{this.state.dogData.dogName}'s Photos</strong>
                       </h5>
                       <MDBRow>
-                        {this.state.dogData.photos && this.state.dogData.photos.map((photo, index) => {
+                        {this.state.photos && this.state.photos.map((photo, index) => {
                           return (
                             <MDBCol md='4' className='mt-1' key={index}>
                               <MDBView hover>

@@ -15,7 +15,7 @@ import {
   MDBIcon,
   MDBChip
 } from 'mdbreact';
-
+import { Link } from 'react-router-dom';
 import firebase from '../firebase';
 import ChatListItem from './messages/ChatListItem'
 import './Chat.css';

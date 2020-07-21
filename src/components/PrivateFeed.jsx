@@ -13,6 +13,7 @@ export default function PrivateFeed(props) {
     const db = firebase.firestore();
     const dispatch = useDispatch();
     const feed = useSelector(state => state.feed)
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         db.collection('Feed').orderBy("timestamp", "desc").limit(100).onSnapshot(

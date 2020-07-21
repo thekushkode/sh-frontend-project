@@ -24,6 +24,7 @@ class LoggedNav extends Component {
             // console.log(error);
             alert('No User Logged In.')
         });
+        return <Redirect to='/' />
     }
 
     render() {

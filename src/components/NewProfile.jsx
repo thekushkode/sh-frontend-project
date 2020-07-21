@@ -24,12 +24,12 @@ import InputPage from './InputPage';
 
 const db = firebase.firestore();
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
-const id = randomString(20)
 
 function randomString(length) {
   return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
+let id = randomString(20)
 
 function NewProfile(props) {
 

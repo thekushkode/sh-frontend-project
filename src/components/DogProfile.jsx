@@ -227,11 +227,11 @@ class DogProfile extends Component {
   render() {
 
     return (
-      <div style={{ maxWidth: '1500px', margin: '0 auto' }}>
+      <div style={{ maxHeight: '1500px', margin: '0 auto' }}>
         <header style={{ marginBottom: '80px' }}>
         </header>
         <main style={{ backgroundColor: '#e1f5fe' }}>
-          <div id='profile-ex' className='mb-5 mt-4 mx-4'>
+          <div id='profile-ex' className='mt-4 mx-2'>
             <MDBContainer fluid>
               <MDBRow>
                 <MDBCol lg='4' md='4'>
@@ -504,9 +504,9 @@ class DogProfile extends Component {
             </MDBContainer>
           </div>
         </main>
-        <footer>
-          <FooterPage />
-        </footer>
+
+        <FooterPage />
+
       </div>
     );
   }

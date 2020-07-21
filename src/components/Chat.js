@@ -10,7 +10,10 @@ import {
   MDBInput,
   MDBListGroup,
   MDBListGroupItem,
-  MDBAvatar
+  MDBAvatar,
+  MDBBadge,
+  MDBIcon,
+  MDBChip
 } from 'mdbreact';
 
 import firebase from '../firebase';
@@ -91,6 +94,7 @@ const Chat = () => {
     setChatInput('')
   }
 
+  console.log(profile.data);
 
 
   // Create a reference with an initial file path and name
@@ -128,7 +132,11 @@ const Chat = () => {
         <MDBContainer fluid>
           <MDBRow>
             <MDBCol lg='4'>
-              <MDBInput type='text' icon='search' label='Search Your Messages' containerClass="text-left" />
+              <MDBChip size="lg" src={profile.data.avatar} alt="Contact Person" bgColor="aqua-gradient"
+                text="white" waves>
+                {profile.data.dogName}'s Messages
+              </MDBChip>
+              {/* <MDBInput type='text' icon='search' label='Search Your Messages' containerClass="text-left" /> */}
               <MDBListGroup style={{ maxHeight: '70vh', overflow: "scroll", margin: 'auto' }}>
                 {messages && messages.map((item) => <>{item}</>)}
               </MDBListGroup>

@@ -34,7 +34,7 @@ function Home(props) {
                 })
 
                 const db = firebase.firestore();
-                history.push('/newprofile')
+                // history.push('/newprofile')
                 //create user in Users db
                 db.collection('Users').doc(createdUser.user.uid).set({
                     email: email,
@@ -45,7 +45,7 @@ function Home(props) {
                     .catch(err => console.error(err))
 
             })
-        history.push('/newprofile')
+        // history.push('/newprofile')
     }
 
     return (

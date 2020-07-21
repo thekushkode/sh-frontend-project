@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBContainer, MDBBtn } from "mdbreact";
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
+import { loggedOut } from '../redux/actions/index'
 
 
 class LoggedNav extends Component {
@@ -19,12 +20,13 @@ class LoggedNav extends Component {
             this.setState({
                 redirect: true
             })
+            this.props.loggedOut()
+            this.props.history.push('/')
             // alert('You have been logged out!')
         }).catch(function (error) {
             // console.log(error);
             alert('No User Logged In.')
         });
-        return <Redirect to='/' />
     }
 
     render() {
@@ -101,5 +103,18 @@ class LoggedNav extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        profile: state.profile
+    }
+}
 
-export default LoggedNav;
+const mapDispatchToProps = {
+    loggedOut
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoggedNav)

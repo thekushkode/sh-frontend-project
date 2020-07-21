@@ -35,7 +35,11 @@ export default function ChatListItem(props) {
     }
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
-    let them = messageData.userNames.filter((name) => name !== profile.data.ownerName)
+    let them = messageData.userNames.filter((name) => 
+    {
+        {console.log(name)}
+        return name !== profile.data.ownerName
+    })
 
     return (
         <>

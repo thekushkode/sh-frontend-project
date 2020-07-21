@@ -35,7 +35,7 @@ export default function FriendPost(props) {
         </div>
         <div className="excerpt ml-4">
           <div className="brief">
-            <div><Link to={`/user/${props.data.FriendID}`}>{props.data.FriendName}</Link> and <Link to={`/user/${props.data.DogID}`}>{props.data.DogName}</Link> are friends</div>
+            <div><Link to={`/user/${props.data.FriendID}`}>{props.data.FriendName}</Link> added <Link to={`/user/${props.data.DogID}`}>{props.data.DogName}</Link> as a friend</div>
             <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
           </div>
           <div className="feed-footer">

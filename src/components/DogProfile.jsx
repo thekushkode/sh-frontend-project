@@ -214,9 +214,15 @@ class DogProfile extends Component {
       // })
       .then(() => {
         const newImg = this.state.feedImgURL
-        this.setState({
-          photos: [...this.state.photos, this.state.feedImgURL],
-        })
+        if (this.state.photos.length < 1) {
+          this.setState({
+            photos: [this.state.feedImgURL]
+          })
+        } else {
+          this.setState({
+            photos: [...this.state.photos, this.state.feedImgURL],
+          })
+        }
       })
       .then(() => {
         this.setState({

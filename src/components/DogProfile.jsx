@@ -44,7 +44,7 @@ class DogProfile extends Component {
       feedImgURL: '',
       hidden: true,
       playDates: false,
-      photos: this.props.profile.data.photos ? this.props.profile.data.photos : []
+      photos: []
     };
   }
 

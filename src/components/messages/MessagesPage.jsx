@@ -3,6 +3,7 @@ import firebase from '../../firebase';
 import MessagesBar from './MessagesBar'
 import MessagesWindow from './MessagesWindow'
 import Conversation from './Conversation';
+import { Link } from 'react-router-dom';
 
 export default function MessagesPage() {
 

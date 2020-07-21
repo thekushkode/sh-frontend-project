@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import firebase from '../../firebase';
+import { Link } from 'react-router-dom';
 
 
 export default function NewChat() {

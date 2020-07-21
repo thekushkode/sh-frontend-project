@@ -64,13 +64,16 @@ class DogProfile extends Component {
             }
             this.setState({
               dogData: dogData,
-              user: user
+              user: user,
             })
             const profile = {
               data: doc.data(),
               id: this.props.match.params.dogId
             }
             this.props.setProfile(profile)
+            this.setState({
+              photos: this.props.profile.data.photos
+            })
           })
         db.collection("Dogs")
           .where('ownerId', '==', user.uid)
@@ -87,7 +90,7 @@ class DogProfile extends Component {
             this.setState({
               allDogData: data,
               user: user,
-              photos: data[0].photos
+              photos: this.props.profile.data.photos
             })
           })
       }
@@ -110,7 +113,8 @@ class DogProfile extends Component {
             }
             this.setState({
               dogData: dogData,
-              user: user
+              user: user,
+              photos: this.props.profile.data.photos
             })
           })
       }
@@ -214,13 +218,13 @@ class DogProfile extends Component {
       // })
       .then(() => {
         const newImg = this.state.feedImgURL
-        if (this.state.photos.length < 1) {
+        if (this.state.photos) {
           this.setState({
-            photos: [this.state.feedImgURL]
+            photos: [...this.state.photos, this.state.feedImgURL],
           })
         } else {
           this.setState({
-            photos: [...this.state.photos, this.state.feedImgURL],
+            photos: [this.state.feedImgURL]
           })
         }
       })

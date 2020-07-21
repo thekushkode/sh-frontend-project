@@ -183,12 +183,12 @@ class DogProfile extends Component {
       this.addPhoto()
     }
     db.collection('Feed').add(newPost)
-      // .then(doc => {
-      //   // console.log(`${doc.id} created successfully`)
-      // })
-      // .catch(err => {
-      //   console.error(err)
-      // })
+    // .then(doc => {
+    //   // console.log(`${doc.id} created successfully`)
+    // })
+    // .catch(err => {
+    //   console.error(err)
+    // })
     // this.setState({
     //   postValue: '',
     //   feedImgURL: ''
@@ -443,7 +443,7 @@ class DogProfile extends Component {
                                     large={photo}
                                     className="img-fluid rounded-circle"
                                     alt="Dog Avatar"
-                                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto', backgroundColor: 'green' }}
+                                    style={{ width: '100px', height: '100px', borderRadius: '5px', margin: '0 auto', backgroundColor: 'green' }}
                                   />
                                 </Link>
                               </MDBView>

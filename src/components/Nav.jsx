@@ -49,13 +49,24 @@ class NavbarPage extends Component {
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav left>
+                        <MDBNavItem>
+                                <MDBDropdown>
+                                    <MDBDropdownToggle nav caret>
+                                        Feeds
+                                    </MDBDropdownToggle>
+                                    <MDBDropdownMenu className="dropdown-default" color="aqua-gradient">
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/feed">Public Feed</MDBNavLink></MDBDropdownItem>
+                                        <MDBDropdownItem className='p-0'><MDBNavLink className='black-text' to="/lost">Lost Dogs</MDBNavLink></MDBDropdownItem>
+                                    </MDBDropdownMenu>
+                                </MDBDropdown>
+                            </MDBNavItem>
                             <MDBNavItem>
                                 <MDBNavLink to="/feed">Feed</MDBNavLink>
                             </MDBNavItem>
                             {this.props.profile && (
-                            <MDBNavItem>
-                                <MDBNavLink to={`/profile/${this.props.profile.id}`}>Profile</MDBNavLink>
-                            </MDBNavItem>
+                                <MDBNavItem>
+                                    <MDBNavLink to={`/profile/${this.props.profile.id}`}>Profile</MDBNavLink>
+                                </MDBNavItem>
                             )}
                             <MDBNavItem>
                                 <MDBDropdown>
@@ -102,7 +113,7 @@ class NavbarPage extends Component {
                                     <MDBDropdownToggle nav caret className='mt-2'>
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
-                                    {this.props.profile && this.props.profile.data ? 
+                                    {this.props.profile && this.props.profile.data ?
                                         <MDBDropdownMenu className="dropdown-default">
                                             <div style={{ marginLeft: '8px' }}>
                                                 <p>logged in as:</p>

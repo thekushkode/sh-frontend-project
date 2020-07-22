@@ -21,6 +21,7 @@ import { connect } from 'react-redux'
 import ModalImage from "react-modal-image";
 import SelectDate from './SelectDate';
 import { loadMessages } from '../redux/actions'
+import PublicProfileFeed from './PublicProfileFeed';
 
 // const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media';
 
@@ -196,12 +197,12 @@ class UserProfile extends Component {
             timestamp: new Date()
           }
           db.collection('Feed').add(newPost)
-            .then(doc => {
-              // console.log(`${doc.id} created successfully`)
-            })
-            .catch(err => {
-              console.error(err)
-            })
+            // .then(doc => {
+            //   // console.log(`${doc.id} created successfully`)
+            // })
+            // .catch(err => {
+            //   console.error(err)
+            // })
         })
         .then(() => {
           this.setState({
@@ -465,6 +466,7 @@ class UserProfile extends Component {
                         <MDBCol>
                           <div className='ml-5 mt-3'>
                             <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} />
+                            {/* <PublicProfileFeed location={this.props.location.pathname} /> */}
                           </div>
                         </MDBCol>
                       </MDBRow>

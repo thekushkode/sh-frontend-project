@@ -64,7 +64,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            message: `A PlayDate has been setup between&nbsp<Link to="/user/${dog.dogId}" target='_blank'>${dog.dogName}</Link>&nbspand&nbsp<Link to="/user/${this.props.profile.id}" target="_blank">${this.props.profile.data.dogName}</Link>&nbsp on ${moment().format(this.state.date)}`,
+                            message: `A PlayDate has been setup between&nbsp<Link to="/user/${dog.dogId}" target='_blank'>${dog.dogName}</Link>&nbspand&nbsp<Link to="/user/${this.props.profile.id}" target="_blank">${this.props.profile.data.dogName}</Link>&nbspon ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
@@ -92,7 +92,7 @@ class SelectDate extends Component {
                             sender: 'PlayDate Request',
                             timeStamp: Date.now(),
                             // message: `<a href="/user/${this.props.profile.id}">${this.props.profile.data.dogName}</a> &nbsp; has setup a PlayDate with ${dog.dogName} on ${moment().format(this.state.date)}`,
-                            message: `A PlayDate has been setup between&nbsp<Link to="/user/${dog.dogId}" target='_blank'>${dog.dogName}</Link>&nbspand&nbsp<Link to="/user/${this.props.profile.id}" target="_blank">${this.props.profile.data.dogName}</Link>&nbsp on ${moment().format(this.state.date)}`,
+                            message: `A PlayDate has been setup between&nbsp<Link to="/user/${dog.dogId}" target='_blank'>${dog.dogName}</Link>&nbspand&nbsp<Link to="/user/${this.props.profile.id}" target="_blank">${this.props.profile.data.dogName}</Link>&nbspon ${moment().format(this.state.date)}`,
                             playDate: date,
                         }
                         db.collection("Messages").doc(id)

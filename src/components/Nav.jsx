@@ -3,6 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loggedOut, unSetPrivateFeed } from '../redux/actions/index'
 
 
 class NavbarPage extends Component {
@@ -24,6 +25,9 @@ class NavbarPage extends Component {
             this.setState({
                 redirect: true
             })
+            this.props.unSetPrivateFeed()
+            this.props.loggedOut()
+            this.props.history.push('/')
         }).catch(function (error) {
             // console.log(error);
             alert('No User Logged In.')
@@ -48,9 +52,11 @@ class NavbarPage extends Component {
                             <MDBNavItem>
                                 <MDBNavLink to="/feed">Feed</MDBNavLink>
                             </MDBNavItem>
+                            {this.props.profile && (
                             <MDBNavItem>
                                 <MDBNavLink to={`/profile/${this.props.profile.id}`}>Profile</MDBNavLink>
                             </MDBNavItem>
+                            )}
                             <MDBNavItem>
                                 <MDBDropdown>
                                     <MDBDropdownToggle nav caret>
@@ -96,7 +102,7 @@ class NavbarPage extends Component {
                                     <MDBDropdownToggle nav caret className='mt-2'>
                                         <MDBIcon icon="user" size='lg' />
                                     </MDBDropdownToggle>
-                                    {this.props.profile.data ?
+                                    {this.props.profile && this.props.profile.data ? 
                                         <MDBDropdownMenu className="dropdown-default">
                                             <div style={{ marginLeft: '8px' }}>
                                                 <p>logged in as:</p>
@@ -128,11 +134,18 @@ class NavbarPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        user: state.user,
         profile: state.profile
     }
 }
 
+const mapDispatchToProps = {
+    loggedOut,
+    unSetPrivateFeed
+}
+
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(NavbarPage)
+

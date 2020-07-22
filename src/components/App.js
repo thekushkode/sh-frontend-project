@@ -165,9 +165,10 @@ function App() {
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
+              <Route exact path= '/lost' component={Lost} />
               {/* <Route exact path='/login'><Redirect to="/feed" /></Route> */}
               <Route exact path='/thankyou' component={ThankYou} />
-              <Route exact path='/messagestest' component={MessagesPage} />
+              {/* <Route exact path='/messagestest' component={MessagesPage} /> */}
               <Route exact path='/profile/:dogId' component={DogProfile} />
               <Route exact path='/add' component={AddNewDog} />
               <Route path='/user/:dogId' component={UserProfile} />

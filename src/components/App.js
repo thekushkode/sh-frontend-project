@@ -34,6 +34,7 @@ import PublicFeed from './PublicFeed';
 import Konami from 'react-konami-code';
 import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn } from "mdbreact";
 import Adopt from './Adopt';
+import Lost from './Lost'
 
 function App() {
   let db = firebase.firestore();
@@ -164,6 +165,7 @@ function App() {
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
+              <Route exact path= '/lost' component={Lost} />
               {/* <Route exact path='/login'><Redirect to="/feed" /></Route> */}
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />

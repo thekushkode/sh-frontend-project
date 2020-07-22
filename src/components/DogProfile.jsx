@@ -28,6 +28,20 @@ import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/i
 import PlayDates from './PlayDates';
 
 
+const mapStateToProps = (state) => {
+  return {
+    feed: state.feed,
+    profile: state.profile
+  }
+}
+
+const mapDispatchToProps = {
+  setFeed,
+  unSetFeed,
+  setProfile,
+  clearProfile
+}
+
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 const defaultFeedImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/social-hound-logo-512.png?alt=media'
 
@@ -58,6 +72,7 @@ class DogProfile extends Component {
           .doc(this.props.match.params.dogId)
           .get()
           .then(doc => {
+            console.log(doc.data())
             const dogData = {
               ...doc.data(),
               dogId: doc.id
@@ -187,12 +202,6 @@ class DogProfile extends Component {
       this.addPhoto()
     }
     db.collection('Feed').add(newPost)
-    // .then(doc => {
-    //   // console.log(`${doc.id} created successfully`)
-    // })
-    // .catch(err => {
-    //   console.error(err)
-    // })
     this.setState({
       postValue: ''
     })
@@ -204,17 +213,6 @@ class DogProfile extends Component {
       .update({
         photos: firebase.firestore.FieldValue.arrayUnion(this.state.feedImgURL)
       })
-      // .then(() => {
-      //   if (this.props.profile.data.photos) {
-      //     this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
-      //   } else {
-      //     this.props.profile.data.photos = [this.state.feedImgURL]
-      //   }
-      //   this.setState({
-      //     feedImgURL: '',
-      //     photos: [...this.state.photos, this.props.profile.data.photos]
-      //   })
-      // })
       .then(() => {
         const newImg = this.state.feedImgURL
         if (this.state.photos) {
@@ -469,17 +467,9 @@ class DogProfile extends Component {
                 <MDBCol lg='8' md='8' className='text-center'>
                   <MDBRow>
                     <MDBCol>
-                      {/* <div className='text-center mt-3'>
-                        <h4>
-                          <strong>{this.state.dogData.dogName}'s Feed</strong>
-                        </h4>
-                      </div> */}
                       <div style={{ marginTop: '20px', paddingLeft: '10px', paddingRight: '10px' }}>
                         <div className="form-group">
                           <form onSubmit={this.handleSubmit}>
-                            {/* <label htmlFor="exampleFormControlTextarea1">
-                              Write New Post:
-                          </label> */}
                             <textarea
                               className="form-control"
                               id="exampleFormControlTextarea1"
@@ -490,14 +480,12 @@ class DogProfile extends Component {
                               placeholder='Create new post...'
                             />
 
-                            {/* <ProfileUpload value={this.state.imgValue} name='upload' onChange={this.handleChange} /> */}
                             <MDBAvatar
                               tag='img'
                               alt='Feed Image'
                               src={(this.state.feedImgURL ? this.state.feedImgURL : defaultFeedImg)}
                               style={{ maxWidth: '400px', maxHeight: '400px', margin: '0 auto', borderRadius: '5px' }}
                               className='z-depth-1-half mb-4 mt-4'
-                              // aria-hidden={(defaultFeedImg ? 'true' : 'false')}
                               hidden
                             />
 
@@ -505,9 +493,6 @@ class DogProfile extends Component {
                               value={this.state.feedImgURL}
                               id={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
                               onUpload={(imgRef) => {
-                                // console.log('uploaded', imgRef);
-                                // setFeedImg('');
-                                // setTimeout(() => setFeedImg(imgRef), 500);
                                 this.setState({ feedImgURL: imgRef });
                               }} />
 
@@ -542,20 +527,6 @@ class DogProfile extends Component {
       </div>
     );
   }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    feed: state.feed,
-    profile: state.profile
-  }
-}
-
-const mapDispatchToProps = {
-  setFeed,
-  unSetFeed,
-  setProfile,
-  clearProfile
 }
 
 export default connect(

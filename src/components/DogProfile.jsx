@@ -28,20 +28,6 @@ import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/i
 import PlayDates from './PlayDates';
 
 
-const mapStateToProps = (state) => {
-  return {
-    feed: state.feed,
-    profile: state.profile
-  }
-}
-
-const mapDispatchToProps = {
-  setFeed,
-  unSetFeed,
-  setProfile,
-  clearProfile
-}
-
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 const defaultFeedImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/social-hound-logo-512.png?alt=media'
 
@@ -527,6 +513,20 @@ class DogProfile extends Component {
       </div>
     );
   }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    feed: state.feed,
+    profile: state.profile
+  }
+}
+
+const mapDispatchToProps = {
+  setFeed,
+  unSetFeed,
+  setProfile,
+  clearProfile
 }
 
 export default connect(

@@ -3,7 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loggedOut, unSetPrivateFeed } from '../redux/actions/index'
+import { loggedOut, unSetPrivateFeed, clearMessages } from '../redux/actions/index'
 
 
 class NavbarPage extends Component {
@@ -26,6 +26,7 @@ class NavbarPage extends Component {
                 redirect: true
             })
             this.props.unSetPrivateFeed()
+            this.props.clearMessages()
             this.props.loggedOut()
             this.props.history.push('/')
         }).catch(function (error) {
@@ -152,7 +153,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     loggedOut,
-    unSetPrivateFeed
+    unSetPrivateFeed,
+    clearMessages
 }
 
 export default connect(

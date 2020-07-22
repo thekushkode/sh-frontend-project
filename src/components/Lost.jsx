@@ -27,7 +27,6 @@ import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 import PlayDates from './PlayDates';
-import LostDog from './LostDog'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment';
 import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
@@ -219,17 +218,6 @@ class Lost extends Component {
                       <div style={{ marginTop: '20px', paddingLeft: '10px', paddingRight: '10px' }}>
                         <div className="form-group">
                           <form onSubmit={this.handleSubmit}>
-                            <MDBRow>
-                              <MDBCol md='4'>
-                                <MDBInput type='text' name='name' value={ownerName} label='Owner Name' onChange={(e) => { if (!null) { setOwnerName(e.target.value) } }} required />
-                              </MDBCol>
-                              <MDBCol md='4'>
-                                <MDBInput type='text' name='dogname' value={dogName} label='Dogs Name' onChange={(e) => { if (!null) { setDogName(e.target.value) } }} required />
-                              </MDBCol>
-                              <MDBCol md='4'>
-                                <MDBInput type='text' name='breed' value={breed} label='Breed' onChange={(e) => { setBreed(e.target.value) }} required />
-                              </MDBCol>
-                            </MDBRow>
                             <textarea
                               className="form-control"
                               id="exampleFormControlTextarea1"

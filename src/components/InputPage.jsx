@@ -21,7 +21,6 @@ function InputPage(props) {
         // FileList { 0: File, length: 1 }
         // 0: File { name: "bentley.PNG", lastModified: 1594648700779, lastModifiedDate: Mon Jul 13 2020 09: 58: 20 GMT - 0400(Eastern Daylight Time), webkitRelativePath: "", size: 1179597, … }
         // length: 1
-          
         let fileObj = files[0];
         
         // Create a reference with an initial file path and name

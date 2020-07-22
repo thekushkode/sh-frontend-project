@@ -26,26 +26,9 @@ function Home(props) {
 
     const newUser = (e) => {
         // authentication
-        e.preventDefault()
+        // e.preventDefault()
+        const db = firebase.firestore();
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(createdUser => {
-                createdUser.user.updateProfile({
-                    email: email
-                })
-
-                const db = firebase.firestore();
-                // history.push('/newprofile')
-                //create user in Users db
-                db.collection('Users').doc(createdUser.user.uid).set({
-                    email: email,
-                })
-                    .then(doc => {
-                        history.push('/newprofile')
-                    })
-                    .catch(err => console.error(err))
-
-            })
-        // history.push('/newprofile')
     }
 
     return (
@@ -80,7 +63,7 @@ function Home(props) {
                         <MDBCol md='6' xl='5' className='mb-4'>
                             <MDBAnimation type='fadeInRight' delay='.3s'>
                                 <MDBCard id='classic-card'>
-                                    <form onSubmit={newUser}>
+                                    {/* <form> */}
                                         <MDBCardBody className='white-text'>
                                             <h3 className='text-center'>
                                                 <MDBIcon icon='user' /> Register
@@ -96,7 +79,7 @@ function Home(props) {
                                                 name='email'
                                                 containerClass="text-left"
                                                 onChange={(e) => { setEmail(e.target.value) }}
-                                                required
+                                                // required
                                             />
                                             <MDBInput
                                                 className='white-text form-control'
@@ -107,11 +90,11 @@ function Home(props) {
                                                 name='password'
                                                 containerClass="text-left"
                                                 onChange={(e) => { setPassword(e.target.value) }}
-                                                required
+                                                // required
                                             />
 
                                             <div className='text-center mt-4 black-text'>
-                                                <MDBBtn color='indigo' type='submit'>Sign Up</MDBBtn>
+                                                <MDBBtn color='indigo' onClick={newUser}>Sign Up</MDBBtn>
                                                 <h6 className='white-text'>Already have an account? <Link to='/login'>Sign In!</Link></h6>
                                                 <p style={{ fontSize: '10px'}} className='white-text'>Upon signup you accept SocialHound's <Link to='/terms'>Terms of Service</Link> & <Link to='/privacy'>Privacy</Link> statements.</p>
                                                 <hr className='hr-light' />
@@ -140,7 +123,7 @@ function Home(props) {
                                                 </div>
                                             </div>
                                         </MDBCardBody>
-                                    </form>
+                                    {/* </form> */}
                                 </MDBCard>
                             </MDBAnimation>
                         </MDBCol>

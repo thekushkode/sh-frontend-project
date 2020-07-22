@@ -215,6 +215,13 @@ class DogProfile extends Component {
       //     photos: [...this.state.photos, this.props.profile.data.photos]
       //   })
       // })
+
+
+      /* 
+      COMMENTS:
+      local state needs to be updated for the component to render the uploaded image to the page
+      */
+
       .then(() => {
         const newImg = this.state.feedImgURL
         if (this.state.photos) {

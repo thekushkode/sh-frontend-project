@@ -28,7 +28,7 @@ function randomString(length) {
   return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
-const id = randomString(20)
+let id = randomString(20)
 
 class UserProfile extends Component {
   constructor(props) {
@@ -65,6 +65,7 @@ class UserProfile extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    id = randomString(20)
     let dogID = this.props.match.params.dogId
     if (prevProps.match.params.dogId !== dogID || prevState.friends.length !== this.state.friends.length) {
       const db = firebase.firestore();
@@ -108,6 +109,7 @@ class UserProfile extends Component {
           return filteredArray
         })
         .then((filteredArray) => {
+          console.log(filteredArray)
           if (filteredArray.length > 0) {
             const newReduxMessage = {
               id: filteredArray[0].id,
@@ -121,6 +123,21 @@ class UserProfile extends Component {
             }
             this.props.loadMessages(newReduxMessage)
             this.props.history.push('/messages')
+            const newMessage = {
+              sender: 'Social Hound',
+              timeStamp: Date.now(),
+              message: `${userName} wants to chat`,
+              senderAvatar: this.props.profile.data.avatar,
+              receiverAvatar: dog.avatar
+            }
+            db.collection("Messages").doc(id)
+              .set({
+                members: [userID, dog.ownerId],
+                userNames: [userName, dog.ownerName],
+                messages: [newMessage],
+                senderAvatar: this.props.profile.data.avatar,
+                receiverAvatar: dog.avatar
+              })
           } else {
             const newMessage = {
               sender: 'Social Hound',

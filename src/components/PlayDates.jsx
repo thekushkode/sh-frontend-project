@@ -60,26 +60,6 @@ export default function PlayDates(props) {
                     </div>
                   </div>
                 </MDBCard>
-
-                // <MDBJumbotron>
-                //   <div>
-                //     <header className='p-3'>
-                //       <h3>
-                //         {item.playDate.userNames.map((user, index) => {
-                //           return (
-                //             <span>{user} {index < (item.playDate.userNames.length - 1) ? 'and ' : null} </span>
-                //           )
-                //         })}
-                //     have a playdate scheduled for
-                //     </h3>
-                //       <h4 className='p-2'>
-                //         <MDBIcon fab icon='glass-cheers' /><span> {moment(item.playDate.date).format('LL')} </span>
-                //       </h4>
-                //     </header>
-                //     {item.playDate.confirmed && <h5 className='p-3'>You have both confirmed the playdate. Have fun!</h5>}
-                //     <footer className='p-3'>Event created on {moment(item.playDate.createdAt).format('LLLL')}</footer>
-                //   </div>
-                // </MDBJumbotron>
               )
             })}
           </MDBCol>

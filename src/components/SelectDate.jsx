@@ -13,7 +13,7 @@ function randomString(length) {
     return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
-const id = randomString(20)
+let id = randomString(20)
 
 class SelectDate extends Component {
     constructor(props) {
@@ -36,6 +36,7 @@ class SelectDate extends Component {
 
 
     createPlayDate = (date) => {
+        id = randomString(20)
         let userID = this.props.user.uid
         let userName = this.props.profile.data.ownerName
         let dog = this.props.dog

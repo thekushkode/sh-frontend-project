@@ -131,6 +131,10 @@ class NavbarPage extends Component {
         );
     }
 }
+const mapDispatchToProps = {
+    loggedOut,
+    unSetPrivateFeed
+}
 
 const mapStateToProps = (state) => {
     return {

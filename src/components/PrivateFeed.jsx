@@ -95,7 +95,7 @@ export default function PrivateFeed(props) {
                                 case 'Photo':
                                     return <PhotoPost data={item} key={index} />
                                 default:
-                                    break;
+                                    return <></>;
                             }
                         }
                         )}

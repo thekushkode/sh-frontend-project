@@ -35,10 +35,13 @@ SocialHound is a true social media platform for your dog (and you!). Once signed
 
 - Use our custom map tools to find dog parks, view boarding & daycare facilities, locate vets in your area and find pet adoption locations! There is also a map for finding new friends!
 
+- Konami Code
+
 
 ## Built With
 
 <img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/builtwith.jpg' width='800' /> 
+
 React | Redux | JS | HTML | CSS | Firebase | Google API | Love
 
 

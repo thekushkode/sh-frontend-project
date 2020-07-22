@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { MDBRow, MDBCol } from "mdbreact";
-import { setFeed, setPrivateFeed } from '../redux/actions/index';
+import { setPrivateFeed } from '../redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase';
 import Post from "./Post";
@@ -36,19 +36,21 @@ export default function PrivateFeed(props) {
     //         <main>
     //             <MDBRow>
     //                 <MDBCol>
-    //                     {feed && feed.map((item, index) {
-    //                         console.log(props.location.slice(props.location.length - 20, props.location.length))
-    //                         console.log(item.FriendID)
-    //                         if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
-    //                             switch (item.Type) {
-    //                                 case 'Post':
-    //                                     return <Post data={item} />
-    //                                 case 'Friend':
-    //                                     return <FriendPost data={item} />
-    //                                 case 'Photo':
-    //                                     return <PhotoPost data={item} />
-    //                                 default:
-    //                                     break;
+    //                     {feed && feed.map((item, index) => {
+    //                         {
+    //                             if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
+    //                                 { console.log(props.location.slice(props.location.length - 20, props.location.length)) }
+    //                                 { console.log(item.FriendID) }
+    //                                 switch (item.Type) {
+    //                                     case 'Post':
+    //                                         return <Post data={item} />
+    //                                     case 'Friend':
+    //                                         return <FriendPost data={item} />
+    //                                     case 'Photo':
+    //                                         return <PhotoPost data={item} />
+    //                                     default:
+    //                                         break;
+    //                                 }
     //                             }
     //                         }
     //                     })}
@@ -64,7 +66,7 @@ export default function PrivateFeed(props) {
     const id = props.location.slice(props.location.length - 20)
 
     useEffect(() => {
-        db.collection('Feed').where('DogID', '==', `${id}`).orderBy("timestamp", "desc").limit(10).onSnapshot(
+        db.collection('Feed').where('FriendID', '==', `${id}`).orderBy("timestamp", "desc").limit(10).onSnapshot(
             querySnapshot => {
                 let privateArray = [];
                 querySnapshot.forEach(function (doc) {

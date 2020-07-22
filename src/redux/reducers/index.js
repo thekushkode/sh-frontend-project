@@ -6,6 +6,7 @@ import { combineReducers } from 'redux';
 import authReducer from './auth';
 import feedReducer from './feed';
 import privateFeedReducer from './privateFeed';
+import userFeedReducer from './userFeed';
 //import counterReducer from './likesCounter';
 
 const allReducers = combineReducers({
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
     messages: messagesReducer,
     auth: authReducer,
     feed: feedReducer,
-    privateFeed: privateFeedReducer
+    privateFeed: privateFeedReducer,
+    userFeed: userFeedReducer
 })
 
 export default allReducers;

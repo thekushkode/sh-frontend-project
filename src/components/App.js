@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import Home from './Home';
 import Chat from './Chat';
 import About from './About';
@@ -40,6 +40,7 @@ function App() {
   const dispatch = useDispatch();
   const [url, setUrl] = useState('');
   const [modal, setModal] = useState(false);
+  let history = useHistory();
 
   ReactGA.initialize('UA-172377344-1');
   ReactGA.pageview(window.location.pathname + window.location.search);
@@ -62,29 +63,20 @@ function App() {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         dispatch(setUser(user))
-        let userID;
 
-        let userData = {}
-        let userProfile = {}
-        db.collection("Users")
-          .where("email", "==", user.email).limit(1).get()
+        let primaryDogProfile = {}
+        db.collection("Dogs")
+          .where("ownerId", "==", user.uid).limit(1).get()
           .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-              userData = { data: doc.data(), id: doc.id }
-              userID = doc.id;
-            })
-          }).then(res => {
-            db.collection("Dogs")
-              .where("ownerId", "==", user.uid).get()
-              .then(function (querySnapshot) {
-                querySnapshot.forEach(function (doc) {
-                  userProfile = { data: doc.data(), id: doc.id }
-                })
-              }).then(res => {
-                dispatch(setProfile(userProfile));
-                // dispatch(setUser(userData));
-                dispatch(loggedIn());
+            if (querySnapshot.empty) {
+              history.push('/newprofile')
+            } else {
+              querySnapshot.forEach(function (doc) {
+                primaryDogProfile = { data: doc.data(), id: doc.id }
+                dispatch(setProfile(primaryDogProfile));
               })
+            }
+            dispatch(loggedIn());
           })
       } else {
         dispatch(unSetUser());
@@ -99,10 +91,7 @@ function App() {
     fetch('https://dog.ceo/api/breeds/image/random')
       .then(res => res.json())
       .then(res => {
-        // console.log(res)
-        // console.log(res.message)
         let url = res.message;
-        // console.log(url);
         setUrl(url)
         setModal(true)
 
@@ -118,7 +107,6 @@ function App() {
   switch (authState) {
     case LOGGED_OUT:
       return (
-        <Router>
           <div className="App">
             <header className="App-header">
               <NotLogged />
@@ -154,11 +142,9 @@ function App() {
               </MDBContainer>
             </Konami>
           </div>
-        </Router>
       )
     case LOGGED_IN:
       return (
-        <Router>
           <div className="App">
             <header className="App-header">
               <NavbarPage />
@@ -178,7 +164,7 @@ function App() {
               <Route exact path='/newprofile' component={NewProfile} />
               <Route exact path='/terms' component={Terms} />
               <Route exact path='/privacy' component={Privacy} />
-              <Route exact path='/login'><Redirect to="/feed" /></Route>
+              {/* <Route exact path='/login'><Redirect to="/feed" /></Route> */}
               <Route exact path='/thankyou' component={ThankYou} />
               <Route exact path='/messagestest' component={MessagesPage} />
               <Route exact path='/profile/:dogId' component={DogProfile} />
@@ -201,7 +187,6 @@ function App() {
               </MDBContainer>
             </Konami>
           </div>
-        </Router >
       )
     case UNINITIALIZED:
     case AUTHENTICATING:

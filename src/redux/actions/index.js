@@ -77,10 +77,9 @@ export const setPrivateFeed = (feed) => {
     }
 }
 
-export const unSetPrivateFeed = (feed) => {
+export const unSetPrivateFeed = () => {
     return {
-        type: 'UNSET_PRIVATE_FEED',
-        payload: feed
+        type: 'UNSET_PRIVATE_FEED'
     }
 }
 

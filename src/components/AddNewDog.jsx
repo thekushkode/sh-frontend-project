@@ -28,11 +28,11 @@ function randomString(length) {
   return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
-const id = randomString(20)
 // console.log(id)
 
 function AddNewDog(props) {
-
+  
+  const id = randomString(20)
   const history = useHistory();
   //grabs redux state
   const user = useSelector(state => state.user);

@@ -50,6 +50,10 @@ export const loadMessages = (payload) => ({
     payload
 })
 
+export const clearMessages = (payload) => ({
+    type: 'CLEAR_MESSAGES',
+})
+
 export const setFeed = (feed) => {
     return {
         type: 'SET_FEED',

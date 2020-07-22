@@ -15,7 +15,7 @@ export default function MessagesWindow() {
     let userNames;
     let friends;
     let selectableFriends;
-    if (messages.data) {
+    if (messages && messages.data) {
         userNames = messages.data.userNames.filter((name) => name !== profile.data.ownerName)
         if (profile.data.friends) {
             friends = profile.data.friends.map((name) => name)
@@ -92,7 +92,7 @@ export default function MessagesWindow() {
             </MDBRow>
                 <div className="border border-info p-2 white">
                     <ul style={{ height: '60vh', overflow: "scroll" }}>
-                        {messages.data && messages.data.messages.map((item) => {
+                        {messages && messages.data ? messages.data.messages.map((item) => {
                             let styles;
                             let button;
                             if (item.sender === 'Social Hound') {
@@ -112,7 +112,7 @@ export default function MessagesWindow() {
                             return (
                                 <SingleMessage formatting={styles} content={item} button={button} />
                             )
-                        })}
+                        }) : null }
                     </ul>
                 </div>
         </>

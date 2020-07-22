@@ -34,6 +34,7 @@ import PublicFeed from './PublicFeed';
 import Konami from 'react-konami-code';
 import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn } from "mdbreact";
 import Adopt from './Adopt';
+import Lost from './Lost';
 
 function App() {
   let db = firebase.firestore();
@@ -171,6 +172,7 @@ function App() {
               <Route exact path='/add' component={AddNewDog} />
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
+              <Route path='/lost' component={Lost} />
               <Redirect to="/newprofile" />
             </Switch>
             <Konami action={easterEgg} style={{}}>

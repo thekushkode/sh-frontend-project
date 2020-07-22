@@ -4,19 +4,8 @@ import {
   MDBRow,
   MDBCol,
   MDBCard,
-  MDBCardTitle,
-  MDBCardBody,
   MDBIcon,
-  MDBAvatar,
   MDBBtn,
-  MDBJumbotron,
-  MDBDropdown,
-  MDBDropdownItem,
-  MDBDropdownMenu,
-  MDBDropdownToggle,
-  MDBView,
-  MDBMask,
-  MDBInput
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
@@ -130,17 +119,17 @@ class Lost extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let newPost = {
-        Avatar: this.props.profile.data.avatar,
-        Content: this.state.postValue,
-        dogName: this.state.dogName,
-        FriendID: this.props.profile.id,
-        SenderID: user.uid,
-        SenderName: this.props.profile.data.ownerName,
-        DogID: this.props.profile.id,
-        Type: 'Lost',
-        timestamp: new Date(),
-        feedImgURL: this.state.feedImgURL
-      }
+      Avatar: this.props.profile.data.avatar,
+      Content: this.state.postValue,
+      dogName: this.state.dogName,
+      FriendID: this.props.profile.id,
+      SenderID: user.uid,
+      SenderName: this.props.profile.data.ownerName,
+      DogID: this.props.profile.id,
+      Type: 'Lost',
+      timestamp: new Date(),
+      feedImgURL: this.state.feedImgURL
+    }
     if (this.state.feedImgURL) {
       this.addPhoto()
     }
@@ -192,102 +181,83 @@ class Lost extends Component {
           <div id='profile-ex' className='mt-4 mx-2'>
             <MDBContainer fluid>
               <MDBRow>
-                <MDBCol lg='8' md='8' className='text-center'>
-                  <MDBRow>
-                    <MDBCol>
-                      <div style={{ marginTop: '20px', paddingLeft: '10px', paddingRight: '10px' }}>
-                        <div className="form-group">
-                          <form onSubmit={this.handleSubmit}>
-                            <MDBCol md='4'>
-                              <MDBInput type='text' name='dogname' value={this.state.dogName} label='Dogs Name' onChange={(e) => { if (!null) { this.setState({dogName: e.target.value}) }}} required />
-                            </MDBCol>
-                            <MDBCol md='4'>
-                              <MDBInput type='text' name='contact' value={this.state.dogName} label='Dogs Name' onChange={(e) => { if (!null) { this.setState({dogName: e.target.value}) }}} required />
-                            </MDBCol>
-                            <textarea
-                              className="form-control"
-                              id="exampleFormControlTextarea1"
-                              rows="2"
-                              value={this.state.postValue}
-                              name='post'
-                              onChange={this.handleChange}
-                              placeholder='Post a lost dog...'
-                            />
+                <MDBCol md='6' className='text-center'>
+                  <form>
+                    <p className="h4 text-center mt-3 mb-4">Lost Dog Form</p>
 
-                            <MDBAvatar
-                              tag='img'
-                              alt='Feed Image'
-                              src={(this.state.feedImgURL ? this.state.feedImgURL : defaultFeedImg)}
-                              style={{ maxWidth: '400px', maxHeight: '400px', margin: '0 auto', borderRadius: '5px' }}
-                              className='z-depth-1-half mb-4 mt-4'
-                              hidden
-                            />
+                    <input placeholder="Dog's Name" type="text" id="defaultFormContactNameEx" className="form-control" />
+                    <br />
 
-                            <InputPage
-                              value={this.state.feedImgURL}
-                              id={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
-                              onUpload={(imgRef) => {
-                                this.setState({ feedImgURL: imgRef });
-                              }} />
+                    <input placeholder='Owner Email' type="email" id="defaultFormContactEmailEx" className="form-control" />
+                    <br />
 
-                            <MDBBtn
-                              type='submit'
-                              className='btn btn-rounded blue-gradient'
-                            >
-                              Post <MDBIcon icon='image' className='ml-1' />
-                            </MDBBtn>
-                          </form>
+                    <input placeholder='Owner Phone' type="text" id="defaultFormContactSubjectEx" className="form-control" />
+                    <br />
+
+                    <input placeholder='Last Seen Location' type="text" id="defaultFormContactSubjectEx" className="form-control" />
+                    <br />
+
+                    <textarea placeholder='Additional Info' type="text" id="defaultFormContactMessageEx" className="form-control" rows="2" />
+                    <InputPage
+                      value={this.state.feedImgURL}
+                      id={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
+                      onUpload={(imgRef) => {
+                        this.setState({ feedImgURL: imgRef });
+                      }} />
+                    <div className="text-center mt-4">
+                      <MDBBtn color="primary" outline type="submit">
+                        Post
+                      <MDBIcon far icon="paper-plane" className="ml-2" />
+                      </MDBBtn>
+                    </div>
+                  </form>
+                </MDBCol>
+
+                <MDBCol className='overflow-auto text-center' style={{ height: '500px' }}>
+                  {this.state.lostData.map((item, index) => {
+                    return (
+                      <MDBCard className="card-image mb-2 d-flex align-items-center" style={{
+                        backgroundImage:
+                          "url(./images/sh-dogplay.gif)", marin: 'auto'
+                      }}>
+                        <div className="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+                          <div>
+                            <h4 className="white-text">
+                              <MDBIcon icon="exclamation-triangle" />
+                              <strong> HELP! I'M LOST</strong>
+                            </h4>
+                            <h3 className="py-3 font-weight-bold">
+                              <strong>Help (Dog Name) get home: </strong>
+                            </h3>
+                            <img className="img-fluid" src={item.Avatar} alt='lost dog'></img>
+                            <h4 className="pb-3">
+                              Owner Phone:
+                                                        </h4>
+                            <h4 className="pb-3">
+                              Owner Email:
+                                                        </h4>
+                            <h5 className='p-3'>Additional Info: </h5>
+                            <MDBBtn color="secondary" rounded size="md">
+                              <MDBIcon far icon="eye" className="left" /> Last Scene:
+                                                        </MDBBtn>
+                            <MDBContainer className='mt-2'>
+                              <FacebookShareButton url={`https://www.socialhound.co/user/${item.DogID}`} quote={item.content}>
+                                <FacebookIcon className='mr-1' size={32} round />
+                              </FacebookShareButton>
+                              <TwitterShareButton url={`localhost:3000/user/${item.DogID}`} title={item.content}>
+                                <TwitterIcon className='mr-1' size={32} round />
+                              </TwitterShareButton>
+                              <EmailShareButton url={`localhost:3000/user/${item.DogID}`} subject={`Email from ${item.SenderName}`}>
+                                <EmailIcon className='mr-1' size={32} round />
+                              </EmailShareButton>
+                            </MDBContainer>
+                          </div>
                         </div>
-                      </div>
-                    </MDBCol>
-                  </MDBRow>
-                  <MDBRow>
-                    <MDBCol className='overflow-auto' style={{ height: '1600px' }}>
-                      {this.state.lostData.map((item, index) => {
-                        return (
-                          <MDBJumbotron>
-                            <div className='news'>
-                              <div className="excerpt ml-4 d-flex justify-content-between">
-                                <div className='label m-auto align-items-start h-100 mt-0 col-4'>
-                                  <img
-                                    src={item.Avatar}
-                                    alt=""
-                                    className="rounded-circle z-depth-1-half"
-                                    style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto' }}
-                                  />
-                                  <div className="brief">
-                                    <Link to={`/user/${item.DogID}`} className="name">
-                                      {item.SenderName}
-                                    </Link> posted a new photo
-                      <div className="date">- {moment(item.timestamp.toDate()).fromNow()}</div>
-                                  </div>
-                                </div>
-                                <div className="added-text my-2 m-auto col-8 align-items-center">
-                                  <h2><strong>{item.dogName}</strong></h2>
-                                  <h6><strong>{item.Content}</strong></h6>
-                                  {<ModalImage small={item.feedImgURL} large={item.feedImgURL} style={{ width: '350px', borderRadius: '25px' }} />}
-                                  <div className="feed-footer">
-                                  </div>
-                                  <MDBContainer className='mt-2'>
-                                    <FacebookShareButton url={`https://www.socialhound.co/user/${item.DogID}`} quote={item.content}>
-                                      <FacebookIcon className='mr-1' size={32} round />
-                                    </FacebookShareButton>
-                                    <TwitterShareButton url={`localhost:3000/user/${item.DogID}`} title={item.content}>
-                                      <TwitterIcon className='mr-1' size={32} round />
-                                    </TwitterShareButton>
-                                    <EmailShareButton url={`localhost:3000/user/${item.DogID}`} subject={`Email from ${item.SenderName}`}>
-                                      <EmailIcon className='mr-1' size={32} round />
-                                    </EmailShareButton>
-                                  </MDBContainer>
-                                </div>
-                              </div>
-                            </div>
-                          </MDBJumbotron>
-                        )
-                      }
-                      )}
-                    </MDBCol>
-                  </MDBRow>
+                      </MDBCard>
+                    )
+                  }
+                  )}
+
                 </MDBCol>
               </MDBRow>
             </MDBContainer>

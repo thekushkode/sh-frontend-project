@@ -77,6 +77,13 @@ export const setPrivateFeed = (feed) => {
     }
 }
 
+export const unSetPrivateFeed = (feed) => {
+    return {
+        type: 'UNSET_PRIVATE_FEED',
+        payload: feed
+    }
+}
+
 // export const decrement = (num) => {
 //     return {
 //         type: 'DECREMENT',

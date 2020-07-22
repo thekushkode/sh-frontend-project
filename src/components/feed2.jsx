@@ -41,7 +41,7 @@ export default function SocialPage2() {
                     case 'Photo':
                         return <PhotoPost data={item} />
                     default:
-                        break;
+                        return <></>;
                 }
             })}
         </MDBCol>

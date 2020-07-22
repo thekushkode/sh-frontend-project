@@ -3,6 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { unSetPrivateFeed, loggedOut } from '../redux/actions/index';
 
 
 class NavbarPage extends Component {
@@ -24,6 +25,9 @@ class NavbarPage extends Component {
             this.setState({
                 redirect: true
             })
+            this.props.unSetPrivateFeed();
+            this.props.loggedOut();
+            this.props.history.push('/')
         }).catch(function (error) {
             // console.log(error);
             alert('No User Logged In.')
@@ -125,14 +129,20 @@ class NavbarPage extends Component {
         );
     }
 }
+const mapDispatchToProps = {
+    loggedOut,
+    unSetPrivateFeed
+}
 
 const mapStateToProps = (state) => {
     return {
+        user: state.user,
         profile: state.profile
     }
 }
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps,
     null
 )(NavbarPage)

@@ -16,6 +16,7 @@ import {
   MDBDropdownToggle,
   MDBView,
   MDBMask,
+  MDBInput
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
@@ -43,13 +44,7 @@ class Lost extends Component {
       submit: false,
       user: '',
       lostData: [],
-      postValue: '',
-      imgValue: '',
-      allDogData: [],
-      feedImgURL: '',
-      hidden: true,
-      playDates: false,
-      photos: []
+      dogName: ''
     };
   }
 
@@ -127,7 +122,6 @@ class Lost extends Component {
   handleChange = (e) => {
     this.setState({
       postValue: e.target.value,
-      // imgValue: e.target.imgValue
     })
   }
 
@@ -135,32 +129,18 @@ class Lost extends Component {
     e.preventDefault();
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-    let newPost
-    if (this.props.profile.avatar) {
-      newPost = {
-        Avatar: this.props.profile.avatar,
-        Content: this.state.postValue,
-        SenderName: this.props.profile.ownerName,
-        FriendID: this.props.profile.id,
-        SenderID: user.uid,
-        DogID: this.props.profile.dogId,
-        Type: 'Lost',
-        timestamp: new Date(),
-        feedImgURL: this.state.feedImgURL
-      }
-    } else {
-      newPost = {
+    let newPost = {
         Avatar: this.props.profile.data.avatar,
         Content: this.state.postValue,
-        SenderName: this.props.profile.data.ownerName,
+        dogName: this.state.dogName,
         FriendID: this.props.profile.id,
         SenderID: user.uid,
+        SenderName: this.props.profile.data.ownerName,
         DogID: this.props.profile.id,
         Type: 'Lost',
         timestamp: new Date(),
         feedImgURL: this.state.feedImgURL
       }
-    }
     if (this.state.feedImgURL) {
       this.addPhoto()
     }
@@ -218,6 +198,12 @@ class Lost extends Component {
                       <div style={{ marginTop: '20px', paddingLeft: '10px', paddingRight: '10px' }}>
                         <div className="form-group">
                           <form onSubmit={this.handleSubmit}>
+                            <MDBCol md='4'>
+                              <MDBInput type='text' name='dogname' value={this.state.dogName} label='Dogs Name' onChange={(e) => { if (!null) { this.setState({dogName: e.target.value}) }}} required />
+                            </MDBCol>
+                            <MDBCol md='4'>
+                              <MDBInput type='text' name='contact' value={this.state.dogName} label='Dogs Name' onChange={(e) => { if (!null) { this.setState({dogName: e.target.value}) }}} required />
+                            </MDBCol>
                             <textarea
                               className="form-control"
                               id="exampleFormControlTextarea1"
@@ -277,6 +263,7 @@ class Lost extends Component {
                                   </div>
                                 </div>
                                 <div className="added-text my-2 m-auto col-8 align-items-center">
+                                  <h2><strong>{item.dogName}</strong></h2>
                                   <h6><strong>{item.Content}</strong></h6>
                                   {<ModalImage small={item.feedImgURL} large={item.feedImgURL} style={{ width: '350px', borderRadius: '25px' }} />}
                                   <div className="feed-footer">

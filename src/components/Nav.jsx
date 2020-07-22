@@ -139,11 +139,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {
-    loggedOut,
-    unSetPrivateFeed
-}
-
 export default connect(
     mapStateToProps,
     mapDispatchToProps

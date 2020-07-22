@@ -60,9 +60,9 @@ class NavbarPage extends Component {
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>
-                            <MDBNavItem>
+                            {/* <MDBNavItem>
                                 <MDBNavLink to="/feed">Feed</MDBNavLink>
-                            </MDBNavItem>
+                            </MDBNavItem> */}
                             {this.props.profile && (
                                 <MDBNavItem>
                                     <MDBNavLink to={`/profile/${this.props.profile.id}`}>Profile</MDBNavLink>

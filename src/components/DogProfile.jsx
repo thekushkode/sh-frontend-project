@@ -199,27 +199,10 @@ class DogProfile extends Component {
       .update({
         photos: firebase.firestore.FieldValue.arrayUnion(this.state.feedImgURL)
       })
-<<<<<<< HEAD
-=======
-      // .then(() => {
-      //   if (this.props.profile.data.photos) {
-      //     this.props.profile.data.photos = [...this.props.profile.data.photos, this.state.feedImgURL]
-      //   } else {
-      //     this.props.profile.data.photos = [this.state.feedImgURL]
-      //   }
-      //   this.setState({
-      //     feedImgURL: '',
-      //     photos: [...this.state.photos, this.props.profile.data.photos]
-      //   })
-      // })
-
-
       /* 
       COMMENTS:
       local state needs to be updated for the component to render the uploaded image to the page
       */
-
->>>>>>> master
       .then(() => {
         const newImg = this.state.feedImgURL
         if (this.state.photos) {

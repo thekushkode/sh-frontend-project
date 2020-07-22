@@ -9,15 +9,10 @@ import {
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
-import PrivateFeed from './PrivateFeed';
 import firebase from '../firebase';
-import { Link } from 'react-router-dom'
-import ModalImage from "react-modal-image";
 import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
-import PlayDates from './PlayDates';
-import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment';
 import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
 moment().format()
@@ -32,8 +27,12 @@ class Lost extends Component {
     this.state = {
       submit: false,
       user: '',
-      lostData: [],
-      dogName: ''
+      dogName: '',
+      email: '',
+      phone: '',
+      lastSeen: '',
+      addInfo: '',
+      lostData: []
     };
   }
 
@@ -119,23 +118,26 @@ class Lost extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let newPost = {
-      Avatar: this.props.profile.data.avatar,
-      Content: this.state.postValue,
       dogName: this.state.dogName,
-      FriendID: this.props.profile.id,
-      SenderID: user.uid,
-      SenderName: this.props.profile.data.ownerName,
+      dogImage: this.state.feedImgURL,
+      email: this.state.email,
+      phone: this.state.phone,
+      lastSeen: this.state.lastSeen,
+      addInfo: this.state.addInfo,
       DogID: this.props.profile.id,
       Type: 'Lost',
-      timestamp: new Date(),
-      feedImgURL: this.state.feedImgURL
+      timestamp: new Date()
     }
     if (this.state.feedImgURL) {
       this.addPhoto()
     }
     db.collection('Lost').add(newPost)
     this.setState({
-      postValue: ''
+      dogName: '',
+      email: '',
+      phone: '',
+      lastSeen: '',
+      addInfo: '',
     })
   }
 
@@ -182,22 +184,17 @@ class Lost extends Component {
             <MDBContainer fluid>
               <MDBRow>
                 <MDBCol md='6' className='text-center'>
-                  <form>
+                  <form onSubmit={this.handleSubmit}>
                     <p className="h4 text-center mt-3 mb-4">Lost Dog Form</p>
-
-                    <input placeholder="Dog's Name" type="text" id="defaultFormContactNameEx" className="form-control" />
+                    <input placeholder="Dog's Name" type="text" id="defaultFormContactNameEx" className="form-control" value={this.state.dogName} onChange={(e) => { if (!null) { this.setState({dogName: e.target.value}) }}} />
                     <br />
-
-                    <input placeholder='Owner Email' type="email" id="defaultFormContactEmailEx" className="form-control" />
+                    <input placeholder='Owner Email' type="email" id="defaultFormContactEmailEx" className="form-control" value={this.state.email} onChange={(e) => { if (!null) { this.setState({email: e.target.value}) }}} />
                     <br />
-
-                    <input placeholder='Owner Phone' type="text" id="defaultFormContactSubjectEx" className="form-control" />
+                    <input placeholder='Owner Phone' type="text" id="defaultFormContactSubjectEx" className="form-control" value={this.state.phone} onChange={(e) => { if (!null) { this.setState({phone: e.target.value}) }}} />
                     <br />
-
-                    <input placeholder='Last Seen Location' type="text" id="defaultFormContactSubjectEx" className="form-control" />
+                    <input placeholder='Last Seen Location' type="text" id="defaultFormContactSubjectEx" className="form-control" value={this.state.lastSeen} onChange={(e) => { if (!null) { this.setState({lastSeen: e.target.value}) }}} />
                     <br />
-
-                    <textarea placeholder='Additional Info' type="text" id="defaultFormContactMessageEx" className="form-control" rows="2" />
+                    <textarea placeholder='Additional Info' type="text" id="defaultFormContactMessageEx" className="form-control" rows="2" value={this.state.addInfo} onChange={(e) => { if (!null) { this.setState({addInfo: e.target.value}) }}} />
                     <InputPage
                       value={this.state.feedImgURL}
                       id={Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
@@ -227,19 +224,19 @@ class Lost extends Component {
                               <strong> HELP! I'M LOST</strong>
                             </h4>
                             <h3 className="py-3 font-weight-bold">
-                              <strong>Help (Dog Name) get home: </strong>
+                              <strong>Help {item.dogName} get home: </strong>
                             </h3>
-                            <img className="img-fluid" src={item.Avatar} alt='lost dog'></img>
+                            <img className="img-fluid" src={item.dogImage} alt='lost dog'></img>
                             <h4 className="pb-3">
-                              Owner Phone:
-                                                        </h4>
+                              Owner Phone: {item.phone}
+                            </h4>
                             <h4 className="pb-3">
-                              Owner Email:
-                                                        </h4>
-                            <h5 className='p-3'>Additional Info: </h5>
+                              Owner Email: {item.email}
+                            </h4>
+                            <h5 className='p-3'>Additional Info: {item.addInfo}</h5>
                             <MDBBtn color="secondary" rounded size="md">
-                              <MDBIcon far icon="eye" className="left" /> Last Scene:
-                                                        </MDBBtn>
+                              <MDBIcon far icon="eye" className="left" /> Last Seen: {item.lastSeen}
+                            </MDBBtn>
                             <MDBContainer className='mt-2'>
                               <FacebookShareButton url={`https://www.socialhound.co/user/${item.DogID}`} quote={item.content}>
                                 <FacebookIcon className='mr-1' size={32} round />
@@ -257,7 +254,6 @@ class Lost extends Component {
                     )
                   }
                   )}
-
                 </MDBCol>
               </MDBRow>
             </MDBContainer>

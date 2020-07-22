@@ -34,11 +34,7 @@ import PublicFeed from './PublicFeed';
 import Konami from 'react-konami-code';
 import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn } from "mdbreact";
 import Adopt from './Adopt';
-<<<<<<< HEAD
-import Lost from './Lost'
-=======
 import Lost from './Lost';
->>>>>>> master
 
 function App() {
   let db = firebase.firestore();

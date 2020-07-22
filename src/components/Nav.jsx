@@ -29,8 +29,8 @@ class NavbarPage extends Component {
             this.props.loggedOut()
             this.props.history.push('/')
         }).catch(function (error) {
-            // console.log(error);
-            alert('No User Logged In.')
+            console.log(error);
+            // alert('No User Logged In.')
         });
     }
 

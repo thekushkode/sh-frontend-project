@@ -87,6 +87,7 @@ export default function PrivateFeed(props) {
                 <MDBRow>
                     <MDBCol className='overflow-auto' style={{ height: '1600px' }}>
                         {privateFeed && privateFeed.map((item, index) => {
+                            {if (item.FriendID === props.location.slice(props.location.length - 20, props.location.length)) {
                             switch (item.Type) {
                                 case 'Post':
                                     return <Post data={item} key={index} />
@@ -97,8 +98,8 @@ export default function PrivateFeed(props) {
                                 default:
                                     return <></>;
                             }
-                        }
-                        )}
+                            }}
+                        })}
                     </MDBCol>
                 </MDBRow>
             </main>

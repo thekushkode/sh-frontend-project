@@ -254,7 +254,7 @@ class DogProfile extends Component {
                       <MDBAvatar
                         tag='img'
                         alt='Dog photo'
-                        style={{ maxWidth: '80%', height: 'auto' }}
+                        style={{ width: '450px', height: '450px', objectFit: 'cover', margin:'0 auto' }}
                         src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
                         className='img-fluid rounded-circle z-depth-1-half mb-4 mt-3'
                       />

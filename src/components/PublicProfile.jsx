@@ -124,21 +124,21 @@ class UserProfile extends Component {
             }
             this.props.loadMessages(newReduxMessage)
             this.props.history.push('/messages')
-            const newMessage = {
-              sender: 'Social Hound',
-              timeStamp: Date.now(),
-              message: `${userName} wants to chat`,
-              senderAvatar: this.props.profile.data.avatar,
-              receiverAvatar: dog.avatar
-            }
-            db.collection("Messages").doc(id)
-              .set({
-                members: [userID, dog.ownerId],
-                userNames: [userName, dog.ownerName],
-                messages: [newMessage],
-                senderAvatar: this.props.profile.data.avatar,
-                receiverAvatar: dog.avatar
-              })
+            // const newMessage = {
+            //   sender: 'Social Hound',
+            //   timeStamp: Date.now(),
+            //   message: `${userName} wants to chat`,
+            //   senderAvatar: this.props.profile.data.avatar,
+            //   receiverAvatar: dog.avatar
+            // }
+            // db.collection("Messages").doc(id)
+            //   .set({
+            //     members: [userID, dog.ownerId],
+            //     userNames: [userName, dog.ownerName],
+            //     messages: [newMessage],
+            //     senderAvatar: this.props.profile.data.avatar,
+            //     receiverAvatar: dog.avatar
+            //   })
           } else {
             const newMessage = {
               sender: 'Social Hound',

@@ -52,7 +52,7 @@ export default function ChatListItem(props) {
                 />
                 <div className='d-flex justify-content-between mb-1'>
                     <span className='mb-1'>
-                        <strong>{them}</strong>
+                        <strong>{them.join(', ')}</strong>
                     </span>
                     <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
                 </div>

@@ -31,7 +31,7 @@ export default function MessagesWindow() {
             // create dropdown or other method for choosing between your friends
             // filter out any friends that are already included in conversation
             // check if user has friends array, some users do not
-            selectableFriends = friends && friends.filter((friend) => messages.data.members.includes(friend.ownerId))
+            selectableFriends = friends && friends.filter((friend) => !messages.data.members.includes(friend.ownerId))
             // console.log(selectableFriends)
             setAvailableFriends(selectableFriends)
             // save the clicked value to the variable chosenFriend

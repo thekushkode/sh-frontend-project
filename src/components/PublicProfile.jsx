@@ -10,7 +10,11 @@ import {
   MDBView,
   MDBMask,
   MDBAvatar,
-  MDBBtn
+  MDBBtn,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem
 } from 'mdbreact';
 import './extended.css';
 import FooterPage from './Footer';
@@ -197,12 +201,12 @@ class UserProfile extends Component {
             timestamp: new Date()
           }
           db.collection('Feed').add(newPost)
-            // .then(doc => {
-            //   // console.log(`${doc.id} created successfully`)
-            // })
-            // .catch(err => {
-            //   console.error(err)
-            // })
+          // .then(doc => {
+          //   // console.log(`${doc.id} created successfully`)
+          // })
+          // .catch(err => {
+          //   console.error(err)
+          // })
         })
         .then(() => {
           this.setState({
@@ -260,155 +264,366 @@ class UserProfile extends Component {
   // };
 
   render() {
+
     return (
-      <div>
-        <header style={{ marginBottom: '81px' }}>
+      <div style={{ maxHeight: '1500px' }}>
+        <header style={{ marginBottom: '80px' }}>
         </header>
-        <main style={{ backgroundColor: '#e1f5fe' }}>
-          <div id='profile-ex' className='mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
+        <main style={{ backgroundColor: '#e1f5fe', marginTop: '10px' }}>
+          <div id='profile-ex' className='mt-4'>
             {this.state.dogData.map((dog, index) => {
               return (
                 <MDBContainer fluid>
+                  <MDBCard
+                    style={{ fontWeight: 300 }}
+                  >
+                    <MDBCardBody style={{ paddingTop: 0 }}>
+                      <MDBRow>
+                        <MDBCol md="12" lg="6">
+                          {/* <div className="mb-2"> */}
+                          <MDBAvatar
+                            tag='img'
+                            alt='Dog photo'
+                            style={{ maxWidth: '90%', height: 'auto' }}
+                            src={dog.avatar}
+                            className='img-fluid rounded z-depth-1-half mb-4 mt-2'
+                          />
+                          <MDBCardTitle>
+                            <h2><strong>{dog.dogName}</strong></h2>
+                          </MDBCardTitle>
+                          <hr className='my-2' />
+                          <p className='dark-grey-text'>{dog.city}, {dog.userState}</p>
+                        </MDBCol>
+
+                        <MDBCol md="12" lg="6">
+                          <div>
+                            <MDBRow>
+                              <MDBCol md="12" lg='12'>
+                                <MDBView hover rounded className="z-depth-1-half mb-2 mt-2">
+                                  <MDBCardBody>
+                                    {/* <MDBCardTitle>
+                                      <h2><strong>{dog.dogName}</strong></h2>
+                                    </MDBCardTitle> */}
+                                    {/* <hr className='my-2' /> */}
+                                    <h5>
+                                      <strong>Bio</strong>
+                                    </h5>
+
+                                    <hr className='my-3' />
+                                    <h5>
+                                      {dog.bio}
+                                    </h5>
+                                    {dog.facebook ?
+                                      <MDBBtn floating tag='a' href={dog.facebook} target='_blank' className='blue-gradient'>
+                                        <MDBIcon fab icon='facebook' className='white-text'>
+                                        </MDBIcon>
+                                      </MDBBtn>
+                                      : null}
+                                    {dog.instagram ?
+                                      <MDBBtn floating tag='a' href={`https://www.instagram.com/${dog.instagram}`} target='_blank' className='purple-gradient'>
+                                        <MDBIcon fab icon='instagram' className='white-text'>
+                                        </MDBIcon>
+                                      </MDBBtn>
+                                      :
+                                      null
+                                    }
+                                  </MDBCardBody>
+                                </MDBView>
+                              </MDBCol>
+                            </MDBRow>
+                            <MDBRow>
+                              <MDBCol md='12' lg='12'>
+                                <MDBCard className='mb-4'>
+                                  <MDBCardBody className='text-center'>
+                                    <h5>
+                                      <strong>{dog.dogName}'s Badges</strong>
+                                    </h5>
+
+                                    <hr className='my-3' />
+
+                                    {dog.spayNeut &&
+                                      <MDBBtn
+                                        color='light-blue'
+                                        size='sm'
+                                        rounded
+                                        className='px-3'
+                                      >
+                                        Neutered | Spayed: {dog.spayNeut}
+                                      </MDBBtn>}
+                                    {dog.temperament &&
+                                      <MDBBtn
+                                        color='blue-grey'
+                                        size='sm'
+                                        rounded
+                                        className='px-3'
+                                      >
+                                        {dog.temperament}
+                                      </MDBBtn>}
+                                    {dog.vaccines &&
+                                      <MDBBtn
+                                        size='sm'
+                                        rounded
+                                        className='px-3'
+                                      >
+                                        Has Vaccines: {dog.vaccines}
+                                      </MDBBtn>}
+                                    {dog.size &&
+                                      <MDBBtn
+                                        color='secondary'
+                                        size='sm'
+                                        rounded
+                                        className='px-3'
+                                      >
+                                        {dog.size}
+                                      </MDBBtn>}
+                                    {dog.breed &&
+                                      <MDBBtn
+                                        color='deep-purple'
+                                        size='sm'
+                                        rounded
+                                        className='px-3'
+                                      >
+                                        {dog.breed}
+                                      </MDBBtn>}
+                                    {dog.city &&
+                                      <MDBBtn
+                                        color='indigo'
+                                        size='sm'
+                                        rounded
+                                        className='px-3'
+                                      >
+                                        {dog.city}
+                                      </MDBBtn>}
+                                  </MDBCardBody>
+                                </MDBCard>
+                              </MDBCol>
+                            </MDBRow>
+                            <MDBRow>
+                              <MDBCol md="12" lg='12'>
+                                {/* <MDBCard className='mb-4'>
+                                  <MDBCardBody>
+                                    <MDBBtn
+                                      className='purple-gradient'
+                                      rounded
+                                    >
+                                      <Link style={{ textDecoration: 'none', color: 'white' }} to={`/editprofile/${dog.dogId}`}>Edit Profile</Link>
+                                    </MDBBtn>
+                                    <MDBBtn
+                                      className='blue-gradient'
+                                      rounded
+                                    >
+                                      <Link style={{ textDecoration: 'none', color: 'white' }} to='/furends'>Find Furends</Link>
+                                    </MDBBtn>
+                                    <MDBBtn
+                                      className='peach-gradient'
+                                      rounded
+                                    >
+                                      <Link style={{ textDecoration: 'none', color: 'white' }} to='/messages'>Messages</Link>
+                                    </MDBBtn>
+                                    <MDBBtn
+                                      className='aqua-gradient'
+                                      rounded
+                                      onClick={this.showPlayDates}
+                                    >
+                                      {this.state.playDates ? <span>My Feed</span> : <span>Playdates</span>}
+                                    </MDBBtn>
+                                  </MDBCardBody>
+                                </MDBCard> */}
+                                <MDBCard className='mb-4'>
+                                  <MDBCardBody>
+                                    <MDBBtn
+                                      className='peach-gradient'
+                                      rounded
+                                      onClick={() => this.letsChat(dog)}
+                                    >
+                                      Chat
+                                    </MDBBtn>
+                                    <SelectDate dog={dog} />
+                                    {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
+                                      <MDBBtn
+                                        className='blue-gradient'
+                                        rounded
+                                        onClick={() => this.removeFriend(dog)}
+                                      >
+                                        Unfriend {dog.dogName}
+                                      </MDBBtn>
+                                      :
+                                      <MDBBtn
+                                        className='aqua-gradient'
+                                        rounded
+                                        onClick={() => this.addFriend(dog)}
+                                      >
+                                        Add {dog.dogName} as a friend
+                                      </MDBBtn>
+                                    }
+                                  </MDBCardBody>
+                                </MDBCard>
+                              </MDBCol>
+
+                            </MDBRow>
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBCardBody>
+                  </MDBCard>
                   <MDBRow>
                     <MDBCol lg='4' md='4'>
-                      <MDBCard className='profile-card text-center mb-4'>
-                        <MDBAvatar
-                          tag='img'
-                          alt='dog photo'
-                          src={dog.avatar}
-                          style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
-                          className='rounded-circle z-depth-1-half mb-4 d-flex justify-content-center align-items-center'
-                        />
-                        <MDBCardBody>
-                          <MDBCardTitle>
-                            <strong>{dog.dogName}</strong>
-                          </MDBCardTitle>
-                          <p className='dark-grey-text'>{dog.city}, {dog.userState}</p>
-                          <hr className='my-2' />
-                          <h5>
-                            {dog.bio}
-                          </h5>
-                          {dog.facebook ?
-                            <MDBBtn floating tag='a' href={dog.facebook} target='_blank' className='blue-gradient'>
-                              <MDBIcon fab icon='facebook' className='white-text'>
-                              </MDBIcon>
-                            </MDBBtn>
-                            : null}
-                          {dog.instagram ?
-                            <MDBBtn floating tag='a' href={`https://www.instagram.com/${dog.instagram}`} target='_blank' className='purple-gradient'>
-                              <MDBIcon fab icon='instagram' className='white-text'>
-                              </MDBIcon>
-                            </MDBBtn>
-                            :
-                            null
-                          }
-                        </MDBCardBody>
-                      </MDBCard>
-                      <MDBCard className='mb-4'>
-                        <MDBCardBody>
-                          <MDBBtn
-                            className='peach-gradient'
-                            rounded
-                            onClick={() => this.letsChat(dog)}
-                          >
-                            Chat
-                          </MDBBtn>
-                          <SelectDate dog={dog} />
-                          {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
-                            <MDBBtn
-                              className='blue-gradient'
-                              rounded
-                              onClick={() => this.removeFriend(dog)}
-                            >
-                              Unfriend {dog.dogName}
-                            </MDBBtn>
-                            :
-                            <MDBBtn
-                              className='aqua-gradient'
-                              rounded
-                              onClick={() => this.addFriend(dog)}
-                            >
-                              Add {dog.dogName} as a friend
-                            </MDBBtn>
-                          }
-                        </MDBCardBody>
-                      </MDBCard>
-                      <MDBCard className='mb-4'>
-                        <MDBCardBody className='text-center'>
-                          <h5>
-                            <strong>{dog.dogName}'s Badges</strong>
-                          </h5>
-                          <hr className='my-3' />
-                          {dog.spayNeut &&
-                            <MDBBtn
-                              color='light-blue'
-                              size='sm'
-                              rounded
-                              className='px-3'
-                            >
-                              Neutered | Spayed: {dog.spayNeut}
-                            </MDBBtn>}
-                          {dog.temperament &&
-                            <MDBBtn
-                              color='blue-grey'
-                              size='sm'
-                              rounded
-                              className='px-3'
-                            >
-                              {dog.temperament}
-                            </MDBBtn>}
-                          {dog.vaccines &&
-                            <MDBBtn
-                              size='sm'
-                              rounded
-                              className='px-3'
-                            >
-                              Has Vaccines: {dog.vaccines}
-                            </MDBBtn>}
-                          {dog.size &&
-                            <MDBBtn
-                              color='secondary'
-                              size='sm'
-                              rounded
-                              className='px-3'
-                            >
-                              {dog.size}
-                            </MDBBtn>}
-                          {dog.breed &&
-                            <MDBBtn
-                              color='deep-purple'
-                              size='sm'
-                              rounded
-                              className='px-3'
-                            >
-                              {dog.breed}
-                            </MDBBtn>}
-                          {dog.city &&
-                            <MDBBtn
-                              color='indigo'
-                              size='sm'
-                              rounded
-                              className='px-3'
-                            >
-                              {dog.city}
-                            </MDBBtn>}
-                        </MDBCardBody>
-                      </MDBCard>
+                      {/* <MDBCard className='profile-card text-center mb-4'>
+                    <MDBAvatar
+                      tag='img'
+                      alt='Dog photo'
+                      style={{ width: '300px', height: '300px', objectFit: 'cover', margin: '0 auto' }}
+                      src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
+                      className='rounded-circle z-depth-1-half mb-4 mt-3'
+                    />
+                    <MDBDropdown>
+                      <MDBDropdownToggle caret className="aqua-gradient btn-rounded">
+                        Select Dog
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu basic >
+                        {this.state.allDogData && this.state.allDogData.map((dog, index) => {
+                          return (
+                            <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index} onClick={this.handleClick(dog.dogId)}>{dog.dogName}</Link></MDBDropdownItem>
+                          )
+                        })}
+                        < MDBDropdownItem divider />
+                        <MDBDropdownItem><Link to={`/add`}>Add Dog</Link></MDBDropdownItem>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
+                    <MDBCardBody>
+                      <MDBCardTitle>
+                        <strong>{this.state.dogData.dogName}</strong>
+                      </MDBCardTitle>
+                      <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
+                      <hr className='my-2' />
+                      <h5>
+                        {this.state.dogData.bio}
+                      </h5>
+                      {this.state.dogData.facebook ?
+                        <MDBBtn floating tag='a' href={this.state.dogData.facebook} target='_blank' className='blue-gradient'>
+                          <MDBIcon fab icon='facebook' className='white-text'>
+                          </MDBIcon>
+                        </MDBBtn>
+                        : null}
+                      {this.state.dogData.instagram ?
+                        <MDBBtn floating tag='a' href={`https://www.instagram.com/${this.state.dogData.instagram}`} target='_blank' className='purple-gradient'>
+                          <MDBIcon fab icon='instagram' className='white-text'>
+                          </MDBIcon>
+                        </MDBBtn>
+                        :
+                        null
+                      }
+                    </MDBCardBody>
+                  </MDBCard>
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody>
+                      <MDBBtn
+                        className='purple-gradient'
+                        rounded
+                      >
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to={`/editprofile/${this.state.dogData.dogId}`}>Edit Profile</Link>
+                      </MDBBtn>
+                      <MDBBtn
+                        className='blue-gradient'
+                        rounded
+                      >
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/furends'>Find Furends</Link>
+                      </MDBBtn>
+                      <MDBBtn
+                        className='peach-gradient'
+                        rounded
+                      >
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/messages'>Messages</Link>
+                      </MDBBtn>
+                      <MDBBtn
+                        className='aqua-gradient'
+                        rounded
+                        onClick={this.showPlayDates}
+                      >
+                        {this.state.playDates ? <span>My Feed</span> : <span>Playdates</span>}
+                      </MDBBtn>
+                    </MDBCardBody>
+                  </MDBCard>
+                  <MDBCard className='mb-4'>
+                    <MDBCardBody className='text-center'>
+                      <h5>
+                        <strong>{this.state.dogData.dogName}'s Badges</strong>
+                      </h5>
+
+                      <hr className='my-3' />
+
+                      {this.state.dogData.spayNeut &&
+                        <MDBBtn
+                          color='light-blue'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          Neutered | Spayed: {this.state.dogData.spayNeut}
+                        </MDBBtn>}
+                      {this.state.dogData.temperament &&
+                        <MDBBtn
+                          color='blue-grey'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.temperament}
+                        </MDBBtn>}
+                      {this.state.dogData.vaccines &&
+                        <MDBBtn
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          Has Vaccines: {this.state.dogData.vaccines}
+                        </MDBBtn>}
+                      {this.state.dogData.size &&
+                        <MDBBtn
+                          color='secondary'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.size}
+                        </MDBBtn>}
+                      {this.state.dogData.breed &&
+                        <MDBBtn
+                          color='deep-purple'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.breed}
+                        </MDBBtn>}
+                      {this.state.dogData.city &&
+                        <MDBBtn
+                          color='indigo'
+                          size='sm'
+                          rounded
+                          className='px-3'
+                        >
+                          {this.state.dogData.city}
+                        </MDBBtn>}
+                    </MDBCardBody>
+                  </MDBCard> */}
 
                       {dog.friends ?
-                        <MDBCard className='mb-4'>
+                        <MDBCard className='mt-4'>
                           <MDBCardBody>
                             <h5 className='text-center mb-4'>
                               <strong>{dog.dogName}'s Friends </strong>
                             </h5>
                             <MDBRow>
-                              {dog.friends && dog.friends.map(dog => {
+                              {dog.friends && dog.friends.map((dog, index) => {
                                 return (
-                                  <MDBCol md='4' className='mt-1'>
+
+                                  <MDBCol md='4' className='mt-1' key={index}>
                                     <MDBView hover>
                                       <Link to={`/user/${dog.dogID}`}>
-                                        <img
-                                          src={dog.avatar}
+                                        <ModalImage
+                                          small={dog.avatar}
+                                          large={dog.avatar}
                                           className="img-fluid rounded-circle"
                                           alt="Dog Avatar"
                                           style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
@@ -420,6 +635,7 @@ class UserProfile extends Component {
                                       </Link>
                                     </MDBView>
                                   </MDBCol>
+
                                 )
                               })}
                             </MDBRow>
@@ -431,7 +647,7 @@ class UserProfile extends Component {
 
 
                       {dog.photos ?
-                        <MDBCard className='mb-4'>
+                        <MDBCard className='mt-2'>
                           <MDBCardBody>
                             <h5 className='text-center mb-4'>
                               <strong>{dog.dogName}'s Photos</strong>
@@ -464,7 +680,7 @@ class UserProfile extends Component {
                     <MDBCol lg='8' md='8' className='text-center'>
                       <MDBRow>
                         <MDBCol>
-                          <div className='ml-5 mt-3'>
+                          <div className='ml-2 mt-3'>
                             {/* <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} /> */}
                             <PublicProfileFeed location={this.props.location.pathname} key={window.location.pathname} />
                           </div>
@@ -478,12 +694,237 @@ class UserProfile extends Component {
             }
           </div>
         </main>
-        <footer>
-          <FooterPage />
-        </footer>
+
+        <FooterPage />
+
       </div >
     );
   }
+  // render() {
+  //   return (
+  //     <div>
+  //       <header style={{ marginBottom: '81px' }}>
+  //       </header>
+  //       <main style={{ backgroundColor: '#e1f5fe' }}>
+  //         <div id='profile-ex' className='mt-4 mx-4' style={{ maxWidth: '1500px', margin: '0 auto' }}>
+  //           {this.state.dogData.map((dog, index) => {
+  //             return (
+  //               <MDBContainer fluid>
+  //                 <MDBRow>
+  //                   <MDBCol lg='4' md='4'>
+  //                     <MDBCard className='profile-card text-center mb-4'>
+  //                       <MDBAvatar
+  //                         tag='img'
+  //                         alt='dog photo'
+  //                         src={dog.avatar}
+  //                         style={{ width: '200px', height: '200px', objectFit: 'cover', margin: '0 auto' }}
+  //                         className='rounded-circle z-depth-1-half mb-4 d-flex justify-content-center align-items-center'
+  //                       />
+  //                       <MDBCardBody>
+  //                         <MDBCardTitle>
+  //                           <strong>{dog.dogName}</strong>
+  //                         </MDBCardTitle>
+  //                         <p className='dark-grey-text'>{dog.city}, {dog.userState}</p>
+  //                         <hr className='my-2' />
+  //                         <h5>
+  //                           {dog.bio}
+  //                         </h5>
+  //                         {dog.facebook ?
+  //                           <MDBBtn floating tag='a' href={dog.facebook} target='_blank' className='blue-gradient'>
+  //                             <MDBIcon fab icon='facebook' className='white-text'>
+  //                             </MDBIcon>
+  //                           </MDBBtn>
+  //                           : null}
+  //                         {dog.instagram ?
+  //                           <MDBBtn floating tag='a' href={`https://www.instagram.com/${dog.instagram}`} target='_blank' className='purple-gradient'>
+  //                             <MDBIcon fab icon='instagram' className='white-text'>
+  //                             </MDBIcon>
+  //                           </MDBBtn>
+  //                           :
+  //                           null
+  //                         }
+  //                       </MDBCardBody>
+  //                     </MDBCard>
+  //                     <MDBCard className='mb-4'>
+  //                       <MDBCardBody>
+  //                         <MDBBtn
+  //                           className='peach-gradient'
+  //                           rounded
+  //                           onClick={() => this.letsChat(dog)}
+  //                         >
+  //                           Chat
+  //                         </MDBBtn>
+  //                         <SelectDate dog={dog} />
+  //                         {this.state.friends.find(friend => friend.dogID === dog.dogID) ?
+  //                           <MDBBtn
+  //                             className='blue-gradient'
+  //                             rounded
+  //                             onClick={() => this.removeFriend(dog)}
+  //                           >
+  //                             Unfriend {dog.dogName}
+  //                           </MDBBtn>
+  //                           :
+  //                           <MDBBtn
+  //                             className='aqua-gradient'
+  //                             rounded
+  //                             onClick={() => this.addFriend(dog)}
+  //                           >
+  //                             Add {dog.dogName} as a friend
+  //                           </MDBBtn>
+  //                         }
+  //                       </MDBCardBody>
+  //                     </MDBCard>
+  //                     <MDBCard className='mb-4'>
+  //                       <MDBCardBody className='text-center'>
+  //                         <h5>
+  //                           <strong>{dog.dogName}'s Badges</strong>
+  //                         </h5>
+  //                         <hr className='my-3' />
+  //                         {dog.spayNeut &&
+  //                           <MDBBtn
+  //                             color='light-blue'
+  //                             size='sm'
+  //                             rounded
+  //                             className='px-3'
+  //                           >
+  //                             Neutered | Spayed: {dog.spayNeut}
+  //                           </MDBBtn>}
+  //                         {dog.temperament &&
+  //                           <MDBBtn
+  //                             color='blue-grey'
+  //                             size='sm'
+  //                             rounded
+  //                             className='px-3'
+  //                           >
+  //                             {dog.temperament}
+  //                           </MDBBtn>}
+  //                         {dog.vaccines &&
+  //                           <MDBBtn
+  //                             size='sm'
+  //                             rounded
+  //                             className='px-3'
+  //                           >
+  //                             Has Vaccines: {dog.vaccines}
+  //                           </MDBBtn>}
+  //                         {dog.size &&
+  //                           <MDBBtn
+  //                             color='secondary'
+  //                             size='sm'
+  //                             rounded
+  //                             className='px-3'
+  //                           >
+  //                             {dog.size}
+  //                           </MDBBtn>}
+  //                         {dog.breed &&
+  //                           <MDBBtn
+  //                             color='deep-purple'
+  //                             size='sm'
+  //                             rounded
+  //                             className='px-3'
+  //                           >
+  //                             {dog.breed}
+  //                           </MDBBtn>}
+  //                         {dog.city &&
+  //                           <MDBBtn
+  //                             color='indigo'
+  //                             size='sm'
+  //                             rounded
+  //                             className='px-3'
+  //                           >
+  //                             {dog.city}
+  //                           </MDBBtn>}
+  //                       </MDBCardBody>
+  //                     </MDBCard>
+
+  //                     {dog.friends ?
+  //                       <MDBCard className='mb-4'>
+  //                         <MDBCardBody>
+  //                           <h5 className='text-center mb-4'>
+  //                             <strong>{dog.dogName}'s Friends </strong>
+  //                           </h5>
+  //                           <MDBRow>
+  //                             {dog.friends && dog.friends.map(dog => {
+  //                               return (
+  //                                 <MDBCol md='4' className='mt-1'>
+  //                                   <MDBView hover>
+  //                                     <Link to={`/user/${dog.dogID}`}>
+  //                                       <img
+  //                                         src={dog.avatar}
+  //                                         className="img-fluid rounded-circle"
+  //                                         alt="Dog Avatar"
+  //                                         style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+  //                                       />
+  //                                       <MDBMask className="flex-center flex-column" overlay="blue-strong">
+  //                                         <p className="white-text"><strong>{dog.dogName}</strong></p>
+  //                                         <p className="white-text"><strong>{dog.breed}</strong></p>
+  //                                       </MDBMask>
+  //                                     </Link>
+  //                                   </MDBView>
+  //                                 </MDBCol>
+  //                               )
+  //                             })}
+  //                           </MDBRow>
+  //                         </MDBCardBody>
+  //                       </MDBCard>
+  //                       :
+  //                       <></>
+  //                     }
+
+
+  //                     {dog.photos ?
+  //                       <MDBCard className='mb-4'>
+  //                         <MDBCardBody>
+  //                           <h5 className='text-center mb-4'>
+  //                             <strong>{dog.dogName}'s Photos</strong>
+  //                           </h5>
+  //                           <MDBRow>
+  //                             {dog.photos && dog.photos.map((photo, index) => {
+  //                               return (
+  //                                 <MDBCol md='4' className='mt-1' key={index}>
+  //                                   <MDBView hover>
+  //                                     <Link>
+  //                                       <ModalImage
+  //                                         small={photo}
+  //                                         large={photo}
+  //                                         className="img-fluid rounded-circle"
+  //                                         alt="Dog Avatar"
+  //                                         style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
+  //                                       />
+  //                                     </Link>
+  //                                   </MDBView>
+  //                                 </MDBCol>
+  //                               )
+  //                             })}
+  //                           </MDBRow>
+  //                         </MDBCardBody>
+  //                       </MDBCard>
+  //                       :
+  //                       <></>
+  //                     }
+  //                   </MDBCol>
+  //                   <MDBCol lg='8' md='8' className='text-center'>
+  //                     <MDBRow>
+  //                       <MDBCol>
+  //                         <div className='ml-5 mt-3'>
+  //                           {/* <PrivateFeed location={this.props.location.pathname} key={window.location.pathname} /> */}
+  //                           <PublicProfileFeed location={this.props.location.pathname} key={window.location.pathname} />
+  //                         </div>
+  //                       </MDBCol>
+  //                     </MDBRow>
+  //                   </MDBCol>
+  //                 </MDBRow>
+  //               </MDBContainer>
+  //             )
+  //           })
+  //           }
+  //         </div>
+  //       </main>
+  //       <footer>
+  //         <FooterPage />
+  //       </footer>
+  //     </div >
+  //   );
+  // }
 }
 
 const mapStateToProps = (state) => {

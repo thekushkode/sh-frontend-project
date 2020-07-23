@@ -250,39 +250,39 @@ class DogProfile extends Component {
                 <MDBCardBody style={{ paddingTop: 0 }}>
                   <MDBRow>
                     <MDBCol md="12" lg="6">
-                      <div className="mb-2">
-                        <MDBAvatar
-                          tag='img'
-                          alt='Dog photo'
-                          style={{ width: '500px', height: '500px', objectFit: 'cover', margin: '0 auto' }}
-                          src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
-                          className='rounded-circle z-depth-1-half mb-4 mt-3'
-                        />
-                        <MDBDropdown>
-                          <MDBDropdownToggle caret className="aqua-gradient btn-rounded">
-                            Select Dog
+                      {/* <div className="mb-2"> */}
+                      <MDBAvatar
+                        tag='img'
+                        alt='Dog photo'
+                        style={{ maxWidth: '80%', height: 'auto' }}
+                        src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
+                        className='img-fluid rounded-circle z-depth-1-half mb-4 mt-3'
+                      />
+                      <MDBDropdown>
+                        <MDBDropdownToggle caret className="aqua-gradient btn-rounded">
+                          Select Dog
                           </MDBDropdownToggle>
-                          <MDBDropdownMenu basic >
-                            {this.state.allDogData && this.state.allDogData.map((dog, index) => {
-                              return (
-                                <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index} onClick={this.handleClick(dog.dogId)}>{dog.dogName}</Link></MDBDropdownItem>
-                              )
-                            })}
-                            < MDBDropdownItem divider />
-                            <MDBDropdownItem><Link to={`/add`}>Add Dog</Link></MDBDropdownItem>
-                          </MDBDropdownMenu>
-                        </MDBDropdown>
-                      </div>
+                        <MDBDropdownMenu basic >
+                          {this.state.allDogData && this.state.allDogData.map((dog, index) => {
+                            return (
+                              <MDBDropdownItem><Link to={`/profile/${dog.dogId}`} key={index} onClick={this.handleClick(dog.dogId)}>{dog.dogName}</Link></MDBDropdownItem>
+                            )
+                          })}
+                          < MDBDropdownItem divider />
+                          <MDBDropdownItem><Link to={`/add`}>Add Dog</Link></MDBDropdownItem>
+                        </MDBDropdownMenu>
+                      </MDBDropdown>
+                      {/* </div> */}
                     </MDBCol>
 
                     <MDBCol md="12" lg="6">
                       <div>
                         <MDBRow>
                           <MDBCol md="12" lg='12'>
-                            <MDBView hover rounded className="z-depth-1-half mb-4">
+                            <MDBView hover rounded className="z-depth-1-half mb-2 mt-2">
                               <MDBCardBody>
                                 <MDBCardTitle>
-                                  <strong>{this.state.dogData.dogName}</strong>
+                                  <h2><strong>{this.state.dogData.dogName}</strong></h2>
                                 </MDBCardTitle>
                                 <p className='dark-grey-text'>{this.state.dogData.city}, {this.state.dogData.userState}</p>
                                 <hr className='my-2' />

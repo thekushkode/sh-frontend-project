@@ -102,7 +102,7 @@ export class Furends extends Component {
             marginTop: '10px',
         };
         // const { users } = this.state;
-        const scrollContainerStyle = { width: "100%", maxHeight: "110px" };
+        const scrollContainerStyle = { width: "100%", maxHeight: "130px" };
         const containerStyle = {
             width: '100%',
             marginLeft: '0'

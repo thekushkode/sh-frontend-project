@@ -284,7 +284,7 @@ class UserProfile extends Component {
                           <MDBAvatar
                             tag='img'
                             alt='Dog photo'
-                            style={{ width: '450px', height: '450px', objectFit: 'cover', margin:'0 auto' }}
+                            style={{ width: '500px', height: '500px', objectFit: 'cover', margin:'0 auto' }}
                             src={dog.avatar}
                             className='img-fluid rounded z-depth-1-half mb-4 mt-2'
                           />

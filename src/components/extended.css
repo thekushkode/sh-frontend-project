@@ -10,7 +10,7 @@
   transition: .4s;
 }
 
-#profile-ex .card .card-footer.links-light a:hover { 
+#profile-ex .card .card-footer.links-light a:hover {
   color: #d50000;
   -webkit-transition: .4s;
   -o-transition: .4s;
@@ -23,3 +23,10 @@
     height: 300px;
   }
 } */
+
+@media screen and (max-width: 830px) {
+  #mobile {
+    width: 300px;
+    height: 300px;
+  }
+}

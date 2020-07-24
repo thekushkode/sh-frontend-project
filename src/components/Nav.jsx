@@ -35,6 +35,7 @@ class NavbarPage extends Component {
         });
     }
 
+
     render() {
 
         if (this.state.redirect) {
@@ -56,7 +57,7 @@ class NavbarPage extends Component {
                                 </MDBNavItem>
                             )}
                             <MDBNavItem>
-                                <MDBNavLink to='/messages'>Messages</MDBNavLink>
+                                <MDBNavLink to='/messages'>Messages<span class="badge badge-pill badge-danger ml-1 mb-1">6</span></MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
@@ -147,7 +148,8 @@ class NavbarPage extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        profile: state.profile
+        profile: state.profile,
+        message: state.messages
     }
 }
 

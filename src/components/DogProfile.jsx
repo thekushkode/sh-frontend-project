@@ -251,12 +251,13 @@ class DogProfile extends Component {
                   <MDBRow>
                     <MDBCol md="12" lg="6">
                       {/* <div className="mb-2"> */}
-                      <MDBAvatar
+                      <img
+                        id='mobile'
                         tag='img'
-                        alt='Dog photo'
-                        style={{ maxWidth: '80%', height: 'auto' }}
+                        alt='Dog'
+                        style={{ width: '500px', height: '500px', objectFit: 'cover', margin:'0 auto' }}
                         src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
-                        className='img-fluid rounded-circle z-depth-1-half mb-4 mt-3'
+                        className='img-fluid rounded z-depth-1-half mb-4 mt-3'
                       />
                       <MDBDropdown>
                         <MDBDropdownToggle caret className="aqua-gradient btn-rounded">

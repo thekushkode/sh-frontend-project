@@ -15,6 +15,14 @@ class NavbarPage extends Component {
             redirect: false
         };
     }
+
+    // componentDidMount() {
+
+    // }
+
+    // componentDidUpdate() {
+
+    // }
     
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });

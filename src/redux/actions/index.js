@@ -100,6 +100,15 @@ export const unSetUserFeed = () => {
     }
 }
 
+export const loadInbox = (payload) => ({
+    type: 'LOAD_INBOX',
+    payload
+})
+
+export const clearInbox = (payload) => ({
+    type: 'CLEAR_INBOX',
+})
+
 // export const decrement = (num) => {
 //     return {
 //         type: 'DECREMENT',

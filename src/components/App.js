@@ -10,7 +10,7 @@ import DayCare from './FindDaycare';
 import Furends from './FindFurends';
 import firebase from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, unSetUser, setProfile, clearProfile, authStart, loggedIn, loggedOut } from '../redux/actions';
+import { setUser, unSetUser, setProfile, clearProfile, authStart, loggedIn, loggedOut, loadInbox } from '../redux/actions';
 import { UNINITIALIZED, AUTHENTICATING, LOGGED_IN, LOGGED_OUT } from "../redux/reducers/auth";
 import EditProfile from './EditProfile';
 import Terms from './Terms';
@@ -65,7 +65,8 @@ function App() {
       if (user) {
         dispatch(setUser(user))
 
-        let primaryDogProfile = {}
+        let primaryDogProfile = {};
+        let inbox = [];
         db.collection("Dogs")
           .where("ownerId", "==", user.uid).limit(1).get()
           .then(function (querySnapshot) {
@@ -77,6 +78,15 @@ function App() {
                 dispatch(setProfile(primaryDogProfile));
               })
             }
+            dispatch(loggedIn());
+          })
+          db.collection("Messages")
+          .where("members", "array-contains", user.uid).get()
+          .then(function (querySnapshot) {
+              querySnapshot.forEach(function (doc) {
+                inbox.push(doc.data())
+                dispatch(loadInbox(inbox));
+              })
             dispatch(loggedIn());
           })
       } else {

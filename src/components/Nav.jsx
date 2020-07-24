@@ -9,17 +9,17 @@ import { loggedOut, unSetPrivateFeed, clearMessages } from '../redux/actions/ind
 class NavbarPage extends Component {
     constructor(props) {
         super(props)
-
+        
         this.state = {
             isOpen: false,
             redirect: false
         };
     }
-
+    
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
-
+    
     signOut = (e) => {
         firebase.auth().signOut().then(() => {
             this.setState({
@@ -34,14 +34,14 @@ class NavbarPage extends Component {
             // alert('No User Logged In.')
         });
     }
-
-
+    
+    
     render() {
-
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
-
+        console.log(this.props.inbox)
+        console.log(this.props.inbox.length)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
@@ -57,7 +57,10 @@ class NavbarPage extends Component {
                                 </MDBNavItem>
                             )}
                             <MDBNavItem>
-                                <MDBNavLink to='/messages'>Messages<span class="badge badge-pill badge-danger ml-1 mb-1">6</span></MDBNavLink>
+                                <MDBNavLink to='/messages'>
+                                    Messages
+                                    {this.props.inbox && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
+                                    </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
@@ -149,7 +152,7 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         profile: state.profile,
-        message: state.messages
+        inbox: state.inbox
     }
 }
 

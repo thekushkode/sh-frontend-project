@@ -255,7 +255,7 @@ class DogProfile extends Component {
                         id='mobile'
                         tag='img'
                         alt='Dog'
-                        style={{ width: '500px', height: '500px', objectFit: 'cover', margin:'0 auto' }}
+                        style={{ width: '500px', height: '500px', objectFit: 'cover', margin: '0 auto' }}
                         src={this.state.dogData.avatar ? this.state.dogData.avatar : defaultDogImg}
                         className='img-fluid rounded z-depth-1-half mb-4 mt-3'
                       />
@@ -566,12 +566,15 @@ class DogProfile extends Component {
                           {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                             return (
 
-                              <MDBCol md='4' className='mt-1' key={index}>
+                              <MDBCol md='6' lg='4' sm='6' className='mt-1' key={index}>
                                 <MDBView hover>
                                   <Link to={`/user/${dog.dogID}`}>
-                                    <img
+                                  <MDBAvatar
+                                      tag='img'
                                       src={dog.avatar}
-                                      className="img-fluid rounded-circle"
+                                      // small={photo}
+                                      // large={photo}
+                                      className="img-fluid z-depth-1-half rounded-circle"
                                       alt="Dog Avatar"
                                       style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                     />
@@ -601,14 +604,17 @@ class DogProfile extends Component {
                         </h5>
                         <MDBRow>
                           {this.state.photos && this.state.photos.map((photo, index) => {
+                            console.log(photo)
                             return (
-                              <MDBCol md='4' className='mt-1' key={index}>
+                              <MDBCol md='6' lg='4' sm='6' className='mt-1' key={index}>
                                 <MDBView hover>
                                   <Link>
-                                    <ModalImage
-                                      small={photo}
-                                      large={photo}
-                                      className="img-fluid rounded-circle"
+                                    <MDBAvatar
+                                      tag='img'
+                                      src={`${photo}`}
+                                      // small={photo}
+                                      // large={photo}
+                                      className="img-fluid z-depth-1-half rounded-circle"
                                       alt="Dog Avatar"
                                       style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                     />

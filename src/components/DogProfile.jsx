@@ -562,11 +562,11 @@ class DogProfile extends Component {
                         <h5 className='text-center mb-4'>
                           <strong>{this.state.dogData.dogName}'s Friends </strong>
                         </h5>
-                        <MDBRow>
+                        <MDBRow style={{ maxHeight: '300px', overflow: 'scroll'}}>
                           {this.state.dogData.friends && this.state.dogData.friends.map((dog, index) => {
                             return (
 
-                              <MDBCol md='6' lg='4' sm='6' className='mt-1' key={index}>
+                              <MDBCol md='6' lg='4' sm='6' xs='6' className='mt-1' key={index}>
                                 <MDBView hover>
                                   <Link to={`/user/${dog.dogID}`}>
                                   <MDBAvatar
@@ -602,7 +602,7 @@ class DogProfile extends Component {
                         <h5 className='text-center mb-4'>
                           <strong>{this.state.dogData.dogName}'s Photos</strong>
                         </h5>
-                        <MDBRow>
+                        <MDBRow style={{ maxHeight: '300px', overflow: 'scroll'}}>
                           {this.state.photos && this.state.photos.map((photo, index) => {
                             console.log(photo)
                             return (

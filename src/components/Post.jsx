@@ -5,22 +5,28 @@ import moment from 'moment';
 import ModalImage from "react-modal-image";
 import firebase from '../firebase';
 import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
+import Hamburger from './Hamburger';
+import ReactHashtag from "react-hashtag";
 moment().format()
 
 export default function Post(props) {
 
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
     const db = firebase.firestore();
-    
+
     function handleIncrement() {
         db.collection('Feed').doc(props.data.docId).set({
             Likes: props.data.Likes + 1,
         }, { merge: true })
     }
-
+    console.log(props.data);
     if (props.data.feedImgURL) {
+        
         return (
             <MDBJumbotron>
+                <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
+                    <Hamburger key={props.data.docId}/>
+                </div>
                 <div className='news'>
                     <div className="excerpt ml-4 d-flex justify-content-between">
                         <div className='label m-auto align-items-start h-100 mt-0 col-4'>
@@ -38,7 +44,7 @@ export default function Post(props) {
                             </div>
                         </div>
                         <div className="added-text my-2 m-auto col-8 align-items-center">
-                            <h6><strong>{props.data.Content}</strong></h6>
+                            <h6><strong><ReactHashtag>{props.data.Content}</ReactHashtag></strong></h6>
                             {<ModalImage small={props.data.feedImgURL} large={props.data.feedImgURL} style={{ width: '350px', borderRadius: '25px' }} />}
                             <div className="feed-footer">
                                 <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
@@ -65,6 +71,9 @@ export default function Post(props) {
     } else {
         return (
             <MDBJumbotron>
+                <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
+                    <Hamburger />
+                </div>
                 <div fluid className='news d-flex justify-content-center'>
                     <div className='label mt-2'>
                         <img
@@ -81,7 +90,7 @@ export default function Post(props) {
                             </Link> posted on their page
                         </div>
                         <div className="added-text my-2">
-                            <h6><strong>{props.data.Content}</strong></h6>
+                            <h6><strong><ReactHashtag>{props.data.Content}</ReactHashtag></strong></h6>
                         </div>
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                         <div className="feed-footer">

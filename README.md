@@ -14,7 +14,7 @@ Social Hound is the 1st social media platform made just for your pup. Use the si
 
 Watch our video to see how the app works!
 
-![GIF image of site demo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/demo.gif)
+![GIF image of site demo](https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/shvid.gif)
 
 ## Features
 <img src='https://github.com/thekushkode/sh-frontend-project/blob/master/src/components/images/4points-sh.PNG' width='500' />

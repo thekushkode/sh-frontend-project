@@ -3,12 +3,30 @@ import {
     MDBNavbarNav, MDBNavItem, MDBBtn, MDBCollapse, MDBHamburgerToggler
 } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
+import firebase from '../firebase';
 
 class Hamburger extends Component {
-    state = {
-        collapse1: false,
-        collapseID: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            submit: false,
+            user: '',
+            dogData: [],
+            postValue: '',
+            imgValue: '',
+            allDogData: [],
+            feedImgURL: '',
+            hidden: true,
+            playDates: false,
+            photos: [],
+            collapse1: false,
+            collapseID: ''
+        };
     }
+    // state = {
+    //     collapse1: false,
+    //     collapseID: ''
+    // }
 
     toggleCollapse = collapseID => () => {
         this.setState(prevState => ({ collapseID: (prevState.collapseID !== collapseID ? collapseID : '') }));
@@ -19,6 +37,15 @@ class Hamburger extends Component {
             ...this.state,
             [collapseId]: !this.state[collapseId]
         });
+    }
+
+    deletePost = (id) => () => {
+        const db = firebase.firestore();
+        db.collection('Feed').doc(id)
+            .delete()
+            .then(function () {
+                alert('Post Successfully Deleted')
+            })
     }
 
     render() {
@@ -36,7 +63,7 @@ class Hamburger extends Component {
 
                     </MDBNavbarNav> */}
                     <MDBBtn size='sm' className='purple-gradient btn-rounded'>Edit</MDBBtn>
-                    <MDBBtn size='sm' className='blue-gradient btn-rounded'>Delete</MDBBtn>
+                    <MDBBtn size='sm' className='blue-gradient btn-rounded' onClick={this.deletePost}>Delete</MDBBtn>
                 </MDBCollapse>
             </>
 

@@ -12,17 +12,23 @@ class NavbarPage extends Component {
         
         this.state = {
             isOpen: false,
-            redirect: false
+            redirect: false,
+            inbox: ''
         };
     }
 
     // componentDidMount() {
-
+    //     this.setState({
+    //         inbox: this.props.inbox
+    //     })
     // }
 
     // componentDidUpdate() {
-
+    //     this.setState({
+    //         inbox: this.props.inbox
+    //     })
     // }
+
     
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });

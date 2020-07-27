@@ -97,7 +97,7 @@ class About extends React.Component {
                     <strong>Robert Kushner</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Full-Stack Developer, Design
+                    Full-Stack Developer, UI & UX Design
                   </h6>
                   <p className='grey-text'>
                     Serial entrepreneur and dog enthusiast.

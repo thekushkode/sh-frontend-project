@@ -7,7 +7,10 @@ import firebase from '../firebase';
 import { EmailShareButton, FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon, EmailIcon } from 'react-share';
 import Hamburger from './Hamburger';
 import ReactHashtag from "react-hashtag";
+import './Post.css';
 moment().format()
+
+// const hashtag = styled.span` color: blue; `;
 
 export default function Post(props) {
 
@@ -21,11 +24,11 @@ export default function Post(props) {
     }
     console.log(props.data);
     if (props.data.feedImgURL) {
-        
+
         return (
             <MDBJumbotron>
                 <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
-                    <Hamburger key={props.data.docId}/>
+                    <Hamburger key={props.data.docId} id={props.data.docId} />
                 </div>
                 <div className='news'>
                     <div className="excerpt ml-4 d-flex justify-content-between">
@@ -72,7 +75,7 @@ export default function Post(props) {
         return (
             <MDBJumbotron>
                 <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
-                    <Hamburger />
+                    <Hamburger key={props.data.docId} id={props.data.docId} />
                 </div>
                 <div fluid className='news d-flex justify-content-center'>
                     <div className='label mt-2'>
@@ -90,7 +93,7 @@ export default function Post(props) {
                             </Link> posted on their page
                         </div>
                         <div className="added-text my-2">
-                            <h6><strong><ReactHashtag>{props.data.Content}</ReactHashtag></strong></h6>
+                            <h6><strong><ReactHashtag renderHashtag={value => <a href='#!'>{value}</a>}>{props.data.Content}</ReactHashtag></strong></h6>
                         </div>
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                         <div className="feed-footer">

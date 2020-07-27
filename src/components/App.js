@@ -35,6 +35,7 @@ import Konami from 'react-konami-code';
 import { MDBContainer, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn } from "mdbreact";
 import Adopt from './Adopt';
 import Lost from './Lost';
+import HashGallery from './HashGallery';
 
 function App() {
   let db = firebase.firestore();
@@ -184,6 +185,7 @@ function App() {
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
               <Route path='/lost' component={Lost} />
+              <Route path='/hashtags' component={HashGallery} />
               <Redirect to="/newprofile" />
             </Switch>
             <Konami action={easterEgg} style={{}}>

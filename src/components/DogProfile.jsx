@@ -122,6 +122,7 @@ class DogProfile extends Component {
     }
   }
 
+
   handleClick = (id) => () => {
     const db = firebase.firestore();
     db.collection("Dogs")

@@ -8,32 +8,68 @@ import { loggedOut, unSetPrivateFeed, clearMessages } from '../redux/actions/ind
 
 class NavbarPage extends Component {
     constructor(props) {
-        super(props)
-        
+        super(props);
         this.state = {
             isOpen: false,
             redirect: false,
-            inbox: ''
+            inbox: '',
+            user: '',
+            dogData: []
         };
     }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         inbox: this.props.inbox
-    //     })
-    // }
 
-    // componentDidUpdate() {
-    //     this.setState({
-    //         inbox: this.props.inbox
-    //     })
-    // }
+    // ComponentDidMount & DidUpdate not working correctly...
+    componentDidMount() {
+        console.log(this.props)
+        const db = firebase.firestore();
+        let user = firebase.auth().currentUser;
+        if (user) {
+            if (this.props.profile.id) {
+                db.collection("Dogs")
+                    .doc(this.props.profile.id)
+                    .get()
+                    .then(doc => {
+                        const dogData = {
+                            ...doc.data(),
+                            dogId: doc.id
+                        }
+                        this.setState({
+                            dogData: dogData,
+                            user: user
+                        })
+                    })
+            }
 
-    
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        let dogId = this.props.profile.id;
+        if (prevProps.profile.id !== dogId) {
+            const db = firebase.firestore();
+            let user = firebase.auth().currentUser;
+            if (user) {
+                db.collection('Dogs').doc(this.props.profile.id)
+                    .get()
+                    .then(doc => {
+                        const dogData = {
+                            ...doc.data(),
+                            dogId: doc.id
+                        }
+                        this.setState({
+                            dogData: dogData,
+                            user: user
+                        })
+                    })
+            }
+        }
+    }
+
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
-    
+
     signOut = (e) => {
         firebase.auth().signOut().then(() => {
             this.setState({
@@ -48,8 +84,8 @@ class NavbarPage extends Component {
             // alert('No User Logged In.')
         });
     }
-    
-    
+
+
     render() {
         if (this.state.redirect) {
             return <Redirect to='/' />
@@ -73,8 +109,8 @@ class NavbarPage extends Component {
                             <MDBNavItem>
                                 <MDBNavLink to='/messages'>
                                     Messages
-                                    {this.props.inbox && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
-                                    </MDBNavLink>
+                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
+                                </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>

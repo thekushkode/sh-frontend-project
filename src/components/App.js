@@ -185,7 +185,7 @@ function App() {
               <Route path='/user/:dogId' component={UserProfile} />
               <Route path='/newchat/' component={NewChat} />
               <Route path='/lost' component={Lost} />
-              <Route path='/hashtags' component={HashGallery} />
+              <Route path='/gallery' component={HashGallery} />
               <Redirect to="/newprofile" />
             </Switch>
             <Konami action={easterEgg} style={{}}>

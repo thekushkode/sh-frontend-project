@@ -1,21 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFeed } from '../redux/actions/index';
 import { MDBGallery, MDBGalleryList } from 'mdbreact';
 import FooterPage from './Footer';
 
-function HashGallery() {
+function HashGallery(props) {
 
+    const db = firebase.firestore();
+    const dispatch = useDispatch();
+    const feed = useSelector(state => state.feed)
+    const user = useSelector(state => state.user)
     // Need to map through photos, render photos based on hashtag value ---> /hashtags/motivationmonday 
 
+    // useEffect(() => {
+    //     console.log(user)
+    //     if (user) {
+    //         const db = firebase.firestore();
+    //         //let hashPosts = []
+    //         db.collection('Feed').where('Type', '==', 'Post')
+    //             // .get()
+    //             .onSnapshot(function (querySnapshot) {
+    //                 console.log(querySnapshot);
+    //                 let hashArray = [];
+    //                 // querySnapshot.forEach(function (doc) {
+    //                 //     hashArray.push({})
+    //                 // })
+    //             })
+
+    //     }
+    // })
+
     useEffect(() => {
-        const db = firebase.firestore();
-        let hashPosts = []
-        db.collection('Feed').where('Type', '==', 'Post').where('Content', 'array-contains', '#') //how to access content/post containing #??
-        .onSnapshot(function(querySnapshot) {
-            console.log(querySnapshot);
-        })
-        //.then()
-    })
+        db.collection('Feed').orderBy("timestamp", "desc").limit(30).onSnapshot(
+            querySnapshot => {
+                let feedArray = [];
+                querySnapshot.forEach(function (doc) {
+                    console.log(doc.data())
+                    const feedData = {
+                        ...doc.data(),
+                        docId: doc.id
+                    }
+                    console.log(feedData);
+                    feedArray.push(feedData);
+                    console.log(feedArray);
+                })
+                dispatch(setFeed(feedArray))
+            });
+    }, [])
 
     const dataImg = [
         {
@@ -75,7 +107,7 @@ function HashGallery() {
             </header>
             <main>
                 <MDBGallery cols={4}>
-                    {dataImg.map(({ cols, img, title }, i) => { //replace dataImg with hashPosts
+                    {dataImg.map(({ cols, img, title }, i) => { //replace dataImg with feedArray
                         return (
                             <MDBGalleryList
                                 key={i}

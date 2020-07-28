@@ -47,7 +47,7 @@ export default function Post(props) {
                             </div>
                         </div>
                         <div className="added-text my-2 m-auto col-8 align-items-center">
-                            <h6><strong><ReactHashtag renderHashtag={value => <a href='#!'>{value}</a>}>{props.data.Content}</ReactHashtag></strong></h6>
+                            <h6><strong><ReactHashtag renderHashtag={value => <a href={`/gallery/${value}`}>{value}</a>}>{props.data.Content}</ReactHashtag></strong></h6>
                             {<ModalImage small={props.data.feedImgURL} large={props.data.feedImgURL} style={{ width: '350px', borderRadius: '25px' }} />}
                             <div className="feed-footer">
                                 <button onClick={handleIncrement} style={{ border: 'none', color: 'red' }} className="like mt-2">
@@ -93,7 +93,7 @@ export default function Post(props) {
                             </Link> posted on their page
                         </div>
                         <div className="added-text my-2">
-                            <h6><strong><ReactHashtag renderHashtag={value => <a href='#!'>{value}</a>}>{props.data.Content}</ReactHashtag></strong></h6>
+                            <h6><strong><ReactHashtag renderHashtag={value => <a href={`/gallery/${value}`}>{value}</a>}>{props.data.Content}</ReactHashtag></strong></h6>
                         </div>
                         <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
                         <div className="feed-footer">

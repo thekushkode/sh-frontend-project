@@ -284,7 +284,7 @@ class UserProfile extends Component {
                           <MDBAvatar
                             tag='img'
                             alt='Dog photo'
-                            style={{ maxWidth: '90%', height: 'auto' }}
+                            style={{ width: '500px', height: '500px', objectFit: 'cover', margin: '0 auto' }}
                             src={dog.avatar}
                             className='img-fluid rounded z-depth-1-half mb-4 mt-2'
                           />
@@ -614,17 +614,19 @@ class UserProfile extends Component {
                             <h5 className='text-center mb-4'>
                               <strong>{dog.dogName}'s Friends </strong>
                             </h5>
-                            <MDBRow>
+                            <MDBRow style={{ maxHeight: '300px', overflow: 'scroll'}}>
                               {dog.friends && dog.friends.map((dog, index) => {
                                 return (
 
-                                  <MDBCol md='4' className='mt-1' key={index}>
+                                  <MDBCol md='6' lg='4' sm='6' className='mt-1' key={index}>
                                     <MDBView hover>
                                       <Link to={`/user/${dog.dogID}`}>
-                                        <ModalImage
-                                          small={dog.avatar}
-                                          large={dog.avatar}
-                                          className="img-fluid rounded-circle"
+                                        <MDBAvatar
+                                          tag='img'
+                                          src={dog.avatar}
+                                          // small={photo}
+                                          // large={photo}
+                                          className="img-fluid z-depth-1-half rounded-circle"
                                           alt="Dog Avatar"
                                           style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                         />
@@ -652,16 +654,18 @@ class UserProfile extends Component {
                             <h5 className='text-center mb-4'>
                               <strong>{dog.dogName}'s Photos</strong>
                             </h5>
-                            <MDBRow>
+                            <MDBRow style={{ maxHeight: '300px', overflow: 'scroll'}}>
                               {dog.photos && dog.photos.map((photo, index) => {
                                 return (
-                                  <MDBCol md='4' className='mt-1' key={index}>
+                                  <MDBCol md='6' lg='4' sm='6' className='mt-1' key={index}>
                                     <MDBView hover>
                                       <Link>
-                                        <ModalImage
-                                          small={photo}
-                                          large={photo}
-                                          className="img-fluid rounded-circle"
+                                        <MDBAvatar
+                                          tag='img'
+                                          src={`${photo}`}
+                                          // small={photo}
+                                          // large={photo}
+                                          className="img-fluid z-depth-1-half rounded-circle"
                                           alt="Dog Avatar"
                                           style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '0 auto' }}
                                         />

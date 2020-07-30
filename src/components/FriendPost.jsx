@@ -3,6 +3,7 @@ import { MDBIcon, MDBJumbotron } from "mdbreact";
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import firebase from '../firebase';
+import HamburgerFriend from './HamburgerFriend';
 moment().format()
 
 export default function FriendPost(props) {
@@ -18,6 +19,9 @@ export default function FriendPost(props) {
 
   return (
     <MDBJumbotron>
+      <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
+        <HamburgerFriend />
+      </div>
       <div className="news d-flex justify-content-center">
         <div className="label">
           <img

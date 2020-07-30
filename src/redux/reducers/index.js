@@ -7,6 +7,7 @@ import authReducer from './auth';
 import feedReducer from './feed';
 import privateFeedReducer from './privateFeed';
 import userFeedReducer from './userFeed';
+import inboxReducer from './inbox';
 //import counterReducer from './likesCounter';
 
 const allReducers = combineReducers({
@@ -16,7 +17,8 @@ const allReducers = combineReducers({
     auth: authReducer,
     feed: feedReducer,
     privateFeed: privateFeedReducer,
-    userFeed: userFeedReducer
+    userFeed: userFeedReducer,
+    inbox: inboxReducer
 })
 
 export default allReducers;

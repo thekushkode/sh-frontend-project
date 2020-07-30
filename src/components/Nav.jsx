@@ -8,12 +8,62 @@ import { loggedOut, unSetPrivateFeed, clearMessages } from '../redux/actions/ind
 
 class NavbarPage extends Component {
     constructor(props) {
-        super(props)
-
+        super(props);
         this.state = {
             isOpen: false,
-            redirect: false
+            redirect: false,
+            inbox: '',
+            user: '',
+            dogData: []
         };
+    }
+
+
+    // ComponentDidMount & DidUpdate not working correctly...
+    componentDidMount() {
+        console.log(this.props)
+        const db = firebase.firestore();
+        let user = firebase.auth().currentUser;
+        if (user) {
+            if (this.props.profile.id) {
+                db.collection("Dogs")
+                    .doc(this.props.profile.id)
+                    .get()
+                    .then(doc => {
+                        const dogData = {
+                            ...doc.data(),
+                            dogId: doc.id
+                        }
+                        this.setState({
+                            dogData: dogData,
+                            user: user
+                        })
+                    })
+            }
+
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        let dogId = this.props.profile.id;
+        if (prevProps.profile.id !== dogId) {
+            const db = firebase.firestore();
+            let user = firebase.auth().currentUser;
+            if (user) {
+                db.collection('Dogs').doc(this.props.profile.id)
+                    .get()
+                    .then(doc => {
+                        const dogData = {
+                            ...doc.data(),
+                            dogId: doc.id
+                        }
+                        this.setState({
+                            dogData: dogData,
+                            user: user
+                        })
+                    })
+            }
+        }
     }
 
     toggleCollapse = () => {
@@ -35,12 +85,13 @@ class NavbarPage extends Component {
         });
     }
 
-    render() {
 
+    render() {
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
-
+        console.log(this.props.inbox)
+        console.log(this.props.inbox.length)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
@@ -56,7 +107,10 @@ class NavbarPage extends Component {
                                 </MDBNavItem>
                             )}
                             <MDBNavItem>
-                                <MDBNavLink to='/messages'>Messages</MDBNavLink>
+                                <MDBNavLink to='/messages'>
+                                    Messages
+                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
+                                </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
                                 <MDBDropdown>
@@ -147,7 +201,8 @@ class NavbarPage extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        profile: state.profile
+        profile: state.profile,
+        inbox: state.inbox
     }
 }
 

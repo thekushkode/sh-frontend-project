@@ -34,7 +34,7 @@ class About extends React.Component {
     }));
 
   render() {
-
+    
     return (
       <div id='about'>
         <header style={{ marginBottom: '80px' }}>
@@ -97,12 +97,12 @@ class About extends React.Component {
                     <strong>Robert Kushner</strong>
                   </h4>
                   <h6 className='font-weight-bold grey-text mb-4'>
-                    Software Engineer, Design
+                    Full-Stack Developer, UI & UX Design
                   </h6>
                   <p className='grey-text'>
                     Serial entrepreneur and dog enthusiast.
                   </p>
-                  <a href='https://github.com/thekushkode' target='_blank' rel="noopener noreferrer">
+                  <a href='https://www.linkedin.com/in/robert-l-kushner-iv-48284b45/' target='_blank' rel="noopener noreferrer">
                     <MDBIcon
                       fab
                       icon='linkedin'
@@ -116,7 +116,7 @@ class About extends React.Component {
                       className='p-2 m-2 fa-lg git-ic'
                     />
                   </a>
-                  <a href='!#' target='_blank' rel="noopener noreferrer">
+                  <a href='https://www.twitter.com/goatwebdesigns' target='_blank' rel="noopener noreferrer">
                     <MDBIcon
                       fab
                       icon='twitter'

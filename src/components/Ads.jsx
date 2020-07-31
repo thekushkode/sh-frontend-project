@@ -21,8 +21,8 @@ const Ads = () => {
                                 <p>
                                     Get in front of your target audience with ads on SocialHound! Contact <a href='mailto:woof@socialhound.co'>woof@socialhound.co</a> for information and pricing. Amazing introductory rates available!
                                 </p>
-                                <MDBBtn color='pink'>
-                                    <MDBIcon icon='clone left' /> View project
+                                <MDBBtn href='mailto:woof@socialhound.co' color='pink'>
+                                    <MDBIcon icon='paper-plane' /> Contact Us
                             </MDBBtn>
                             </div>
                         </div>
@@ -46,8 +46,8 @@ const Ads = () => {
                                 <p>
                                     Get in front of your target audience with ads on SocialHound! Contact <a href='mailto:woof@socialhound.co'>woof@socialhound.co</a> for information and pricing. Amazing introductory rates available!
                                 </p>
-                                <MDBBtn color='deep-orange'>
-                                    <MDBIcon icon='clone left' /> View project
+                                <MDBBtn href='mailto:woof@socialhound.co' color='deep-orange'>
+                                    <MDBIcon icon='paper-plane' /> Contact Us
                             </MDBBtn>
                             </div>
                         </div>
@@ -71,8 +71,8 @@ const Ads = () => {
                                 <p>
                                     Get in front of your target audience with ads on SocialHound! Contact <a href='mailto:woof@socialhound.co'>woof@socialhound.co</a> for information and pricing. Amazing introductory rates available!
                                 </p>
-                                <MDBBtn color='pink'>
-                                    <MDBIcon icon='clone left' /> View project
+                                <MDBBtn href='mailto:woof@socialhound.co' color='pink'>
+                                    <MDBIcon icon='paper-plane' /> Contact Us
                             </MDBBtn>
                             </div>
                         </div>
@@ -96,8 +96,8 @@ const Ads = () => {
                                 <p>
                                     Get in front of your target audience with ads on SocialHound! Contact <a href='mailto:woof@socialhound.co'>woof@socialhound.co</a> for information and pricing. Amazing introductory rates available!
                                 </p>
-                                <MDBBtn color='deep-orange'>
-                                    <MDBIcon icon='clone left' /> View project
+                                <MDBBtn href='mailto:woof@socialhound.co' color='deep-orange'>
+                                    <MDBIcon icon='paper-plane' /> Contact Us
                             </MDBBtn>
                             </div>
                         </div>

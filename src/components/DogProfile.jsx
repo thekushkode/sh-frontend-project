@@ -26,6 +26,7 @@ import { connect } from 'react-redux';
 import InputPage from './InputPage';
 import { setFeed, unSetFeed, setProfile, clearProfile } from '../redux/actions/index';
 import PlayDates from './PlayDates';
+import Ads from './Ads';
 
 
 const defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
@@ -630,6 +631,7 @@ class DogProfile extends Component {
                     :
                     <></>
                   }
+                  <Ads />
                 </MDBCol>
                 <MDBCol lg='8' md='8' className='text-center'>
                   <MDBRow>

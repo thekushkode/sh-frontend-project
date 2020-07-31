@@ -2,6 +2,7 @@ import React from 'react'
 import SocialPage2 from './feed2'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 import FooterPage from './Footer';
+import Ads from './Ads';
 
 export default function PublicFeed() {
     return (
@@ -14,7 +15,7 @@ export default function PublicFeed() {
                     <SocialPage2 />
 
                     <MDBCol md='4'>
-                        <h1>AdSense</h1>
+                        <Ads />
                     </MDBCol>
                 </MDBRow>
             </div>

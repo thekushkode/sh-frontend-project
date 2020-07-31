@@ -31,7 +31,7 @@ export default function SocialPage2() {
 
     return (
 
-        <MDBCol md='8' className='overflow-auto' style={{ height: '1000px' }}>
+        <MDBCol md='8' className='overflow-auto' style={{ height: '1530px' }}>
             {feed && feed.map((item, index) => {
                 switch (item.Type) {
                     case 'Post':

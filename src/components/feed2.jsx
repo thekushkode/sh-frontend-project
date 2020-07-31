@@ -36,8 +36,8 @@ export default function SocialPage2() {
                 switch (item.Type) {
                     case 'Post':
                         return <Post data={item} />
-                    case 'Friend':
-                        return <FriendPost data={item} />
+                    // case 'Friend':
+                    //     return <FriendPost data={item} />
                     case 'Photo':
                         return <PhotoPost data={item} />
                     default:

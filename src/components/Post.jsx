@@ -27,9 +27,9 @@ export default function Post(props) {
 
         return (
             <MDBJumbotron>
-                <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
+                {/* <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
                     <Hamburger key={props.data.docId} id={props.data.docId} />
-                </div>
+                </div> */}
                 <div className='news'>
                     <div className="excerpt ml-4 d-flex justify-content-between">
                         <div className='label m-auto align-items-start h-100 mt-0 col-4'>
@@ -74,9 +74,9 @@ export default function Post(props) {
     } else {
         return (
             <MDBJumbotron>
-                <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
+                {/* <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
                     <Hamburger key={props.data.docId} id={props.data.docId} />
-                </div>
+                </div> */}
                 <div fluid className='news d-flex justify-content-center'>
                     <div className='label mt-2'>
                         <img

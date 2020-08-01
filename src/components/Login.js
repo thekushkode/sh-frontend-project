@@ -171,6 +171,9 @@ class Login extends React.Component {
     };
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
 
   toggleCollapse = collapseID => () =>
     this.setState(prevState => ({

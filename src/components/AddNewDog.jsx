@@ -55,6 +55,7 @@ function AddNewDog(props) {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     if (user && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
     }

@@ -22,6 +22,10 @@ class GMap extends Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     mapReady = (mapProps, map) => {
         this.setState({
             map
@@ -142,14 +146,14 @@ class GMap extends Component {
                         })}
                     </Map>
                 </main>
-                <footer style={{position: 'bottom', padding: '0px', margin: '0px'}} className='fixed-bottom'>
-                    <div style={{marginTop: '100px', marginBottom: '0px', paddingBottom: '0px'}}>
+                <footer style={{ position: 'bottom', padding: '0px', margin: '0px' }} className='fixed-bottom'>
+                    <div style={{ marginTop: '100px', marginBottom: '0px', paddingBottom: '0px' }}>
                         <MDBCol md="6">
-                        <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
-                            <MDBIcon icon="search"/>
-                            <input className="form-control form-control-lg ml-3 w-35" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
-                            <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
-                        </MDBFormInline>
+                            <MDBFormInline className="md-form ml-5 mb-5" onSubmit={this.handleSubmit} >
+                                <MDBIcon icon="search" />
+                                <input className="form-control form-control-lg ml-3 w-35" type="text" placeholder="Search" aria-label="Search" onChange={this.handleChange} value={this.state.zipCode} />
+                                <Button type='submit' className='btn-rounded aqua-gradient' >Search</Button>
+                            </MDBFormInline>
                         </MDBCol>
                     </div>
                 </footer>

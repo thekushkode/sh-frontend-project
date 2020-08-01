@@ -39,7 +39,7 @@ class Lost extends Component {
     componentDidMount() {
         const db = firebase.firestore();
         let user = firebase.auth().currentUser;
-
+        window.scrollTo(0, 0)
         if (user) {
             db.collection('Lost').orderBy("timestamp", "desc").limit(10).onSnapshot(
                 querySnapshot => {

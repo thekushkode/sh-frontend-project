@@ -52,7 +52,7 @@ class DogProfile extends Component {
   componentDidMount() {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
-
+    window.scrollTo(0, 0)
     if (user) {
       if (this.props.match.params.dogId) {
         db.collection("Dogs")

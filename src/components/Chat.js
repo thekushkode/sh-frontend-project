@@ -42,6 +42,7 @@ const Chat = () => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     if (user) {
       db.collection('Messages')
         .where('members', 'array-contains', user.uid)

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MDBRow, MDBCol, MDBIcon, MDBBtn, MDBContainer } from "mdbreact";
 import FooterPage from "./Footer";
 import FormPage from './Form';
 
 const ContactPage = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div>
             <header style={{ marginBottom: '100px' }}>
@@ -19,7 +24,7 @@ const ContactPage = () => {
                     <MDBRow>
                         <MDBCol lg="5" className="lg-0 mb-4">
                             <FormPage />
-                            
+
                         </MDBCol>
 
                         <MDBCol lg="7">

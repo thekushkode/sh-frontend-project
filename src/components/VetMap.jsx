@@ -21,6 +21,10 @@ class VetMap extends Component {
         }
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     mapReady = (mapProps, map) => {
         this.setState({
             map

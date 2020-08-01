@@ -83,9 +83,13 @@ const Chat = () => {
       senderAvatar: profile.data.avatar
     }]
 
-    // need to iterate through existing newMessages object, setting all users except self to true
     // to trigger notifications
-    let updateNewMessages = { ...reduxMessages.data.newMessages, [user.uid]: false }
+    Object.keys(reduxMessages.data.newMessages)
+      .forEach(msg => {
+        if (msg === user.uid) { reduxMessages.data.newMessages[msg] = false }
+        else { reduxMessages.data.newMessages[msg] = true }
+      })
+    const updateNewMessages = { ...reduxMessages.data.newMessages }
     db.collection('Messages').doc(reduxMessages.id).update({
       'messages': allNewMessages,
       newMessages: updateNewMessages

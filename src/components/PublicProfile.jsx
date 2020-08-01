@@ -53,6 +53,7 @@ class UserProfile extends Component {
     const db = firebase.firestore();
     let user = firebase.auth().currentUser;
     let dogID = this.props.match.params.dogId
+    window.scrollTo(0, 0)
     if (user) {
       db.collection("Dogs")
         .doc(dogID)

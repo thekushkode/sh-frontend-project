@@ -57,7 +57,8 @@ export class Furends extends Component {
 
     componentDidMount() {
         let friend = this.props.profile.data.city;
-        let doggo = this
+        let doggo = this;
+        window.scrollTo(0, 0)
         db.collection("Dogs")
             .where('city', '==', friend)
             .get()
@@ -156,7 +157,7 @@ export class Furends extends Component {
                             </div>
                         </MDBCol>
                         <MDBCol md='12'>
-                            <div style={{ height: '500px', width: '100%', display: 'flex', justifyContent: 'center', padding: '0', marginTop: '10px'}}>
+                            <div style={{ height: '500px', width: '100%', display: 'flex', justifyContent: 'center', padding: '0', marginTop: '10px' }}>
                                 <Map
                                     containerStyle={containerStyle}
                                     google={this.props.google}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     MDBMask,
     MDBRow,
@@ -30,6 +30,10 @@ function Home(props) {
         const db = firebase.firestore();
         firebase.auth().createUserWithEmailAndPassword(email, password)
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div id='classicformpage'>
@@ -64,65 +68,65 @@ function Home(props) {
                             <MDBAnimation type='fadeInRight' delay='.3s'>
                                 <MDBCard id='classic-card'>
                                     {/* <form> */}
-                                        <MDBCardBody className='white-text'>
-                                            <h3 className='text-center'>
-                                                <MDBIcon icon='user' /> Register
+                                    <MDBCardBody className='white-text'>
+                                        <h3 className='text-center'>
+                                            <MDBIcon icon='user' /> Register
                                             </h3>
+                                        <hr className='hr-light' />
+
+                                        <MDBInput
+                                            className='white-text form-control'
+                                            iconClass='white-text'
+                                            label='Email'
+                                            icon='envelope'
+                                            type='email'
+                                            name='email'
+                                            containerClass="text-left"
+                                            onChange={(e) => { setEmail(e.target.value) }}
+                                        // required
+                                        />
+                                        <MDBInput
+                                            className='white-text form-control'
+                                            iconClass='white-text'
+                                            label='Password'
+                                            icon='lock'
+                                            type='password'
+                                            name='password'
+                                            containerClass="text-left"
+                                            onChange={(e) => { setPassword(e.target.value) }}
+                                        // required
+                                        />
+
+                                        <div className='text-center mt-4 black-text'>
+                                            <MDBBtn color='indigo' onClick={newUser}>Sign Up</MDBBtn>
+                                            <h6 className='white-text'>Already have an account? <Link to='/login'>Sign In!</Link></h6>
+                                            <p style={{ fontSize: '10px' }} className='white-text'>Upon signup you accept SocialHound's <Link to='/terms'>Terms of Service</Link> & <Link to='/privacy'>Privacy</Link> statements.</p>
                                             <hr className='hr-light' />
-
-                                            <MDBInput
-                                                className='white-text form-control'
-                                                iconClass='white-text'
-                                                label='Email'
-                                                icon='envelope'
-                                                type='email'
-                                                name='email'
-                                                containerClass="text-left"
-                                                onChange={(e) => { setEmail(e.target.value) }}
-                                                // required
-                                            />
-                                            <MDBInput
-                                                className='white-text form-control'
-                                                iconClass='white-text'
-                                                label='Password'
-                                                icon='lock'
-                                                type='password'
-                                                name='password'
-                                                containerClass="text-left"
-                                                onChange={(e) => { setPassword(e.target.value) }}
-                                                // required
-                                            />
-
-                                            <div className='text-center mt-4 black-text'>
-                                                <MDBBtn color='indigo' onClick={newUser}>Sign Up</MDBBtn>
-                                                <h6 className='white-text'>Already have an account? <Link to='/login'>Sign In!</Link></h6>
-                                                <p style={{ fontSize: '10px'}} className='white-text'>Upon signup you accept SocialHound's <Link to='/terms'>Terms of Service</Link> & <Link to='/privacy'>Privacy</Link> statements.</p>
-                                                <hr className='hr-light' />
-                                                <div className='text-center d-flex justify-content-center white-label'>
-                                                    <a href='https://twitter.com/socialhoundco' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
-                                                        <MDBIcon
-                                                            fab
-                                                            icon='twitter'
-                                                            className='white-text'
-                                                        />
-                                                    </a>
-                                                    <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
-                                                        <MDBIcon
-                                                            fab
-                                                            icon='facebook'
-                                                            className='white-text'
-                                                        />
-                                                    </a>
-                                                    <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
-                                                        <MDBIcon
-                                                            fab
-                                                            icon='instagram'
-                                                            className='white-text'
-                                                        />
-                                                    </a>
-                                                </div>
+                                            <div className='text-center d-flex justify-content-center white-label'>
+                                                <a href='https://twitter.com/socialhoundco' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
+                                                    <MDBIcon
+                                                        fab
+                                                        icon='twitter'
+                                                        className='white-text'
+                                                    />
+                                                </a>
+                                                <a href='https://www.facebook.com/SocialHound-110112560760116' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
+                                                    <MDBIcon
+                                                        fab
+                                                        icon='facebook'
+                                                        className='white-text'
+                                                    />
+                                                </a>
+                                                <a href='https://www.instagram.com/socialhound.co.beta/' target='_blank' rel="noopener noreferrer" className='p-2 m-2'>
+                                                    <MDBIcon
+                                                        fab
+                                                        icon='instagram'
+                                                        className='white-text'
+                                                    />
+                                                </a>
                                             </div>
-                                        </MDBCardBody>
+                                        </div>
+                                    </MDBCardBody>
                                     {/* </form> */}
                                 </MDBCard>
                             </MDBAnimation>

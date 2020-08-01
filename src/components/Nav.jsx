@@ -90,8 +90,8 @@ class NavbarPage extends Component {
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
-        console.log(this.props.inbox)
-        console.log(this.props.inbox.length)
+        // console.log(this.props.inbox)
+        // console.log(this.props.inbox.length)
         return (
             <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
@@ -109,7 +109,7 @@ class NavbarPage extends Component {
                             <MDBNavItem>
                                 <MDBNavLink to='/messages'>
                                     Messages
-                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
+                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">new</span>}
                                 </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>

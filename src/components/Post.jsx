@@ -1,6 +1,7 @@
 import React from 'react'
-import { MDBIcon, MDBJumbotron, MDBContainer } from "mdbreact";
+import { MDBIcon, MDBJumbotron, MDBContainer, MDBBtn } from "mdbreact";
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import ModalImage from "react-modal-image";
 import firebase from '../firebase';
@@ -13,7 +14,7 @@ moment().format()
 // const hashtag = styled.span` color: blue; `;
 
 export default function Post(props) {
-
+    const user = useSelector(state => state.user)
     let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
     const db = firebase.firestore();
 
@@ -22,6 +23,12 @@ export default function Post(props) {
             Likes: props.data.Likes + 1,
         }, { merge: true })
     }
+
+    const deletePost = (id) => {
+        console.log(`About to delete post id ${id}`)
+        db.collection('Feed').doc(id).delete().then(console.log(`Document ${id} deleted`))
+    }
+
     console.log(props.data);
     if (props.data.feedImgURL) {
 
@@ -45,6 +52,8 @@ export default function Post(props) {
                                 </Link> posted a new photo
                         <div className="date">- {props.data.timestamp && moment(props.data.timestamp.toDate()).fromNow()}</div>
                             </div>
+                            {props.data.SenderID === user.uid && <div className="badge badge-pill badge-danger ml-1 mb-1" style={{ cursor: 'pointer' }} onClick={() => deletePost(props.data.docId)}>delete this post</div>}
+
                         </div>
                         <div className="added-text my-2 m-auto col-8 align-items-center">
                             <h6><strong><ReactHashtag renderHashtag={value => <a href='#!'>{value}</a>}>{props.data.Content}</ReactHashtag></strong></h6>
@@ -85,6 +94,8 @@ export default function Post(props) {
                             className="rounded-circle z-depth-1-half"
                             style={{ width: '75px', height: '75px', objectFit: 'cover', margin: '0 auto' }}
                         />
+                        <br />
+                        {props.data.SenderID === user.uid && <div className="badge badge-pill badge-danger ml-1 mb-1" style={{ cursor: 'pointer' }} onClick={() => deletePost(props.data.docId)}>delete this post</div>}
                     </div>
                     <div className="excerpt ml-4">
                         <div className="brief">

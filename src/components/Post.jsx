@@ -43,7 +43,7 @@ export default function Post(props) {
                                 <Link to={`/user/${props.data.DogID}`} className="name">
                                     {props.data.SenderName}
                                 </Link> posted a new photo
-                        <div className="date">- {moment(props.data.timestamp.toDate()).fromNow()}</div>
+                        <div className="date">- {props.data.timestamp && moment(props.data.timestamp.toDate()).fromNow()}</div>
                             </div>
                         </div>
                         <div className="added-text my-2 m-auto col-8 align-items-center">

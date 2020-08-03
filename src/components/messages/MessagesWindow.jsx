@@ -46,7 +46,6 @@ export default function MessagesWindow() {
                 // console.log(doc.data())
                 db.collection("Messages").doc(messages.id)
                     .update({
-                        newMessages: { ...messages.data.newMessages, [dogProfile.ownerId]: true },
                         members: [...messages.data.members, dogProfile.ownerId],
                         userNames: [...messages.data.userNames, dogProfile.ownerName],
                         messages: [...messages.data.messages,
@@ -91,31 +90,31 @@ export default function MessagesWindow() {
                     {/* // <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>} */}
                 </MDBCol>
             </MDBRow>
-            <div className="border border-info p-2 white">
-                <ul style={{ height: '60vh', overflow: "scroll" }}>
-                    {messages && messages.data ? messages.data.messages.map((item) => {
-                        let styles;
-                        let button;
-                        if (item.sender === 'Social Hound') {
-                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                        }
-                        else if (item.sender === 'PlayDate Request') {
-                            styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
-                            button = ['Confirm PlayDate']
-                        }
-                        else if (item.sender === profile.data.ownerName) {
-                            // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
-                            styles = ['end', '', 'text-white', 'rgb(0,153,255)']
-                        } else {
-                            // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
-                            styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
-                        }
-                        return (
-                            <SingleMessage formatting={styles} content={item} button={button} />
-                        )
-                    }) : null}
-                </ul>
-            </div>
+                <div className="border border-info p-2 white">
+                    <ul style={{ height: '60vh', overflow: "scroll" }}>
+                        {messages && messages.data ? messages.data.messages.map((item) => {
+                            let styles;
+                            let button;
+                            if (item.sender === 'Social Hound') {
+                                styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                            }
+                            else if (item.sender === 'PlayDate Request') {
+                                styles = ['around', '', 'text-black', 'rgb(3, 252, 173)']
+                                button = ['Confirm PlayDate']
+                            }
+                            else if (item.sender === profile.data.ownerName) {
+                                // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
+                                styles = ['end', '', 'text-white', 'rgb(0,153,255)']
+                            } else {
+                                // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
+                                styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
+                            }
+                            return (
+                                <SingleMessage formatting={styles} content={item} button={button} />
+                            )
+                        }) : null }
+                    </ul>
+                </div>
         </>
     )
 }

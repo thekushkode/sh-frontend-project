@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import firebase from '../firebase';
 import HamburgerFriend from './HamburgerFriend';
-import { useSelector } from 'react-redux';
 moment().format()
 
 export default function FriendPost(props) {
-  const user = useSelector(state => state.user)
   let defaultDogImg = 'https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/default-avatar.png?alt=media'
 
   const db = firebase.firestore();
@@ -23,7 +21,6 @@ export default function FriendPost(props) {
     <MDBJumbotron>
       <div className='mb-4' style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: '-10px' }}>
         <HamburgerFriend />
-        {props.data.SenderID === user.uid && <button onClick={() => props.delete(props.data.docId)}>X</button>}
       </div>
       <div className="news d-flex justify-content-center">
         <div className="label">

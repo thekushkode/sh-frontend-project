@@ -13,19 +13,6 @@ export default function SocialPage2() {
     const dispatch = useDispatch();
     const feed = useSelector(state => state.feed)
 
-    const adForFeed = {
-        Avatar: "https://firebasestorage.googleapis.com/v0/b/sh-frontend-8f893.appspot.com/o/8cy3jc8atc0000000000.jpeg?alt=media",
-        Content: "add from Social Hound",
-        Likes: 0,
-        SenderName: "Social Hound",
-        FriendID: 'null',
-        SenderID: 'null',
-        DogID: 'null',
-        Type: 'Post',
-        // timestamp: new Date(),
-        feedImgURL: 'null',
-    }
-
     useEffect(() => {
         db.collection('Feed').orderBy("timestamp", "desc").limit(20).onSnapshot(
             querySnapshot => {
@@ -36,9 +23,7 @@ export default function SocialPage2() {
                         docId: doc.id
                     }
                     feed.push(feedData);
-                }
-                )
-                feed.map((item, index) => index % 7 === 0 && index !== 0 && feed.splice(index, 0, adForFeed))
+                })
                 dispatch(setFeed(feed))
             });
     }, [])
@@ -47,7 +32,7 @@ export default function SocialPage2() {
     return (
 
         <MDBCol md='8' className='overflow-auto' style={{ height: '1530px' }}>
-            {feed && feed.map((item) => {
+            {feed && feed.map((item, index) => {
                 switch (item.Type) {
                     case 'Post':
                         return <Post data={item} />

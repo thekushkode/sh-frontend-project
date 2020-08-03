@@ -7,7 +7,7 @@ import {
     MDBAvatar
 } from 'mdbreact';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadMessages, loadInbox } from '../../redux/actions/index.js'
+import { loadMessages } from '../../redux/actions/index.js'
 import { Link } from 'react-router-dom';
 import firebase from '../../firebase';
 import moment from 'moment';
@@ -18,8 +18,6 @@ moment().format()
 export default function ChatListItem(props) {
     // const reduxMessages = useSelector(state => state.messages)
     const profile = useSelector(state => state.profile)
-    const inbox = useSelector(state => state.inbox)
-    const user = useSelector(state => state.user)
     const db = firebase.firestore();
     let dispatch = useDispatch();
 
@@ -34,20 +32,12 @@ export default function ChatListItem(props) {
                 ))
             })
         dispatch(loadMessages(props.id));
-
-        const updatedNotification = inbox.filter(msg => msg.id === val)
-        console.log(updatedNotification)
-        if (updatedNotification.length > 0 && updatedNotification[0].data.newMessages[user.uid] === true) {
-            db.collection('Messages').doc(val).update({ newMessages: { ...updatedNotification[0].data.newMessages, [user.uid]: false } });
-            const updatedInbox = inbox.filter(msg => msg.id !== val)
-            dispatch(loadInbox(updatedInbox));
-        }
-
     }
     let messageData = props.id.data
     let lastMessage = (messageData.messages.length - 1)
-    let them = messageData.userNames.filter((name) => {
-        // { console.log(name) }
+    let them = messageData.userNames.filter((name) => 
+    {
+        {console.log(name)}
         return name !== profile.data.ownerName
     })
 
@@ -64,8 +54,7 @@ export default function ChatListItem(props) {
                     <span className='mb-1'>
                         <strong>{them.join(', ')}</strong>
                     </span>
-                    <small style={{ textAlign: 'right' }}>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}<br /><div className="badge badge-pill badge-danger ml-1 mb-1">{messageData.newMessages[user.uid] && `New Message`}</div>
-                    </small>
+                    <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
                 </div>
                 <p className='text-truncate' style={{ textAlign: "left" }}>
                     {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}

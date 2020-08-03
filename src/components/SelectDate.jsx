@@ -69,7 +69,8 @@ class SelectDate extends Component {
                         }
                         db.collection("Messages").doc(filteredArray[0].id)
                             .update({
-                                messages: [...filteredArray[0].data.messages, newMessage]
+                                messages: [...filteredArray[0].data.messages, newMessage],
+                                newMessages: { ...filteredArray[0].data.newMessages, [dog.ownerId]: true }
                             })
                             .then(() => {
                                 const newReduxMessage = {
@@ -101,7 +102,8 @@ class SelectDate extends Component {
                                 userNames: [userName, dog.ownerName],
                                 messages: [newMessage],
                                 senderAvatar: this.props.profile.data.avatar,
-                                receiverAvatar: dog.avatar
+                                receiverAvatar: dog.avatar,
+                                newMessages: { [userID]: false, [dog.ownerId]: true },
                             })
                             .then(() => {
                                 const newReduxMessage = {

@@ -57,7 +57,6 @@ function NewProfile(props) {
 
 
   useEffect(() => {
-    window.scrollTo(0, 0)
     if (user.uid && !dogId) {
       db.collection('Dogs').where('ownerId', '==', user.uid).get()
         // .then(querySnapshot => {

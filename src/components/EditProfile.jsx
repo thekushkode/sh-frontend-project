@@ -52,8 +52,6 @@ function EditProfile(props) {
 
 
   useEffect(() => {
-    // console.log(dogId);
-    window.scrollTo(0, 0)
     if (user && !dogId) {
       db.collection("Dogs").doc(props.match.params.dogId).get()
         .then(doc => {

@@ -20,51 +20,51 @@ class NavbarPage extends Component {
 
 
     // ComponentDidMount & DidUpdate not working correctly...
-    componentDidMount() {
-        console.log(this.props)
-        const db = firebase.firestore();
-        let user = firebase.auth().currentUser;
-        if (user) {
-            if (this.props.profile.id) {
-                db.collection("Dogs")
-                    .doc(this.props.profile.id)
-                    .get()
-                    .then(doc => {
-                        const dogData = {
-                            ...doc.data(),
-                            dogId: doc.id
-                        }
-                        this.setState({
-                            dogData: dogData,
-                            user: user
-                        })
-                    })
-            }
+    // componentDidMount() {
+    //     console.log(this.props)
+    //     const db = firebase.firestore();
+    //     let user = firebase.auth().currentUser;
+    //     if (user) {
+    //         if (this.props.profile.id) {
+    //             db.collection("Dogs")
+    //                 .doc(this.props.profile.id)
+    //                 .get()
+    //                 .then(doc => {
+    //                     const dogData = {
+    //                         ...doc.data(),
+    //                         dogId: doc.id
+    //                     }
+    //                     this.setState({
+    //                         dogData: dogData,
+    //                         user: user
+    //                     })
+    //                 })
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
-    componentDidUpdate(prevProps) {
-        let dogId = this.props.profile.id;
-        if (prevProps.profile.id !== dogId) {
-            const db = firebase.firestore();
-            let user = firebase.auth().currentUser;
-            if (user) {
-                db.collection('Dogs').doc(this.props.profile.id)
-                    .get()
-                    .then(doc => {
-                        const dogData = {
-                            ...doc.data(),
-                            dogId: doc.id
-                        }
-                        this.setState({
-                            dogData: dogData,
-                            user: user
-                        })
-                    })
-            }
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     let dogId = this.props.profile.id;
+    //     if (prevProps.profile.id !== dogId) {
+    //         const db = firebase.firestore();
+    //         let user = firebase.auth().currentUser;
+    //         if (user) {
+    //             db.collection('Dogs').doc(this.props.profile.id)
+    //                 .get()
+    //                 .then(doc => {
+    //                     const dogData = {
+    //                         ...doc.data(),
+    //                         dogId: doc.id
+    //                     }
+    //                     this.setState({
+    //                         dogData: dogData,
+    //                         user: user
+    //                     })
+    //                 })
+    //         }
+    //     }
+    // }
 
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });

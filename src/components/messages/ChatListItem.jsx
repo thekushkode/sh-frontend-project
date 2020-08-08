@@ -63,7 +63,13 @@ export default function ChatListItem(props) {
                     <span className='mb-1'>
                         <strong>{them.join(', ')}</strong>
                     </span>
-                    <small>{moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}</small>
+                    <small style={{ textAlign: 'right' }}>
+                        {moment(messageData.messages[lastMessage].timeStamp).format('MMM Do')}
+                        <br />
+                        <div className="badge badge-pill badge-danger ml-1 mb-1">
+                            {messageData.notifications && messageData.notifications[user.uid] && `New Message`}
+                        </div>
+                    </small>
                 </div>
                 <p className='text-truncate' style={{ textAlign: "left" }}>
                     {messageData.messages[0].message && messageData.messages[lastMessage].message.slice(0, 24) + (messageData.messages[lastMessage].message.length > 24 ? "..." : '')}

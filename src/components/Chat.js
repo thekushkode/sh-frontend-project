@@ -80,10 +80,20 @@ const Chat = () => {
       message: chatInput,
       timeStamp: Date.now(),
       sender: profile.data.ownerName,
-      senderAvatar: profile.data.avatar
+      senderAvatar: profile.data.avatar,
     }]
+
+    // to trigger notifications
+    Object.keys(reduxMessages.data.notifications)
+      .forEach(msg => {
+        if (msg === user.uid) { reduxMessages.data.notifications[msg] = false }
+        else { reduxMessages.data.notifications[msg] = true }
+      })
+    const updatedNotifications = { ...reduxMessages.data.notifications }
+
     db.collection('Messages').doc(reduxMessages.id).update({
-      'messages': allNewMessages
+      'messages': allNewMessages,
+      notifications: updatedNotifications,
     })
     dispatch(loadMessages({
       ...reduxMessages,
@@ -112,7 +122,13 @@ const Chat = () => {
   // Note that in the URL, characters are URL escaped!
   // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
 
-  const messages = allMessages && allMessages.map((item) => {
+  const messages = allMessages && allMessages.sort((a, b) => {
+    if (a.data.messages[a.data.messages.length - 1].timeStamp < b.data.messages[b.data.messages.length - 1].timeStamp) {
+      return 1
+    } else {
+      return -1
+    }
+  }).map((item) => {
     return (
       <ChatListItem id={item} />
     )

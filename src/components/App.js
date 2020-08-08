@@ -100,10 +100,11 @@ function App() {
           .onSnapshot(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
               console.log(doc)
-              console.log(doc.data().notifications[user.uid])
-              if (doc.data().notifications[user.uid] === true) {
-                inbox.push({ id: doc.id, data: doc.data() })
-                dispatch(loadInbox([{ id: doc.id, data: doc.data() }]))
+              if (doc.data().notifications !== undefined) {
+                if (doc.data().notifications[user.uid] === true) {
+                  inbox.push({ id: doc.id, data: doc.data() })
+                  dispatch(loadInbox([{ id: doc.id, data: doc.data() }]))
+                }
               }
             })
             dispatch(loggedIn());

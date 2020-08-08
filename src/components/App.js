@@ -10,7 +10,7 @@ import DayCare from './FindDaycare';
 import Furends from './FindFurends';
 import firebase from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, unSetUser, setProfile, clearProfile, authStart, loggedIn, loggedOut, loadInbox } from '../redux/actions';
+import { setUser, unSetUser, setProfile, clearProfile, authStart, loggedIn, loggedOut, loadInbox, clearInbox } from '../redux/actions';
 import { UNINITIALIZED, AUTHENTICATING, LOGGED_IN, LOGGED_OUT } from "../redux/reducers/auth";
 import EditProfile from './EditProfile';
 import Terms from './Terms';
@@ -67,7 +67,6 @@ function App() {
         dispatch(setUser(user))
 
         let primaryDogProfile = {};
-        let inbox = [];
         db.collection("Dogs")
           .where("ownerId", "==", user.uid).limit(1).get()
           .then(function (querySnapshot) {
@@ -81,21 +80,36 @@ function App() {
             }
             dispatch(loggedIn());
           })
-          db.collection("Messages")
-          .where("members", "array-contains", user.uid).get()
-          .then(function (querySnapshot) {
-              querySnapshot.forEach(function (doc) {
-                inbox.push(doc.data())
-                dispatch(loadInbox(inbox));
-              })
-            dispatch(loggedIn());
-          })
       } else {
         dispatch(unSetUser());
         dispatch(clearProfile());
         dispatch(loggedOut());
       }
     });
+  }, [])
+
+
+  // handle message notifications
+  useEffect(() => {
+    let inbox = [];
+    console.log('db use effect')
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        db.collection("Messages")
+          .where("members", "array-contains", user.uid)
+          .onSnapshot(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              console.log(doc)
+              console.log(doc.data().notifications[user.uid])
+              if (doc.data().notifications[user.uid] === true) {
+                inbox.push({ id: doc.id, data: doc.data() })
+                dispatch(loadInbox([{ id: doc.id, data: doc.data() }]))
+              }
+            })
+            dispatch(loggedIn());
+          })
+      }
+    })
   }, [])
 
   function easterEgg() {
@@ -119,89 +133,89 @@ function App() {
   switch (authState) {
     case LOGGED_OUT:
       return (
-          <div className="App">
-            <header className="App-header">
-              <NotLogged />
-            </header>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/outside' component={GMap} />
-              <Route exact path='/petcare' component={DayCare} />
-              <Route exact path='/vets' component={VetMap} />
-              <Route exact path='/adopt' component={Adopt} />
-              <Route exact path='/contact' component={ContactPage} />
-              <Route exact path='/terms' component={Terms} />
-              <Route exact path='/privacy' component={Privacy} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/thankyou' component={ThankYou} />
-              <Route exact path='/spin' component={SpinnerPage} />
-              <Route exact path='/notify' component={Notification} />
-              <Route exact path='/load' component={LoadingPage} />
-              {/* <Route><Redirect to="/" /></Route> */}
-            </Switch>
-            <Konami action={easterEgg}>
-              <MDBContainer>
-                <MDBModal isOpen={modal} toggle={toggle}>
-                  <MDBModalHeader className='text-white aqua-gradient' toggle={toggle}>Look- A Dog!</MDBModalHeader>
-                  <MDBModalBody>
-                    <img src={`${url}`} className='img-fluid' alt='random dog' />
-                  </MDBModalBody>
-                  <MDBModalFooter>
-                    <MDBBtn className='btn-rounded purple-gradient' onClick={toggle}>Close</MDBBtn>
-                  </MDBModalFooter>
-                </MDBModal>
-              </MDBContainer>
-            </Konami>
-          </div>
+        <div className="App">
+          <header className="App-header">
+            <NotLogged />
+          </header>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/outside' component={GMap} />
+            <Route exact path='/petcare' component={DayCare} />
+            <Route exact path='/vets' component={VetMap} />
+            <Route exact path='/adopt' component={Adopt} />
+            <Route exact path='/contact' component={ContactPage} />
+            <Route exact path='/terms' component={Terms} />
+            <Route exact path='/privacy' component={Privacy} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/thankyou' component={ThankYou} />
+            <Route exact path='/spin' component={SpinnerPage} />
+            <Route exact path='/notify' component={Notification} />
+            <Route exact path='/load' component={LoadingPage} />
+            {/* <Route><Redirect to="/" /></Route> */}
+          </Switch>
+          <Konami action={easterEgg}>
+            <MDBContainer>
+              <MDBModal isOpen={modal} toggle={toggle}>
+                <MDBModalHeader className='text-white aqua-gradient' toggle={toggle}>Look- A Dog!</MDBModalHeader>
+                <MDBModalBody>
+                  <img src={`${url}`} className='img-fluid' alt='random dog' />
+                </MDBModalBody>
+                <MDBModalFooter>
+                  <MDBBtn className='btn-rounded purple-gradient' onClick={toggle}>Close</MDBBtn>
+                </MDBModalFooter>
+              </MDBModal>
+            </MDBContainer>
+          </Konami>
+        </div>
       )
     case LOGGED_IN:
       return (
-          <div className="App">
-            <header className="App-header">
-              <NavbarPage />
-            </header>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/messages' component={Chat} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/outside' component={GMap} />
-              <Route exact path='/furends' component={Furends} />
-              <Route exact path='/petcare' component={DayCare} />
-              <Route exact path='/vets' component={VetMap} />
-              <Route exact path='/adopt' component={Adopt} />
-              <Route exact path='/contact' component={ContactPage} />
-              <Route exact path='/feed' component={PublicFeed} />
-              <Route exact path='/editprofile/:dogId' component={EditProfile} />
-              <Route exact path='/newprofile' component={NewProfile} />
-              <Route exact path='/terms' component={Terms} />
-              <Route exact path='/privacy' component={Privacy} />
-              <Route exact path= '/lost' component={Lost} />
-              {/* <Route exact path='/login'><Redirect to="/feed" /></Route> */}
-              <Route exact path='/thankyou' component={ThankYou} />
-              {/* <Route exact path='/messagestest' component={MessagesPage} /> */}
-              <Route exact path='/profile/:dogId' component={DogProfile} />
-              <Route exact path='/add' component={AddNewDog} />
-              <Route path='/user/:dogId' component={UserProfile} />
-              <Route path='/newchat/' component={NewChat} />
-              <Route path='/lost' component={Lost} />
-              <Route path='/hashtags' component={HashGallery} />
-              <Redirect to="/newprofile" />
-            </Switch>
-            <Konami action={easterEgg} style={{}}>
-              <MDBContainer>
-                <MDBModal isOpen={modal} toggle={toggle}>
-                  <MDBModalHeader className='text-white aqua-gradient' toggle={toggle}>Look- A Dog!</MDBModalHeader>
-                  <MDBModalBody>
-                    <img src={`${url}`} className='img-fluid' alt='random dog' />
-                  </MDBModalBody>
-                  <MDBModalFooter>
-                    <MDBBtn className='btn-rounded purple-gradient' onClick={toggle}>Close</MDBBtn>
-                  </MDBModalFooter>
-                </MDBModal>
-              </MDBContainer>
-            </Konami>
-          </div>
+        <div className="App">
+          <header className="App-header">
+            <NavbarPage />
+          </header>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/messages' component={Chat} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/outside' component={GMap} />
+            <Route exact path='/furends' component={Furends} />
+            <Route exact path='/petcare' component={DayCare} />
+            <Route exact path='/vets' component={VetMap} />
+            <Route exact path='/adopt' component={Adopt} />
+            <Route exact path='/contact' component={ContactPage} />
+            <Route exact path='/feed' component={PublicFeed} />
+            <Route exact path='/editprofile/:dogId' component={EditProfile} />
+            <Route exact path='/newprofile' component={NewProfile} />
+            <Route exact path='/terms' component={Terms} />
+            <Route exact path='/privacy' component={Privacy} />
+            <Route exact path='/lost' component={Lost} />
+            {/* <Route exact path='/login'><Redirect to="/feed" /></Route> */}
+            <Route exact path='/thankyou' component={ThankYou} />
+            {/* <Route exact path='/messagestest' component={MessagesPage} /> */}
+            <Route exact path='/profile/:dogId' component={DogProfile} />
+            <Route exact path='/add' component={AddNewDog} />
+            <Route path='/user/:dogId' component={UserProfile} />
+            <Route path='/newchat/' component={NewChat} />
+            <Route path='/lost' component={Lost} />
+            <Route path='/hashtags' component={HashGallery} />
+            <Redirect to="/newprofile" />
+          </Switch>
+          <Konami action={easterEgg} style={{}}>
+            <MDBContainer>
+              <MDBModal isOpen={modal} toggle={toggle}>
+                <MDBModalHeader className='text-white aqua-gradient' toggle={toggle}>Look- A Dog!</MDBModalHeader>
+                <MDBModalBody>
+                  <img src={`${url}`} className='img-fluid' alt='random dog' />
+                </MDBModalBody>
+                <MDBModalFooter>
+                  <MDBBtn className='btn-rounded purple-gradient' onClick={toggle}>Close</MDBBtn>
+                </MDBModalFooter>
+              </MDBModal>
+            </MDBContainer>
+          </Konami>
+        </div>
       )
     case UNINITIALIZED:
     case AUTHENTICATING:

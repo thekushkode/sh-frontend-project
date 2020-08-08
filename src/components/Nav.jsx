@@ -3,7 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 import firebase from '../firebase';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loggedOut, unSetPrivateFeed, clearMessages } from '../redux/actions/index'
+import { loggedOut, unSetPrivateFeed, clearMessages, clearInbox } from '../redux/actions/index'
 
 
 class NavbarPage extends Component {
@@ -66,6 +66,12 @@ class NavbarPage extends Component {
     //     }
     // }
 
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.inbox !== this.props.inbox) {
+    //         this.setState({ ...this.state, inbox: this.props.inbox })
+    //     }
+    // }
+
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
@@ -77,6 +83,7 @@ class NavbarPage extends Component {
             })
             this.props.unSetPrivateFeed()
             this.props.clearMessages()
+            this.props.clearInbox()
             this.props.loggedOut()
             this.props.history.push('/')
         }).catch(function (error) {
@@ -109,7 +116,7 @@ class NavbarPage extends Component {
                             <MDBNavItem>
                                 <MDBNavLink to='/messages'>
                                     Messages
-                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
+                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">new</span>}
                                 </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>
@@ -209,7 +216,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     loggedOut,
     unSetPrivateFeed,
-    clearMessages
+    clearMessages,
+    clearInbox,
 }
 
 export default connect(

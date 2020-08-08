@@ -158,7 +158,11 @@ class UserProfile extends Component {
                 userNames: [userName, dog.ownerName],
                 messages: [newMessage],
                 senderAvatar: this.props.profile.data.avatar,
-                receiverAvatar: dog.avatar
+                receiverAvatar: dog.avatar,
+                notifications: {
+                  [userID]: false,
+                  [dog.ownerId]: true,
+                },
               })
               .then(() => {
                 const newReduxMessage = {
@@ -168,7 +172,7 @@ class UserProfile extends Component {
                     userNames: [userName, dog.ownerName],
                     messages: [newMessage],
                     senderAvatar: this.props.profile.data.avatar,
-                    receiverAvatar: dog.avatar
+                    receiverAvatar: dog.avatar,
                   }
                 }
                 this.props.loadMessages(newReduxMessage)
@@ -615,7 +619,7 @@ class UserProfile extends Component {
                             <h5 className='text-center mb-4'>
                               <strong>{dog.dogName}'s Friends </strong>
                             </h5>
-                            <MDBRow style={{ maxHeight: '300px', overflow: 'scroll'}}>
+                            <MDBRow style={{ maxHeight: '300px', overflow: 'scroll' }}>
                               {dog.friends && dog.friends.map((dog, index) => {
                                 return (
 
@@ -655,7 +659,7 @@ class UserProfile extends Component {
                             <h5 className='text-center mb-4'>
                               <strong>{dog.dogName}'s Photos</strong>
                             </h5>
-                            <MDBRow style={{ maxHeight: '300px', overflow: 'scroll'}}>
+                            <MDBRow style={{ maxHeight: '300px', overflow: 'scroll' }}>
                               {dog.photos && dog.photos.map((photo, index) => {
                                 return (
                                   <MDBCol md='6' lg='4' sm='6' className='mt-1' key={index}>

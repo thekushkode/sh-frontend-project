@@ -4,7 +4,7 @@ function inboxReducer(state = initialState, action) {
         case 'LOAD_INBOX':
             return action.payload;
         case 'CLEAR_INBOX':
-            return null;
+            return [];
         default:
             return state;
     }

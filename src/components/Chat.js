@@ -84,25 +84,52 @@ const Chat = () => {
     }]
 
     // to trigger notifications
-    Object.keys(reduxMessages.data.notifications)
-      .forEach(msg => {
-        if (msg === user.uid) { reduxMessages.data.notifications[msg] = false }
-        else { reduxMessages.data.notifications[msg] = true }
+    if (reduxMessages.data.notifications !== undefined) {
+      Object.keys(reduxMessages.data.notifications)
+        .forEach(msg => {
+          if (msg === user.uid) { reduxMessages.data.notifications[msg] = false }
+          else { reduxMessages.data.notifications[msg] = true }
+        })
+      const updatedNotifications = { ...reduxMessages.data.notifications }
+      db.collection('Messages').doc(reduxMessages.id).update({
+        'messages': allNewMessages,
+        notifications: updatedNotifications,
       })
-    const updatedNotifications = { ...reduxMessages.data.notifications }
 
-    db.collection('Messages').doc(reduxMessages.id).update({
-      'messages': allNewMessages,
-      notifications: updatedNotifications,
-    })
-    dispatch(loadMessages({
-      ...reduxMessages,
-      data: {
-        ...reduxMessages.data,
-        messages: allNewMessages
-      }
-    }))
-    setChatInput('')
+      dispatch(loadMessages({
+        ...reduxMessages,
+        data: {
+          ...reduxMessages.data,
+          messages: allNewMessages
+        }
+      }))
+      setChatInput('')
+    }
+
+    else {
+      let notifications = {}
+      reduxMessages.data.members
+        .forEach(member => {
+          if (member === user.uid) { notifications[member] = false }
+          else { notifications[member] = true }
+        })
+      // const updatedNotifications = { ...reduxMessages.data.notifications }
+
+      db.collection('Messages').doc(reduxMessages.id).update({
+        'messages': allNewMessages,
+        notifications: notifications,
+      })
+
+      dispatch(loadMessages({
+        ...reduxMessages,
+        data: {
+          ...reduxMessages.data,
+          messages: allNewMessages
+        }
+      }))
+      setChatInput('')
+
+    }
   }
 
   console.log(profile.data);

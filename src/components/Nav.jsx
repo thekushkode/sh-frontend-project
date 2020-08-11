@@ -14,7 +14,8 @@ class NavbarPage extends Component {
             redirect: false,
             inbox: '',
             user: '',
-            dogData: []
+            dogData: [],
+            key: '',
         };
     }
 
@@ -44,6 +45,7 @@ class NavbarPage extends Component {
     //     }
     // }
 
+
     // componentDidUpdate(prevProps) {
     //     let dogId = this.props.profile.id;
     //     if (prevProps.profile.id !== dogId) {
@@ -64,6 +66,18 @@ class NavbarPage extends Component {
     //                 })
     //         }
     //     }
+    // }
+    
+    // componentDidMount = () => {
+    //     this.setState({
+    //         key: Math.random()
+    //     })
+    // }
+
+    // componentDidUpdate = () => {
+    //     this.setState({
+    //         key: Math.random() * 2
+    //     })
     // }
 
     // componentDidUpdate(prevProps) {
@@ -100,7 +114,7 @@ class NavbarPage extends Component {
         console.log(this.props.inbox)
         console.log(this.props.inbox.length)
         return (
-            <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
+            <MDBNavbar key={this.state.key} color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
                     <MDBNavbarBrand>
                         <MDBNavLink to="/"><strong className="white-text">SocialHound</strong></MDBNavLink>

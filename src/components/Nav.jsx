@@ -14,7 +14,8 @@ class NavbarPage extends Component {
             redirect: false,
             inbox: '',
             user: '',
-            dogData: []
+            dogData: [],
+            key: '',
         };
     }
 
@@ -44,6 +45,7 @@ class NavbarPage extends Component {
     //     }
     // }
 
+
     // componentDidUpdate(prevProps) {
     //     let dogId = this.props.profile.id;
     //     if (prevProps.profile.id !== dogId) {
@@ -64,6 +66,18 @@ class NavbarPage extends Component {
     //                 })
     //         }
     //     }
+    // }
+    
+    // componentDidMount = () => {
+    //     this.setState({
+    //         key: Math.random()
+    //     })
+    // }
+
+    // componentDidUpdate = () => {
+    //     this.setState({
+    //         key: Math.random() * 2
+    //     })
     // }
 
     toggleCollapse = () => {
@@ -93,7 +107,7 @@ class NavbarPage extends Component {
         console.log(this.props.inbox)
         console.log(this.props.inbox.length)
         return (
-            <MDBNavbar color="aqua-gradient" dark expand="md" scrolling fixed="top">
+            <MDBNavbar key={this.state.key} color="aqua-gradient" dark expand="md" scrolling fixed="top">
                 <MDBContainer>
                     <MDBNavbarBrand>
                         <MDBNavLink to="/"><strong className="white-text">SocialHound</strong></MDBNavLink>
@@ -109,7 +123,7 @@ class NavbarPage extends Component {
                             <MDBNavItem>
                                 <MDBNavLink to='/messages'>
                                     Messages
-                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">{this.props.inbox.length}</span>}
+                                    {this.props.inbox.length >= 1 && <span class="badge badge-pill badge-danger ml-1 mb-1">new</span>}
                                 </MDBNavLink>
                             </MDBNavItem>
                             <MDBNavItem>

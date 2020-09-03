@@ -18,7 +18,7 @@ const FooterPage = () => {
                             <MDBBtn href='https://twitter.com/socialhoundco' target='_blank' size="lg" tag="a" floating social="tw">
                                 <MDBIcon fab icon="twitter" target='_blank' />
                             </MDBBtn>
-                            <MDBBtn href='https://www.instagram.com/socialhound.co.beta/' target='_blank' size="lg" tag="a" floating social="ins">
+                            <MDBBtn href='https://www.instagram.com/socialhound.co/' target='_blank' size="lg" tag="a" floating social="ins">
                                 <MDBIcon fab icon="instagram" target='_blank' />
                             </MDBBtn>
                         </MDBContainer>

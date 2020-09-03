@@ -175,7 +175,7 @@ class NavbarPage extends Component {
                                 </MDBBtn>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBBtn href='https://www.instagram.com/socialhound.co.beta/' target='_blank' size="sm" tag="a" floating social="ins">
+                                <MDBBtn href='https://www.instagram.com/socialhound.co/' target='_blank' size="sm" tag="a" floating social="ins">
                                     <MDBIcon fab icon="instagram" />
                                 </MDBBtn>
                             </MDBNavItem>

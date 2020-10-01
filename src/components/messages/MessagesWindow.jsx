@@ -25,7 +25,6 @@ export default function MessagesWindow() {
 
 
     function selectUser() {
-        // console.log(friends);
         if (friends) {
             friends = profile.data.friends.map((name) => name)
             // create dropdown or other method for choosing between your friends
@@ -39,11 +38,9 @@ export default function MessagesWindow() {
     }
 
     function addFriend(chosenFriend) {
-        // console.log(chosenFriend)
         db.collection('Dogs').doc(chosenFriend).get()
             .then((doc) => {
                 let dogProfile = doc.data()
-                // console.log(doc.data())
                 db.collection("Messages").doc(messages.id)
                     .update({
                         members: [...messages.data.members, dogProfile.ownerId],
@@ -87,7 +84,6 @@ export default function MessagesWindow() {
                                 })}
                             </MDBDropdownMenu>
                         </MDBDropdown>}
-                    {/* // <MDBBtn className='btn-rounded purple-gradient' onClick={() => selectUser()}>Add User<MDBIcon icon='plus-circle' className='ml-1' /></MDBBtn>} */}
                 </MDBCol>
             </MDBRow>
                 <div className="border border-info p-2 white">
@@ -103,10 +99,8 @@ export default function MessagesWindow() {
                                 button = ['Confirm PlayDate']
                             }
                             else if (item.sender === profile.data.ownerName) {
-                                // styles = ['end', 'aqua-gradient', 'text-white', 'rgb(240, 240, 240)']
                                 styles = ['end', '', 'text-white', 'rgb(0,153,255)']
                             } else {
-                                // styles = ['start', 'tempting-azure-gradient lighten-3', 'text-black']
                                 styles = ['start', '', 'text-black', 'rgb(240, 240, 240)']
                             }
                             return (

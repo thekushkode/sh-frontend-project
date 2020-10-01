@@ -21,7 +21,7 @@ export default function ChatListItem(props) {
     const profile = useSelector(state => state.profile)
     const inbox = useSelector(state => state.inbox)
     const db = firebase.firestore();
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     function itemClicked(val) {
         db.collection('Messages').doc(val)
@@ -43,9 +43,9 @@ export default function ChatListItem(props) {
         }
         dispatch(loadMessages(props.id));
     }
-    let messageData = props.id.data
-    let lastMessage = (messageData.messages.length - 1)
-    let them = messageData.userNames.filter((name) => {
+    const messageData = props.id.data
+    const lastMessage = (messageData.messages.length - 1)
+    const them = messageData.userNames.filter((name) => {
         { console.log(name) }
         return name !== profile.data.ownerName
     })

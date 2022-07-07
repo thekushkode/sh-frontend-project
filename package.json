@@ -13,7 +13,7 @@
     "google-map-react": "^1.1.7",
     "google-maps-react": "^2.0.6",
     "mdbreact": "git+https://oauth2:6syYtvFQnuxN4Wm3wMHp@git.mdbootstrap.com/mdb/react/re-pro.git",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "react": "^16.13.1",
     "react-adsense": "^0.1.0",
     "react-bootstrap-date-picker": "^5.1.0",
